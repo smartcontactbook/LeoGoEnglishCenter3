@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class tutor_account extends Model
 {
-    protected $table='table_tutor_account';
+    protected $table='tutor_account';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function tutor()
     {

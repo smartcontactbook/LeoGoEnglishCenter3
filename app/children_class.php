@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class children_class extends Model
 {
-    protected $table='table_children_class';
+    protected $table='children_class';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function children()
     {

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class class_weekday_room extends Model
 {
-    protected $table='table_class_weekday_room';
+    protected $table='class_weekday_room';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function class_room()
     {

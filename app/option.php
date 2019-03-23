@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class option extends Model
 {
-    protected $table='table_level';
+    protected $table='level';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function question()
     {

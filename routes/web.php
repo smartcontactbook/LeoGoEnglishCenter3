@@ -30,7 +30,7 @@ Route::get('index',[
 // 	'uses'=>'HomeController@getAddLecturers'
 // ]);
 
- // START LECTURER MANAGEMENT
+// START LECTURER MANAGEMENT
 Route::resource('lecturer', 'LecturersController');
 Route::post('updateLecturer/{id}',['as'=>'postUpdateLecturer','uses'=>'HomeController@postUpdateLecturer']);
 // END LECTURER MANAGEMENT
@@ -43,5 +43,12 @@ Route::resource('course', 'CourseController');
 Route::resource('classRoom', 'ClassController');
 // END CLASS MANAGEMENT
 
+// START TUTOR MANAGEMENT
+Route::resource('tutor', 'TutorController');
+//Route::post('updateTutor/{id}',['as'=>'postUpdateTutor','uses'=>'HomeController@postUpdateTutor']);
+// END TUTOR MANAGEMENT
 
+// START STAFF MANAGEMENT
+Route::resource('staff', 'StaffController');
+// END STAFF MANAGEMENT
 

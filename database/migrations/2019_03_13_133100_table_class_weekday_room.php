@@ -18,8 +18,8 @@ class TableClassWeekdayRoom extends Migration
             $table->integer('Weekday_ID1')->unsigned();
             $table->integer('Weekday_ID2')->unsigned();
             // $table->integer('Hours');
-            // $table->time('Time_Start');
-            // $table->time('Time_End');
+            $table->time('Time_Start');
+            $table->time('Time_End');
             $table->foreign('Class_ID')->references('id')->on('class');
             $table->foreign('Classroom_ID')->references('id')->on('class_room');
             $table->foreign('Weekday_ID1')->references('id')->on('weekday');

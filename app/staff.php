@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class staff extends Model
 {
-    protected $table='table_staff';
+    protected $table='staff';
     protected $guarded= [];
+    public $timestamps = false;
+
+    public function staff_account()
+    {
+    	return $this->hasOne('app\providers\staff_account');
+    }
 //
 }

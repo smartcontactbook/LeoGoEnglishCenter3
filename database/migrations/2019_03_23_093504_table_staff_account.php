@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableChildrenAccount extends Migration
+class TableStaffAccount extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class TableChildrenAccount extends Migration
      */
     public function up()
     {
-        Schema::create('children_account', function (Blueprint $table) {
+        Schema::create('staff_account', function (Blueprint $table) {
             $table->increments('id');
             $table->string('User_Name');
             $table->string('Password');
-            $table->integer('Children_ID')->unsigned();
-            $table->foreign('Children_ID')->references('id')->on('children');
+            $table->integer('Staff_ID')->unsigned();  
+            $table->foreign('Staff_ID')->references('id')->on('staff');
         });
     }
 
@@ -29,6 +29,6 @@ class TableChildrenAccount extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('children_account');
+        Schema::dropIfExists('staff_account');
     }
 }

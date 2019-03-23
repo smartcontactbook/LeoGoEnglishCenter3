@@ -15,8 +15,15 @@ class TableChildrenClass extends Migration
     {
         Schema::create('children_class', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Children_ID');
-            $table->integer('Class_ID');
+            $table->integer('Children_ID')->unsigned();
+            $table->integer('Class_ID')->unsigned();
+            $table->float('Score_A')->nullable();
+            $table->float('Score_B')->nullable();
+            $table->float('Score_C')->nullable();
+            $table->float('Score_D')->nullable();
+            $table->float('Score_E')->nullable();
+            $table->foreign('Children_ID')->references('id')->on('children');
+            $table->foreign('Class_ID')->references('id')->on('class');
           //  $table->primary('id');
         });
     }

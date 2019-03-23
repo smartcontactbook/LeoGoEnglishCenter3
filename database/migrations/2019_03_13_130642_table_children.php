@@ -15,17 +15,20 @@ class TableChildren extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Course_ID')->unsigned();
+            $table->integer('Score');
             $table->string('Description');
             $table->string('First_Name');
             $table->string('Last_Name');
             $table->string('Email');
             $table->string('Birth_Day');
+            $table->string('Parent_Name');
             $table->string('Phone_Number');
             $table->integer('Gender');
             $table->string('Address');
+            $table->string('avatar');
+            $table->string('Status');
          //   $table->primary('id');
-            $table->foreign('Course_ID')->references('id')->on('course');
+            // $table->foreign('Course_ID')->references('id')->on('course');
         });
     }
 

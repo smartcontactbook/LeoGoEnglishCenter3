@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class question extends Model
 {
-    protected $table='table_question';
+    protected $table='question';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function option()
     {

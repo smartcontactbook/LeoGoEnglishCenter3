@@ -45,6 +45,10 @@ Route::resource('classRoom', 'ClassController');
 
 // START TUTOR MANAGEMENT
 Route::resource('tutor', 'TutorController');
+
+Route::get('/ajax/tutor', array(
+  'uses'  =>  'AjaxController@loadContent'
+));
 //Route::post('updateTutor/{id}',['as'=>'postUpdateTutor','uses'=>'HomeController@postUpdateTutor']);
 // END TUTOR MANAGEMENT
 

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class class extends Model
 {
-    protected $table='table_class';
+    protected $table='class';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function payment()
     {

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class children extends Model
 {
-    protected $table='table_children';
+    protected $table='children';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function children_account()
     {
@@ -24,8 +25,4 @@ class children extends Model
     	return $this->hasMany('app\providers\payment');
     }
 
-     public function course()
-    {
-        return $this->belongsTo('app\providers\course');
-    }
 }

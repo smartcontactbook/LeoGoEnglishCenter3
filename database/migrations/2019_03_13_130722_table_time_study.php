@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableChildrenAccount extends Migration
+class TableTimeStudy extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class TableChildrenAccount extends Migration
      */
     public function up()
     {
-        Schema::create('children_account', function (Blueprint $table) {
+        Schema::create('time_study', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('User_Name');
-            $table->string('Password');
-            $table->integer('Children_ID')->unsigned();
-            $table->foreign('Children_ID')->references('id')->on('children');
+            $table->time('Time_Start');
+            $table->time('Time_End');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +28,6 @@ class TableChildrenAccount extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('children_account');
+        Schema::dropIfExists('time_study');
     }
 }

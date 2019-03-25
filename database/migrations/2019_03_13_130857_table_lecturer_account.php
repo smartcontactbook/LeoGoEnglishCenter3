@@ -18,7 +18,6 @@ class TableLecturerAccount extends Migration
             $table->string('User_Name');
             $table->string('Password');
             $table->integer('Lecturer_ID')->unsigned();
-            // $table->primary('User_Name');
             $table->foreign('Lecturer_ID')->references('id')->on('lecturer'); 
 
         });

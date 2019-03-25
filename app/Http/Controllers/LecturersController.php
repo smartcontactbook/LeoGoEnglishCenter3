@@ -37,7 +37,6 @@ class LecturersController extends Controller
         $lecturer->avatar = 'default.png';
         // dd($lecturer->Gender,$lecturer->Address);
         $result = $lecturer->save();
-
         $lecturer_account = new lecturer_account;
         $lecturer_account->User_Name = $request->txt_UserName;
         $lecturer_account->Password = $request->txt_password;

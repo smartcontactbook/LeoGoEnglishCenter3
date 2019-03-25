@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class children_class extends Model
+class class_schedule extends Model
 {
-    protected $table='children_class';
+    protected $table='class_schedule';
     protected $guarded= [];
     public $timestamps = false;
 
-    public function children()
+    public function schedule()
     {
-    	return $this->belongsTo('app\providers\children');
+    	return $this->belongsTo('app\providers\schedule');
     }
 
     public function class()

@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class weekday extends Model
 {
-    protected $table='table_weekday';
+    protected $table='weekday';
     protected $guarded= [];
+    public $timestamps = false;
 
-    public function class_weekday_room()
+    public function schedule()
     {
-    	return $this->hadMany('app\providers\class_weekday_room');
+    	return $this->hadMany('app\providers\schedule');
     }
 }

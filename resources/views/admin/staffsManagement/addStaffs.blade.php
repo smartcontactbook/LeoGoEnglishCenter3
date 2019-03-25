@@ -1,19 +1,19 @@
 @extends('admin.layout.master.master')
 @section('main-content')
 	<section class="content-header">
-		<h1><b>ADD LECTURER</b>
+		<h1><b>ADD STAFF</b>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#">Home</a></li>
-			<li><a href="#">Lecturer management</a></li>
-			<li class="active">Add lecturer</li>
+			<li><a href="#">Staff management</a></li>
+			<li class="active">Add Staff</li>
 		</ol>
 	</section>
 	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box">
-					<form method="POST" action="{!! route('lecturer.store') !!}">
+					<form method="POST" action="{!! route('staff.store') !!}">
 						{!! csrf_field() !!}
 						@include('errors.errors')
 						<div class="row">
@@ -48,7 +48,7 @@
 										<label>User Name</label>
 										<input
 										type="text"
-										name="txt_UserName"
+										required name="txt_UserName"
 										class="form-control"
 										placeholder="Enter User Name"
 										/>
@@ -88,7 +88,7 @@
 									<div class="form-group">
 										<label htmlFor="exampleInputPassword1">Password</label>
 										<input
-										name="txt_password"
+										required name="txt_password"
 										type="password"
 										class="form-control"
 										id="exampleInputPassword1"
@@ -122,7 +122,7 @@
 						</div>
 						<div align="center">
 							<p class="box-title">
-								<a href="{{ route('lecturer.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
+								<a href="{{ route('staff.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
 								<button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
 							</p>
                         </div>

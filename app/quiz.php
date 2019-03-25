@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class quiz extends Model
 {
-    protected $table='table_quiz';
+    protected $table='quiz';
     protected $guarded= [];
+    public $timestamps = false;
 
     public function question()
     {

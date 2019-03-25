@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class class_room extends Model
+class time_study extends Model
 {
-    protected $table='class_room';
+    protected $table='time_study';
     protected $guarded= [];
     public $timestamps = false;
 

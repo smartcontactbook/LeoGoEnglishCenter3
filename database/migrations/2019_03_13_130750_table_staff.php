@@ -21,6 +21,7 @@ class TableStaff extends Migration
             $table->string('Phone_Number');
             $table->integer('Gender');
             $table->string('Address');
+            $table->string('avatar');
           //  $table->primary('id');
         });
     }

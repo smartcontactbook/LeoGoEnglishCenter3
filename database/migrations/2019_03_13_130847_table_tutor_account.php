@@ -14,10 +14,10 @@ class TableTutorAccount extends Migration
     public function up()
     {
         Schema::create('tutor_account', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('User_Name');
             $table->string('Password');
-            $table->integer('Tutor_ID')->unsigned();
-            $table->primary('User_Name');
+            $table->integer('Tutor_ID')->unsigned();  
             $table->foreign('Tutor_ID')->references('id')->on('tutor');
         });
     }

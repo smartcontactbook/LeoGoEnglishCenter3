@@ -42,6 +42,10 @@ Route::resource('course', 'CourseController');
 // START CLASS MANAGEMENT
 Route::resource('classRoom', 'ClassController');
 // END CLASS MANAGEMENT
+ 
+// START RIGISTER MANAGEMENT
+Route::resource('register', 'RegisterController');
+//
 
 
 

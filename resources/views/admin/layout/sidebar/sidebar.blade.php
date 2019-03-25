@@ -42,6 +42,33 @@
             </li>
             <li class="treeview">
               <a href="#">
+                
+                <i class="glyphicon glyphicon-education">
+                </i> 
+                <span>Enrollment Management
+                </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right">
+                  </i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="{{ route('register.create') }}">
+                    <i class="fa fa-circle-o">
+                    </i> Register
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ route('register.index') }}">
+                    <i class="fa fa-circle-o"> 
+                    </i> Register List  
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
                 <i class="fa fa-laptop">
                 </i>
                 <span>Course Management
@@ -100,8 +127,7 @@
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="glyphicon glyphicon-education">
-                </i> 
+                <i class="fa fa-child"></i>
                 <span>Childrens Management
                 </span>
               </a>

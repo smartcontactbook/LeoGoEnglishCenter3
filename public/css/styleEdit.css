@@ -188,5 +188,13 @@
 }
 
 .edit-background{
-  background-color: #E9AC20;
+  background-color: #0B610B;
+}
+
+.edit-h4{
+    color: #FFFFFF;
+}
+
+.edit-margin{
+  margin-bottom: 50px;
 }

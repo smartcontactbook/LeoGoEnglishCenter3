@@ -112,13 +112,13 @@
                   </a>
                 </li>
                 <li>
-                  <a href="pages/UI/icons.html">
+                  <a href="{{ route('tutor.index') }}">
                     <i class="fa fa-circle-o">
                     </i> Tutors
                   </a>
                 </li>
                 <li>
-                  <a href="pages/UI/buttons.html">
+                  <a href="{{ route('staff.index') }}">
                     <i class="fa fa-circle-o">
                     </i> Staffs
                   </a>

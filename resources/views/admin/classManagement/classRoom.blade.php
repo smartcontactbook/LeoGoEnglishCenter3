@@ -28,253 +28,91 @@
 				<div class="box-body">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Course 01</a></li>
-              <li><a href="#timeline" data-toggle="tab">Course 02</a></li>
-              <li><a href="#settings" data-toggle="tab">Course 03</a></li>
+              @foreach($getCourses as $count=>$getCourse)
+{{--               @php
+                dd($count);
+              @endphp --}}
+                <li role="presentation" @if($count == 0) class="active" @endif>
+                  <a href="#tab-{{ $getCourse->id }}" aria-controls="#tab-{{ $getCourse->id }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}</a>
+                </li>
+              @endforeach
             </ul>
             <div class="tab-content">
-              <div class="active tab-pane" id="activity">
-                <!-- Post -->
-                <div class="row">
-                  <div class="col-sm-3">
-                    <div class="box-body">
-                      <ul class="products-list product-list-in-box">
-                        <li class="edit-item">
-                          <div class="edit-product-info">
-                            <h4 class="edit-p">Class 01</h4>
-                            <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image"  alt="Avatar">
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
+              @foreach($getCourses as $count=>$getCourse)
+                <div role="tabpanel" @if($count == 0) class="tab-pane active" @else class="tab-pane" @endif id="tab-{{ $getCourse->id }}">
+                  <!-- Post -->
+                  <div class="row">
+                    @foreach($getClassOfCourses as $value)
+                      @if($getCourse->id == $value->id_course)
+                      <input type="hidden" name="txt_idClass">
+                        <div class="col-sm-3">
                           <div class="box-body">
-                            <div class="row">
-                              <label class="control-label edit-row">Course</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Start day</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">End date</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Qty Students</label>
-                              <div class="pull-right">
-                                <label class="label label-danger edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Remain classes</label>
-                              <div class="pull-right">
-                                <label class="label label-success edit-pull-right"> Test</label>
-                              </div>
-                            </div>
+                            <ul class="products-list product-list-in-box">
+                              <li class="edit-item">
+
+                                <div class="edit-product-info">
+                                  <h4 class="edit-p">{{ $value->Class_Name }} 
+                                  <a href="" class="edit-icon pull-right"><i class="fa fa-eyedropper" aria-hidden="true"></i></a>
+                                  </h4>
+                                  
+                                  <div class="avatar-edit">
+                                    <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image" alt="Avatar">
+                                    
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- /.item -->
+                              <li class="item">
+                                <div class="box-body">
+                                  <div class="row">
+                                    <label class="control-label edit-row">Course</label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->Course_Name }}</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Start day</label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->Start_Date }}</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">End date</label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->End_Date}}</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Qty Students</label>
+                                    <div class="pull-right">
+                                      <label class="label label-danger edit-pull-right">{{ $value->QuantityStudent }}</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Remain classes</label>
+                                    <div class="pull-right">
+                                      <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- /.item -->
+                              <li class="item">
+                                <div class="box-body">
+                                  <button type="button" class="btn edit-button" data-toggle="modal" data-target="#modal-default">List</button>
+                                  <button type="button" class="btn pull-right edit-button">Absence</button>
+                                </div>
+                              </li>
+                            </ul>
                           </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="box-body">
-                            <button type="submit" class="btn edit-button">List</button>
-                            <button type="submit" class="btn pull-right edit-button">Absence</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- /.box-body -->
+                          <!-- /.box-body -->
+                        </div>
+                      @endif
+                    @endforeach
                   </div>
-                  <div class="col-sm-3">
-                    <div class="box-body">
-                      <ul class="products-list product-list-in-box">
-                        <li class="edit-item">
-                          <div class="edit-product-info">
-                            <h4 class="edit-p">Class 02</h4>
-                            <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image"  alt="Avatar">
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="box-body">
-                            <div class="row">
-                              <label class="control-label edit-row">Course</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Start day</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">End date</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Qty Students</label>
-                              <div class="pull-right">
-                                <label class="label label-danger edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Remain classes</label>
-                              <div class="pull-right">
-                                <label class="label label-success edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="box-body">
-                            <button type="submit" class="btn edit-button">List</button>
-                            <button type="submit" class="btn pull-right edit-button">Absence</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
+                  <!-- /.post -->
                 </div>
-
-
-                <!-- /.post -->
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-                                <div class="row">
-                  <div class="col-sm-3">
-                    <div class="box-body">
-                      <ul class="products-list product-list-in-box">
-                        <li class="edit-item">
-                          <div class="edit-product-info">
-                            <h4 class="edit-p">Class 01</h4>
-                            <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image"  alt="Avatar">
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="box-body">
-                            <div class="row">
-                              <label class="control-label edit-row">Course</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Start day</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">End date</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Qty Students</label>
-                              <div class="pull-right">
-                                <label class="label label-danger edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Remain classes</label>
-                              <div class="pull-right">
-                                <label class="label label-success edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="box-body">
-                            <button type="submit" class="btn edit-button">List</button>
-                            <button type="submit" class="btn pull-right edit-button">Absence</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-
-                </div>
-              </div>
-              <!-- /.tab-pane -->
-
-              <div class="tab-pane" id="settings">
-                                <div class="row">
-                  <div class="col-sm-3">
-                    <div class="box-body">
-                      <ul class="products-list product-list-in-box">
-                        <li class="edit-item">
-                          <div class="edit-product-info">
-                            <h4 class="edit-p">Class 01</h4>
-                            <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image"  alt="Avatar">
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="box-body">
-                            <div class="row">
-                              <label class="control-label edit-row">Course</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Start day</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">End date</label>
-                              <div class="pull-right">
-                                <label class="label edit-lable edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Qty Students</label>
-                              <div class="pull-right">
-                                <label class="label label-danger edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <label class="control-label edit-row">Remain classes</label>
-                              <div class="pull-right">
-                                <label class="label label-success edit-pull-right"> Test</label>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <!-- /.item -->
-                        <li class="item">
-                          <div class="box-body">
-                            <button type="submit" class="btn edit-button">List</button>
-                            <button type="submit" class="btn pull-right edit-button">Absence</button>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-
-                </div>
-              </div>
-              <!-- /.tab-pane -->
+              @endforeach
             </div>
             <!-- /.tab-content -->
           </div>
@@ -282,5 +120,8 @@
 			</div>
 		</div>
 	</div>
+
+
+
 </section>
 @endsection

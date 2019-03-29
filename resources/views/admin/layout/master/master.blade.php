@@ -82,6 +82,9 @@
         </script>
         <script type="text/javascript">
             $("div.alert").delay(3000).slideUp();
+          //   $( ".selector" ).datepicker({
+          //     altFormat: "yy-mm-dd"
+          // });
         </script>
 
     </body>

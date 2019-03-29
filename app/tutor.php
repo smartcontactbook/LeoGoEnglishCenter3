@@ -15,9 +15,9 @@ class tutor extends Model
     	return $this->hasOne('app\tutor_account');
     }
 
-    public function class()
+    public function leogo_class()
     {
-    	return $this->hasMany('app\class');
+    	return $this->hasMany('app\leogo_class');
     }
 
     public function quiz()

@@ -15,8 +15,8 @@ class children_class extends Model
     	return $this->belongsTo('app\children');
     }
 
-    public function class()
+    public function leogo_class()
     {
-    	return $this->belongsTo('app\class');
+    	return $this->belongsTo('app\leogo_class');
     }
 }

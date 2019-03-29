@@ -15,8 +15,8 @@ class class_schedule extends Model
     	return $this->belongsTo('app\schedule');
     }
 
-    public function class()
+    public function leogo_class()
     {
-    	return $this->belongsTo('app\class');
+    	return $this->belongsTo('app\leogo_class');
     }
 }

@@ -188,7 +188,7 @@
 }
 
 .edit-background{
-  background-color: #0B610B;
+  background-color: #3c8dbc;
 }
 
 .edit-h4{
@@ -197,4 +197,33 @@
 
 .edit-margin{
   margin-bottom: 50px;
+}
+
+.edit-buttonAdd{
+  margin-top: 25px;
+}
+
+.edit-table{
+  text-align: center;
+}
+
+.edit-th{
+  text-align: center;
+}
+
+.edit-button-2{
+  width: 75px;
+  font-weight: bold;
+  margin-top: 5px;
+  background-color: #FACC2E;
+}
+
+.edit-icon{
+  border: 1px solid #ddd;
+  border-radius: 80%;
+  padding: 5px;
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+
 }

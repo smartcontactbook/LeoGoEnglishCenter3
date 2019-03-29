@@ -16,9 +16,9 @@ class course extends Model
     	return $this->hasMany('app\lesson');
     }
 
-    public function class()
+    public function leogo_class()
     {
-    	return $this->hasMany('app\class');
+    	return $this->hasMany('app\leogo_class');
     }
 
     public function level()

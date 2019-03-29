@@ -12,6 +12,6 @@ class staff_account extends Model
 
     public function staff()
     {
-    	return $this->belongsTo('app\providers\staff');
+    	return $this->belongsTo('app\staff');
     }
 }

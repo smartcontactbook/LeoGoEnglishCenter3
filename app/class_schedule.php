@@ -12,11 +12,11 @@ class class_schedule extends Model
 
     public function schedule()
     {
-    	return $this->belongsTo('app\providers\schedule');
+    	return $this->belongsTo('app\schedule');
     }
 
     public function class()
     {
-    	return $this->belongsTo('app\providers\class');
+    	return $this->belongsTo('app\class');
     }
 }

@@ -12,16 +12,16 @@ class tutor extends Model
 
     public function tutor_account()
     {
-    	return $this->hasOne('app\providers\tutor_account');
+    	return $this->hasOne('app\tutor_account');
     }
 
     public function class()
     {
-    	return $this->hasMany('app\providers\class');
+    	return $this->hasMany('app\class');
     }
 
     public function quiz()
     {
-    	return $this->hasMany('app\providers\quiz');
+    	return $this->hasMany('app\quiz');
     }
 }

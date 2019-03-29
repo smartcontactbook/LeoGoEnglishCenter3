@@ -12,6 +12,6 @@ class level extends Model
 
     public function course()
     {
-    	return $this->hadMany('app\providers\course');
+    	return $this->hadMany('app\course');
     }
 }

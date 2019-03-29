@@ -12,6 +12,6 @@ class option extends Model
 
     public function question()
     {
-    	return $this->belongsTo('app\providers\question');
+    	return $this->belongsTo('app\question');
     }
 }

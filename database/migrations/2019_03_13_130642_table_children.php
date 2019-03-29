@@ -26,7 +26,7 @@ class TableChildren extends Migration
             $table->integer('Gender');
             $table->string('Address');
             $table->string('avatar');
-            $table->string('Status');
+            $table->integer('Status');
          //   $table->primary('id');
             // $table->foreign('Course_ID')->references('id')->on('course');
         });

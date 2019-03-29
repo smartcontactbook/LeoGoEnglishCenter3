@@ -12,7 +12,7 @@ class staff extends Model
 
     public function staff_account()
     {
-    	return $this->hasOne('app\providers\staff_account');
+    	return $this->hasOne('app\staff_account');
     }
 //
 }

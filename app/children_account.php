@@ -12,6 +12,6 @@ class children_account extends Model
 
     public function children()
     {
-    	return $this->belongsTo('app\providers\children');
+    	return $this->belongsTo('app\children');
     }
 }

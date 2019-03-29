@@ -12,16 +12,16 @@ class quiz extends Model
 
     public function question()
     {
-    	return $this->hasMany('app\providers\question');
+    	return $this->hasMany('app\question');
     }
 
     public function lesson()
     {
-    	return $this->belongsTo('app\providers\lesson');
+    	return $this->belongsTo('app\lesson');
     }
 
     public function tutor()
     {
-    	return $this->belongsTo('app\providers\tutor');
+    	return $this->belongsTo('app\tutor');
     }
 }

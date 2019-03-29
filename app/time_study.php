@@ -12,6 +12,6 @@ class time_study extends Model
 
     public function schedule()
     {
-    	return $this->hasMany('app\providers\schedule');
+    	return $this->hasMany('app\schedule');
     }
 }

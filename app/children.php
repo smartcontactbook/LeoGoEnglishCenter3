@@ -12,17 +12,17 @@ class children extends Model
 
     public function children_account()
     {
-    	return $this->hasOne('app\providers\children_account');
+    	return $this->hasOne('app\children_account');
     }
 
     public function children_class()
     {
-    	return $this->hasMany('app\providers\children_class');
+    	return $this->hasMany('app\children_class');
     }
 
     public function payment()
     {
-    	return $this->hasMany('app\providers\payment');
+    	return $this->hasMany('app\payment');
     }
 
 }

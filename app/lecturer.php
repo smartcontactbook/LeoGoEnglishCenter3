@@ -12,11 +12,11 @@ class lecturer extends Model
 
     public function lecturer_account()
     {
-    	return $this->hasOne('app\providers\lecturer_account');
+    	return $this->hasOne('app\lecturer_account');
     }
 
     public function class()
     {
-    	return $this->hasMany('app\providers\class');
+    	return $this->hasMany('app\class');
     }
 }

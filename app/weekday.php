@@ -12,6 +12,6 @@ class weekday extends Model
 
     public function schedule()
     {
-    	return $this->hadMany('app\providers\schedule');
+    	return $this->hadMany('app\schedule');
     }
 }

@@ -12,6 +12,6 @@ class tutor_account extends Model
 
     public function tutor()
     {
-    	return $this->belongsTo('app\providers\tutor');
+    	return $this->belongsTo('app\tutor');
     }
 }

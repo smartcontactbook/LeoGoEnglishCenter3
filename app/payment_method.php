@@ -12,6 +12,6 @@ class payment_method extends Model
 
     public function payment()
     {
-    	return $this->hasMany('app\providers\payment');
+    	return $this->hasMany('app\payment');
     }
 }

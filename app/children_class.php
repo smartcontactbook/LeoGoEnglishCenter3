@@ -12,11 +12,11 @@ class children_class extends Model
 
     public function children()
     {
-    	return $this->belongsTo('app\providers\children');
+    	return $this->belongsTo('app\children');
     }
 
     public function class()
     {
-    	return $this->belongsTo('app\providers\class');
+    	return $this->belongsTo('app\class');
     }
 }

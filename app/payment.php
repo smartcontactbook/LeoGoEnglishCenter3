@@ -12,16 +12,16 @@ class payment extends Model
 
     public function payment_method()
     {
-    	return $this->belongsTo('app\providers\payment_method');
+    	return $this->belongsTo('app\payment_method');
     }
 
     public function children()
     {
-    	return $this->belongsTo('app\providers\children');
+    	return $this->belongsTo('app\children');
     }
 
     public function class()
     {
-    	return $this->belongsTo('app\providers\class');
+    	return $this->belongsTo('app\class');
     }
 }

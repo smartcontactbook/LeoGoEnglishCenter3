@@ -12,6 +12,6 @@ class lecturer_account extends Model
 
     public function lecturer()
     {
-    	return $this->belongsTo('app\providers\lecturer');
+    	return $this->belongsTo('app\lecturer');
     }
 }

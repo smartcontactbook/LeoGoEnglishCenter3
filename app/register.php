@@ -1,7 +1,4 @@
-protected $table='children';
-    protected $guarded= [];
-    public $timestamps = false;<?php
-
+<?php
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;

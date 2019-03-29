@@ -392,9 +392,6 @@
 
 <div class="main-content">
   	<div class="container-modal">
-	    <div class="title">
-	        		Lorem Ipsum 01
-	   	</div>
 	{{-- START MODAL SCHEDULE --}}
 		    <div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="aria-labelledby">
 	     		<div class="modal-dialog">
@@ -480,9 +477,6 @@
 	  	</div>
 	  
 	  	<div class="container-modal">
-	     	<div class="title">
-	        Lorem Ipsum 02
-	    	</div>
 	    {{-- START MODAL SCORE --}}
 
 		    <div class="modal fade" id="score" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

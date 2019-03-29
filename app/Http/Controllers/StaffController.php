@@ -14,7 +14,7 @@ class StaffController extends Controller
     public function index()
     {
         $getStaff = StaffHelper::getStaff();
-        dd($getStaff);
+       // dd($getStaff);
 
         return view('admin.staffsManagement.staffs', compact('getStaff'));
     }

@@ -83,9 +83,9 @@
 									<div class="form-group">
 										<label>Parent Name</label>
 										<input
-										id="txt_FirstName"
-										name="txt_FirstName"
-										value="{!! old('txt_FirstName') !!}"
+										id="txt_ParentName"
+										name="txt_ParentName"
+										value="{!! old('txt_ParentName') !!}"
 										type="text"
 										class="form-control"
 										placeholder="Enter parent name"

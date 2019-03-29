@@ -16,7 +16,7 @@ class TableRegister extends Migration
         Schema::create('register', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('Score')->nullable();
-            $table->string('Description');
+            $table->string('Description')->nullable();
             $table->string('First_Name');
             $table->string('Last_Name');
             $table->string('Email');
@@ -25,6 +25,7 @@ class TableRegister extends Migration
             $table->string('Phone_Number');
             $table->integer('Gender');
             $table->string('Address');
+            $table->datetime('Test_Schedule')->nullable();
 
         });
     }

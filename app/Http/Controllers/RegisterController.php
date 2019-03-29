@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\RegisterHelper;
+use App\register;
 
 class RegisterController extends Controller
 {
@@ -13,7 +15,8 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('admin.enrollmentManagement.RegisterList');
+        $getRegister = RegisterHelper::getRegister();
+        return view('admin.enrollmentManagement.RegisterList',compact('getRegister'));
     }
 
     /**
@@ -32,9 +35,29 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
-        //
+        $register = new register;
+        $register->Test_Schedule = $request->dt_Schedule;
+        // dd($register->Test_Schedule);
+        $register->First_Name = $request->txt_FirstName;
+        $register->Last_Name = $request->txt_LastName;
+        $register->Parent_Name = $request->txt_ParentName;
+        $register->Birth_Day = $request->txt_date;
+        $register->Email = $request->txt_email;
+        $register->Address = $request->txt_address;
+        $register->Gender = $request->txt_gender;
+        $register->Phone_Number = $request->txt_phone;
+        // dd($lecturer->Gender,$lecturer->Address);
+        $result = $register->save();
+        if($result ){
+
+            return redirect()->route('register.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add register']);
+        } else{
+
+            return redirect()->back()->with('errorLists', trans('Faill !!! '));
+        }
     }
 
     /**
@@ -68,7 +91,20 @@ class RegisterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {       
+            $register = register::findOrFail($request->txt_testId);
+            $register->Test_Schedule = $request->txt_testSchedule;
+            $result = $register->save();
+            if($result) {
+                $request->session()->flash('messageUpadte', 'Upadte success');
+            } else {
+                $request->session()->flash('errorLists', 'There was an error');
+            }
+        } catch (Exception $e) {
+            $request->session()->flash('errorLists', $e->getMessage());
+        }
+
+        return redirect()->route('register.index');
     }
 
     /**
@@ -79,6 +115,11 @@ class RegisterController extends Controller
      */
     public function destroy($id)
     {
-        //
+            dd($id);
+            $register = register::findOrFail($id);
+            $register->delete();
+            return redirect()->route('register.index');
     }
+
+        
 }

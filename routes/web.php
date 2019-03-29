@@ -62,6 +62,9 @@ Route::post('addAll', [
  
 // START RIGISTER MANAGEMENT
 Route::resource('register', 'RegisterController');
+Route::post('updateRegister',['as'=>'postUpdateRegister','uses'=>'HomeController@postUpdateRegister']);
+Route::post('addChildren',['as'=>'postAddChildren','uses'=>'HomeController@postAddChildren']);
+Route::post('delChildren',['as'=>'postDelRegister','uses'=>'HomeController@postDelRegister']);
 //
 
 // START TUTOR MANAGEMENT

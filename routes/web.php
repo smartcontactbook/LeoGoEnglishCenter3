@@ -41,6 +41,23 @@ Route::resource('course', 'CourseController');
 
 // START CLASS MANAGEMENT
 Route::resource('classRoom', 'ClassController');
+Route::get('setSchedule',[
+	'as'=>'getSetSchudule',
+	'uses'=>'HomeController@getSetSchudule'
+]);
+Route::post('addSchedule',[
+	'as'=>'postAddSchedule',
+	'uses'=>'HomeController@postAddSchedule'
+]);
+Route::post('addTemChildrenClass', [
+	'as' => 'postTemChildrenClass',
+	'uses' => 'HomeController@postTemChildrenClass'
+]);
+Route::post('addAll', [
+	'as' => 'postAddAll',
+	'uses' => 'HomeController@postAddAll'
+]);
+
 // END CLASS MANAGEMENT
  
 // START RIGISTER MANAGEMENT

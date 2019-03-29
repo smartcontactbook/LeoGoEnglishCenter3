@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class register extends Model
+class tem_leogo_class extends Model
 {
-    protected $table='register';
+    protected $table='tem_leogo_class';
     protected $guarded= [];
     public $timestamps = false;
 }

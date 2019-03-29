@@ -13,16 +13,16 @@ class course extends Model
 
     public function lesson()
     {
-    	return $this->hasMany('app\providers\lesson');
+    	return $this->hasMany('app\lesson');
     }
 
-    public function class()
+    public function leogo_class()
     {
-    	return $this->hasMany('app\providers\class');
+    	return $this->hasMany('app\leogo_class');
     }
 
     public function level()
     {
-    	return $this->belongsTo('app\providers\level');
+    	return $this->belongsTo('app\level');
     }
 }

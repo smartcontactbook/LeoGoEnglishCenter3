@@ -12,16 +12,16 @@ class schedule extends Model
 
     public function time_study()
     {
-    	return $this->belongsTo('app\providers\time_study');
+    	return $this->belongsTo('app\time_study');
     }
 
     public function weekday()
     {
-    	return $this->belongsTo('app\providers\weekday');
+    	return $this->belongsTo('app\weekday');
     }
 
     public function class_room()
     {
-    	return $this->belongsTo('app\providers\class_room');
+    	return $this->belongsTo('app\class_room');
     }
 }

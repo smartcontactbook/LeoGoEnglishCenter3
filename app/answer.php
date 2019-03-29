@@ -11,6 +11,6 @@ class answer extends Model
     public $timestamps = false;
     public function question()
     {
-    	return $this->belongsTo('app\providers\question');
+    	return $this->belongsTo('app\question');
     }
 }

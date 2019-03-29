@@ -12,11 +12,11 @@ class lesson extends Model
 
     public function quiz()
     {
-    	return $this->hasMany('app\providers\quiz');
+    	return $this->hasMany('app\quiz');
     }
 
     public function course()
     {
-    	return $this->belongsTo('app\providers\course');
+    	return $this->belongsTo('app\course');
     }
 }

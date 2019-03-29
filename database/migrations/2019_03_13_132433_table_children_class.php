@@ -23,7 +23,7 @@ class TableChildrenClass extends Migration
             $table->float('Score_D')->nullable();
             $table->float('Score_E')->nullable();
             $table->foreign('Children_ID')->references('id')->on('children');
-            $table->foreign('Class_ID')->references('id')->on('class');
+            $table->foreign('Class_ID')->references('id')->on('leogo_class');
           //  $table->primary('id');
         });
     }

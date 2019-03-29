@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class register extends Model
+class tem_schedule extends Model
 {
-    protected $table='register';
+    protected $table='tem_schedule';
     protected $guarded= [];
     public $timestamps = false;
 }

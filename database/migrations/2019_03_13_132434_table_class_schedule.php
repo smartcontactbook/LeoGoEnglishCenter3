@@ -17,7 +17,7 @@ class TableClassSchedule extends Migration
             $table->increments('id');
             $table->integer('Class_ID')->unsigned();
             $table->integer('Schedule_ID')->unsigned();
-            $table->foreign('Class_ID')->references('id')->on('class');
+            $table->foreign('Class_ID')->references('id')->on('leogo_class');
             $table->foreign('Schedule_ID')->references('id')->on('schedule');
             $table->timestamps();
         });

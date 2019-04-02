@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{ asset('css/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <style>
           .example-modal .modal {
@@ -74,10 +75,19 @@
         <script src="{{ asset('js/dist/js/demo.js') }}"></script>
         <script src="{{ asset('js/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('js/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
         <script>
             $(function () {
-                $('#example1').DataTable()
+                $('#example1').DataTable({
+                  'paging'      : true,
+                  'lengthChange': true,
+                  'searching'   : true,
+                  'ordering'    : true,
+                  'info'        : true,
+                  'autoWidth'   : false
+              })
             })
         </script>
         <script type="text/javascript">

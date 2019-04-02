@@ -21,8 +21,8 @@
           </div>
           <div class="box-header">
             <p class="pull-right box-title">
-              <button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button>
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus">Add</i></button>
+              <button type="button" class="btn btn-primary btn-sm editLeftRight"><i class="fa fa-reply-all">Back</i></button>
+              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus">Add</i></button>
             </p>
           </div>
 

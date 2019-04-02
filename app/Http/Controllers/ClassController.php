@@ -12,14 +12,15 @@ use App\tem_schedule;
 use Carbon\Carbon;
 use App\tem_leogo_class;
 use Session;
+use App\Helpers\CalendarHelper;
 
 class ClassController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
         $getCourses = LeogoClassHelper::getCourses();
-        // $getStudentOfClass = LeogoClassHelper::getStudentOfClass($idClass);
+
 
         return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses'));
     }

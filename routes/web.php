@@ -57,6 +57,10 @@ Route::post('addAll', [
 	'as' => 'postAddAll',
 	'uses' => 'HomeController@postAddAll'
 ]);
+Route::get('childrenOfClass/{id}', [
+	'as' => 'getChildrenClass',
+	'uses' => 'HomeController@getChildrenClass'
+]);
 
 // END CLASS MANAGEMENT
  
@@ -79,4 +83,18 @@ Route::get('/ajax/tutor', array(
 // START STAFF MANAGEMENT
 Route::resource('staff', 'StaffController');
 // END STAFF MANAGEMENT
+
+
+// START CALENDER MANAGEMENT
+Route::resource('calender', 'CalenderController');
+// END CALENDER MANAGEMENT 
+
+// START LOGIN/LOGOUT
+Route::get('login',[
+	'as'=>'getLogin',
+	'uses'=>'LoginController@getLogin'
+]);
+// END LOGIN/LOHOUT
+
+
 

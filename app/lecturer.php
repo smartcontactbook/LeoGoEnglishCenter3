@@ -19,4 +19,9 @@ class lecturer extends Model
     {
     	return $this->hasMany('app\leogo_class');
     }
+
+    public function role()
+    {
+        return $this->belongsTo('app\role');
+    }
 }

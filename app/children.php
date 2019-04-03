@@ -25,4 +25,9 @@ class children extends Model
     	return $this->hasMany('app\payment');
     }
 
+    public function role()
+    {
+        return $this->belongsTo('app\role');
+    }
+
 }

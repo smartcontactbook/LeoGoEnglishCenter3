@@ -35,9 +35,9 @@ class leogo_class extends Model
     	return $this->belongsTo('app\tutor');
     }
 
-    public function course()
+    public function level()
     {
-    	return $this->belongsTo('app\course');
+    	return $this->belongsTo('app\level');
     }
 
     public function children()

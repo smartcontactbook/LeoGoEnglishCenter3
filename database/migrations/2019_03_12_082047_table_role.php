@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableTemSchedule extends Migration
+class TableRole extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class TableTemSchedule extends Migration
      */
     public function up()
     {
-        Schema::create('tem_schedule', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('Classroom_ID')->unsigned();
-            $table->integer('Weekday_ID')->unsigned();
-            $table->integer('Time_Study_ID')->unsigned();
+        Schema::create('role', function (Blueprint $table) {
+            $table->Increments('id');
+            $table->string('Role_Name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class TableTemSchedule extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tem_schedule');
+        Schema::dropIfExists('role');
     }
 }

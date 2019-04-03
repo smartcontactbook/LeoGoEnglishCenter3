@@ -21,11 +21,11 @@ class TableClass extends Migration
             $table->float('Tuition');
             $table->integer('Lecturer_ID')->unsigned();
             $table->integer('Tutor_ID')->unsigned();
-            $table->integer('Course_ID')->unsigned();
+            $table->integer('Level_ID')->unsigned();
           //  $table->primary('id');
             $table->foreign('Tutor_ID')->references('id')->on('tutor');
             $table->foreign('Lecturer_ID')->references('id')->on('lecturer');
-            $table->foreign('Course_ID')->references('id')->on('course');
+            $table->foreign('Level_ID')->references('id')->on('level');
         });
     }
 

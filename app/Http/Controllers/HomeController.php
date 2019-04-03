@@ -75,6 +75,32 @@ class HomeController extends Controller
 
     }
 
+    public function getClassOfCourses1(Request $request){ 
+        $getClassOfCourses1 = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
+        //dd('txt_idSchedule');
+        //$tem_schedule->delete();
+        return redirect()->route('getClassOfCourses1');
+    }
+
+    public function postDelTemSchedule(Request $request){ 
+        $tem_schedule = tem_schedule::findOrFail($request->txt_idSchedule);
+        //dd('txt_idSchedule');
+        $tem_schedule->delete();
+        return redirect()->route('getSetSchudule');
+    }
+
+    public function postDelTemChildren(Request $request){ 
+        // dd($request->txt_idChildrenTem);
+        $tem_children_class = tem_children_class::findOrFail($request->txt_idChildrenTem);
+        $children = children::findOrFail($request->txt_idChildren);
+        $children->Status = 0 ;
+        $children->save();
+
+        //dd('txt_idSchedule');
+        $tem_children_class->delete();
+        return redirect()->route('getSetSchudule');
+    }
+
     public function postDelRegister(Request $request){ 
         $register = register::findOrFail($request->txt_idDelChildren);
         $register->delete();
@@ -97,7 +123,7 @@ class HomeController extends Controller
             $children->Score = $register->Score;
             $children->Description = 'Description';
             $children->avatar = 'default.png';
-            $children->Status = 1 ;
+            $children->Status = 0 ;
             $result = $children->save();
 
             $children_account = new children_account;
@@ -146,14 +172,32 @@ class HomeController extends Controller
     }
 
     public function postAddSchedule(Request $req){
+       // dd('ssf');
+        $result = 0;
+        $getSchedules = LeogoClassHelper:: getSchedules();
+        foreach ($getSchedules as $value){
+                    if($value->id_class_room == $req->cbm_classRoom and $value->id_weekday == $req->cbm_weekday and $value->id_time_study == $req->cbm_timeStudy){
+                        echo"<script type='text/javascript'>
+                                alert('Sorry ! You need change information or click button Cancel');
+                                window.location='";
+                                echo route('getSetSchudule');
+                        echo"'</script>";
+                        $result =1;
+                        break;
+                    }
+        }
+        if($result == 0 ){
         $tem_schedule = new tem_schedule;
-        $tem_schedule->Classroom_ID = $req->cbm_classRoom;
-        $tem_schedule->Weekday_ID = $req->cbm_weekday;
-        $tem_schedule->Time_Study_ID = $req->cbm_timeStudy;
-        // dd($req->cbm_classRoom, $req->cbm_weekday, $req->cbm_timeStudy);
-        $tem_schedule->save();
+                        $tem_schedule->Classroom_ID = $req->cbm_classRoom;
+                        $tem_schedule->Weekday_ID = $req->cbm_weekday;
+                        $tem_schedule->Time_Study_ID = $req->cbm_timeStudy;
+                        // dd($req->cbm_classRoom, $req->cbm_weekday, $req->cbm_timeStudy);
+                        $tem_schedule->save();
 
-        return redirect()->route('getSetSchudule');
+                        return redirect()->route('getSetSchudule');
+        }
+                    
+        
     }
 
     public function postTemChildrenClass(Request $req){
@@ -162,11 +206,13 @@ class HomeController extends Controller
         $tem_children_class->Children_Name = $getIdChildren->Last_Name;
         $tem_children_class->Gender = $getIdChildren->Gender;
         $tem_children_class->Phone_Number = $getIdChildren->Phone_Number;
+        $tem_children_class->Birth_Day = $getIdChildren->Birth_Day;
         $tem_children_class->Adress = $getIdChildren->Address;
         $tem_children_class->Email = $getIdChildren->Email;
         $tem_children_class->Parent_Name = $getIdChildren->Parent_Name;
         $tem_children_class->Score = $getIdChildren->Score;
         $tem_children_class->id_Chidren = $getIdChildren->id;
+        $tem_children_class->Status = $getIdChildren->Status;
         // dd($req->cbm_classRoom, $req->cbm_weekday, $req->cbm_timeStudy);
         $tem_children_class->save();
 

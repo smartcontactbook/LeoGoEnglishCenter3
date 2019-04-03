@@ -24,6 +24,10 @@ class TableTutor extends Migration
             $table->integer('Gender');
             $table->string('Address');
             $table->string('avatar');
+            $table->string('User_Name');
+            $table->string('Password');
+            $table->integer('Role_ID')->unsigned();
+            $table->foreign('Role_ID')->references('id')->on('role');
           //  $table->primary('id');
         });
     }

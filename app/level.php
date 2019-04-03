@@ -14,4 +14,14 @@ class level extends Model
     {
     	return $this->hadMany('app\course');
     }
+
+    public function tem_children_class()
+    {
+    	return $this->hadMany('app\tem_children_class');
+    }
+
+    public function leogo_class()
+    {
+    	return $this->hasMany('app\leogo_class');
+    }
 }

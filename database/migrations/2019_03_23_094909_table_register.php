@@ -26,6 +26,8 @@ class TableRegister extends Migration
             $table->integer('Gender');
             $table->string('Address');
             $table->datetime('Test_Schedule')->nullable();
+            $table->integer('Course_ID')->unsigned();
+            $table->foreign('Course_ID')->references('id')->on('course');
 
         });
     }

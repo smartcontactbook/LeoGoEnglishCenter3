@@ -74,7 +74,7 @@
 										@else
 											<button 
 											type="button" 
-											class=" btn btn-info" 
+											class=" btn btn-info btn-sm" 
 											data-toggle="modal" 
 											data-target="#schedule" 
 											data-id="{{$value->id}}" 
@@ -114,7 +114,7 @@
 
 										<form action="{{ route('postDelRegister') }}" method="POST">
 											{{csrf_field()}}
-											<input type="hidden" name="txt_idDelChildren" value="{{ $value->id }}">
+											<input type="hidden" name="txt_idDelChildren" value="{{ $value->id }}">	
 											<button type="submit" class="btn btn-danger btn-sm">
 												<i class="fa fa-trash-o"></i>
 											</button>

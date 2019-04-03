@@ -21,8 +21,10 @@ class ClassController extends Controller
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
         $getCourses = LeogoClassHelper::getCourses();
 
+        $getStudentClass = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
 
-        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses'));
+
+        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass'));
     }
 
     public function create()

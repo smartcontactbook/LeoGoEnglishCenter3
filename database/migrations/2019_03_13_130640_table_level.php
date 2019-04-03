@@ -16,6 +16,11 @@ class TableLevel extends Migration
         Schema::create('level', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Level_Name');
+            $table->float('Score_min');
+            $table->float('Score_max');
+            $table->integer('Course_ID')->unsigned();
+           // $table->primary('id');
+            $table->foreign('Course_ID')->references('id')->on('course');
             //$table->primary('id');
         });
     }

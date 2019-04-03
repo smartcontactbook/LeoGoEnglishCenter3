@@ -22,10 +22,6 @@ class TableTemLeogoClass extends Migration
             $table->integer('Lecturer_ID')->unsigned();
             $table->integer('Tutor_ID')->unsigned();
             $table->integer('Course_ID')->unsigned();
-          //  $table->primary('id');
-            $table->foreign('Tutor_ID')->references('id')->on('tutor');
-            $table->foreign('Lecturer_ID')->references('id')->on('lecturer');
-            $table->foreign('Course_ID')->references('id')->on('course');
         });
     }
 

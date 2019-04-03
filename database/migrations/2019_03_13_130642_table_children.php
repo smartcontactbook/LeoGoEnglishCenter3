@@ -27,6 +27,10 @@ class TableChildren extends Migration
             $table->string('Address');
             $table->string('avatar');
             $table->integer('Status');
+            $table->string('User_Name');
+            $table->string('Password');
+            $table->integer('Role_ID')->unsigned();
+            $table->foreign('Role_ID')->references('id')->on('role');
          //   $table->primary('id');
             // $table->foreign('Course_ID')->references('id')->on('course');
         });

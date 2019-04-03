@@ -63,8 +63,9 @@
 									</td>
 									<td>{{$value->Address}}</td>
 									<th>
-										<a href="{{ route('lecturer.edit', $value->id) }}"><button type="button" class="btn btn-warning editLeftRight"><i class="	fa fa-edit"></i></button></a>
-										<button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+										<a href="{{ route('lecturer.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
+										<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+										<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button
 									</th>
 								</tr>
 							@endforeach

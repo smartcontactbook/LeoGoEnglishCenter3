@@ -12,6 +12,7 @@ use App\tem_schedule;
 use Carbon\Carbon;
 use App\tem_leogo_class;
 use Session;
+use App\Helpers\CalendarHelper;
 
 class ClassController extends Controller
 {
@@ -19,8 +20,9 @@ class ClassController extends Controller
     {
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
         $getCourses = LeogoClassHelper::getCourses();
+
         $getStudentClass = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
-        //dd($request->txt_idClass);
+
 
         return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass'));
     }

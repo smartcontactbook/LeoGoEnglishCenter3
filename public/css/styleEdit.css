@@ -1,5 +1,5 @@
 .editLeftRight {
-    margin-right: 0px;
+    margin-right:0px;
 }
 
 .color-palette {
@@ -181,10 +181,12 @@
 .edit-image{
   height: 80px;
   width: 80px;
+  text-align: center;
 }
 
 .edit-product-info{
   text-align: center;
+  margin-left: 30px;
 }
 
 .edit-background{

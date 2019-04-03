@@ -253,18 +253,49 @@ class HomeController extends Controller
             // $delete_tem_children_class = tem_children_class::find($value->ID);
         }
 
+        DB::table('tem_day_time_study')->truncate();
+        $data = CalendarHelper::getCalendarOfClass();
+        $getWeekDays = CalendarHelper::getWeekDays();
+        foreach ($data as $key => $value) {
+            $dateEndTime = \Carbon\Carbon::create($value->End_Date)->dayOfWeek;
+            $day = \Carbon\Carbon::create($value->Start_Date)->diffInDays(\Carbon\Carbon::create($value->End_Date));
+            for($i = 0; $i < $day; $i++) {
+                $getDateStart = \Carbon\Carbon::create($value->Start_Date)->addDays($i);
+                $dateStartTime = $getDateStart->dayOfWeek;
+                if($value->Weekday_ID == $dateStartTime and $getDateStart != $value->End_Date) {
+                    $tem_day_time_study = new tem_day_time_study;
+                    $tem_day_time_study->title = $value->fullNameClassRoom;
+                    $tem_day_time_study->dayStartStudy = $getDateStart;
+                    $tem_day_time_study->dayEndStudy = $getDateStart;
+                    $tem_day_time_study->timeStartStudy = $value->Time_Start;
+                    $tem_day_time_study->timeEndStudy = $value->Time_End;
+                    $tem_day_time_study->save();
+                }
+                else {
+                    if($value->Weekday_ID == $dateEndTime and $value->Start_Date == $value->End_Date) {
+                       $tem_day_time_study = new tem_day_time_study;
+                       $tem_day_time_study->title = $value->fullNameClassRoom;nd_Date;
+                       $tem_day_time_study->dayEndStudy = $value->End_Date;
+                       $tem_day_time_study->timeStartStudy = $value->Time_Start;
+                       $tem_day_time_study->timeEndStudy = $value->Time_End;
+                       $tem_day_time_study->save();
+                 }
+                 else{
+                    continue;
+                }
+            }
+        }
+    }
+
         DB::table('tem_children_class')->truncate();
         DB::table('tem_schedule')->truncate();
         Session::forget('id_LeogoClass');
         return redirect()->route('classRoom.index');
     }
 
-    public function getChildrenClass(Request $request){
-        $getChildrenClass = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
-        dd($request->txt_idClass);
-        
-        return view('admin.classManagement.classRoom', compact('getChildrenClass'));
+    public function getChildrenClass($id){
+        $getChildrenClass = LeogoClassHelper::getStudentOfClass($id);
+        dd($getChildrenClass);
     }
-
 }
 

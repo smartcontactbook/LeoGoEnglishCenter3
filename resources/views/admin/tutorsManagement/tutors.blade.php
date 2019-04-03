@@ -21,8 +21,8 @@
 				</div>
 				<div class="box-header">
 					<p class="pull-right box-title">
-						<button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button>
-						<a href="{{ route('tutor.create') }}"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Add</button></a>
+						<button type="button" class="btn btn-primary btn-sm editLeftRight"><i class="fa fa-reply-all">Back</i></button>
+						<a href="{{ route('tutor.create') }}"><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>Add</button></a>
 					</p>
 				</div>
 
@@ -63,8 +63,8 @@
 									</td>
 									<td>{{$value->Address}}</td>
 									<th>
-										<a href="{{ route('tutor.edit', $value->id) }}"><button type="button" class="btn btn-warning editLeftRight"><i class="	fa fa-edit"></i></button></a>
-										<button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+										<a href="{{ route('tutor.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
+										<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
 									</th>
 								</tr>
 							@endforeach

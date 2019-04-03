@@ -8,13 +8,14 @@ use App\tutor;
 use App\tutor_account;
 use Session;
 
+
 class TutorController extends Controller
 {
 
     public function index()
     {
         $getTutor = TutorHelper::getTutor();
-
+        
         return view('admin.tutorsManagement.tutors', compact('getTutor'));
     }
 

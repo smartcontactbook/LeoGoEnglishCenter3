@@ -70,6 +70,8 @@
         </div>
       </div>
     </div>
+
+    
     {{-- modal add --}}
     <div class="modal fade" id="modal-default"  role="dialog">
       <div class="modal-dialog">

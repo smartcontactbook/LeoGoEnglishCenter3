@@ -99,8 +99,19 @@
                               <!-- /.item -->
                               <li class="item">
                                 <div class="box-body">
-                                  <button type="button" class="btn edit-button" data-toggle="modal" data-target="#modal-default">List</button>
-                                  <button type="button" class="btn pull-right edit-button">Absence</button>
+                                  <form action="{{ route('getClassOfCourses1') }}" method="POST">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="txt_idClass" value="{{ $value->id }}"> 
+                                    <button 
+                                    type="button" 
+                                    class="btn edit-button" 
+                                    data-toggle="modal" 
+                                    data-id="{{$value->id}}" 
+                                    data-target="#listChildren">
+                                      List
+                                    </button>
+                                    <button type="button" class="btn pull-right edit-button">Absence</button>
+                                  </form>
                                 </div>
                               </li>
                             </ul>
@@ -120,6 +131,88 @@
 			</div>
 		</div>
 	</div>
+
+
+{{-- START MODAL SCHEDULE --}}
+
+<div class="modal fade" id="listChildren"  role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header Editheader">
+            <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            >
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title">List Children Of Class</h4>
+        </div>
+          <div class="modal-body">
+            <div class="box-body">
+            <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Birth day</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Score</th>
+                    <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $stt=0 ?>
+                  @foreach($getStudentClass as $value)
+                  <?php $stt=$stt+1 ?>
+                    <tr>
+                      <td>{!! $stt !!}</td>
+                      <td>{{$value->Last_Name}}</td>
+                      <td>{{$value->Birth_Day}}</td>
+                      <td>
+                        @if($value->Gender == 1)
+                          <span>Female</span>
+                        @else
+                          <span>Male</span>
+                        @endif
+                      </td>
+                      <td>{{$value->Phone_Number}}</td>
+                      <td>{{$value->Address}}</td>
+                      <td>{{$value->Score}}</td>
+                      <th>
+                        <button type="button" class="btn btn-warning editLeftRight">
+                          <i class="  fa fa-edit"></i></button></a>
+                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                      </th>
+                    </tr>
+                    
+                  @endforeach
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+       $('#listChildren').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var id = button.data('id')
+        //dd(id);
+        var modal = $(this)
+        modal.find('.modal-body #txt_testId').val(id);
+      }) 
+    </script>
+
 
 
 

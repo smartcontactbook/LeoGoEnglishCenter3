@@ -24,4 +24,9 @@ class tutor extends Model
     {
     	return $this->hasMany('app\quiz');
     }
+
+    public function role()
+    {
+        return $this->belongsTo('app\role');
+    }
 }

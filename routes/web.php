@@ -53,10 +53,28 @@ Route::post('addTemChildrenClass', [
 	'as' => 'postTemChildrenClass',
 	'uses' => 'HomeController@postTemChildrenClass'
 ]);
+
+Route::post('ClassOfCourses1', [
+	'as' => 'getClassOfCourses1',
+	'uses' => 'HomeController@getClassOfCourses1'
+]);
+
 Route::post('addAll', [
 	'as' => 'postAddAll',
 	'uses' => 'HomeController@postAddAll'
 ]);
+
+Route::get('ChildrenClass', [
+	'as' => 'getChildrenClass',
+	'uses' => 'HomeController@getChildrenClass'
+]);
+
+Route::post('DelTemSchedule',['as'=>'postDelTemSchedule','uses'=>'HomeController@postDelTemSchedule']);
+Route::post('DelTemChildren',['as'=>'postDelTemChildren','uses'=>'HomeController@postDelTemChildren']);
+
+Route::post('/ajax/Schedule', array(
+  'uses'  =>  'AjaxController@loadTemSchedule'
+));
 
 // END CLASS MANAGEMENT
  
@@ -70,9 +88,7 @@ Route::post('delChildren',['as'=>'postDelRegister','uses'=>'HomeController@postD
 // START TUTOR MANAGEMENT
 Route::resource('tutor', 'TutorController');
 
-Route::get('/ajax/tutor', array(
-  'uses'  =>  'AjaxController@loadContent'
-));
+
 //Route::post('updateTutor/{id}',['as'=>'postUpdateTutor','uses'=>'HomeController@postUpdateTutor']);
 // END TUTOR MANAGEMENT
 

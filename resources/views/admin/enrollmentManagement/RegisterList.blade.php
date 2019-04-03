@@ -62,10 +62,10 @@
 									<td>{{$value->Score}}</td>
 									<td>
 										@if($value->Test_Schedule != null)
-											<button type="button" class=" btn btn-success">
+											<button type="button" class=" btn btn-success btn-sm">
 												<i class="fa fa-check"></i></button>
 										@else
-											<button type="button" class=" btn btn-success">
+											<button type="button" class=" btn btn-success btn-sm">
 												<i class="fa fa-close"></i></button>
 										@endif
 									</td>
@@ -74,7 +74,7 @@
 										@else
 											<button 
 											type="button" 
-											class=" btn btn-info" 
+											class=" btn btn-info btn-sm" 
 											data-toggle="modal" 
 											data-target="#schedule" 
 											data-id="{{$value->id}}" 
@@ -87,7 +87,7 @@
 										@endif
 										<button 
 										type="button" 
-										class="btn btn-warning editLeftRight"
+										class="btn btn-warning editLeftRight btn-sm"
 										data-toggle="modal" 
 										data-target="#score"
 										data-id="{{$value->id}}" 
@@ -105,7 +105,7 @@
 											{{csrf_field()}}
 											<input type="hidden" name="txt_idAddChildren" value="{{ $value->id }}">
 												<button type="submit" 
-												class=" btn btn-warning editLeftRight">
+												class=" btn btn-warning editLeftRight btn-sm">
 													<i class="fa fa-plus-square"></i>
 												</button>
 											</form>
@@ -114,8 +114,8 @@
 
 										<form action="{{ route('postDelRegister') }}" method="POST">
 											{{csrf_field()}}
-											<input type="hidden" name="txt_idDelChildren" value="{{ $value->id }}">
-											<button type="submit" class="btn btn-danger">
+											<input type="hidden" name="txt_idDelChildren" value="{{ $value->id }}">	
+											<button type="submit" class="btn btn-danger btn-sm">
 												<i class="fa fa-trash-o"></i>
 											</button>
 										</form>

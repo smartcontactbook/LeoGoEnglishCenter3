@@ -14,5 +14,10 @@ class staff extends Model
     {
     	return $this->hasOne('app\staff_account');
     }
+
+    public function role()
+    {
+        return $this->belongsTo('app\role');
+    }
 //
 }

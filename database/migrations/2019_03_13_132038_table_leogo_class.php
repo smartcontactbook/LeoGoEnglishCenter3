@@ -19,13 +19,16 @@ class TableLeogoClass extends Migration
             $table->date('Start_Date');
             $table->date('End_Date');
             $table->float('Tuition');
+            $table->string('Description');
+            $table->integer('QuantityStudent');
+            $table->integer('QuantitySession');
             $table->integer('Lecturer_ID')->unsigned();
             $table->integer('Tutor_ID')->unsigned();
-            $table->integer('Course_ID')->unsigned();
+            $table->integer('Level_ID')->unsigned();
           //  $table->primary('id');
             $table->foreign('Tutor_ID')->references('id')->on('tutor');
             $table->foreign('Lecturer_ID')->references('id')->on('lecturer');
-            $table->foreign('Course_ID')->references('id')->on('course');
+            $table->foreign('Level_ID')->references('id')->on('level');
         });
     }
 

@@ -15,15 +15,19 @@ class TableTemChildrenClass extends Migration
     {
         Schema::create('tem_children_class', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Children_ID')->unsigned();
-            $table->integer('Class_ID')->unsigned();
-            $table->float('Score_A')->nullable();
-            $table->float('Score_B')->nullable();
-            $table->float('Score_C')->nullable();
-            $table->float('Score_D')->nullable();
-            $table->float('Score_E')->nullable();
-            $table->foreign('Children_ID')->references('id')->on('children');
-            $table->foreign('Class_ID')->references('id')->on('leogo_class');
+            $table->integer('Score');
+            $table->string('Children_Name');
+            $table->string('Email');
+            $table->string('Birth_Day');
+            $table->string('Parent_Name');
+            $table->string('Phone_Number');
+            $table->integer('Gender');
+            $table->string('Address');
+            $table->integer('Status');
+            $table->integer('id_Children');
+            $table->integer('Level_ID')->unsigned();
+            $table->foreign('Level_ID')->references('id')->on('level');
+
         });
     }
 

@@ -106,10 +106,15 @@ Route::resource('calender', 'CalenderController');
 // END CALENDER MANAGEMENT 
 
 // START LOGIN/LOGOUT
-Route::get('login',[
-	'as'=>'getLogin',
-	'uses'=>'LoginController@getLogin'
-]);
+Route::get('login', ['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
+Route::post('login', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
+Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout']);
+
+// Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespace' => 'Admin'], function() {
+// 	Route::get('/', function() {
+// 		return view('admin.home');
+// 	});
+// });
 // END LOGIN/LOHOUT
 
 

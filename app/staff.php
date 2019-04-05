@@ -2,10 +2,13 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class staff extends Model
+class staff extends Authenticatable
 {
+    // use EntrustUserTrait;
+    use Notifiable;
     protected $table='staff';
     protected $guarded= [];
     public $timestamps = false;

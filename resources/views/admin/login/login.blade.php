@@ -17,25 +17,32 @@
 				</div>
 				<div class="col-12">
 					@if(Session::has('message'))
-					<div class="alert alert-{!! Session::get('flag') !!}">
-						{!! Session::get('message') !!}
-					</div>
+						<div class="alert alert-{!! Session::get('flag') !!}" role="alert">
+							{!! Session::get('message') !!}
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			                	<span aria-hidden="true">&times;</span>
+			            	</button>
+						</div>
 					@endif
 				</div>
+				<form method="POST" action="{{ route('getLogin') }}">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<div class="form-content">
 						<div class="form-group">
-							<input type="text" class="form-control input-underline input-lg" name="txt_Email" placeholder=Email required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" title="Email Format Invalid">
+							<input type="text" class="form-control input-underline input-lg" name="txt_email" placeholder=Email required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" title="Email Format Invalid">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control input-underline input-lg" name="txt_Password" placeholder="Password" required pattern=".{6,}" title="Six or more characters">
+							<input type="password" class="form-control input-underline input-lg" name="txt_password" placeholder="Password" required pattern=".{6,}" title="Six or more characters">
 						</div>
 					</div>
 					<input type="submit" class="btn btn-white btn-outline btn-lg btn-rounded progress-login"  value="Log in">
 					&nbsp;
-				<!-- </form> -->
+				</form>
 			</div>
 		</div>
 	</div>
 </body>
+        <script type="text/javascript">
+            $("div.alert").delay(3000).slideUp();
+        </script>
 </html>

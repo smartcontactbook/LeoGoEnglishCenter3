@@ -19,7 +19,6 @@
 						<div class="row">
 							<div class="box-header" align="center">
 								<h3 class="box-title"><b>INFORMATION</b></h3>
-								
 							</div>
 							<div class="col-sm-4">
 								<div class="box-body">
@@ -45,12 +44,13 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label>User Name</label>
+										<label htmlFor="exampleInputPassword1">Password</label>
 										<input
-										type="text"
-										required name="txt_UserName"
+										required name="txt_password"
+										type="password"
 										class="form-control"
-										placeholder="Enter User Name"
+										id="exampleInputPassword1"
+										placeholder="Password"
 										/>
 									</div>
 									<div class="form-group">
@@ -85,16 +85,7 @@
 										<label>Email</label>
 										<input type="text" id="txt_email" class="form-control" placeholder="Emaill" required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" title="Email Format Invalid" name="txt_email" value="{!! old('txt_email') !!}">
 									</div>
-									<div class="form-group">
-										<label htmlFor="exampleInputPassword1">Password</label>
-										<input
-										required name="txt_password"
-										type="password"
-										class="form-control"
-										id="exampleInputPassword1"
-										placeholder="Password"
-										/>
-									</div>
+
 									<div class="form-group">
 										<label>Phone number</label>
 										<fieldset class="form-group"><input type="text" id="txt_phone" class="form-control" placeholder="Phone" maxlength="10" pattern="(09|03|04|07|08|05)+([0-9]{8})\b" required title="Invalid format phone number"  name="txt_phone" value="{!! old('txt_phone') !!}">

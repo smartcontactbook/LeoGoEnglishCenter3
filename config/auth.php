@@ -46,6 +46,36 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'lecturer' => [
+            'driver' => 'session',
+            'provider' => 'lecturer',
+        ],
+        
+        'lecturer-api' => [
+            'driver' => 'token',
+            'provider' => 'lecturer',
+        ],
+
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staff',
+        ],
+        
+        'staff-api' => [
+            'driver' => 'token',
+            'provider' => 'staff',
+        ],
+
+        'tutor' => [
+            'driver' => 'session',
+            'provider' => 'tutor',
+        ],
+        
+        'tutor-api' => [
+            'driver' => 'token',
+            'provider' => 'tutor',
+        ],
     ],
 
     /*
@@ -71,6 +101,20 @@ return [
             'model' => App\User::class,
         ],
 
+        'lecturer' => [
+            'driver' => 'eloquent',
+            'model' => App\lecturer::class,
+        ],
+
+        'staff' => [
+            'driver' => 'eloquent',
+            'model' => App\staff::class,
+        ],
+
+        'tutor' => [
+            'driver' => 'eloquent',
+            'model' => App\tutor::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -95,6 +139,21 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'lecturer' => [
+            'provider' => 'lecturer',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'staff' => [
+            'provider' => 'staff',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'tutor' => [
+            'provider' => 'tutor',
             'table' => 'password_resets',
             'expire' => 60,
         ],

@@ -26,33 +26,30 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
-        $staff = new staff;
-        $staff->Description = $request->txt_description;
-        $staff->First_Name = $request->txt_FirstName;
-        $staff->Last_Name = $request->txt_LastName;
-        $staff->Email = $request->txt_email;
-        $staff->Birth_Day = $request->txt_date;
-        $staff->Phone_Number = $request->txt_phone;
-        $staff->Gender = $request->txt_gender;
-        $staff->Address = $request->txt_address;
-        $staff->avatar = 'default.png';
-        // dd($lecturer->Gender,$lecturer->Address);
-        $result = $staff->save();
+        dd($request->txt_password);
+        // $staff = new staff;
+        // $staff->Description = $request->txt_description;
+        // $staff->First_Name = $request->txt_FirstName;
+        // $staff->Last_Name = $request->txt_LastName;
+        // $staff->Email = $request->txt_email;
+        // $staff->Birth_Day = $request->txt_date;
+        // $staff->Phone_Number = $request->txt_phone;
+        // $staff->Gender = $request->txt_gender;
+        // $staff->Address = $request->txt_address;
+        // $staff->avatar = 'default.png';
+        // $staff->Password = $request->txt_password;
+        // $staff->Role_ID = 4;
+        // dd($staff->Password);
+        // // dd($lecturer->Gender,$lecturer->Address);
+        // $result = $staff->save();
         
-        $staff_account = new staff_account;
-        $staff_account->User_Name = $request->txt_UserName;
-        $staff_account->Password = $request->txt_password;
-        $staff_account->Staff_ID = $staff->id; 
-        $result_account = $staff_account->save();
-        dd($result_account);
+        // if($result){
 
-        if($result && $result_account){
+        //     return redirect()->route('staff.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add staff']);
+        // } else{
 
-            return redirect()->route('staff.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add staff']);
-        } else{
-
-            return redirect()->back()->with('errorLists', trans('Faill !!! '));
-        }
+        //     return redirect()->back()->with('errorLists', trans('Faill !!! '));
+        // }
 
     }
 

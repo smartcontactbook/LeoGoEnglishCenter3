@@ -36,15 +36,11 @@ class TutorController extends Controller
         $tutor->Gender = $request->txt_gender;
         $tutor->Address = $request->txt_address;
         $tutor->avatar = 'default.png';
-        // dd($lecturer->Gender,$lecturer->Address);
+        $tutor->Password = $request->txt_password;
+        $tutor->Role_ID = 3;
         $result = $tutor->save();
-        $tutor_account = new tutor_account;
-        $tutor_account->User_Name = $request->txt_UserName;
-        $tutor_account->Password = $request->txt_password;
-        $tutor_account->Tutor_ID = $tutor->id; 
-        $result_account = $tutor_account->save();
 
-        if($result && $result_account){
+        if($result){
 
             return redirect()->route('tutor.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add tutor']);
         } else{

@@ -45,12 +45,13 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label>User Name</label>
+										<label htmlFor="exampleInputPassword1">Password</label>
 										<input
-										type="text"
-										name="txt_UserName"
+										name="txt_password"
+										type="password"
 										class="form-control"
-										placeholder="Enter User Name"
+										id="exampleInputPassword1"
+										placeholder="Password"
 										/>
 									</div>
 									<div class="form-group">
@@ -85,16 +86,7 @@
 										<label>Email</label>
 										<input type="text" id="txt_email" class="form-control" placeholder="Emaill" required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" title="Email Format Invalid" name="txt_email" value="{!! old('txt_email') !!}">
 									</div>
-									<div class="form-group">
-										<label htmlFor="exampleInputPassword1">Password</label>
-										<input
-										name="txt_password"
-										type="password"
-										class="form-control"
-										id="exampleInputPassword1"
-										placeholder="Password"
-										/>
-									</div>
+
 									<div class="form-group">
 										<label>Phone number</label>
 										<fieldset class="form-group"><input type="text" id="txt_phone" class="form-control" placeholder="Phone" maxlength="10" pattern="(09|03|04|07|08|05)+([0-9]{8})\b" required title="Invalid format phone number"  name="txt_phone" value="{!! old('txt_phone') !!}">
@@ -102,7 +94,7 @@
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<textarea id="txt_description" value="{!!old('txt_description') !!}" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+										<textarea id="txt_description" value="{!!old('txt_description') !!}" rows="5" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
 									</div>
 
 								</div>

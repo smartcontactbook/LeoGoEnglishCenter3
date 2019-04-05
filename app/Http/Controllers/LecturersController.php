@@ -7,6 +7,7 @@ use App\Helpers\LecturerHelper;
 use App\lecturer;
 use App\lecturer_account;
 use Session;
+use Hash;
 
 class LecturersController extends Controller
 {
@@ -35,15 +36,12 @@ class LecturersController extends Controller
         $lecturer->Gender = $request->txt_gender;
         $lecturer->Address = $request->txt_address;
         $lecturer->avatar = 'default.png';
+        $lecturer->Password = Hash::make($request->txt_password);
+        $lecturer->Role_ID = 2;
         // dd($lecturer->Gender,$lecturer->Address);
         $result = $lecturer->save();
-        $lecturer_account = new lecturer_account;
-        $lecturer_account->User_Name = $request->txt_UserName;
-        $lecturer_account->Password = $request->txt_password;
-        $lecturer_account->Lecturer_ID = $lecturer->id; 
-        $result_account = $lecturer_account->save();
 
-        if($result && $result_account){
+        if($result){
 
             return redirect()->route('lecturer.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add lecturer']);
         } else{

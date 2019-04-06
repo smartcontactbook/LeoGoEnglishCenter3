@@ -122,6 +122,7 @@
               </div>
             </div>
           </div>
+          @if($getTemChildrenClass2 == 0)
           <div class="box-body">
             <div class="row">
               <div class="col-md-4">
@@ -145,7 +146,7 @@
                           <label>Students</label>
                           <select id="cbm_student"  name="cbm_student" class="form-control select2">
                             @foreach($getChildrenNotActives as $item)
-                            <option value="{{ $item["id"] }}" id="cbm_student">{{ $item->First_Name }} {{ $item->Last_Name }} -- {{ $item->Score}}</option>
+                            <option value="{{ $item["Children_ID"] }}" id="cbm_student">{{ $item->Children_ID }} </option>
                             @endforeach
                           </select>
                         </div>
@@ -227,17 +228,78 @@
             @endif
             <!-- /.col -->
           </div>
-          <div align="center">
-            <form action="{{ route('postAddAll') }}" method="POST">
-              {!! csrf_field() !!}
-              <p class="box-title">
-                <a href="{{ route('classRoom.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
-                <button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
-              </p>
-            </form>
+          @else
+          <div class="box-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box ">
+                  <div class="box-header with-border edit-background">
+                    <h4 class="box-title edit-h4">List of students in class
+                    </h4>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus">
+                        </i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Children Name</th>
+                          <th>Parent_Name</th>
+                          <th>Birthday</th>
+                          <th>Gender</th>
+                          <th>Score</th>
+                          <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php $stt=0 ?>
+                        @foreach($getTemChildrenClass as $value)
+                        <?php $stt=$stt+1 ?>
+                        <tr>
+                          <td>{{ $stt }}</td>
+                          <td>{{ $value->Children_Name }}</td>
+                          <td>{{ $value->Parent_Name }}</td>
+                          <td>{{ $value->Birth_Day }}</td>
+                          <td>{{ $value->Gender }}</td>
+                          <td>{{ $value->Score }}</td>
+                          <td> 
+                            <form action="{{ route('postDelTemChildren') }}" method="POST">
+                              {{csrf_field()}}
+                              <input type="hidden" name="txt_idChildren" value="{{ $value->id_Chidren }}"> 
+                              <input type="hidden" name="txt_idChildrenTem" value="{{ $value->id }}"> 
+                              <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash-o"></i>
+                              </button>
+                            </form>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- ./box-body -->
+                </div>
+                <!-- /.box -->
+              </div>
+            </div>
+            @endif
+            <div align="center">
+              <form action="{{ route('postAddAll') }}" method="POST">
+                {!! csrf_field() !!}
+                <p class="box-title">
+                  <a href="{{ route('classRoom.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
+                  <button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
+                </p>
+              </form>
+            </div>
           </div>
-        </div>
-        <!-- ./box-body -->
+          <!-- ./box-body -->
 
       </div>
       <!-- /.box -->

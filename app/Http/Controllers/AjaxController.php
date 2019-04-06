@@ -16,8 +16,18 @@ use App\children;
 use App\tem_children_class;
 use App\tem_schedule;
 use App\children_class;
+use Session;
 
 class AjaxController extends Controller
 {
-    
+    public function postWaitingClass(Request $request){
+        Session::put('idLevel', $request->txt_idLevel);
+        Session::put('nameLevel', $request->txt_nameLevel);
+        // dd($request->txt_idLevel, $request->txt_nameLevel);
+        // Session::forget('idLevel');
+        // Session::forget('nameLevel');
+        // $test = $request->session()->get('idLevel');
+// dd($test);
+        return redirect()->route('classRoom.create');
+    }
 }

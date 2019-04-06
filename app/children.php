@@ -15,6 +15,11 @@ class children extends Model
     	return $this->hasOne('app\children_account');
     }
 
+    public function history_user()
+    {
+        return $this->hasMany('app\history_user');
+    }
+
     public function children_class()
     {
     	return $this->hasMany('app\children_class');

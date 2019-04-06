@@ -14,6 +14,11 @@ class leogo_class extends Model
     {
     	return $this->hasMany('app\payment');
     }
+    
+    public function history_user()
+    {
+        return $this->hasMany('app\history_user');
+    }
 
     public function class_weekday_room()
     {

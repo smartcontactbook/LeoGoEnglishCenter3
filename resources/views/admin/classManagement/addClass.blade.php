@@ -27,6 +27,10 @@
                 </div>
               </div>
               <!-- /.box-header -->
+{{--               @php
+        $test = Session::get('idLevel');
+        dd($test);
+              @endphp --}}
               
               <div class="box-body">
                 <form action="{!! route('classRoom.store')!!}" method="POST">
@@ -62,12 +66,18 @@
                     <!-- /.col -->
                     <div class="col-sm-3 col-xs-6">
                       <div class="form-group">
-                        <label>Course</label>
+                        <label>Level</label>
+                        @if(Session::get('idLevel') == null)
                         <select id="cmb_course"  name="cmb_course" class="form-control select2" value="{!! old('cmb_course') !!}">
-                          @foreach($getCourses as $item)
-                          <option value="{{ $item["id"] }}" id="cmb_course">{{ $item["Course_Name"] }}</option>
+                          @foreach($getLevels as $item)
+                          <option value="{{ $item["id"] }}" id="cmb_course">{{ $item["Level_Name"] }}</option>
                           @endforeach
                         </select>
+                        @else
+                          <select id="cmb_course"  name="cmb_course" class="form-control select2" value="{!! old('cmb_course') !!}">
+                            <option value="{!! Session::get('idLevel') !!}" id="cmb_course">{!! Session::get('nameLevel') !!}</option>
+                          </select>
+                        @endif
                       </div>
                       <div class="form-group">
                         <label>Quantity session</label>

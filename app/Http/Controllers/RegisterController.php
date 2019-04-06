@@ -16,7 +16,10 @@ class RegisterController extends Controller
     public function index()
     {
         $getRegister = RegisterHelper::getRegister();
-        return view('admin.enrollmentManagement.RegisterList',compact('getRegister'));
+        $getLevels = RegisterHelper::getLevelOfCourse();
+
+        $getCourse = RegisterHelper::getCourse();
+        return view('admin.enrollmentManagement.RegisterList',compact('getRegister','getLevels','getCourse'));
     }
 
     /**
@@ -25,8 +28,9 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.enrollmentManagement.register');
+    {   
+        $getCourseOfRegister = RegisterHelper::getCourseOfRegister();
+        return view('admin.enrollmentManagement.register', compact('getCourseOfRegister'));
     }
 
     /**
@@ -49,6 +53,7 @@ class RegisterController extends Controller
         $register->Address = $request->txt_address;
         $register->Gender = $request->txt_gender;
         $register->Phone_Number = $request->txt_phone;
+        $register->Course_ID = $request->cbm_Course;
         // dd($lecturer->Gender,$lecturer->Address);
         $result = $register->save();
         if($result ){

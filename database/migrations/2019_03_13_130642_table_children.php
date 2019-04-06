@@ -31,6 +31,7 @@ class TableChildren extends Migration
             $table->string('Password');
             $table->integer('Role_ID')->unsigned();
             $table->foreign('Role_ID')->references('id')->on('role');
+            
          //   $table->primary('id');
             // $table->foreign('Course_ID')->references('id')->on('course');
         });

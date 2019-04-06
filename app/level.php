@@ -15,9 +15,9 @@ class level extends Model
     	return $this->hadMany('app\course');
     }
 
-    public function tem_children_class()
+    public function tem_children()
     {
-    	return $this->hadMany('app\tem_children_class');
+    	return $this->hadMany('app\tem_children');
     }
 
     public function leogo_class()

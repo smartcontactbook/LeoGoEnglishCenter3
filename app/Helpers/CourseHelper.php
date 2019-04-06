@@ -10,7 +10,7 @@ class CourseHelper
 {
     public static function getCourse()
     {
-        $getCourses = level::select('course.id as id_course', 'course.*', 'level.*')->join('course', 'level.id', '=', 'course.Level_ID')->get();
+        $getCourses = course::all();
 
         return $getCourses;
     }

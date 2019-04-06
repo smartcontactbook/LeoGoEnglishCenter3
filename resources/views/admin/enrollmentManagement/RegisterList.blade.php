@@ -44,6 +44,7 @@
 								<th>Address</th>
 								<th>Test Schedule</th>
 								<th>Score</th>
+								<th>Course</th>
 								<th>Appointment</th>
 								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
 							</tr>
@@ -60,6 +61,9 @@
 									<td>{{$value->Address}}</td>
 									<td>{{$value->Test_Schedule}}</td>
 									<td>{{$value->Score}}</td>
+									<td>
+										{{$value->Course_ID}}
+									</td>
 									<td>
 										@if($value->Test_Schedule != null)
 											<button type="button" class=" btn btn-success btn-sm">
@@ -97,20 +101,13 @@
 										data-email="{{$value->Email}}"
 										data-phone="{{$value->Phone_Number}}" 
 										data-score="{{$value->Score}}" 
-										data-date="{{$value->Birth_Day}}">
-											<i class="	fa fa-edit"></i>
+										data-date="{{$value->Birth_Day}}"
+										data-course="{{$value->Course_ID}}"
+										data-score="{{$value->Score}}">
+
+											<i class="	fa fa-plus-square"></i>
 										</button>
-										@if($value->Test_Schedule != null)
-										<form action="{{ route('postAddChildren') }}" method="POST">
-											{{csrf_field()}}
-											<input type="hidden" name="txt_idAddChildren" value="{{ $value->id }}">
-												<button type="submit" 
-												class=" btn btn-warning editLeftRight btn-sm">
-													<i class="fa fa-plus-square"></i>
-												</button>
-											</form>
-										@else
-										@endif
+										
 
 										<form action="{{ route('postDelRegister') }}" method="POST">
 											{{csrf_field()}}
@@ -132,6 +129,7 @@
 								<th>Address</th>
 								<th>Test Schedule</th>
 								<th>Score</th>
+								<th>Course</th>
 								<th>Appointment</th>
 								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
 							</tr>
@@ -486,7 +484,7 @@
 	            <button type="button"class="close"data-dismiss="modal"aria-label="Close">
 	            	<span aria-hidden="true">×</span>
 	          	</button>
-	          	<h4 class="modal-title">ENTER SCORE</h4>
+	          	<h4 class="modal-title">ADD CHILDREN</h4>
 	        </div>
 	        <form method="POST" action="{{ route('postUpdateRegister') }}">
 	          {{csrf_field()}}
@@ -547,6 +545,15 @@
 		                      value="{!! old('txt_email') !!}" 
 		                      name="txt_email">
 		                  </label>
+		                  <label>Course</label>
+				                <input 
+				                type="text" 
+				                id="txt_course" 
+				                class="form-control" 
+				                value="{!! old('txt_course') !!}" 
+				                name="txt_course">
+				                
+				            </label>
 	                      </fieldset>
 	                    </div>
 	                  </div>
@@ -570,6 +577,15 @@
 		                      type="text" 
 		                      value="{!! old('txt_score') !!}" 
 		                      name="txt_score"></label>
+		                  <label>Level</label>
+						      <select id="cbm_Level"  name="cbm_Level" class="form-control select2" value="{!! old('cbm_Level') !!}">
+						      @foreach($getLevels as $item)
+						      <option value="{{ $item["id"] }}" id="cbm_Level">
+						          {{ $item["Level_Name"] }}
+						      </option>
+						      @endforeach
+					          </select>
+						  </label> 
 	                    </div>
 	                  </div>
 	                </div>
@@ -594,6 +610,8 @@
 	        var score = button.data('score')
 	        var email = button.data('email')
 	        var parent = button.data('parent')
+	        var score = button.data('score')
+	        var course = button.data('course')
 	        var modal = $(this)
 	        modal.find('.modal-body #txt_testId').val(id);
 	        modal.find('.modal-body #txt_firstname').val(firstname);
@@ -603,6 +621,8 @@
 	        modal.find('.modal-body #txt_score').val(score);
 	        modal.find('.modal-body #txt_email').val(email);
 	        modal.find('.modal-body #txt_parent').val(parent);
+	        modal.find('.modal-body #txt_score').val(score);
+	        modal.find('.modal-body #txt_course').val(course);
 
 	      }) 
 	    </script>
@@ -611,7 +631,7 @@
 </div>
 {{-- END MODAL--}}
 
-</section>
+
 
 
 

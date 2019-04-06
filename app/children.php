@@ -30,4 +30,9 @@ class children extends Model
         return $this->belongsTo('app\role');
     }
 
+    public function tem_children()
+    {
+        return $this->hadMany('app\tem_children');
+    }
+
 }

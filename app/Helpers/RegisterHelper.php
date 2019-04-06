@@ -4,7 +4,8 @@ namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use App\register;
-
+use App\course;
+use App\level;
 
 class RegisterHelper
 {
@@ -14,6 +15,32 @@ class RegisterHelper
 
         return $getRegister;
     }
+
+
+    public static function getLevelOfCourse(){
+        $parent=level::select('id','Level_Name')->get()->toArray();
+
+        return $parent;
+    }
+
+    public static function getCourse(){
+        $parent=course::select('id','Course_Name')->get()->toArray();
+
+        return $parent;
+    }
+    
+    public static function getCourseOfRegister(){
+        // $parent=course::select('id','Course_Name')->get()->toArray();
+
+        // return $parent;
+        // 
+        $getCourseOfRegister = course::all();
+
+        return $getCourseOfRegister;
+    }
+
+    
+
 
     public static function getIdOfRegister($idRegister){
         $getId = staff::findOrFail($idRegister);

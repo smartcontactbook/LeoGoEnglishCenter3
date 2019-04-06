@@ -87,6 +87,15 @@ Route::resource('register', 'RegisterController');
 Route::post('updateRegister',['as'=>'postUpdateRegister','uses'=>'HomeController@postUpdateRegister']);
 Route::post('addChildren',['as'=>'postAddChildren','uses'=>'HomeController@postAddChildren']);
 Route::post('delChildren',['as'=>'postDelRegister','uses'=>'HomeController@postDelRegister']);
+Route::get('setcourse',[
+	'as'=>'getCourse',
+	'uses'=>'HomeController@getCourse'
+]);
+
+// Route::get('Level', [
+// 	'as' => 'getLevelOfCourse',
+// 	'uses' => 'HomeController@getLevelOfCourse'
+// ]);
 //
 
 // START TUTOR MANAGEMENT

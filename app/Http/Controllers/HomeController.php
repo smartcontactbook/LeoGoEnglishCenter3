@@ -7,9 +7,11 @@ use App\lecturer;
 use App\Helpers\lecturerHelper;
 use App\time_study;
 use App\weekday;
+use App\level;
 use App\class_room;
 use App\schedule;
 use App\tem_children_class;
+use App\tem_children;
 use App\children;
 use App\tem_schedule;
 use App\class_schedule;
@@ -21,6 +23,7 @@ use App\Helpers\LeogoClassHelper;
 use Illuminate\Support\Facades\DB;
 use App\register;
 use App\children_account;
+use App\Helpers\RegisterHelper;
 
 
 class HomeController extends Controller
@@ -37,6 +40,13 @@ class HomeController extends Controller
     	return view ('admin.lecturersManagement.addLecturers');
     }
 
+    // public function getCourse(){
+    //     // $getClassRooms = LeogoClassHelper::getClassRooms();
+    //     $getCourse = RegisterHelper::getCourseOfRegister();
+    //     return view('admin.enrollmentManagement.register',compact('getCourse');
+    // }
+
+    
 
     public function getSetSchudule(){
         $getSchedules = LeogoClassHelper::getSchedules();
@@ -53,17 +63,32 @@ class HomeController extends Controller
   
     public function postUpdateRegister(Request $request){
         try {       
+            $children = new children;
             $register = register::findOrFail($request->txt_testId);
-            $register->First_Name = $request->txt_firstname;
-            $register->Last_Name = $request->txt_lastname;
-            $register->Parent_Name = $request->txt_parent;
-            $register->Email = $request->txt_email;
-            $register->Phone_Number = $request->txt_phone;
-            $register->Score = $request->txt_score;
-            $register->Birth_Day = $request->txt_birthday;
-            $result = $register->save();
+            $children->First_Name = $request->txt_firstname;
+            $children->Last_Name = $request->txt_lastname;
+            $children->Parent_Name = $request->txt_parent;
+            $children->Birth_Day = $request->txt_birthday;
+            $children->Email = $request->txt_email;
+            $children->Address = $register->Address;
+            $children->Gender = $register->Gender;
+            $children->Phone_Number = $request->txt_phone;
+            $children->Score = $request->txt_score;
+            $children->Description = 'Description';
+            $children->avatar = 'default.png';
+            $children->Status = 0 ;
+            $children->Role_ID = 5 ;
+            $children->User_Name = $request->txt_email;
+            $children->Password = $request->txt_phone;
+            $result = $children->save();
+            $tem_children = new tem_children;
+            $tem_children->Children_ID = $children->id;
+            $tem_children->Course_ID =  $request->txt_course;
+            $tem_children->Level_ID =  $request->cbm_Level;
+            $result = $tem_children->save();
+            $result = $register->delete();
             if($result) {
-                $request->session()->flash('messageUpadte', 'Upadte success');
+                $request->session()->flash('messageAdd', 'Add success');
             } else {
                 $request->session()->flash('errorLists', 'There was an error');
             }
@@ -72,14 +97,22 @@ class HomeController extends Controller
         }
 
         return redirect()->route('register.index');
-
     }
+
+    
 
     public function getClassOfCourses1(Request $request){ 
         $getClassOfCourses1 = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
         //dd('txt_idSchedule');
         //$tem_schedule->delete();
         return redirect()->route('getClassOfCourses1');
+    }
+
+    public function getLevelOfCourse(){ 
+        $getLevelOfCourse = RegisterHelper::getLevelOfCourse();
+        //dd('txt_idSchedule');
+        //$tem_schedule->delete();
+        return redirect()->route('getLevelOfCourse');
     }
 
     public function postDelTemSchedule(Request $request){ 
@@ -124,13 +157,13 @@ class HomeController extends Controller
             $children->Description = 'Description';
             $children->avatar = 'default.png';
             $children->Status = 0 ;
+            $children->Role_ID = 5 ;
+            $children->User_Name = $register->Email;
+            $children->Password = $register->Phone_Number;
             $result = $children->save();
-
-            $children_account = new children_account;
-            $children_account->User_Name = $register->Email;
-            $children_account->Password = $register->Phone_Number;
-            $children_account->Children_ID = $children->id;
-            $result = $children_account->save();
+            $tem_children_class = new tem_children_class;
+            $tem_children_class->id_Chidren = $children->id;
+            $tem_children_class->Level_ID =  $register->cbm_Level;
 
             $result = $register->delete();
             if($result) {

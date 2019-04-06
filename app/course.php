@@ -25,4 +25,9 @@ class course extends Model
     {
     	return $this->belongsTo('app\level');
     }
+
+    public function tem_children()
+    {
+        return $this->hadMany('app\tem_children');
+    }
 }

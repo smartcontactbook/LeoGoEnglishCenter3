@@ -34,7 +34,6 @@
                   <th>Course Name</th>
                   <th>Description</th>
                   <th>Term</th>
-                  <th>Level</th>
                   <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
                 </tr>
               </thead>
@@ -47,9 +46,8 @@
                   <td>{{ $getCourse->Course_Name }}</td>
                   <td>{{ $getCourse->Description }}</td>
                   <td>{{ $getCourse->Term }}</td>
-                  <td>{{ $getCourse->Level_Name }}</td>
                   <th>
-                    <button type="button" class="btn btn-warning editLeftRight" data-toggle="modal" data-target="#edit" data-courseid="{{ $getCourse->id_course }}" data-name="{{ $getCourse->Course_Name }}" data-description="{{ $getCourse->Description }}" data-term="{{ $getCourse->Term }}" data-level="{{ $getCourse->Level_Name }}"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-warning editLeftRight" data-toggle="modal" data-target="#edit" data-courseid="{{ $getCourse->id_course }}" data-name="{{ $getCourse->Course_Name }}" data-description="{{ $getCourse->Description }}" data-term="{{ $getCourse->Term }}" ><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                   </th>
                 </tr>
@@ -61,7 +59,6 @@
                   <th>Course Name</th>
                   <th>Description</th>
                   <th>Term</th>
-                  <th>Level</th>
                   <th>Action</th>
                 </tr>
               </tfoot>
@@ -108,16 +105,6 @@
                         <option value="1" id="cmb_term">1 month</option>
                         <option value="2" id="cmb_term">2 month</option>
                         <option value="3" id="cmb_term">3 month</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Level</label>
-                      <select class="form-control" id="cmb_level" name="cmb_level" value="{!! old('cmb_level') !!}">
-                        @foreach($getLevels as $item)
-                        <option value="{!! $item["id"]!!}" >{!! $item["Level_Name"]!!}</option>
-                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -176,16 +163,6 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Level</label>
-                      <select class="form-control" id="cmb_level" name="cmb_level" value="{!! old('cmb_level') !!}">gg
-                        @foreach($getLevels as $item)
-                          <option value="{!! $item["id"]!!}" >{!! $item["Level_Name"]!!}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -206,13 +183,11 @@
         var name = button.data('name') 
         var description = button.data('description') 
         var term = button.data('term') 
-        var level = button.data('level')
         var modal = $(this)
         modal.find('.modal-body #txt_courseid').val(courseid);
         modal.find('.modal-body #txt_name').val(name);
         modal.find('.modal-body #txt_description').val(description);
         modal.find('.modal-body #cmb_term').val(term);
-        modal.find('.modal-body #cmb_level').val(level);
       }) 
     </script>
   </section>

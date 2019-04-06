@@ -1,14 +1,42 @@
 <?php
 
 namespace App;
+// use Illuminate\Notification\Notifiable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Zizaco\Entrust\Traits\EntrustUserTrait;
 
-use Illuminate\Database\Eloquent\Model;
-
-class lecturer extends Model
+class lecturer extends Authenticatable
 {
+    // use EntrustUserTrait;
+    use Notifiable;
     protected $table='lecturer';
-    protected $guarded= [];
+    protected $guard='lecturer';
     public $timestamps = false;
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'email', 'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
 
     public function lecturer_account()
     {

@@ -273,10 +273,11 @@
                 </ul>
               </li>
               <!-- User Account: style can be found in dropdown.less -->
+              @if(Auth::guard('staff')->check())
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="{{asset('dist/')}}/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Alexander Pierce
+                  <img src="{{ asset('image/avatar').'/'.Auth::guard('staff')->user()->avatar }}" class="user-image" alt="User Image">
+                  <span class="hidden-xs">
                   </span>
                 </a>
                 <ul class="dropdown-menu">
@@ -284,37 +285,18 @@
                   <li class="user-header">
                     <img src="{{asset('dist/')}}/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012
-                      </small>
+                       {{Auth::guard('staff')->user()->First_Name }} {{Auth::guard('staff')->user()->Last_Name }} @endif
                     </p>
                   </li>
                   <!-- Menu Body -->
-                  <li class="user-body">
-                    <div class="row">
-                      <div class="col-xs-4 text-center">
-                        <a href="#">Followers
-                        </a>
-                      </div>
-                      <div class="col-xs-4 text-center">
-                        <a href="#">Sales
-                        </a>
-                      </div>
-                      <div class="col-xs-4 text-center">
-                        <a href="#">Friends
-                        </a>
-                      </div>
-                    </div>
-                    <!-- /.row -->
-                  </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile
+                      <a href="{{ route('getProfile') }}" class="btn btn-default btn-flat">Profile
                       </a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out
+                      <a href="{{ route('getLogout') }}" class="btn btn-default btn-flat">Sign out
                       </a>
                     </div>
                   </li>

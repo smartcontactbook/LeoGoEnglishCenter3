@@ -4,13 +4,12 @@ namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use App\tutor;
-use App\tutor_account;
 
 class TutorHelper
 {
     public static function getTutor()
     {
-        $getTutor = tutor::join('tutor_account', 'tutor.id', '=', 'tutor_account.Tutor_ID')->get();
+        $getTutor = tutor::all();
 
         return $getTutor;
     }

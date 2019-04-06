@@ -4,14 +4,13 @@ namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use App\staff;
-use App\staff_account;
 
 
 class StaffHelper
 {
     public static function getStaff()
     {
-         $getStaff = staff::join('staff_account', 'staff.id', '=', 'staff_account.Staff_ID')->get();
+         $getStaff = staff::all();
 
         return $getStaff;
     }

@@ -33,7 +33,6 @@
 								<th>ID</th>
 								<th>First Name</th>
 								<th>Last Name</th>
-								<th>User Name</th>
 								<th>Email</th>
 								<th>Birthday</th>
 								<th>Phone Number</th>
@@ -50,7 +49,6 @@
 									<td>{!! $stt !!}</td>
 									<td>{{$value->First_Name}}</td>
 									<td>{{$value->Last_Name}}</td>
-									<td>{{$value->User_Name}}</td>
 									<td>{{$value->Email}}</td>
 									<td>{{$value->Birth_Day}}</td>
 									<td>{{$value->Phone_Number}}</td>
@@ -74,7 +72,6 @@
 								<th>ID</th>
 								<th>First Name</th>
 								<th>Last Name</th>
-								<th>User Name</th>
 								<th>Email</th>
 								<th>Birthday</th>
 								<th>Phone Number</th>

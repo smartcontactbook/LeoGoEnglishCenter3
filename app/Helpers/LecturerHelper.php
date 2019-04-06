@@ -4,13 +4,12 @@ namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use App\lecturer;
-use App\lecturer_account;
 
 class LecturerHelper
 {
     public static function getLecturers()
     {
-        $getLecturer = lecturer::join('lecturer_account', 'lecturer.id', '=', 'lecturer_account.Lecturer_ID')->get();
+        $getLecturer = lecturer::all();
 
         return $getLecturer;
     }

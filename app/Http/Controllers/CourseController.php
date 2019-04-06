@@ -29,7 +29,7 @@ class CourseController extends Controller
         $course->Course_Name = $request->txt_name;
         $course->Description = $request->txt_description;
         $course->Term = $request->cmb_term;
-        $course->Level_ID = $request->cmb_level;
+        //$course->Level_ID = $request->cmb_level;
         $result = $course->save();
         // dd($result);
         if($result){
@@ -59,7 +59,7 @@ class CourseController extends Controller
             $course->Course_Name = $request->txt_name;
             $course->Description = $request->txt_description;
             $course->Term = $request->cmb_term;
-            $course->Level_ID = $request->cmb_level;
+           // $course->Level_ID = $request->cmb_level;
             $result = $course->save();
         // dd($result);
             if($result){

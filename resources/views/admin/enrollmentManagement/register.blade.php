@@ -33,7 +33,7 @@
 										required pattern="^[a-zA-Z]*$" title="First name invalid"
 										/>
 									</div>
-									<div class="form-group">
+								<div class="form-group">
 										<label>Date:</label>
 										<div class="input-group date" data-provide="datepicker">
 											<div class="input-group-addon">
@@ -47,7 +47,7 @@
 											value="{!! old('txt_date') !!}">
 										</div>
 									</div>
-									<div class="
+									<!-- <div class=" -->
 									<div class="form-group">
 										<label>Gender</label>
 										<select id="txt_gender"  name="txt_gender" class="form-control select2">
@@ -96,6 +96,16 @@
 											value="{!! old('txt_phone') !!}">
 										</fieldset>
 									</div>
+									<div class="form-group">
+					                    <label>Course</label>
+					                    <select id="cbm_Course"  name="cbm_Course" class="form-control select2" value="{!! old('cbm_Course') !!}">
+						                @foreach($getCourseOfRegister as $item)
+						                <option value="{{ $item["id"] }}" id="cbm_Course">
+						                   {{ $item["Course_Name"] }}
+						                </option>
+						                @endforeach
+					                    </select>
+			               			</div>
 								</div>
 							</div>
 
@@ -134,14 +144,15 @@
 									</div>
 								</div>
 							</div>
-							<div align="center" class="edit-margin">
+
+							
+						</div>
+						<div align="center" class="edit-margin">
 								<p class="box-title ">
 									<a href="{{ route('register.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
 									<button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
 								</p>
 							</div>
-						</div>
-
 					</form>
 				</div>
 			</div>

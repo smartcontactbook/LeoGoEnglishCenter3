@@ -14,8 +14,10 @@ use App\class_room;
 use App\schedule;
 use App\children;
 use App\tem_children_class;
+use App\tem_children;
 use App\tem_schedule;
 use App\children_class;
+use App\level;
 
 class LeogoClassHelper
 {
@@ -66,9 +68,15 @@ class LeogoClassHelper
     }
 
     public static function getChildrenNotActives(){
-        $getChildrenNotActives = children::where('Status', 0)->get();
+        $getChildrenNotActives = tem_children::all();
 
         return $getChildrenNotActives;
+    }
+
+    public static function getInforChildrens($id){
+        $getInforChildrens = children::select('children.id as id_children', 'tem_children.*', 'children.*')->join('tem_children', 'children.id', '=', 'tem_children.Children_ID')->where('children.id', '=', '$id')->first();
+
+        return $getInforChildrens;
     }
 
     public static function getTemChildrenClass(){
@@ -99,8 +107,14 @@ class LeogoClassHelper
         return $getSchedules;
     }
 
+    public static function getLevels(){
+        $getLevels = level::all();
+
+        return $getLevels;
+    }
+
     public static function getClassOfCourses(){
-        $getClassOfCourses = course::select('course.id as id_course', 'course.*', 'leogo_class.*')->join('leogo_class', 'course.id', '=', 'leogo_class.Course_ID')->get();
+        $getClassOfCourses = level::select('level.id as id_course', 'level.*', 'leogo_class.*')->join('leogo_class', 'level.id', '=', 'leogo_class.Level_ID')->get();
 
         return $getClassOfCourses;
     }

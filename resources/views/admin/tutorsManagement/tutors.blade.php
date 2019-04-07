@@ -49,7 +49,7 @@
 									<td>{!! $stt !!}</td>
 									<td>{{$value->First_Name}}</td>
 									<td>{{$value->Last_Name}}</td>
-									<td>{{$value->Email}}</td>
+									<td>{{$value->email}}</td>
 									<td>{{$value->Birth_Day}}</td>
 									<td>{{$value->Phone_Number}}</td>
 									<td>

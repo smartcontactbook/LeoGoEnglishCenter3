@@ -18,14 +18,14 @@ class TableTutor extends Migration
             $table->string('Description');
             $table->string('First_Name');
             $table->string('Last_Name');
-            $table->string('Email');
+            $table->string('email');
             $table->string('Birth_Day');
             $table->string('Phone_Number');
             $table->integer('Gender');
             $table->string('Address');
             $table->string('avatar');
-            $table->string('User_Name');
-            $table->string('Password');
+            $table->string('User_Name')->nullable();
+            $table->string('password');
             $table->integer('Role_ID')->unsigned();
             $table->foreign('Role_ID')->references('id')->on('role');
           //  $table->primary('id');

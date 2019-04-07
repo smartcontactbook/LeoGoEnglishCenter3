@@ -19,7 +19,7 @@ class TableChildren extends Migration
             $table->string('Description');
             $table->string('First_Name');
             $table->string('Last_Name');
-            $table->string('Email');
+            $table->string('email');
             $table->string('Birth_Day');
             $table->string('Parent_Name');
             $table->string('Phone_Number');
@@ -28,7 +28,7 @@ class TableChildren extends Migration
             $table->string('avatar');
             $table->integer('Status');
             $table->string('User_Name');
-            $table->string('Password');
+            $table->string('password');
             $table->integer('Role_ID')->unsigned();
             $table->foreign('Role_ID')->references('id')->on('role');
             

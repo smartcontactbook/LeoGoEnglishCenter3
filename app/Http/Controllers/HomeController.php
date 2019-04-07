@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\lecturer;
 use App\Helpers\lecturerHelper;
+use App\Helpers\CalendarHelper;
 use App\time_study;
 use App\weekday;
 use App\level;
@@ -15,7 +16,7 @@ use App\tem_children;
 use App\children;
 use App\tem_schedule;
 use App\class_schedule;
-use App\children_class;
+use App\history_user;
 use App\tem_leogo_class;
 use Carbon\Carbon;
 use Session;
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\DB;
 use App\register;
 use App\children_account;
 use App\Helpers\RegisterHelper;
+use App\tem_day_time_study;
+
 
 
 class HomeController extends Controller
@@ -62,6 +65,7 @@ class HomeController extends Controller
     }
   
     public function postUpdateRegister(Request $request){
+        dd();
         try {       
             $children = new children;
             $register = register::findOrFail($request->txt_testId);
@@ -125,9 +129,10 @@ class HomeController extends Controller
     public function postDelTemChildren(Request $request){ 
         // dd($request->txt_idChildrenTem);
         $tem_children_class = tem_children_class::findOrFail($request->txt_idChildrenTem);
-        $children = children::findOrFail($request->txt_idChildren);
-        $children->Status = 0 ;
-        $children->save();
+        $tem_children = new tem_children;
+        $tem_children->Children_ID = $request->txt_idChildrenTem;
+        $tem_children->Level_ID = Session::forget('idLevel');
+        $tem_children->save();
 
         //dd('txt_idSchedule');
         $tem_children_class->delete();
@@ -229,30 +234,27 @@ class HomeController extends Controller
 
                         return redirect()->route('getSetSchudule');
         }
-                    
-        
     }
 
     public function postTemChildrenClass(Request $req){
-        $getIdChildren = children::findOrFail($req->cbm_student);
+        // $getIdChildren = LeogoClassHelper::getInforChildrens($req->cbm_student);
+        $getInforChildrens = children::select('children.id as id_children', 'tem_children.*', 'children.*')->join('tem_children', 'children.id', '=', 'tem_children.Children_ID')->where('children.id', '=', $req->cbm_student)->first();
+
+        // return $getInforChildrens;
+        // dd($getInforChildrens);
         $tem_children_class = new tem_children_class;
-        $tem_children_class->Children_Name = $getIdChildren->Last_Name;
-        $tem_children_class->Gender = $getIdChildren->Gender;
-        $tem_children_class->Phone_Number = $getIdChildren->Phone_Number;
-        $tem_children_class->Birth_Day = $getIdChildren->Birth_Day;
-        $tem_children_class->Adress = $getIdChildren->Address;
-        $tem_children_class->Email = $getIdChildren->Email;
-        $tem_children_class->Parent_Name = $getIdChildren->Parent_Name;
-        $tem_children_class->Score = $getIdChildren->Score;
-        $tem_children_class->id_Chidren = $getIdChildren->id;
-        $tem_children_class->Status = $getIdChildren->Status;
+        $tem_children_class->Children_Name = $getInforChildrens->Last_Name;
+        $tem_children_class->Gender = $getInforChildrens->Gender;
+        $tem_children_class->Phone_Number = $getInforChildrens->Phone_Number;
+        $tem_children_class->Birth_Day = $getInforChildrens->Birth_Day;
+        $tem_children_class->Address = $getInforChildrens->Address;
+        $tem_children_class->Email = $getInforChildrens->email;
+        $tem_children_class->Parent_Name = $getInforChildrens->Parent_Name;
+        $tem_children_class->Score = $getInforChildrens->Score;
+        $tem_children_class->id_Children = $getInforChildrens->id;
+        $tem_children_class->Status = $getInforChildrens->Status;
         // dd($req->cbm_classRoom, $req->cbm_weekday, $req->cbm_timeStudy);
         $tem_children_class->save();
-
-        $updateStatusChildren = children::findOrFail($getIdChildren->id);
-        $updateStatusChildren->Status = 1;
-        $updateStatusChildren->save();
-
         return redirect()->route('getSetSchudule');
     }
 
@@ -279,9 +281,10 @@ class HomeController extends Controller
 
         $getChildrenToTems = DB::table('tem_children_class')->get();
         foreach ($getChildrenToTems as $key => $value) {
-            $getNewChildrenClass = new children_class;
-            $getNewChildrenClass->Children_ID = $value->id_Chidren;
+            $getNewChildrenClass = new history_user;
+            $getNewChildrenClass->Level_ID = Session::get('idLevel');
             $getNewChildrenClass->Class_ID = Session::get('id_LeogoClass');
+            $getNewChildrenClass->Children_ID = $value->id_Children;
             $getNewChildrenClass->save();
             // $delete_tem_children_class = tem_children_class::find($value->ID);
         }
@@ -319,7 +322,8 @@ class HomeController extends Controller
             }
         }
     }
-
+        Session::forget('idLevel');
+        Session::forget('nameLevel');
         DB::table('tem_children_class')->truncate();
         DB::table('tem_schedule')->truncate();
         Session::forget('id_LeogoClass');

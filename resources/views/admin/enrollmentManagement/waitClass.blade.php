@@ -39,16 +39,13 @@
                   {{csrf_field()}}
                   <input type="hidden" name="txt_idLevel" value="{{ $value3->idLevel }}">
                   <input type="hidden" name="txt_nameLevel" value="{{ $value3->Level_Name }}">
+                  <input type="hidden" name="txt_numberStudent" value="{{ $value3->user_count }}">
                   <div class="col-sm-3">
                     <div class="box-body">
                       <ul class="products-list product-list-in-box">
                         <li class="edit-item">
-
-                          <div class="edit-product-info">
-                            <h4 class="edit-p">{{ $value3->Level_Name }} 
-                              <a href="" class="edit-icon pull-right"><i class="fa fa-eyedropper" aria-hidden="true"></i></a>
-                            </h4>
-
+                          <div class="edit-product-info2">
+                            <h4 class="edit-p">{{ $value3->Level_Name }}</h4>
                             <div class="avatar-edit">
                               <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image" alt="Avatar">
 
@@ -79,9 +76,9 @@
                             <input type="hidden" name="txt_idClass" value="{{ $value3->id }}"> 
                             <button 
                             type="button" 
-                            class="btn edit-button" 
+                            class="btn edit-button edit-itemJs" 
                             data-toggle="modal" 
-                            data-id="{{$value3->id}}" 
+                            data-id="{{$value3->Level_ID}}" 
                             data-target="#listChildren">
                             List
                           </button>
@@ -107,7 +104,88 @@
 </div>
 </div>
 
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="listChildren">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header Editheader">
+        <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        >
+        <span aria-hidden="true">×</span>
+      </button>
+      <h4 class="modal-title">List Children Waiting Of Class</h4>
+    </div>
+    <div class="modal-body">
+      <div class="box-body">
+        <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
+        <table id="example2" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Birth day</th>
+              <th>Gender</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Score</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody class="list-student">
 
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+   $('#listChildren').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var id = button.data('id')
+    var modal = $(this)
+    modal.find('.modal-body #txt_id').val(id);
+    var code = ''
+    $.ajax({
+        type : 'GET',
+        // data : b,
+        url : 'http://127.0.0.1:8000/studentOfWaitingClass/'+id,
+
+        success: function(response){
+          for(var i = 0; i < response.data.length; i++)
+          {
+            var item = response.data[i];
+            // var gender = '';
+            // if(${item.Gender} == 1)
+            //   gender = Male;
+            // else
+            //   gender = FeMale;
+            code +=`<tr>
+            <td>${i+1}</td>
+            <td>${item.First_Name} ${item.Last_Name}</td>
+            <td>${item.Birth_Day}</td>
+            <td>${item.Gender}</td>
+            <td>${item.email}</td>
+            <td>${item.Phone_Number}</td>
+            <td>${item.Score}</td>
+            <td>${item.Address}</td>
+            </tr>`;
+          }
+        // console.log(code);
+        $('.list-student').html(code);
+      }
+    })
+  }) 
+</script>
 
 
 </section>

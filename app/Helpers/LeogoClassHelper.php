@@ -18,6 +18,7 @@ use App\tem_children;
 use App\tem_schedule;
 use App\children_class;
 use App\level;
+use App\history_user;
 
 class LeogoClassHelper
 {
@@ -127,6 +128,16 @@ class LeogoClassHelper
             ->get();
 
         return $getStudentOfClass;
+    }
+
+    public static function getHistoryStudent($idClass){
+        $getHistoryStudent = DB::table('history_user')
+        ->join('leogo_class', 'history_user.Class_ID', '=', 'leogo_class.id')
+        ->join('children', 'history_user.Children_ID', '=', 'children.id')
+        ->where('history_user.Class_ID', '=', $idClass)
+        ->get();
+
+        return $getHistoryStudent;
     }
 
 }

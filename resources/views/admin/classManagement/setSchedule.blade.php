@@ -18,8 +18,9 @@
           <div class="box ">
             
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" id="thienTest">
               <div class="row">
+                {{-- <p id="msg" class="alert alert-success"></p> --}}
                 <div class="col-md-12">
                   <div class="box ">
                     <div class="box-header with-border edit-background">
@@ -35,7 +36,7 @@
                     <!-- /.box-header -->
 
                     <div class="box-body">
-                      <form action="{!! route('postAddSchedule')!!}" method="POST">
+                      <form  id="addSchedule">
                         {!! csrf_field() !!}
                       @include('errors.errors')                    
                       <div class="col-md-3">
@@ -71,13 +72,13 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label></label>
-                          <button type="submit" class="btn btn-primary edit-buttonAdd">Add</button>
+                          <button type="button" id="add" class="btn btn-primary edit-buttonAdd addTime">Add</button>
                         </div>
                       </div>
                     </form>
 
                     @if($CountSetSChedule != 0)
-                      <table id="example2" class="table table-bordered table-striped edit-table">
+                      <table id="example3 " class="table table-bordered table-striped edit-table">
                         <thead>
                           <tr >
                             <th class="edit-th">ID</th>
@@ -87,27 +88,8 @@
                             <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled"></th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <?php $stt=0 ?>
-                          @foreach($getSchedules as $value)
-                          <?php $stt=$stt+1 ?>
-                          <tr>
-                            <td>{{ $stt }}</td>
-                            <td>{{ $value->Weekday }}</td>
-                            <td>{{ $value->Classroom_Name }}</td>
-                            <td>{{ $value->Time_Start }} -- {{ $value->Time_End }}</td>
-                            <td> 
-                              <form action="{{ route('postDelTemSchedule') }}" method="POST">
-                              {{csrf_field()}}
-
-                                  <input type="hidden" name="txt_idSchedule" value="{{ $value->id_schedule }}"> 
-                                  <button type="submit" class="btn btn-danger">
-                                    <i class="fa fa-trash-o"></i>
-                              </button>
-                            </form>
-                            </td>
-                          </tr>
-                          @endforeach
+                        <tbody class="list-schedule">
+                          
                         </tbody>
                       </table>
                     @else
@@ -192,7 +174,7 @@
                         <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="list-student">
                       <?php $stt=0 ?>
                       @foreach($getTemChildrenClass as $value)
                       <?php $stt=$stt+1 ?>
@@ -308,5 +290,74 @@
   </div>
 </div>
 </div>
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+    fetchdata();
+    $('.addTime').click(function (){
+      var data = $('#addSchedule').serialize();
+      console.log('123');
+      $.ajax({
+        type : 'POST',
+        data : data,
+        url : 'addSchedule',
+        success: function(response){
+          $('.list-schedule').append("<tr ><td class='edit-th'>" + response.id + "</td><td class='edit-th'>" + response.Weekday + "</td><td class='edit-th'>" + response.Classroom_Name + "</td><td class='edit-th'>" + response.Time_Start + " " + response.Time_End + "</td><td><input id='deleteSchedule' class='btn btn-danger' type='button' value='Delete' data-idTemSchedule='"+response.id+"' ></td></tr>");
+          fetchdata();
+        },
+      })
+    })
+
+    $('#deleteSchedule').click(function (){
+    console.log('cjvkcbd,dvd,');
+    var delete_id = $(this).data('idTemSchedule');
+    var el = this;
+    // console.log('dd');
+    $.ajax({
+      url: 'http://127.0.0.1:8000/DelTemSchedule/'+delete_id,
+      type: 'GET',
+      data: {
+        '_token': $('input[name=_token]').val(),
+      },
+      success: function(data){
+        console.log(response);
+        $(el).closest( "tr" ).remove();
+        $('.item' + data['id']).remove();
+        fetchdata();
+      }
+    });
+  });
+  });
+
+  // Delete record
+
+
+  function fetchdata(){
+    $.ajax({
+      type : 'GET',
+        url : 'http://127.0.0.1:8000/schedules',
+        success: function(response){
+          var code = '';
+          for(var i = 0; i < response.data.length; i++)
+          {
+            var item = response.data[i];
+            var idSchdedule = item.id_schedule;
+            // console.log(idSchdedule);
+            code +=`<tr>
+            <td class='edit-th'>${i+1}</td>
+            <td class='edit-th'>${item.Weekday}</td>
+            <td class='edit-th'>${item.Classroom_Name}</td>
+            <td class='edit-th'>${item.Time_Start} -- ${item.Time_End}</td>
+            </td class='edit-th'><td><input id='deleteSchedule' class='btn btn-danger' type='button' value='Delete' data-idTemSchedule='${idSchdedule}'></td>
+            </tr>`;
+          }
+        // console.log(code);
+        $('.list-schedule').html(code);
+      }
+    })
+  }
+
+
+</script>
 </section>
 @endsection

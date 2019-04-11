@@ -55,4 +55,14 @@ class WaitClassHelper
         return $getStudentOfWaitingClass;
     }
 
+    public static function getSudents($idLevel){
+        $getSudents = DB::table('children')
+            ->join('tem_children', 'children.id', '=', 'tem_children.Children_ID')
+            ->select('tem_children.id as id_tem_children', 'tem_children.*', 'children.*')
+            ->where('tem_children.Level_ID', '=', $idLevel)
+            ->get();    
+
+        return $getSudents;
+    }
+
 }

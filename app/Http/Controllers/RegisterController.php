@@ -17,7 +17,7 @@ class RegisterController extends Controller
     {
         $getRegister = RegisterHelper::getRegister();
         $getLevels = RegisterHelper::getLevelOfCourse();
-
+// dd($getRegister);
         $getCourse = RegisterHelper::getCourse();
         return view('admin.enrollmentManagement.RegisterList',compact('getRegister','getLevels','getCourse'));
     }

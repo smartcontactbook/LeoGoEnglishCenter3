@@ -51,7 +51,11 @@
                       </div>
                       <div class="form-group">
                         <label>Quantity student</label>
-                        <input type="number" name="quantityStudent"  class="form-control" min="1" max="20">
+                        @if(Session::get('numberStudent') == null)
+                          <input type="number" name="quantityStudent"  class="form-control" min="1" max="20">
+                        @else
+                          <input type="number" name="quantityStudent"  class="form-control" id="quantityStudent" value="{{ Session::get('numberStudent') }}" disabled>
+                        @endif
                       </div>
 
                       <div class="form-group">

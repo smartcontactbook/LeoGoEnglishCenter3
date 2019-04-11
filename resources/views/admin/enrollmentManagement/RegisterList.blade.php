@@ -43,7 +43,6 @@
 								<th>Phone Number</th>
 								<th>Address</th>
 								<th>Test Schedule</th>
-								<th>Score</th>
 								<th>Course</th>
 								<th>Appointment</th>
 								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
@@ -60,9 +59,8 @@
 									<td>{{$value->Phone_Number}}</td>
 									<td>{{$value->Address}}</td>
 									<td>{{$value->Test_Schedule}}</td>
-									<td>{{$value->Score}}</td>
 									<td>
-										{{$value->Course_ID}}
+										{{$value->Course_Name}}
 									</td>
 									<td>
 										@if($value->Test_Schedule != null)
@@ -87,11 +85,11 @@
 											data-schedule="{{$value->Test_Schedule}}" 
 											data-date="{{$value->Birth_Day}}">
 												<i class="fa fa-calendar-o"></i>
-										</button></td>
+										</button>
 										@endif
 										<button 
 										type="button" 
-										class="btn btn-warning editLeftRight btn-sm"
+										class="btn btn-warning btn-sm"
 										data-toggle="modal" 
 										data-target="#score"
 										data-id="{{$value->id}}" 
@@ -103,8 +101,8 @@
 										data-score="{{$value->Score}}" 
 										data-date="{{$value->Birth_Day}}"
 										data-course="{{$value->Course_ID}}"
+										data-nameCourse = "{{ $value->Course_Name }}"
 										data-score="{{$value->Score}}">
-
 											<i class="	fa fa-plus-square"></i>
 										</button>
 										
@@ -128,7 +126,6 @@
 								<th>Phone Number</th>
 								<th>Address</th>
 								<th>Test Schedule</th>
-								<th>Score</th>
 								<th>Course</th>
 								<th>Appointment</th>
 								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
@@ -546,14 +543,16 @@
 		                      name="txt_email">
 		                  </label>
 		                  <label>Course</label>
-				                <input 
-				                type="text" 
-				                id="txt_course" 
-				                class="form-control" 
-				                value="{!! old('txt_course') !!}" 
-				                name="txt_course">
+		                  <select id="txt_course txt_nameCourse"  name="txt_course txt_nameCourse" class="form-control select2" value="{!! old('txt_course') !!}">
+		                  	
+		                  	<option value="{!! old('txt_course') !!}" name = "txt_course txt_nameCourse" id="txt_course txt_nameCourse">{{ old('txt_nameCourse') }}</option>
+                            @foreach($getCourse as $item)
+                            <option value="{{ $item["id"] }}" id="txt_course">{{ $item["Course_Name"] }}</option>
+                            @endforeach
+                          </select>
 				                
-				            </label>
+				                
+				            {{-- </label> --}}
 	                      </fieldset>
 	                    </div>
 	                  </div>
@@ -612,6 +611,7 @@
 	        var parent = button.data('parent')
 	        var score = button.data('score')
 	        var course = button.data('course')
+	        var nameCourse = button.data('nameCourse')
 	        var modal = $(this)
 	        modal.find('.modal-body #txt_testId').val(id);
 	        modal.find('.modal-body #txt_firstname').val(firstname);
@@ -623,6 +623,7 @@
 	        modal.find('.modal-body #txt_parent').val(parent);
 	        modal.find('.modal-body #txt_score').val(score);
 	        modal.find('.modal-body #txt_course').val(course);
+	        modal.find('.modal-body #txt_nameCourse').val(nameCourse);
 
 	      }) 
 	    </script>

@@ -11,7 +11,7 @@ class RegisterHelper
 {
     public static function getRegister()
     {
-         $getRegister = register::all();
+       $getRegister = register::join('course', 'register.Course_ID', '=', 'course.id')->get();
 
         return $getRegister;
     }

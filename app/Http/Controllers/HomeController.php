@@ -49,7 +49,17 @@ class HomeController extends Controller
     //     return view('admin.enrollmentManagement.register',compact('getCourse');
     // }
 
-    
+    public function getHistoryStudent($id){
+        $getHistoryStudent = LeogoClassHelper::getHistoryStudent($id);
+
+        return ['data' => $getHistoryStudent];
+    }
+
+    public function getSchedules(){
+        $getSchedules = LeogoClassHelper::getSchedules();
+
+        return ['data' => $getSchedules];
+    }
 
     public function getSetSchudule(){
         $getSchedules = LeogoClassHelper::getSchedules();
@@ -65,7 +75,7 @@ class HomeController extends Controller
     }
   
     public function postUpdateRegister(Request $request){
-        dd();
+        // dd();
         try {       
             $children = new children;
             $register = register::findOrFail($request->txt_testId);
@@ -119,11 +129,11 @@ class HomeController extends Controller
         return redirect()->route('getLevelOfCourse');
     }
 
-    public function postDelTemSchedule(Request $request){ 
-        $tem_schedule = tem_schedule::findOrFail($request->txt_idSchedule);
+    public function postDelTemSchedule($id){ 
+        $tem_schedule = tem_schedule::findOrFail($id);
         //dd('txt_idSchedule');
         $tem_schedule->delete();
-        return redirect()->route('getSetSchudule');
+        return response()->json($tem_schedule);
     }
 
     public function postDelTemChildren(Request $request){ 
@@ -232,7 +242,7 @@ class HomeController extends Controller
                         // dd($req->cbm_classRoom, $req->cbm_weekday, $req->cbm_timeStudy);
                         $tem_schedule->save();
 
-                        return redirect()->route('getSetSchudule');
+                        return response()->json($tem_schedule);
         }
     }
 
@@ -324,6 +334,7 @@ class HomeController extends Controller
     }
         Session::forget('idLevel');
         Session::forget('nameLevel');
+        Session::forget('numberStudent');
         DB::table('tem_children_class')->truncate();
         DB::table('tem_schedule')->truncate();
         Session::forget('id_LeogoClass');

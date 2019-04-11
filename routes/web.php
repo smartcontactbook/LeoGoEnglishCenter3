@@ -30,6 +30,9 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// START CLASS MANAGEMENT
 	Route::resource('classRoom', 'ClassController');
 	Route::get('setSchedule', ['as' => 'getSetSchudule', 'uses' => 'HomeController@getSetSchudule']);
+
+	Route::get('schedules', ['as' => 'getSchedules', 'uses' => 'HomeController@getSchedules']);
+	Route::get('historyStudent/{id}', ['as' => 'getHistoryStudent', 'uses' => 'HomeController@getHistoryStudent']);
 	Route::post('addSchedule', ['as' => 'postAddSchedule', 'uses' => 'HomeController@postAddSchedule']);
 	Route::post('addTemChildrenClass', ['as' => 'postTemChildrenClass', 'uses' => 'HomeController@postTemChildrenClass']);
 	Route::post('ClassOfCourses1', [
@@ -51,7 +54,7 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 		'uses' => 'HomeController@getChildrenClass'
 	]);
 
-	Route::post('DelTemSchedule',['as'=>'postDelTemSchedule','uses'=>'HomeController@postDelTemSchedule']);
+	Route::get('DelTemSchedule/{id}',['as'=>'postDelTemSchedule','uses'=>'HomeController@postDelTemSchedule']);
 	Route::post('DelTemChildren',['as'=>'postDelTemChildren','uses'=>'HomeController@postDelTemChildren']);
 
 	Route::post('/ajax/Schedule', array(
@@ -81,6 +84,7 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// Wait Class MANAGEMENT
 	Route::resource('wait', 'WaitClassController');
 	Route::post('watingClass', ['as' => 'postWaitingClass', 'uses' => 'AjaxController@postWaitingClass']);
+	Route::get('studentOfWaitingClass/{id}', ['as' => 'getStudentOfWaitingClass', 'uses' => 'AjaxController@getStudentOfWaitingClass']);
 	// END Wait Class MANAGEMENT
 
 	// START CALENDER MANAGEMENT

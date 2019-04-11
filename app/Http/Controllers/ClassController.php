@@ -22,13 +22,17 @@ class ClassController extends Controller
     {
         Session::forget('idLevel');
         Session::forget('nameLevel');
+        Session::forget('numberStudent');
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
+        // dd($getClassOfCourses);
         $getCourses = LeogoClassHelper::getCourses();
+        $getHistoryStudent = LeogoClassHelper::getHistoryStudent(6);
+        // dd($getHistoryStudent);
 
         $getStudentClass = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
 
 
-        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass'));
+        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass', 'getStudentClass'));
     }
 
     public function create(Request $request)
@@ -46,8 +50,13 @@ class ClassController extends Controller
 
     public function store(Request $request)
     {
-
+// dd($request->quantityStudent);
         // dd(Session::get('idLevel'));
+        if(Session::get('numberStudent') != null )
+            $quaStudent = Session::get('numberStudent');
+        else
+            $quaStudent = $request->quantityStudent;
+
         try{
             $leogoCLass = new leogo_class;
             $leogoCLass->Class_Name = $request->txt_ClassName;
@@ -55,7 +64,7 @@ class ClassController extends Controller
             $leogoCLass->End_Date = Carbon::parse($request->txt_dateEnd);
             $leogoCLass->Tuition = $request->txt_Tuition;
             $leogoCLass->Description = $request->txt_description;
-            $leogoCLass->QuantityStudent = $request->quantityStudent;
+            $leogoCLass->QuantityStudent = $quaStudent;
             $leogoCLass->QuantitySession = $request->quantitySession;
             $leogoCLass->Lecturer_ID = $request->cmb_lecturer;
             $leogoCLass->Tutor_ID = $request->cmb_tutor;

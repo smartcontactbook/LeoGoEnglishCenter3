@@ -41,7 +41,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"> --}}
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini" id="testLoad">
         <div class="wrapper">   
             @include('admin.layout.header.header')
             @include('admin.layout.sidebar.sidebar')
@@ -88,6 +88,15 @@
                   'info'        : true,
                   'autoWidth'   : false
               })
+
+                $('#example2').DataTable({
+                  'paging'      : false,
+                  'lengthChange': true,
+                  'searching'   : true,
+                  'ordering'    : true,
+                  'info'        : false,
+                  'autoWidth'   : false
+                })
             })
         </script>
         <script type="text/javascript">

@@ -15,8 +15,9 @@ use App\Helpers\StaffHelper;
 class LoginController extends Controller
 {
     public function getLogin(){
-    	
+    	// dd(Hash::make('123456789'));
     if (Auth::guard('staff')->check()) {
+        
             // nếu đăng nhập thàng công thì 
             // dd(Auth::guard('staff')->check());
             return redirect()->route('getIndex');

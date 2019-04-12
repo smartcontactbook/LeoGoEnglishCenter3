@@ -14,16 +14,14 @@ class TableHistoryUser extends Migration
     public function up()
     {
         Schema::create('history_user', function (Blueprint $table) {
-            $table->Increments('id');
-            $table->integer('Level_ID')->unsigned();
-            $table->integer('Class_ID')->unsigned();
+            $table->increments('id');
             $table->integer('Children_ID')->unsigned();
-            $table->date('Start_Date');
-            $table->date('End_Date');
-            $table->foreign('Level_ID')->references('id')->on('level');
-            $table->foreign('Class_ID')->references('id')->on('class');
+            $table->integer('Class_ID')->unsigned();
+            $table->float('Score_Start')->nullable();
+            $table->float('Score_Midtem')->nullable();
+            $table->float('Score_Final')->nullable();
             $table->foreign('Children_ID')->references('id')->on('children');
-            $table->timestamps();
+            $table->foreign('Class_ID')->references('id')->on('leogo_class');
         });
     }
 

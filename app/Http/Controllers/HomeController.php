@@ -65,7 +65,7 @@ class HomeController extends Controller
     }
   
     public function postUpdateRegister(Request $request){
-        dd();
+        // dd();
         try {       
             $children = new children;
             $register = register::findOrFail($request->txt_testId);
@@ -73,7 +73,7 @@ class HomeController extends Controller
             $children->Last_Name = $request->txt_lastname;
             $children->Parent_Name = $request->txt_parent;
             $children->Birth_Day = $request->txt_birthday;
-            $children->Email = $request->txt_email;
+            $children->email = $request->txt_email;
             $children->Address = $register->Address;
             $children->Gender = $register->Gender;
             $children->Phone_Number = $request->txt_phone;
@@ -83,7 +83,8 @@ class HomeController extends Controller
             $children->Status = 0 ;
             $children->Role_ID = 5 ;
             $children->User_Name = $request->txt_email;
-            $children->Password = $request->txt_phone;
+            $children->password = $request->txt_phone;
+            //dd($children);
             $result = $children->save();
             $tem_children = new tem_children;
             $tem_children->Children_ID = $children->id;
@@ -282,7 +283,7 @@ class HomeController extends Controller
         $getChildrenToTems = DB::table('tem_children_class')->get();
         foreach ($getChildrenToTems as $key => $value) {
             $getNewChildrenClass = new history_user;
-            $getNewChildrenClass->Level_ID = Session::get('idLevel');
+            // $getNewChildrenClass->Level_ID = Session::get('idLevel');
             $getNewChildrenClass->Class_ID = Session::get('id_LeogoClass');
             $getNewChildrenClass->Children_ID = $value->id_Children;
             $getNewChildrenClass->save();

@@ -17,6 +17,7 @@ use App\tem_children_class;
 use App\tem_schedule;
 use App\children_class;
 use Session;
+use App\Helpers\ScoreHelper;
 
 class AjaxController extends Controller
 {
@@ -30,4 +31,10 @@ class AjaxController extends Controller
 // dd($test);
         return redirect()->route('classRoom.create');
     }
+
+    public function postScore(Request $request){
+        $getChirldenOfClass = ScoreHelper::getChirldenOfClass($request->txt_idClass);
+        return view('admin.scoreManagement.updateScore', compact('getChirldenOfClass'));
+    }
+
 }

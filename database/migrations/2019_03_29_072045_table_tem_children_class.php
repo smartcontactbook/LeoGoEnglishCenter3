@@ -25,8 +25,6 @@ class TableTemChildrenClass extends Migration
             $table->string('Address');
             $table->integer('Status');
             $table->integer('id_Children');
-            $table->integer('Level_ID')->unsigned();
-            $table->foreign('Level_ID')->references('id')->on('level');
 
         });
     }

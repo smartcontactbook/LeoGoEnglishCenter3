@@ -27,6 +27,19 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::resource('course', 'CourseController');
 	// END COURSE MANAGEMENT 
 
+	// START SCORE MANAGEMENT
+	Route::resource('score', 'ScoreController');
+	//Route::post('scoreClass', ['as' => 'postScore', 'uses' => 'AjaxController@postScore']);
+	Route::get('scoreOfClass', ['as' => 'fetch_data_index', 'uses' => 'ScoreAjaxController@index']);
+	Route::get('scoreClass', ['as' => 'getChirlden', 'uses' => 'ScoreAjaxController@getChirlden']);
+	// Route::get('/scoreOfClass/fetch_data/{id}', ['as' => 'fetch_data', 'uses' => 'ScoreAjaxController@fetch_data']);
+	//Route::get('/scoreOfClass', 'ScoreAjaxController@index');
+	// Route::get('scoreOfClass/{id}', ['as' => 'fetch_data', 'ScoreAjaxController@fetch_data']);
+	Route::post('scoreOfClass/add_data', 'ScoreAjaxController@add_data')->name('ScoreAjax.add_data');
+	Route::post('scoreOfClass/update_data', 'ScoreAjaxController@update_data')->name('ScoreAjax.update_data');
+	Route::post('scoreOfClass/delete_data', 'ScoreAjaxController@delete_data')->name('ScoreAjax.delete_data');
+	// END SCORE MANAGEMENT 
+
 	// START CLASS MANAGEMENT
 	Route::resource('classRoom', 'ClassController');
 	Route::get('setSchedule', ['as' => 'getSetSchudule', 'uses' => 'HomeController@getSetSchudule']);

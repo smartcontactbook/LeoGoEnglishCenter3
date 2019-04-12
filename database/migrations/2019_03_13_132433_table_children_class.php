@@ -17,11 +17,9 @@ class TableChildrenClass extends Migration
             $table->increments('id');
             $table->integer('Children_ID')->unsigned();
             $table->integer('Class_ID')->unsigned();
-            $table->float('Score_A')->nullable();
-            $table->float('Score_B')->nullable();
-            $table->float('Score_C')->nullable();
-            $table->float('Score_D')->nullable();
-            $table->float('Score_E')->nullable();
+            $table->float('Score_Start')->nullable();
+            $table->float('Score_Midtem')->nullable();
+            $table->float('Score_Final')->nullable();
             $table->foreign('Children_ID')->references('id')->on('children');
             $table->foreign('Class_ID')->references('id')->on('leogo_class');
           //  $table->primary('id');

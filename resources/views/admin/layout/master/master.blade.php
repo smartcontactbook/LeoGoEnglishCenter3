@@ -75,11 +75,9 @@
         <script src="{{ asset('js/dist/js/demo.js') }}"></script>
         <script src="{{ asset('js/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('js/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
         <script>
-            $(function () {
                 $('#example1').DataTable({
                   'paging'      : true,
                   'lengthChange': true,
@@ -88,7 +86,6 @@
                   'info'        : true,
                   'autoWidth'   : false
               })
-            })
         </script>
         <script type="text/javascript">
             $("div.alert").delay(3000).slideUp();
@@ -96,6 +93,6 @@
           //     altFormat: "yy-mm-dd"
           // });
         </script>
-
+        
     </body>
 </html>

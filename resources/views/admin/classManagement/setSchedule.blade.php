@@ -77,7 +77,7 @@
                       </div>
                     </form>
 
-                    @if($CountSetSChedule != 0)
+                    {{-- @if($CountSetSChedule != 0) --}}
                       <table id="example3 " class="table table-bordered table-striped edit-table">
                         <thead>
                           <tr >
@@ -92,10 +92,10 @@
                           
                         </tbody>
                       </table>
-                    @else
+                   {{--  @else
                       <div class="col-md-12">
                       </div>
-                    @endif
+                    @endif --}}
                   </div>
 
                   <!-- ./box-body -->
@@ -290,74 +290,74 @@
   </div>
 </div>
 </div>
-<script type="text/javascript">
-  
-  $(document).ready(function(){
-    fetchdata();
-    $('.addTime').click(function (){
-      var data = $('#addSchedule').serialize();
-      console.log('123');
-      $.ajax({
-        type : 'POST',
-        data : data,
-        url : 'addSchedule',
-        success: function(response){
-          $('.list-schedule').append("<tr ><td class='edit-th'>" + response.id + "</td><td class='edit-th'>" + response.Weekday + "</td><td class='edit-th'>" + response.Classroom_Name + "</td><td class='edit-th'>" + response.Time_Start + " " + response.Time_End + "</td><td><input id='deleteSchedule' class='btn btn-danger' type='button' value='Delete' data-idTemSchedule='"+response.id+"' ></td></tr>");
-          fetchdata();
-        },
-      })
-    })
-
-    $('#deleteSchedule').click(function (){
-    console.log('cjvkcbd,dvd,');
-    var delete_id = $(this).data('idTemSchedule');
-    var el = this;
-    // console.log('dd');
-    $.ajax({
-      url: 'http://127.0.0.1:8000/DelTemSchedule/'+delete_id,
-      type: 'GET',
-      data: {
-        '_token': $('input[name=_token]').val(),
-      },
-      success: function(data){
-        console.log(response);
-        $(el).closest( "tr" ).remove();
-        $('.item' + data['id']).remove();
-        fetchdata();
-      }
+  <script type="text/javascript">
+    $(document).ready(function(){
+      fetchdata();
+      $('.addTime').click(function (){
+        var data = $('#addSchedule').serialize();
+        // console.log('123');
+        $.ajax({
+          type : 'POST',
+          data : data,
+          url : 'addSchedule',
+          success: function(response){
+            // $('.list-schedule').append("<tr ><td class='edit-th'>" + response.id + "</td><td class='edit-th'>" + response.Weekday + "</td><td class='edit-th'>" + response.Classroom_Name + "</td><td class='edit-th'>" + response.Time_Start + " " + response.Time_End + "</td><td><button id='' class='btn btn-dange delete_schedule' type='button' value='Delete' data-idtemschedule='"+response.id+"' ></button></td></tr>");
+            fetchdata();
+          },
+        })
+      });
     });
-  });
-  });
+    // delete record
+    $(document).on("click", ".delete_schedule" , function() {
+      // $('.delete_schedule').click(function (){
+      // console.log('cjvkcbd,dvd,');
+      var delete_id = $(this).data('idtemschedule');
+      var el = this;
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
 
-  // Delete record
+      $.ajax({
+        url: 'http://127.0.0.1:8000/DelTemSchedule/'+delete_id,
+        type: 'get',
+        data: {
+          'id' : delete_id,
+          '_token': $('input[name=_token]').val(),
+        },
+        success: function(data){
+          // $(el).closest( "tr" ).remove();
+          // $('.item' + data['id']).remove();
+          fetchdata();
+        }
+      });
+    });
 
-
-  function fetchdata(){
-    $.ajax({
-      type : 'GET',
-        url : 'http://127.0.0.1:8000/schedules',
-        success: function(response){
-          var code = '';
-          for(var i = 0; i < response.data.length; i++)
-          {
-            var item = response.data[i];
-            var idSchdedule = item.id_schedule;
-            // console.log(idSchdedule);
-            code +=`<tr>
-            <td class='edit-th'>${i+1}</td>
-            <td class='edit-th'>${item.Weekday}</td>
-            <td class='edit-th'>${item.Classroom_Name}</td>
-            <td class='edit-th'>${item.Time_Start} -- ${item.Time_End}</td>
-            </td class='edit-th'><td><input id='deleteSchedule' class='btn btn-danger' type='button' value='Delete' data-idTemSchedule='${idSchdedule}'></td>
-            </tr>`;
-          }
-        // console.log(code);
-        $('.list-schedule').html(code);
-      }
-    })
-  }
-
-
-</script>
+    // fetch record
+    function fetchdata(){
+      $.ajax({
+        type : 'GET',
+          url : 'http://127.0.0.1:8000/schedules',
+          success: function(response){
+            var code = '';
+            for(var i = 0; i < response.data.length; i++)
+            {
+              var item = response.data[i];
+              var idSchdedule = item.id_schedule;
+              // console.log(idSchdedule);
+              code +=`<tr>
+              <td class='edit-th'>${i+1}</td>
+              <td class='edit-th'>${item.Weekday}</td>
+              <td class='edit-th'>${item.Classroom_Name}</td>
+              <td class='edit-th'>${item.Time_Start} -- ${item.Time_End}</td>
+              </td class='edit-th'><td><button id='' class='btn btn-danger delete_schedule' type='button' value='Delete' data-idtemschedule='${idSchdedule}'></button></td>
+              </tr>`;
+            }
+          $('.list-schedule').html(code);
+        }
+      })
+    }
+  </script>
 </section>
 @endsection

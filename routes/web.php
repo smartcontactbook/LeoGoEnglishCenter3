@@ -96,3 +96,5 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::post('profile',['as'=>'postProfile','uses'=>'LoginController@postProfile']);
 	Route::post('changePassword',['as'=>'postChangePasswork','uses'=>'LoginController@postChangePasswork']);
 });
+
+Route::get('home', ['as' => 'getHome', 'uses' => 'ClientController@getHome']);

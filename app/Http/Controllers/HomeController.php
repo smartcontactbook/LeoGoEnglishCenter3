@@ -97,7 +97,6 @@ class HomeController extends Controller
             $result = $children->save();
             $tem_children = new tem_children;
             $tem_children->Children_ID = $children->id;
-            $tem_children->Course_ID =  $request->txt_course;
             $tem_children->Level_ID =  $request->cbm_Level;
             $result = $tem_children->save();
             $result = $register->delete();

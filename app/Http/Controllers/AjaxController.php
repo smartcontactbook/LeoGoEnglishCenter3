@@ -18,6 +18,7 @@ use App\tem_schedule;
 use App\children_class;
 use Session;
 use App\Helpers\WaitClassHelper;
+use App\Helpers\LeogoClassHelper;
 
 class AjaxController extends Controller
 {
@@ -36,6 +37,39 @@ class AjaxController extends Controller
     public function getStudentOfWaitingClass($id){
         $getStudentOfWaitingClass = WaitClassHelper::getStudentOfWaitingClass($id);
 
+       
         return ['data' => $getStudentOfWaitingClass];
+    }
+
+    public function getStudentOfClass($id){
+        $getStudentOfClass = LeogoClassHelper::getStudentOfClass($id);
+        return ['data' => $getStudentOfClass];
+    }
+
+
+    function update_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $data = array(
+                $request->column_name       =>  $request->column_value
+            );
+            DB::table('history_user')
+                ->where('id', $request->id)
+                ->update($data);
+            echo '<div class="alert alert-success">Data Updated</div>';
+        }
+    }
+    
+
+    function delete_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            DB::table('history_user')
+                ->where('id', $request->id)
+                ->delete();
+            echo '<div class="alert alert-success">Data Deleted</div>';
+        }
     }
 }

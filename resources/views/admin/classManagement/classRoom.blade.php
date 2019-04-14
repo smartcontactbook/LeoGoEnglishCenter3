@@ -99,19 +99,23 @@
                               <!-- /.item -->
                               <li class="item">
                                 <div class="box-body">
-                                  <form action="{{ route('getClassOfCourses1') }}" method="POST">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="txt_idClass" value="{{ $value->id }}"> 
-                                    <button 
+                                  <input type="hidden" name="txt_idClass" value="{{ $value->id }}"> 
+                                  <button 
+                                      type="button" 
+                                      class="btn edit-button edit-itemJs" 
+                                      data-toggle="modal" 
+                                      data-id="{{$value->id}}" 
+                                      data-target="#listChildren">
+                                      List
+                                  </button>
+                                  <button 
                                     type="button" 
-                                    class="btn edit-button edit-itemJs" 
+                                    class="btn pull-right edit-button edit-itemJs" 
                                     data-toggle="modal" 
                                     data-id="{{$value->id}}" 
-                                    data-target="#listChildren">
-                                      List
-                                    </button>
-                                    <button type="button" class="btn pull-right edit-button">Absence</button>
-                                  </form>
+                                    data-target="#inputscore">
+                                      Score
+                                  </button>
                                 </div>
                               </li>
                             </ul>
@@ -134,9 +138,10 @@
 
 
 {{-- START MODAL SCHEDULE --}}
-
-<div class="modal fade" id="listChildren"  role="dialog">
-      <div class="modal-dialog">
+<div class="main-content">
+  <div class="container-modal">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="listChildren">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header Editheader">
             <button
@@ -149,24 +154,24 @@
           </button>
           <h4 class="modal-title">List Children Of Class</h4>
         </div>
-          <div class="modal-body">
-            <div class="box-body">
+        <div class="modal-body">
+          <div class="box-body">
             <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Birth day</th>
-                    <th>Gender</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Score</th>
-                    <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
-                  </tr>
-                </thead>
+            <table id="example2" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Birth day</th>
+                  <th>Gender</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Score</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
                 <tbody class="list-student">
-                  
+
                 </tbody>
               </table>
             </div>
@@ -175,51 +180,164 @@
             <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="inputscore">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header Editheader">
+              <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              >
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">List Children Of Class</h4>
+          </div>
+          <div class="panel-heading">Sample Data</div>
+          <div class="modal-body">
+            <div id="message"></div>
+            <div class="box-body">
+              <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
+              <table id="example2" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Class Name</th>
+                    <th>Score Midtem</th>
+                    <th>Score Final</th>
+                  </tr>
+                </thead>
+                <tbody class="input-score">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
+            <button type="submit" id="save" class="saveScore" >Save
+            </button><!-- 
+            <button type="submit" class="btn btn-primary">Save</button> -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
 <script type="text/javascript">
+  $(document).ready(function(){
    $('#listChildren').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) 
     var id = button.data('id')
     var modal = $(this)
     modal.find('.modal-body #txt_id').val(id);
-    var a = $('.edit-itemJs');
-    console.log(a);
-
-    var b = [];
-    for(var i = 0; i < a.length; i++)
-    {
-
-      b.push($(a[i]).data('id'));
-    }
-    console.log(b);
     var code = ''
     $.ajax({
         type : 'GET',
         // data : b,
-        url : 'http://127.0.0.1:8000/historyStudent/6',
+        url : 'http://127.0.0.1:8000/StudentOfClass/'+id,
 
         success: function(response){
-          // console.log(response, id);
           for(var i = 0; i < response.data.length; i++)
           {
             var item = response.data[i];
-          // console.log(response.data[i]);
-          code +=`<tr>
-          <td>${i}</td>
-          <td>${item.Last_Name}</td>
-          <td>${item.Birth_Day}</td>
-          <td>${item.Gender}</td>
-          <td>${item.Phone_Number}</td>
-          <td>${item.Address}</td>
-          </tr>`;
-        }
-        // console.log(code);
+            // var gender = '';
+            // if(${item.Gender} == 1)
+            //   gender = Male;
+            // else
+            //   gender = FeMale;
+            code +=`<tr>
+            <td>${i+1}</td>
+            <td>${item.First_Name} ${item.Last_Name}</td>
+            <td>${item.Birth_Day}</td>
+            <td>${item.Gender}</td>
+            <td>${item.email}</td>
+            <td>${item.Phone_Number}</td>
+            <td>${item.Score}</td>
+            <td>${item.Address}</td>
+            </tr>`;
+          }
+         //console.log(code);
         $('.list-student').html(code);
       }
     })
   }) 
+
+
+    $('#inputscore').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var id = button.data('id')
+    var modal = $(this)
+    modal.find('.modal-body #txt_id').val(id);
+    var code = ''
+    $.ajax({
+        type : 'GET',
+        // data : b,
+        url : 'http://127.0.0.1:8000/ScoreOfStudent/'+id,
+
+        success: function(response){
+          //console.log(response);
+          for(var i = 0; i < response.data.length; i++)
+          {
+
+            var item = response.data[i];
+            // var gender = '';
+            // if(${item.Gender} == 1)
+            //   gender = Male;
+            // else
+            //   gender = FeMale;
+            code +=`<tr>
+            <td>${i+1}</td>
+            <td>${item.First_Name} ${item.Last_Name}</td>
+            <td>${item.Class_Name}</td>
+            <td contenteditable class="column_name" data-column_name="Score_Midtem" data-id="'+${item.id_history_user}+'">${item.Score_Midtem} </td>
+            <td contenteditable class="column_name" data-column_name="Score_Final" data-id="'+${item.id_history_user}+'">${item.Score_Final} </td>
+            <td><button type="button" class="btn btn-danger btn-xs delete" id="'+${item.id_history_user}+'">Delete</button></td>
+
+            </tr>`;
+          }
+         //console.log(code);
+        $('.input-score').html(code);
+      }
+    })
+  }) 
+
+    var _token = $('input[name="_token"]').val();
+
+  
+    $(document).on('blur', '.column_name', function(){
+      var column_name = $(this).data("column_name");
+      var column_value = $(this).text();
+      var idd = $(this).data("id");
+      if(column_value != ''  )
+      {
+        
+         confirm("Are you sure you want "+idd)
+       $.ajax({
+        url:'http://127.0.0.1:8000/StudentOfClass/update_data',
+        method:"POST",
+
+        data:{column_name:column_name, column_value:column_value, id:idd, _token:_token},
+        success:function(data)
+        {
+          console.log(data);
+         $('.message').html(data);
+        }
+       })
+      }
+      else
+      {
+       $('.message').html("<div class='alert alert-danger'>Enter some value</div>");
+      }
+     });
+    });
 </script>
 
 </section>

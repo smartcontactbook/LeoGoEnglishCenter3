@@ -73,7 +73,6 @@
                         <!-- /.item -->
                         <li class="item">
                           <div class="box-body">
-                            <input type="hidden" name="txt_idClass" value="{{ $value3->id }}"> 
                             <button 
                             type="button" 
                             class="btn edit-button edit-itemJs" 

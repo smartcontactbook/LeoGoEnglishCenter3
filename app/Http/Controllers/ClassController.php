@@ -26,7 +26,7 @@ class ClassController extends Controller
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
         // dd($getClassOfCourses);
         $getCourses = LeogoClassHelper::getCourses();
-        $getHistoryStudent = LeogoClassHelper::getHistoryStudent(6);
+        // $getHistoryStudent = LeogoClassHelper::getHistoryStudent(6);
         // dd($getHistoryStudent);
 
         $getStudentClass = LeogoClassHelper::getStudentOfClass($request->txt_idClass);

@@ -61,6 +61,10 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	  'uses'  =>  'AjaxController@loadTemSchedule'
 	));
 
+	
+
+
+
 	// END CLASS MANAGEMENT
 	 
 	// START RIGISTER MANAGEMENT
@@ -85,6 +89,11 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::resource('wait', 'WaitClassController');
 	Route::post('watingClass', ['as' => 'postWaitingClass', 'uses' => 'AjaxController@postWaitingClass']);
 	Route::get('studentOfWaitingClass/{id}', ['as' => 'getStudentOfWaitingClass', 'uses' => 'AjaxController@getStudentOfWaitingClass']);
+	Route::get('StudentOfClass/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
+	Route::get('ScoreOfStudent/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
+	Route::get('StudentOfClass/update_data', ['as' => 'update_data', 'uses' => 'AjaxController@update_data']);
+	Route::post('StudentOfClass/delete_data', 'AjaxController@delete_data')->name('AjaxController.delete_data');
+
 	// END Wait Class MANAGEMENT
 
 	// START CALENDER MANAGEMENT

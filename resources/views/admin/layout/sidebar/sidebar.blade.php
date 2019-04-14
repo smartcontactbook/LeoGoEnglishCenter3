@@ -211,6 +211,16 @@
             </ul>
             @endif
           @endif
+  <script type="text/javascript">
+    $(document).ready(function(){
+      fectch_data();
+    })
+
+    function fectch_data(){
+      type : 'GET',
+      url : ,
+    }
+  </script>
         </section>
         <!-- /.sidebar -->
       </aside>

@@ -17,70 +17,51 @@
           </div>
           <div class="hotline">
             <span class="text">
-              Khu vực miền Nam (TP HCM, B&#236;nh Dương, Bi&#234;n H&#242;a - Đồng Nai, Vũng T&#224;u)
+              Tòa nhà VNPT cầu Sông Hàn, 47 Trần Phú, Thành Phố Đà Nẵng
             </span>
-            <a href="tel:028.7308 3333" class="detail ico ico-phone-blue">
-              028.7308 3333
+            <a href="tel:091 145 77 99" class="detail ico ico-phone-blue">
+              091 145 77 99
             </a>
           </div><div class="clear-20 hide-640"></div>
           <div class="desc">Thứ Hai đến thứ Sáu: 08:30 – 12:00, 13:30 – 18:00 <br/>
             Thứ Bảy: 8:30 – 12:00<br/>
-
-          </div>
-          <div class="hotline">
-            <span class="text">
-              H&#224; Nội
-            </span>
-            <a href="tel:024.3388 1199" class="detail ico ico-phone-blue">
-              024.3388 1199
-            </a>
-          </div>
-          <div class="clear-20 hide-640"></div>
-          <div class="desc">Thứ Hai đến Chủ Nhật: 8:30 - 12:00, 13:30 - 21:00
           </div>
         </div>
       </div>
       <div class="contact-signup__signup">
-        <form action="#" name="form__consult__register" class="VUS" id="form__consult__register">
-          <input type="hidden" name="source_block" value="Form contact" />
-          <input type="hidden" name="courseType" class="courseType o2o-courseType" value="" />
+        <form action="{{ route('postRegisterOnline') }}"  method="POST" id="addRegisterOnline">
+          <!-- <form id="addRegisterOnline"> -->
+          {!! csrf_field() !!}
+          <!-- <input type="hidden" name="source_block" value="Form contact" />
+          <input type="hidden" name="courseType" class="courseType o2o-courseType" value="" /> -->
           <div class="contact-signup-content">
             <div class="input-block clearfix">
-              <input type="text" class="half-w left txtFullname o2o-name" data-text-required="Bạn chưa nhập họ v&#224; t&#234;n" placeholder="T&#234;n học vi&#234;n*">
-              <input type="text" class="half-w right txtDateofBirth o2o-birthday" data-text-required="Bạn chưa nhập ng&#224;y sinh " placeholder="Ngày tháng năm sinh(dd/mm/yyyy)*">
+              <input type="text" class="half-w left txtFullname o2o-name" name="txt_name" data-text-required="Bạn chưa nhập họ v&#224; t&#234;n" placeholder="T&#234;n học vi&#234;n*">
+              <input type="text" class="half-w right txtDateofBirth o2o-birthday" name="txt_date" data-text-required="Bạn chưa nhập ng&#224;y sinh " placeholder="Ngày tháng năm sinh(dd/mm/yyyy)*">
             </div>
             <div class="input-block clearfix">
-              <input type="text" class="half-w left txtContactName o2o-contactname" placeholder="T&#234;n phụ huynh">
-              <select name="" id="txtCity" class="half-w right select-city o2o-city" data-text-required="Bạn chưa chọn th&#224;nh phố" data-text-select="Tỉnh/ Thành phố">
-                <option value="" data-city="">Tỉnh/ Thành phố</option> 
-                <option value="518c73f1-2621-40b8-8373-50458bbef950" data-city="HCM">Tp.Hồ Chí Minh</option> 
-                <option value="58608128-69f6-433f-8385-0bd312196547" data-city="HN">Hà Nội</option> 
-                <option value="7111df16-bde0-44b8-aa47-cf5e9e4fccd7" data-city="BD">Bình Dương</option> 
-                <option value="3329e3d9-0dd7-4367-81e9-9b385a85d4d8" data-city="DN">Đồng Nai</option> 
-                <option value="ed2cceb4-9d51-4544-bfdc-4f852ce6e198" data-city="VT">Vũng Tàu</option> 
-                <option value="Tỉnh thành khác" data-city="KHAC">Tỉnh thành khác</option> 
-              </select>
+              <input type="text" class="half-w left txtContactName o2o-contactname" name="txt_parent" placeholder="T&#234;n phụ huynh">
+              <input type="text" class="half-w right txtPhone o2o-phone" name="txt_address" placeholder="Địa chỉ">
             </div>
             <div class="input-block clearfix">
-              <input type="text" class="half-w left txtEmail o2o-email" data-text-required="Bạn chưa nhập email" data-text-invalid="Địa chỉ email kh&#244;ng hợp lệ" placeholder="Email*">
-              <input type="text" class="half-w right txtPhone o2o-phone" data-text-required="Bạn chưa nhập số điện thoại" data-text-invalid="Kh&#244;ng đ&#250;ng định dạng số điện thoại" placeholder="Số điện thoại*">
+              <input type="text" class="half-w left txtEmail o2o-email" name="txt_email" data-text-required="Bạn chưa nhập email" data-text-invalid="Địa chỉ email kh&#244;ng hợp lệ" placeholder="Email*">
+              <input type="text" class="half-w right txtPhone o2o-phone" name="txt_phone" data-text-required="Bạn chưa nhập số điện thoại" data-text-invalid="Kh&#244;ng đ&#250;ng định dạng số điện thoại" placeholder="Số điện thoại*">
             </div>
             <div class="input-block clearfix">
-              <select name="nhucauhoc" class="input-block nhucauhoc" style="background-color:#fff">
+              <select name="cmb_course" class="input-block nhucauhoc" style="background-color:#fff">
                 <option value="">Khóa học quan tâm</option>
-                <option value="Tiếng Anh Trẻ Em (4 - 11 Tuổi)">Tiếng Anh Trẻ Em (4 - 11 Tuổi)</option>
-                <option value="Tiếng Anh Thiếu Niên (11-15 Tuổi)">Tiếng Anh Thiếu Niên (11-15 Tuổi)</option>
-                <option value="Lớp 100% Giáo Viên Nước Ngoài">Lớp 100% Giáo Viên Nước Ngoài</option>
-                <option value="Luyện Thi IELTS, TOEFL iBT">Luyện Thi IELTS, TOEFL iBT</option>
-                <option value="Tiếng Anh Dành Cho Người Lớn">Tiếng Anh Dành Cho Người Lớn</option>
+                  @foreach($getCourses as $value)
+                    <option value="{{ $value->id }}">{{ $value->Course_Name }}</option>
+                  @endforeach
               </select>
             </div>
             <div class="input-block clearfix">
-              <textarea class="block-textarea txtNote o2o-notes" data-text-required="Bạn chưa nhập th&#244;ng điệp" placeholder="Th&#244;ng tin th&#234;m về nhu cầu học"></textarea>
+              <textarea class="block-textarea txtNote o2o-notes" name="txt_discription" data-text-required="Bạn chưa nhập th&#244;ng điệp" placeholder="Th&#244;ng tin th&#234;m về nhu cầu học"></textarea>
             </div>
             <div class="btn-submit s_center">
-              <button type="submit" class=" btn-text-w-ico btn-regular btn-regular--lr40" data-title="Gửi th&#244;ng tin">
-                <i class="ico ico-pen"></i>
+              <!-- <i class="icofont-send-mail"></i> -->
+              <button type="submit" id="submitRegister" class=" btn-text-w-ico btn-regular btn-regular--lr40 submitRegister" data-title="Gửi th&#244;ng tin">
+                
                 <span class="text">Gửi th&#244;ng tin</span>
               </button>
             </div>
@@ -90,4 +71,36 @@
       </div>
     </div>
   </div>
+
+<!--   <script type="text/javascript">
+    $(document).ready(function(){
+      // fetchdata();
+              swal({
+                title: "Delete user?",
+                text: "Submit to delete",
+                type: "warning",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Delete!"
+            }.then(function(){
+      $('.submitRegister').click(function (){
+        var data = $('#addRegisterOnline').serialize();
+        console.log('123');
+        $.ajax({
+          type : 'POST',
+          data : data,
+          url : 'registerOnline',
+          success: function(response){
+           if (data){
+              swal("Deleted!", "User has been deleted", "success");
+              window.location('http://127.0.0.1:8000/home');
+           }
+          else
+              swal("cancelled", "User has not been deleted", "error");
+          },
+        })
+      });
+    });
+  </script> -->
 </section>

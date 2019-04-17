@@ -211,7 +211,7 @@
             </ul>
             @endif
           @endif
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $(document).ready(function(){
       fectch_data();
     })
@@ -220,7 +220,7 @@
       type : 'GET',
       url : ,
     }
-  </script>
+  </script> -->
         </section>
         <!-- /.sidebar -->
       </aside>

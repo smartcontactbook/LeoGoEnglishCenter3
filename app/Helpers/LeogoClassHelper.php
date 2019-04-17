@@ -120,24 +120,36 @@ class LeogoClassHelper
         return $getClassOfCourses;
     }
 
-    public static function getStudentOfClass($idClass){
-        $getStudentOfClass = DB::table('children_class')
-            ->join('leogo_class', 'children_class.Class_ID', '=', 'leogo_class.id')
-            ->join('children', 'children_class.Children_ID', '=', 'children.id')
-            ->where('children_class.Class_ID', '=', $idClass)
-            ->get();
+    // public static function getStudentOfClass($idClass){
+    //     $getStudentOfClass = DB::table('children_class')
+    //         ->join('leogo_class', 'children_class.Class_ID', '=', 'leogo_class.id')
+    //         ->join('children', 'children_class.Children_ID', '=', 'children.id')
+    //         ->where('children_class.Class_ID', '=', $idClass)
+    //         ->get();
+
+    //     return $getStudentOfClass;
+    // }
+
+    // public static function getHistoryStudent($idClass){
+    //     $getHistoryStudent = DB::table('history_user')
+    //     ->join('leogo_class', 'history_user.Class_ID', '=', 'leogo_class.id')
+    //     ->join('children', 'history_user.Children_ID', '=', 'children.id')
+    //     ->where('history_user.Class_ID', '=', $idClass)
+    //     ->get();
+
+    //     return $getHistoryStudent;
+    // }
+
+     public static function getStudentOfClass($idClass){
+        $getStudentOfClass = DB::table('history_user')
+            ->join('children', 'history_user.Children_ID', '=', 'children.id')
+            ->join('leogo_class', 'history_user.Class_ID', '=', 'leogo_class.id')
+            ->select('history_user.id as id_history_user', 'history_user.*','children.*','leogo_class.*')
+            ->where('history_user.Class_ID', '=', $idClass)
+            ->get();    
 
         return $getStudentOfClass;
     }
 
-    public static function getHistoryStudent($idClass){
-        $getHistoryStudent = DB::table('history_user')
-        ->join('leogo_class', 'history_user.Class_ID', '=', 'leogo_class.id')
-        ->join('children', 'history_user.Children_ID', '=', 'children.id')
-        ->where('history_user.Class_ID', '=', $idClass)
-        ->get();
-
-        return $getHistoryStudent;
-    }
 
 }

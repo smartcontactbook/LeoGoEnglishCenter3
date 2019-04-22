@@ -15,6 +15,18 @@ class StaffHelper
         return $getStaff;
     }
 
+    public static function getLecturers(){
+        $getLecturers = staff::where('Role_ID', 3)->get();
+
+        return $getLecturers;
+    }
+
+    public static function getTutors(){
+        $getTutors = staff::where('Role_ID', 4)->get();
+
+        return $getTutors;
+    }
+
     public static function getIdOfStaff($idStaff){
         $getId = staff::findOrFail($idStaff);
 

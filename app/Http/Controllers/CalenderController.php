@@ -7,6 +7,7 @@ use App\Helpers\CalendarHelper;
 use Calendar;
 use Carbon\Carbon;
 use App\tem_day_time_study;
+use Auth;
 
 class CalenderController extends Controller
 {
@@ -17,6 +18,11 @@ class CalenderController extends Controller
      */
     public function index()
     {
+
+        $user = Auth::guard('staff')->user()->id;
+        $test = CalendarHelper::getCalendarOfLecturer($user);
+        // dd($test);
+
         $events = [];
         // $data = CalendarHelper::getCalendarOfClass();
         // $getWeekDays = CalendarHelper::getWeekDays();

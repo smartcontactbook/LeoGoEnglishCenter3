@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 class staff extends Authenticatable
 {
     // use EntrustUserTrait;
-    use Notifiable;
+    use Notifiable, HasApiTokens;
     protected $table='staff';
     protected $guarded= [];
     public $timestamps = false;

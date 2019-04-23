@@ -15,6 +15,8 @@ use App\tem_leogo_class;
 use Session;
 use App\Helpers\CalendarHelper;
 use App\Helpers\WaitClassHelper;
+use App\Helpers\StaffHelper;
+use Auth;
 
 class ClassController extends Controller
 {
@@ -40,8 +42,8 @@ class ClassController extends Controller
         // Session::forget('idLevel');
         // Session::forget('nameLevel');
         $getLevels = LeogoClassHelper::getLevels();
-        $getLecturers = LeogoClassHelper::getLecturers();
-        $getTutors = LeogoClassHelper::getTutors();
+        $getLecturers = StaffHelper::getLecturers();
+        $getTutors = StaffHelper::getTutors();
         
         // dd($getStudentOfWaitingClass);
 

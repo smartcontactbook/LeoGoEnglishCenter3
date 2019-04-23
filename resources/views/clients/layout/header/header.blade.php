@@ -63,7 +63,7 @@
                         <ul>
                           @foreach($getCourses as $value)
                             <li class="">
-                                <a href="">
+                                <a href="">ư
                                     <div>{{ $value->Course_Name }}</div>
                                 </a>
                             </li>

@@ -28,6 +28,8 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// END COURSE MANAGEMENT 
 
 	// START CLASS MANAGEMENT
+	// 
+	// 
 	Route::resource('classRoom', 'ClassController');
 	Route::get('setSchedule', ['as' => 'getSetSchudule', 'uses' => 'HomeController@getSetSchudule']);
 
@@ -98,4 +100,6 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 });
 
 Route::get('home', ['as' => 'getHome', 'uses' => 'ClientController@getHome']);
+
+Route::get('courseWeb/{id}', ['as' => 'getCoursesWeb', 'uses' => 'ClientController@getCoursesWeb']);
 Route::post('registerOnline', ['as' => 'postRegisterOnline', 'uses' => 'ClientController@postRegisterOnline']);

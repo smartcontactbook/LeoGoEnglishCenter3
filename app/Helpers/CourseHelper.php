@@ -21,6 +21,12 @@ class CourseHelper
         return $parent;
     }
 
+    public static function getCoursesWeb($idCourse){
+        $getCoursesWeb = course::findOrFail($idCourse);
+
+
+        return $getCoursesWeb;
+    }
     // public static function postStoreCoure($name, $description, $term, $level){
     //     $course = new course();
     //     $course->Course_Name = $name;

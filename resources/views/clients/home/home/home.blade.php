@@ -32,8 +32,8 @@
             <div class="list-course__item">
               <div class="list-course__item__content">
                 <div class="thumbnail_img">
-                  <a href="programs/anh-ngu-mau-giao-smartkids/index.html" title="Anh Ngữ Mẫu Gi&#225;o SMARTKIDS">
-                    <img src="{{asset('image/')}}/avatar/{{ $getCourse->image }}" alt="Anh Ngữ Mẫu Gi&#225;o SMARTKIDS">
+                  <a href="{{ route('getCoursesWeb', $getCourse->id) }}" title="Anh Ngữ LeoGo">
+                    <img src="{{asset('image/')}}/avatar/{{ $getCourse->image }}" alt="Anh Ngữ LeoGo">
                   </a>
                 </div>
                 <div class="list-course__item__detail">
@@ -44,7 +44,7 @@
                       </span>
                     </div>
                      <div class="title-desc">
-                      <a href="programs/anh-ngu-mau-giao-smartkids/index.html" title="Anh Ngữ Mẫu Gi&#225;o SMARTKIDS">
+                      <a href="{{ route('getCoursesWeb', $getCourse->id) }}" title="Anh Ngữ LeoGo">
                         <h5 class="title">
                           {{ $getCourse->Course_Name }}
                         </h5>
@@ -58,7 +58,7 @@
                     </div>
                   </div>
                   <div class="btn-block">
-                    <a href="programs/anh-ngu-mau-giao-smartkids/index.html" title="Anh Ngữ Mẫu Gi&#225;o SMARTKIDS" class="viewmore">
+                    <a href="{{ route('getCoursesWeb', $getCourse['id']) }}" title="Anh Ngữ LeoGo" class="viewmore">
                       <span>&gt;&gt;&gt;&nbsp;Xem chi tiết</span>
                     </a>
                   </div>

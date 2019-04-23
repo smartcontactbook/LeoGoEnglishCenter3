@@ -11,12 +11,24 @@ use Hash;
 
 class ClientController extends Controller
 {
-    public function getHome(){
-    	$getCourses = CourseHelper::getCourse();
+    public function getCoursesWeb($idCourse){
+    	//$getCoursesWeb = CourseHelper::getCoursesWeb($request->txt_idCourse);
+
+        $getCoursesWeb = CourseHelper::getCoursesWeb($idCourse);
+
 
         // dd(Hash::make('123456789'));
-    	return view('clients.home.home.home', compact('getCourses'));
+    	return view('clients.home.detail.detailCourse', compact('getCoursesWeb'));
     }
+
+     public function getHome(){
+        $getCourses = CourseHelper::getCourse();
+
+        // dd(Hash::make('123456789'));
+        return view('clients.home.home.home', compact('getCourses'));
+    }
+
+
 
     public function postRegisterOnline(Request $request){
     	$register = new register;

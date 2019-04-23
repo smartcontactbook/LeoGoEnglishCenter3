@@ -51,6 +51,20 @@
         			</div>
         		</div>
         	</div>
+            <div class="box-body">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        {!! Form::hidden('old_avatar', $getCourse->avatar) !!}
+                        {!! Form::file('new_avatar', ['id' => 'imageUpload', 'accept' => '.png, .jpg, .jpeg']) !!}
+                        {!! Form::label('imageUpload', ' ') !!}
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview">
+                            <img src="{{ asset('image/avatar').'/'.$getCourse->avatar }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
     </div>

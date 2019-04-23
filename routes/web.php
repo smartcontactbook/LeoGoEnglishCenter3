@@ -103,3 +103,4 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 });
 
 Route::get('home', ['as' => 'getHome', 'uses' => 'ClientController@getHome']);
+Route::post('registerOnline', ['as' => 'postRegisterOnline', 'uses' => 'ClientController@postRegisterOnline']);

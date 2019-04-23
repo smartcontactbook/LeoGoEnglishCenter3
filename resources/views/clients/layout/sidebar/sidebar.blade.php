@@ -13,18 +13,10 @@
               <div>
                 <div class="contact-detail">
                   <div class="text">
-                    HCM, B&#236;nh Dương, Bi&#234;n H&#242;a
+                    Thành Phố Đà Nẵng
                   </div>
                   <div class="contact-phone">
-                    <a href="tel:(028) 7308 3333">(028) 7308 3333</a>
-                  </div>
-                </div>
-                <div class="contact-detail">
-                  <div class="text">
-                    H&#224; Nội
-                  </div>
-                  <div class="contact-phone">
-                    <a href="tel:(024) 3388 1199">(024) 3388 1199</a>
+                    <a href="tel:091 145 77 99">091 145 77 99</a>
                   </div>
                 </div>
               </div>

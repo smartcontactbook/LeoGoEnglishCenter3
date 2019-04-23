@@ -286,7 +286,6 @@ class HomeController extends Controller
             $classSchedule->save();
             // dd($value->ID);
             // $delete_tem_schedule = tem_schedule::find($value->ID);
-
         }
 
         $getChildrenToTems = DB::table('tem_children_class')->get();

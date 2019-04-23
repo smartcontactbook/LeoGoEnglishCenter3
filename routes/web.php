@@ -61,6 +61,11 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	  'uses'  =>  'AjaxController@loadTemSchedule'
 	));
 
+
+
+	Route::get('StudentOfClass/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
+	Route::get('ScoreOfStudent/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
+	Route::post('StudentOfClass/update_data', ['as' => 'update_data', 'uses' => 'AjaxController@update_data']);
 	// END CLASS MANAGEMENT
 	 
 	// START RIGISTER MANAGEMENT
@@ -98,3 +103,4 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 });
 
 Route::get('home', ['as' => 'getHome', 'uses' => 'ClientController@getHome']);
+Route::post('registerOnline', ['as' => 'postRegisterOnline', 'uses' => 'ClientController@postRegisterOnline']);

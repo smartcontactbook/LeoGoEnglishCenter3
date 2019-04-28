@@ -396,12 +396,12 @@
 				          	</button>
 				          	<h4 class="modal-title">TEST SCHEDULE</h4>
 				        </div>
+				        {{--  --}}
 				        <form method="POST" action="{{ route('register.update','test') }}">
 					          {{method_field('patch')}}
-					          {{csrf_field()}}
 					          <div class="modal-body">
 					            <div class="box-body">
-					              <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value="">
+					              <input class="form-control" type="hidden" name="txt_testId" id="txt_testId" value="{!! old('txt_testId') !!}">
 					             	<div class="form-group">
 					               	  <label for="exampleInputEmail1">Full name</label>
 					               		<input type="input"  class="form-control " disabled id="txt_name" name="txt_name" value="{!! old('txt_name') !!}" ></label>
@@ -429,7 +429,8 @@
 					                  <div class="col-lg-6">
 					                    <div class="form-group">
 					                      <label>Test schedule</label>
-						                      	<input  
+						                      	<input
+							                      type="datetime-local"
 							                      id="txt_testSchedule" 
 							                      class="form-control" 
 							                      value="{!! old('txt_testSchedule') !!}" 
@@ -486,13 +487,21 @@
 	            <div class="box-body">
 	              <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value="">
 	             	<div class="form-group">
-	               	  <label for="exampleInputEmail1">Full Name</label>
+	               	  <label for="exampleInputEmail1">First Name</label>
 	               		<input 
 	               		type="input"  
 	               		class="form-control " 
 	               		id="txt_firstname" 
 	               		name="txt_firstname" 
 	               		value="{!! old('txt_firstname') !!}" >
+	               	  </label>
+	               	  <label for="exampleInputEmail1">Last Name</label>
+	               		<input 
+	               		type="input"  
+	               		class="form-control " 
+	               		id="txt_lastname" 
+	               		name="txt_lastname" 
+	               		value="{!! old('txt_lastname') !!}" >
 	               	  </label>
 	              	</div>	
 	             	<div class="form-group">
@@ -532,13 +541,23 @@
 		                      name="txt_email">
 		                  </label>
 		                  <label>Course</label>
-		                  <select id="txt_course txt_nameCourse"  name="txt_course txt_nameCourse" class="form-control select2" value="{!! old('txt_course') !!}">
+
+		                  <input 
+		                      type="input" 
+		                      class="form-control" 
+		                      <label 
+		                      type="text" 
+		                      id="txt_course" 
+		                      class="form-control" 
+		                      value="{!! old('txt_course') !!}" 
+		                      name="txt_course">
+		                  {{-- <select id="txt_course txt_nameCourse"  name="txt_course txt_nameCourse" class="form-control select2" value="{!! old('txt_course') !!}">
 		                  	
 		                  	<option value="{!! old('txt_course') !!}" name = "txt_course txt_nameCourse" id="txt_course txt_nameCourse">{{ old('txt_nameCourse') }}</option>
-                            @foreach($getCourse as $item)
+                            {{-- @foreach($getCourse as $item)
                             <option value="{{ $item["id"] }}" id="txt_course">{{ $item["Course_Name"] }}</option>
-                            @endforeach
-                          </select>
+                            @endforeach 
+                          </select> --}}
 				                
 				                
 				            {{-- </label> --}}
@@ -594,6 +613,7 @@
 	        var date = button.data('date') 
 	        var phone = button.data('phone') 
 	        var firstname = button.data('firstname')
+	        var lastname = button.data('lastname')
 	        var score = button.data('score')
 	        var email = button.data('email')
 	        var parent = button.data('parent')
@@ -603,6 +623,7 @@
 	        var modal = $(this)
 	        modal.find('.modal-body #txt_testId').val(id);
 	        modal.find('.modal-body #txt_firstname').val(firstname);
+	        modal.find('.modal-body #txt_lastname').val(lastname);
 	        modal.find('.modal-body #txt_birthday').val(date);
 	        modal.find('.modal-body #txt_phone').val(phone);
 	        modal.find('.modal-body #txt_score').val(score);
@@ -617,7 +638,6 @@
 	    {{-- END MODAL SCORE --}}
 	 	</div>
 </div>
-{{-- END MODAL--}}
 
 
 

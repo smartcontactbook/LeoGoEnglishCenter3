@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\StaffHelper;
 use App\staff;
 use Session;
+use Hash;
 
 class StaffController extends Controller
 {
@@ -48,7 +49,6 @@ class StaffController extends Controller
 
     }
 
-    }
 
     public function show($id)
     {

@@ -114,8 +114,13 @@ class LeogoClassHelper
     }
 
     public static function getClassOfCourses(){
-        $getClassOfCourses = level::select('level.id as id_course', 'level.*', 'leogo_class.*')->join('leogo_class', 'level.id', '=', 'leogo_class.Level_ID')->get();
-
+        // $getClassOfCourses = level::select('level.id as id_course', 'level.*', 'leogo_class.*')->join('leogo_class', 'level.id', '=', 'leogo_class.Level_ID')->get();
+$getClassOfCourses = DB::table('level')
+        ->join('leogo_class', 'level.id', '=', 'leogo_class.Level_ID')
+        ->join('course', 'level.Course_ID', '=', 'course.id')
+        ->select('course.id as id_course', 'level.id as id_level', 'level.*', 'leogo_class.*', 'course.*')
+        ->get();
+        
         return $getClassOfCourses;
     }
 

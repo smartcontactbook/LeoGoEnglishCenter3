@@ -28,5 +28,10 @@ class staff extends Authenticatable
 
         return $this->hasMany('app\events');
     }
+
+    public function news(){
+
+        return $this->hasMany('app\news');
+    }
 //
 }

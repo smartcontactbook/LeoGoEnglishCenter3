@@ -18,8 +18,8 @@ class RegisterController extends Controller
         $getRegister = RegisterHelper::getRegister();
         $getLevels = RegisterHelper::getLevelOfCourse();
 // dd($getRegister);
-        $getCourse = RegisterHelper::getCourse();
-        return view('admin.enrollmentManagement.RegisterList',compact('getRegister','getLevels','getCourse'));
+        // $getCourse = RegisterHelper::getCourse();
+        return view('admin.enrollmentManagement.RegisterList',compact('getRegister','getLevels'));
     }
 
     /**
@@ -97,6 +97,7 @@ class RegisterController extends Controller
     {
         try {       
             $register = register::findOrFail($request->txt_testId);
+            dd($register);
             $register->Test_Schedule = $request->txt_testSchedule;
             $result = $register->save();
             if($result) {
@@ -105,6 +106,8 @@ class RegisterController extends Controller
                 $request->session()->flash('errorLists', 'There was an error');
             }
         } catch (Exception $e) {
+            $register = register::findOrFail($request->txt_testId);
+            dd($register);
             $request->session()->flash('errorLists', $e->getMessage());
         }
 

@@ -341,5 +341,22 @@ class HomeController extends Controller
         $getChildrenClass = LeogoClassHelper::getStudentOfClass($id);
         dd($getChildrenClass);
     }
+
+    public function updateSchedule(Request $request){
+        try {       
+            $register = register::findOrFail($request->txt_testId);
+            $register->Test_Schedule = $request->txt_testSchedule;
+            $result = $register->save();
+            if($result) {
+                $request->session()->flash('messageUpadte', 'Upadte success');
+            } else {
+                $request->session()->flash('errorLists', 'There was an error');
+            }
+        } catch (Exception $e) {
+            $request->session()->flash('errorLists', $e->getMessage());
+        }
+
+        return redirect()->route('register.index');
+    }
 }
 

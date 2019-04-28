@@ -23,8 +23,8 @@ class RegisterHelper
         return $parent;
     }
 
-    public static function getCourse(){
-        $parent=course::select('id','Course_Name')->get()->toArray();
+    public static function getCourse($id){
+        $parent=course::where('id', '=', $id)->get();
 
         return $parent;
     }

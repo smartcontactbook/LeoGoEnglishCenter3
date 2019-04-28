@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\TutorHelper;
 use App\staff;
 use Session;
-
+use Hash;
 
 class TutorController extends Controller
 {

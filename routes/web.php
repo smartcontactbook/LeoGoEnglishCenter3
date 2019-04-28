@@ -63,7 +63,7 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	  'uses'  =>  'AjaxController@loadTemSchedule'
 	));
 
-
+	Route::post('updateSchedule',['as'=>'updateSchedule','uses'=>'HomeController@updateSchedule']);
 
 	Route::get('StudentOfClass/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
 	Route::get('ScoreOfStudent/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);

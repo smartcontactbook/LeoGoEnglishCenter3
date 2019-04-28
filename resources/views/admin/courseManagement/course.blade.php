@@ -1,5 +1,38 @@
 @extends('admin.layout.master.master')
 @section('main-content')
+<script type='text/javascript'>
+function preview_image(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('output_image');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+<style>
+body
+{
+ width:100%;
+ margin:0 auto;
+ padding:0px;
+ font-family:helvetica;
+ background-color:#0B3861;
+}
+#wrapper
+{
+ text-align:center;
+ margin:0 auto;
+ padding:0px;
+ width:995px;
+}
+#output_image
+{
+ max-width:300px;
+}
+</style>
   <section class="content-header">
     <h1><b>COURSE MANAGEMENT</b>
     </h1>
@@ -93,7 +126,7 @@
           <h4 class="modal-title">ADD COURSE</h4>
         </div>
         <form role="form" method="POST" action="{!! route('course.store') !!}" enctype="multipart/form-data">
-          {!! csrf_field() !!}>
+          {!! csrf_field() !!}
           <div class="modal-body">
             <div class="box-body">
               <div class="form-group">
@@ -117,10 +150,17 @@
                     </div>
                   </div>
                   <div class="col-lg-6">
-                    <div class="form-group">
+                    <div class="form-group" id="wrapper">
                       <label>Choose image</label>
-                      <input name="image" type='file' class="custom-file-input"/>
-                      <img id="myImg" name="image" src="{{ asset('image/avatar/logo2.png')}}" alt="your image" style="margin-top: 10px; width: 200px; " />
+                      {{-- <div > --}}
+ <input name="image" type="file" accept="image/*" onchange="preview_image(event)">
+ <img name="image" id="output_image"/>
+                      {{-- <input type="file" name="file" id="profile-img"> --}}
+                      {{-- <img src="" id="profile-img-tag" width="200px" /> --}}
+                      {{-- <input type='file' onchange="readURL(this);" /> --}}
+                      {{-- <img id="blah" src="http://placehold.it/180" alt="your image" /> --}}
+                     {{--  <input type="file" name="file" id="profile-img">
+                      <img src="" id="profile-img-tag" width="200px" /> --}}
                     </div>
                   </div>
                 </div>
@@ -348,21 +388,22 @@
         });
 
     </script>
+    <script type="text/javascript">
+{{--     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile-img").change(function(){
+        readURL(this);
+    });
+</script> --}}
   </section>
 
-  <script type="text/javascript">
-    $(function () {
-    $(":file").change(function () {
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-});
 
-function imageIsLoaded(e) {
-    $('#myImg').attr('src', e.target.result);
-};
-  </script>
 @endsection

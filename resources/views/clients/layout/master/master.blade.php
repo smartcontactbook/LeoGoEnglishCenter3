@@ -25,8 +25,6 @@
     <meta name="theme-color" content="#ba141a">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/icofont/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css')}}">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"  > -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/5.3.5/sweetalert2.min.css"> -->
     <script>
       var assets_url = 'index.html';
       var app_lang = 'vi';
@@ -51,8 +49,6 @@
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
 
-      @include('sweetalert::alert')
-
     </div>
 
   </div>
@@ -62,11 +58,10 @@
       @yield('main-content-client')
     </div>
     <!-- end main -->
+    @include('clients/layout/map/map')
     @include('clients/layout/register/register')
     @include('clients/registerOnline/registerOnline')
     @include('clients/layout/footer/footer')
-<!-- <script src="https://cdn.jsdelivr.net/sweetalert2/5.3.5/sweetalert2.min.js"></script> -->
-
 <script src="{{ asset('js/sweetAlert.js') }}"></script>
 <script src="{{asset('assets/js/vendor.js')}}"></script>
 <script src="{{asset('assets/js/app.js')}}"></script>
@@ -74,6 +69,7 @@
 <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
 <!-- <script>var dataLayer = [{'trackingId': 'UA-32781948-1', 'hostName': 'https://crm.vus.edu.vn'}];</script> -->
 <script src="{{asset('js/tgtm.js')}}"></script>
+
 <!-- <script>
   function send_ga_hit(page_url, page_title) {
     ga('send', {'hitType': 'pageview', 'page': page_url, 'title': page_title});

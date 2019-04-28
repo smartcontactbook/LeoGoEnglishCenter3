@@ -16,7 +16,7 @@
                 <img src="{{ asset('image/media/24845/asset-38101.png')}}?anchor=center&amp;mode=crop&amp;width=100&amp;height=100&amp;rnd=131701693090000000&amp;upscale=false&amp;bgcolor=fff" alt="Tiếng Anh 100% Gi&#225;o Vi&#234;n Nước Ngo&#224;i">
               </div>
               <div class="review-slide-item__detail overflow-lines">
-                <div class="line-clamp">Mình thấy VUS có chất lượng giảng dạy uy tín nên chọn cho con học. Trong quá trình học, gia đình thấy cháu có tiến bộ rõ rệt, hiện đang là một trong những học sinh giỏi Anh văn lớp chuyên của trường.</div>
+                <div class="line-clamp">Mình thấy LeoGo có chất lượng giảng dạy uy tín nên chọn cho con học. Trong quá trình học, gia đình thấy cháu có tiến bộ rõ rệt, hiện đang là một trong những học sinh giỏi Anh văn lớp chuyên của trường.</div>
               </div>
               <div class="review-slide-item__info">
                 <div class="name">
@@ -31,7 +31,7 @@
                 <img src="{{ asset('image/media/24853/asset-150ec.png')}}?anchor=center&amp;mode=crop&amp;width=100&amp;height=100&amp;rnd=131701692140000000&amp;upscale=false&amp;bgcolor=fff" alt="Tiếng Anh 100% Gi&#225;o Vi&#234;n Nước Ngo&#224;i">
               </div>
               <div class="review-slide-item__detail overflow-lines">
-                <div class="line-clamp">Tại VUS, giáo viên được tuyển chọn kỹ lưỡng, đảm bảo chất lượng giảng dạy, nhiều cấp độ dành cho mọi độ tuổi, giúp con học tiếng Anh xuyên suốt. Tôi rất hài lòng khi thấy con tiến bộ  vượt bậc, đạt kết quả cao trong các kỳ thi Anh ngữ.</div>
+                <div class="line-clamp">Tại LeoGo, giáo viên được tuyển chọn kỹ lưỡng, đảm bảo chất lượng giảng dạy, nhiều cấp độ dành cho mọi độ tuổi, giúp con học tiếng Anh xuyên suốt. Tôi rất hài lòng khi thấy con tiến bộ  vượt bậc, đạt kết quả cao trong các kỳ thi Anh ngữ.</div>
               </div>
               <div class="review-slide-item__info">
                 <div class="name">
@@ -46,7 +46,7 @@
                 <img src="{{ asset('image/media/24856/picture1490a.png')}}?anchor=center&amp;mode=crop&amp;width=100&amp;height=100&amp;rnd=131701689290000000&amp;upscale=false&amp;bgcolor=fff" alt="Tiếng Anh 100% Gi&#225;o Vi&#234;n Nước Ngo&#224;i">
               </div>
               <div class="review-slide-item__detail overflow-lines">
-                <div class="line-clamp">Gia đình có dự định sang Mỹ nên đầu tư tiếng Anh cho con từ rất sớm. Tôi chọn VUS vì được bạn bè, đồng nghiệp giới thiệu và thấy rất yên tâm khi con học rất hiệu quả, thường đứng hạng Nhất môn tiếng Anh ở trường.</div>
+                <div class="line-clamp">Gia đình có dự định sang Mỹ nên đầu tư tiếng Anh cho con từ rất sớm. Tôi chọn LeoGo vì được bạn bè, đồng nghiệp giới thiệu và thấy rất yên tâm khi con học rất hiệu quả, thường đứng hạng Nhất môn tiếng Anh ở trường.</div>
               </div>
               <div class="review-slide-item__info">
                 <div class="name">
@@ -102,10 +102,10 @@
           </div>
         </div>
         <div>
-          <div class="prevAr"><i class="icofont-curved-left"></i></div>
-          <div class="nextAr"><i class="icofont-curved-right"></i></div>
+          <div class="prevAr style-left" style="background: url('{{ asset('image/leogo/left-arrow.svg') }}') center center no-repeat;background-size: cover;"></div>
+          <div class="nextAr style-right" style="background: url('{{ asset('image/leogo/right-arrow.svg') }}') center center no-repeat;background-size: cover;"></div>
         </div>
       </div>
     </div>
-    <div class="lineFoot"></div>
+    <div class="lineFoot "></div>
   </section>

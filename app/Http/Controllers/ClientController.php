@@ -8,6 +8,7 @@ use App\register;
 use Session;
 use Alert;
 use Hash;
+use App\lecturer;
 
 class ClientController extends Controller
 {
@@ -39,5 +40,22 @@ class ClientController extends Controller
         }
 
         return redirect()->route('getHome');
+    }
+
+    public function getDetail($id){
+        $getDetail = CourseHelper::getDetail($id);
+
+        return view('clients.details.detail', compact('getDetail'));
+    }
+
+    public function getQuatily(){
+
+        return view('clients.quality.quality');
+    }
+
+    public function getTeacher(){
+        $getLectures = lecturer::all();
+
+        return view('clients.teacher.teacher', compact('getLectures'));
     }
 }

@@ -4,11 +4,11 @@
           <div class="overview__about__us">
             <h5 class="title">
               <span class="ico"></span>
-              <span>MỖI NĂM GẦN 250.000 GIA ĐÌNH TIN CHỌN VUS</span>
+              <span>MỖI NĂM GẦN 250.000 GIA ĐÌNH TIN CHỌN LEOGO</span>
             </h5>
             <div class="description">
               <div>
-                Anh văn Hội Việt Mỹ VUS là hệ thống Anh ngữ uy tín hàng đầu tại Việt Nam với hàng triệu học viên đã tin tưởng theo học. Với chất lượng giảng dạy đạt chuẩn quốc tế cùng các trung tâm hiện đại trên khắp cả nước, VUS mang đến những khoá học dành riêng cho từng độ tuổi và trình độ giúp học viên có nền tảng Anh ngữ vững chắc, tăng khả năng giao tiếp và đạt kết quả cao trong các kỳ thi Anh ngữ quốc tế.
+                Leogo English for kids là trung tâm dạy Tiếng Anh 100% giáo viên nước ngoài với mức học phí rẻ nhất tại Đà Nẵng.  Với khẩu hiệu “Golden skills for green future”, Leogo luôn luôn nỗ lực không ngừng để trở thành trung tâm dạy tiếng Anh hàng đầu không chỉ tại Đà Nẵng mà còn trên toàn quốc. Bên cạnh việc cống hiến cho sự nghiệp dạy ngoại ngữ tại Việt Nam, Leogo còn tích cực đóng góp cho các hoạt động xã hội như trao tặng học bổng, tổ chức hoạt động ngoại khóa, đào tạo giáo viên thường xuyên tại các trường. Với phương pháp học chủ động, cơ sở vật chất tiên tiến và giáo viên bản ngữ giàu kinh nghiệm, chúng tôi đảm bảo 100% học viên sẽ đạt được điểm cam kết đầu ra trong các kỳ thi quốc tế như IELTS, TOEFL, TOEIC hoặc các kỳ thi Cambridge English.  "Nếu tất cả sinh viên Việt Nam sau này không thể nghe và nói tiếng Anh trôi chảy, chỉ có thể đọc thôi cũng đã là tụt hậu". Trích lời phát biểu của cố Thủ tướng Singapore Lý Quang Diệu. Vì vậy chúng tôi luôn mong muốn mang đến chất lượng sư phạm và dịch vụ hàng đầu Việt Nam. Luôn phấn đấu để tiết giảm chi phí, mang lại cơ hội học tiếng Anh chất lượng quốc tế với giá cả phù hợp với đông đảo mọi người.
               </div>
               <div class="seemore-block s_center">
                 <a class="button arrow_next upper" href="about-us/index.html">
@@ -41,7 +41,7 @@
           <ul class="list home_lydo">
             <li>
               <div>
-                <img src="{{ asset('assets/images/vneas.svg')}}" border="0" alt="Chất lượng giảng dạy đạt chuẩn quốc tế">
+                <img src="{{ asset('image/leogo/vneas.svg')}}" border="0" alt="Chất lượng giảng dạy đạt chuẩn quốc tế">
               </div>
               <div>
                 <strong>Chất lượng giảng dạy chuẩn quốc tế</strong>
@@ -51,7 +51,7 @@
             </li>
             <li>
               <div>
-                <img src="{{ asset('assets/images/university.svg')}}" border="0" alt="Đối tác chiến lược uy tín">
+                <img src="{{ asset('image/leogo/university.svg')}}" border="0" alt="Đối tác chiến lược uy tín">
               </div>
               <div>
                 <strong>Đối tác chiến lược uy tín</strong>
@@ -60,7 +60,7 @@
             </li>
             <li>
               <div>
-                <img src="{{ asset('assets/images/icon_doingugiaovien_home.svg ') }}" border="0" alt="Đội ngũ giảng dạy chuyên môn cao">
+                <img src="{{ asset('image/leogo/icon_doingugiaovien_home.svg ') }}" border="0" alt="Đội ngũ giảng dạy chuyên môn cao">
               </div>
               <div>
                 <strong>Đội ngũ giảng dạy chuyên môn cao</strong>
@@ -70,7 +70,7 @@
             </li>
             <li>
               <div>
-                <img src="{{ asset('assets/images/icon_phanmem.svg ') }}" border="0" alt="Phần mềm học tập chuyên dụng">
+                <img src="{{ asset('image/leogo/icon_phanmem.svg ') }}" border="0" alt="Phần mềm học tập chuyên dụng">
               </div>
               <div>
                 <strong>Phần mềm học tập chuyên dụng</strong>
@@ -80,7 +80,7 @@
             </li>
             <li>
               <div>
-                <img src="{{ asset('assets/images/icon_dadang.svg ') }}" border="0" alt="Chương trình học đa dạng">
+                <img src="{{ asset('image/leogo/icon_dadang.svg ') }}" border="0" alt="Chương trình học đa dạng">
               </div>
               <div>
                 <strong>Chương trình học đa dạng</strong>
@@ -90,7 +90,7 @@
             </li>
             <li>
               <div>
-                <img src="{{ asset('assets/images/kyluc.svg ') }}" border="0" alt="Đội ngũ tư vấn viên tận tâm">
+                <img src="{{ asset('image/leogo/kyluc.svg ') }}" border="0" alt="Đội ngũ tư vấn viên tận tâm">
               </div>
               <div>
                 <strong>Kỷ lục Việt Nam</strong>

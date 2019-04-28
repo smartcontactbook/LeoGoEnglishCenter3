@@ -25,10 +25,16 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
+
+        $file_image=$request->file('image')->getClientOriginalName();
         $course = new course();
         $course->Course_Name = $request->txt_name;
         $course->Description = $request->txt_description;
         $course->Term = $request->cmb_term;
+        $course->image = $file_image;
+        $request->file('image')->move('image/course/',$file_image);
+        $course->content = $request->txt_content;
+        // dd($course->content);
         //$course->Level_ID = $request->cmb_level;
         $result = $course->save();
         // dd($result);

@@ -23,5 +23,10 @@ class staff extends Authenticatable
     {
         return $this->belongsTo('app\role');
     }
+
+    public function events(){
+
+        return $this->hasMany('app\events');
+    }
 //
 }

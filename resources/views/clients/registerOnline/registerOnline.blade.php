@@ -35,14 +35,14 @@
                 <input type="text" class="half-w left txtEmail o2o-email" data-text-required="Bạn chưa nhập email" data-text-invalid="Địa chỉ email kh&#244;ng hợp lệ" placeholder="Email*">
                 <input type="text" class="half-w right txtPhone o2o-phone" data-text-required="Bạn chưa nhập số điện thoại" data-text-invalid="Kh&#244;ng đ&#250;ng định dạng số điện thoại" placeholder="Số điện thoại*">
               </div>
-              <div class="input-block clearfix">
+{{--               <div class="input-block clearfix">
                 <select name="nhucauhoc" class="input-block nhucauhoc" style="background-color:#fff">
                   <option value="">Khóa học quan tâm</option>
                   @foreach($getCourses as $value)
                     <option value="{{ $value->id }}">{{ $value->Course_Name }}</option>
                   @endforeach
                 </select>
-              </div>
+              </div> --}}
               <div class="input-block clearfix">
                 <textarea class="block-textarea txtNote o2o-notes" data-text-required="Bạn chưa nhập th&#244;ng điệp" placeholder="Th&#244;ng tin th&#234;m về nhu cầu học"></textarea>
               </div>

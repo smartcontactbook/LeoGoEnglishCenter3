@@ -150,6 +150,31 @@
                   </span>
                 </a>
               </li>
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-drivers-license"></i>
+                  <span>News & Events
+                  </span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right">
+                    </i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li>
+                    <a href="{{ route('register.create') }}">
+                      <i class="fa fa-circle-o">
+                      </i> News
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('register.index') }}">
+                      <i class="fa fa-circle-o"> 
+                      </i> Events 
+                    </a>
+                  </li>
+                </ul>
+              </li>
               
             </ul>
             @else
@@ -207,7 +232,6 @@
                   </span>
                 </a>
               </li>
-              
             </ul>
             @endif
           @endif

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\StaffHelper;
 use App\staff;
-use App\staff_account;
 use Session;
 
 class StaffController extends Controller
@@ -14,7 +13,6 @@ class StaffController extends Controller
     public function index()
     {
         $getStaff = StaffHelper::getStaff();
-       // dd($getStaff);
 
         return view('admin.staffsManagement.staffs', compact('getStaff'));
     }
@@ -26,30 +24,29 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->txt_password);
-        // $staff = new staff;
-        // $staff->Description = $request->txt_description;
-        // $staff->First_Name = $request->txt_FirstName;
-        // $staff->Last_Name = $request->txt_LastName;
-        // $staff->Email = $request->txt_email;
-        // $staff->Birth_Day = $request->txt_date;
-        // $staff->Phone_Number = $request->txt_phone;
-        // $staff->Gender = $request->txt_gender;
-        // $staff->Address = $request->txt_address;
-        // $staff->avatar = 'default.png';
-        // $staff->Password = $request->txt_password;
-        // $staff->Role_ID = 4;
-        // dd($staff->Password);
-        // // dd($lecturer->Gender,$lecturer->Address);
-        // $result = $staff->save();
-        
-        // if($result){
+       $tutor = new staff;
+        $tutor->Description = $request->txt_description;
+        $tutor->Full_Name = $request->txt_FirstName;
+        $tutor->Email = $request->txt_email;
+        $tutor->Birth_Day = $request->txt_date;
+        $tutor->Phone_Number = $request->txt_phone;
+        $tutor->Gender = $request->txt_gender;
+        $tutor->Address = $request->txt_address;
+        $tutor->avatar = 'default.png';
+        $tutor->Password = Hash::make($request->txt_password);
+        $tutor->User_Name = $request->txt_email;
+        $tutor->Role_ID = 2;
+        $result = $tutor->save();
 
-        //     return redirect()->route('staff.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add staff']);
-        // } else{
+        if($result){
 
-        //     return redirect()->back()->with('errorLists', trans('Faill !!! '));
-        // }
+            return redirect()->route('tutor.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add tutor']);
+        } else{
+
+            return redirect()->back()->with('errorLists', trans('Faill !!! '));
+        }
+
+    }
 
     }
 
@@ -67,18 +64,17 @@ class StaffController extends Controller
             return redirect()->back()->with('errorLists', $e->getMessage());
         }
 
-        return view('admin.staffsManagement.editStaffs', compact('getStaff'));
+        return view('admin.staffsManagement.editStaff', compact('getStaff'));
     }
 
     public function update(Request $request, $id)
     {
         try {
             $new_avatar = StaffHelper::updateAvatar($request);
-            $staff = staff::findOrFail($request->id_staff);
+            $staff = staff::findOrFail($request->id_tutor);
             $staff->Description = $request->txt_description;
-            $staff->First_Name = $request->txt_FirstName;
-            $staff->Last_Name = $request->txt_LastName;
-            $staff->Email = $request->txt_email;
+            $staff->Full_Name = $request->txt_FirstName;
+            $staff->email = $request->txt_email;
             $staff->Birth_Day = $request->txt_date;
             $staff->Phone_Number = $request->txt_phone;
             $staff->Gender = $request->txt_gender;

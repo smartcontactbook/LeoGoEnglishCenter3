@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\TutorHelper;
-use App\tutor;
-use App\tutor_account;
+use App\staff;
 use Session;
 
 
@@ -26,18 +25,18 @@ class TutorController extends Controller
 
     public function store(Request $request)
     {
-        $tutor = new tutor;
+        $tutor = new staff;
         $tutor->Description = $request->txt_description;
-        $tutor->First_Name = $request->txt_FirstName;
-        $tutor->Last_Name = $request->txt_LastName;
+        $tutor->Full_Name = $request->txt_FirstName;
         $tutor->Email = $request->txt_email;
         $tutor->Birth_Day = $request->txt_date;
         $tutor->Phone_Number = $request->txt_phone;
         $tutor->Gender = $request->txt_gender;
         $tutor->Address = $request->txt_address;
         $tutor->avatar = 'default.png';
-        $tutor->Password = $request->txt_password;
-        $tutor->Role_ID = 3;
+        $tutor->User_Name = $request->txt_email;
+        $tutor->Password = Hash::make($request->txt_password);
+        $tutor->Role_ID = 4;
         $result = $tutor->save();
 
         if($result){
@@ -71,7 +70,7 @@ class TutorController extends Controller
     {
         try {
             $new_avatar = TutorHelper::updateAvatar($request);
-            $tutor = tutor::findOrFail($request->id_tutor);
+            $tutor = staff::findOrFail($request->id_tutor);
             $tutor->Description = $request->txt_description;
             $tutor->First_Name = $request->txt_FirstName;
             $tutor->Last_Name = $request->txt_LastName;

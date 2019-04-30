@@ -25,6 +25,8 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 
 	// START COURSE MANAGEMENT
 	Route::resource('course', 'CourseController');
+	Route::get('LevelOfCourse/{id}', ['as' => 'getLevelOfCourse', 'uses' => 'AjaxController@getLevelOfCourse']);
+	Route::post('LevelOfCourse/update_data', ['as' => 'update_data_level', 'uses' => 'AjaxController@update_data_level']);
 	// END COURSE MANAGEMENT 
 
 	// START CLASS MANAGEMENT

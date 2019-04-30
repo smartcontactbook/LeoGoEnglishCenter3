@@ -3,15 +3,15 @@
 namespace App\Helpers;
 
 use Illuminate\Http\Request;
-use App\lecturer;
+use App\staff;
 
 class LecturerHelper
 {
     public static function getLecturers()
     {
-        $getLecturer = lecturer::all();
+        $getLecturers = staff::where('Role_ID', 3)->get();
 
-        return $getLecturer;
+        return $getLecturers;
     }
 
     public static function getIdOfLecturer($idLecturer){

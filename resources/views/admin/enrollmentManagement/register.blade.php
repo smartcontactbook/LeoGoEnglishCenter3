@@ -22,7 +22,7 @@
 							<div class="col-sm-4">
 								<div class="box-body">
 									<div class="form-group">
-										<label>First Name</label>
+										<label>Full Name</label>
 										<input
 										id="txt_FirstName"
 										name="txt_FirstName"
@@ -59,18 +59,6 @@
 							</div>
 							<div class="col-sm-4">
 								<div class="box-body">
-									<div class="form-group">
-										<label>Last Name</label>
-										<input
-										id="txt_LastName"
-										name="txt_LastName"
-										value="{!! old('txt_LastName') !!}"
-										type="text"
-										class="form-control"
-										placeholder="Enter Last Name"
-										required pattern="^[a-zA-Z]*$" title="Last name invalid"
-										/>
-									</div>
 									<div class="form-group">
 										<label>Email</label>
 										<input 

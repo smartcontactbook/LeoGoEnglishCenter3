@@ -22,6 +22,6 @@ class quiz extends Model
 
     public function tutor()
     {
-    	return $this->belongsTo('app\tutor');
+    	return $this->belongsTo('app\staff');
     }
 }

@@ -10,7 +10,7 @@ class StaffHelper
 {
     public static function getStaff()
     {
-         $getStaff = staff::all();
+        $getStaff = staff::where('Role_ID', 2)->get();
 
         return $getStaff;
     }

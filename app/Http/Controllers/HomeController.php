@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\lecturer;
+use App\staff;
 use App\Helpers\lecturerHelper;
 use App\Helpers\CalendarHelper;
 use App\time_study;
@@ -79,8 +79,7 @@ class HomeController extends Controller
         try {       
             $children = new children;
             $register = register::findOrFail($request->txt_testId);
-            $children->First_Name = $request->txt_firstname;
-            $children->Last_Name = $request->txt_lastname;
+            $children->Full_Name = $request->txt_firstname;
             $children->Parent_Name = $request->txt_parent;
             $children->Birth_Day = $request->txt_birthday;
             $children->Email = $request->txt_email;
@@ -160,8 +159,7 @@ class HomeController extends Controller
         try {       
             $children = new children;
             $register = register::findOrFail($request->txt_idAddChildren);
-            $children->First_Name = $register->First_Name;
-            $children->Last_Name = $register->Last_Name;
+            $children->Full_Name = $register->First_Name;
             $children->Parent_Name = $register->Parent_Name;
             $children->Birth_Day = $register->Birth_Day;
             $children->Email = $register->Email;
@@ -196,10 +194,9 @@ class HomeController extends Controller
     public function postUpdateLecturer(Request $request,$id){
     	 try {
     	 	$new_avatar = lecturerHelper::updateAvatar($request);
-            $lecturer = lecturer::findOrFail($request->id_lecturer);
+            $lecturer = staff::findOrFail($request->id_lecturer);
             $lecturer->Description = $request->txt_description;
-            $lecturer->First_Name = $request->txt_FirstName;
-            $lecturer->Last_Name = $request->txt_LastName;
+            $lecturer->Full_Name = $request->txt_FirstName;
             $lecturer->Email = $request->txt_email;
             $lecturer->Birth_Day = $request->txt_date;
             $lecturer->Phone_Number = $request->txt_phone;

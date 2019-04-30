@@ -31,8 +31,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+								<th>Full Name</th>
 								<th>Email</th>
 								<th>Birthday</th>
 								<th>Phone Number</th>
@@ -47,8 +46,7 @@
 							<?php $stt=$stt+1 ?>
 								<tr>
 									<td>{!! $stt !!}</td>
-									<td>{{$value->First_Name}}</td>
-									<td>{{$value->Last_Name}}</td>
+									<td>{{$value->Full_Name}}</td>
 									<td>{{$value->email}}</td>
 									<td>{{$value->Birth_Day}}</td>
 									<td>{{$value->Phone_Number}}</td>
@@ -70,8 +68,7 @@
 						<tfoot>
 							<tr>
 								<th>ID</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+								<th>Full Name</th>
 								<th>Email</th>
 								<th>Birthday</th>
 								<th>Phone Number</th>

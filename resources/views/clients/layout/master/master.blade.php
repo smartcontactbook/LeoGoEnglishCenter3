@@ -25,8 +25,6 @@
     <meta name="theme-color" content="#ba141a">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/icofont/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css')}}">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"  > -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/5.3.5/sweetalert2.min.css"> -->
     <script>
       var assets_url = 'index.html';
       var app_lang = 'vi';
@@ -49,11 +47,7 @@
   </noscript>
   <section class="wrapper">
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
-
-      @include('sweetalert::alert')
-
-    </div>
+  
 
   </div>
     @include('clients/layout/header/header')
@@ -65,9 +59,7 @@
     @include('clients/layout/register/register')
     @include('clients/registerOnline/registerOnline')
     @include('clients/layout/footer/footer')
-<!-- <script src="https://cdn.jsdelivr.net/sweetalert2/5.3.5/sweetalert2.min.js"></script> -->
 
-<script src="{{ asset('js/sweetAlert.js') }}"></script>
 <script src="{{asset('assets/js/vendor.js')}}"></script>
 <script src="{{asset('assets/js/app.js')}}"></script>
 <script src="{{asset('assets/js/function.min.js')}}"></script>

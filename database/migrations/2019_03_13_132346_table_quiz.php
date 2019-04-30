@@ -24,7 +24,7 @@ class TableQuiz extends Migration
             $table->integer('Tutor_ID')->unsigned();
             $table->integer('Lesson_ID')->unsigned();
           //  $table->primary('id');
-            $table->foreign('Tutor_ID')->references('id')->on('tutor');
+            $table->foreign('Tutor_ID')->references('id')->on('staff');
             $table->foreign('Lesson_ID')->references('id')->on('lesson');
         });
     }

@@ -4,8 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\lecturer;
-use App\tutor;
+use App\staff;
 use App\course;
 use App\leogo_class;
 use App\time_study;
@@ -38,16 +37,16 @@ class LeogoClassHelper
 
     public static function getLecturers()
     {
-    	$getLecturers = lecturer::all();
+    	$getLecturers = staff::where('Role_ID', 3)->get();
 
-    	return $getLecturers;
+        return $getLecturers;
     }
 
     public static function getTutors()
     {
-    	$getTutors = tutor::all();
+    	$getTutors = staff::where('Role_ID', 4)->get();
 
-    	return $getTutors;
+        return $getTutors;
     }
 
     public static function getWeekdays(){

@@ -13,8 +13,8 @@ class CourseController extends Controller
     {
         $getCourses = CourseHelper::getCourse();
         // dd($getCourses);
-        $getLevels = CourseHelper::getLevelOfCourse();
-        return view('admin.courseManagement.course', compact('getCourses', 'getLevels'));
+        //$getLevels = CourseHelper::getLevelOfCourse();
+        return view('admin.courseManagement.course', compact('getCourses'));
     }
 
     public function create()

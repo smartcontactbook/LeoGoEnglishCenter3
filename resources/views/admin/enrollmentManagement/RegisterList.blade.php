@@ -54,7 +54,7 @@
 							<?php $stt=$stt+1 ?>
 								<tr>
 									<td>{!! $stt !!}</td>
-									<td>{{$value->First_Name}}</td>
+									<td>{{$value->Full_Name}}</td>
 									<td>{{$value->Email}}</td>
 									<td>{{$value->Phone_Number}}</td>
 									<td>{{$value->Address}}</td>
@@ -72,29 +72,26 @@
 										@endif
 									</td>
 									<th>
-										@if($value->Test_Schedule != null)
-										@else
 											<button 
 											type="button" 
 											class=" btn btn-info btn-sm" 
 											data-toggle="modal" 
 											data-target="#schedule" 
 											data-id="{{$value->id}}" 
-											data-name="{{$value->First_Name}}" 
+											data-name="{{$value->Full_Name}}" 
 											data-phone="{{$value->Phone_Number}}" 
 											data-schedule="{{$value->Test_Schedule}}" 
 											data-date="{{$value->Birth_Day}}">
 												<i class="fa fa-calendar-o"></i>
 										</button>
-										@endif
+										@if($value->Test_Schedule != null)
 										<button 
 										type="button" 
 										class="btn btn-warning btn-sm"
 										data-toggle="modal" 
 										data-target="#score"
 										data-id="{{$value->id}}" 
-										data-firstname="{{$value->First_Name}}"
-										data-lastname="{{$value->Last_Name}}"
+										data-firstname="{{$value->Full_Name}}"
 										data-parent="{{$value->Parent_Name}}" 
 										data-email="{{$value->Email}}"
 										data-phone="{{$value->Phone_Number}}" 
@@ -105,6 +102,8 @@
 										data-score="{{$value->Score}}">
 											<i class="	fa fa-plus-square"></i>
 										</button>
+										@else
+										@endif
 										
 
 										<form action="{{ route('postDelRegister') }}" method="POST">
@@ -419,24 +418,22 @@
 					                      <input 
 					                      type="input" 
 					                      class="form-control" disabled
-					                      <label 
 					                      type="text" 
 					                      id="txt_phone" 
 					                      class="form-control" 
 					                      value="{!! old('txt_phone') !!}" 
-					                      name="txt_phone"></label>
+					                      name="txt_phone">
 					                      </fieldset>
 					                    </div>
 					                  </div>
 					                  <div class="col-lg-6">
 					                    <div class="form-group">
 					                      <label>Test schedule</label>
-						                      <input 
-						                      id="txt_testSchedule" 
-						                      class="form-control" 
-						                      type="datetime-local" 
-						                      value="{!! old('txt_testSchedule') !!}" 
-						                      name="txt_testSchedule">
+						                      	<input  
+							                      id="txt_testSchedule" 
+							                      class="form-control" 
+							                      value="{!! old('txt_testSchedule') !!}" 
+							                      name="txt_testSchedule">
 					                    </div>
 					                  </div>
 					                </div>
@@ -489,21 +486,13 @@
 	            <div class="box-body">
 	              <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value="">
 	             	<div class="form-group">
-	               	  <label for="exampleInputEmail1">First Name</label>
+	               	  <label for="exampleInputEmail1">Full Name</label>
 	               		<input 
 	               		type="input"  
 	               		class="form-control " 
 	               		id="txt_firstname" 
 	               		name="txt_firstname" 
 	               		value="{!! old('txt_firstname') !!}" >
-	               	  </label>
-	               	  <label for="exampleInputEmail1">Last Name</label>
-	               		<input 
-	               		type="input"  
-	               		class="form-control " 
-	               		id="txt_lastname" 
-	               		name="txt_lastname" 
-	               		value="{!! old('txt_lastname') !!}" >
 	               	  </label>
 	              	</div>	
 	             	<div class="form-group">
@@ -605,7 +594,6 @@
 	        var date = button.data('date') 
 	        var phone = button.data('phone') 
 	        var firstname = button.data('firstname')
-	        var lastname = button.data('lastname')
 	        var score = button.data('score')
 	        var email = button.data('email')
 	        var parent = button.data('parent')
@@ -615,7 +603,6 @@
 	        var modal = $(this)
 	        modal.find('.modal-body #txt_testId').val(id);
 	        modal.find('.modal-body #txt_firstname').val(firstname);
-	        modal.find('.modal-body #txt_lastname').val(lastname);
 	        modal.find('.modal-body #txt_birthday').val(date);
 	        modal.find('.modal-body #txt_phone').val(phone);
 	        modal.find('.modal-body #txt_score').val(score);

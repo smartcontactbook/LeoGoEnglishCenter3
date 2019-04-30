@@ -12,10 +12,9 @@ class TableStaff extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->increments('id');
+             $table->increments('id');
             $table->string('Description');
-            $table->string('First_Name');
-            $table->string('Last_Name');
+            $table->string('Full_Name');
             $table->string('email');
             $table->string('Birth_Day');
             $table->string('Phone_Number');

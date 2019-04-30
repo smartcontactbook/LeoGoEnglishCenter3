@@ -21,7 +21,7 @@ class TableHistoryUser extends Migration
             $table->date('Start_Date');
             $table->date('End_Date');
             $table->foreign('Level_ID')->references('id')->on('level');
-            $table->foreign('Class_ID')->references('id')->on('class');
+            $table->foreign('Class_ID')->references('id')->on('leogo_class');
             $table->foreign('Children_ID')->references('id')->on('children');
             $table->timestamps();
         });

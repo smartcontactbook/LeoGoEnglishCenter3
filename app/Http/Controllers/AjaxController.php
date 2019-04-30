@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\lecturer;
-use App\tutor;
 use App\course;
 use App\leogo_class;
 use App\time_study;
@@ -13,12 +11,14 @@ use App\weekday;
 use App\class_room;
 use App\schedule;
 use App\children;
+use App\level;
 use App\tem_children_class;
 use App\tem_schedule;
 use App\children_class;
 use Session;
-use App\Helpers\WaitClassHelper;
 use App\Helpers\LeogoClassHelper;
+use App\Helpers\WaitClassHelper;
+use App\Helpers\CourseHelper;
 
 class AjaxController extends Controller
 {
@@ -53,6 +53,26 @@ class AjaxController extends Controller
                 $request->column_name       =>  $request->column_value
             );
             DB::table('history_user')
+                // ->where('id',  '=',$request->id)
+                ->where('id', $request->id)
+                ->update($data);
+            echo "$request->id $request->column_value";
+        }
+    }
+
+     public function getLevelOfCourse($id){
+        $getLevelOfCourse = CourseHelper::getLevelOfCourse($id);
+        return ['data' => $getLevelOfCourse];
+    }
+
+    public function update_data_level(Request $request)
+    {
+        if($request->ajax())
+        {
+            $data = array(
+                $request->column_name       =>  $request->column_value
+            );
+            DB::table('level')
                 // ->where('id',  '=',$request->id)
                 ->where('id', $request->id)
                 ->update($data);

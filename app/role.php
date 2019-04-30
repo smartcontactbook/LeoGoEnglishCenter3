@@ -20,13 +20,4 @@ class role extends Model
     	return $this->hadMany('app\children');
     }
 
-    public function tutor()
-    {
-    	return $this->hadMany('app\tutor');
-    }
-
-    public function lecturer()
-    {
-    	return $this->hadMany('app\lecturer');
-    }
 }

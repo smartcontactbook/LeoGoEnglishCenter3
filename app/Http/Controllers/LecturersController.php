@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\LecturerHelper;
-use App\lecturer;
-use App\lecturer_account;
+use App\staff;
 use Session;
 use Hash;
 
@@ -26,18 +25,18 @@ class LecturersController extends Controller
 
     public function store(Request $request)
     {
-        $lecturer = new lecturer;
+        $lecturer = new staff;
         $lecturer->Description = $request->txt_description;
-        $lecturer->First_Name = $request->txt_FirstName;
-        $lecturer->Last_Name = $request->txt_LastName;
+        $lecturer->Full_Name = $request->txt_FirstName;
         $lecturer->Email = $request->txt_email;
         $lecturer->Birth_Day = $request->txt_date;
         $lecturer->Phone_Number = $request->txt_phone;
         $lecturer->Gender = $request->txt_gender;
         $lecturer->Address = $request->txt_address;
         $lecturer->avatar = 'default.png';
+        $tutor->User_Name = $request->txt_email;
         $lecturer->Password = Hash::make($request->txt_password);
-        $lecturer->Role_ID = 2;
+        $lecturer->Role_ID = 3;
         // dd($lecturer->Gender,$lecturer->Address);
         $result = $lecturer->save();
 

@@ -47,9 +47,7 @@
   </noscript>
   <section class="wrapper">
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
 
-    </div>
 
   </div>
     @include('clients/layout/header/header')
@@ -62,7 +60,7 @@
     @include('clients/layout/register/register')
     @include('clients/registerOnline/registerOnline')
     @include('clients/layout/footer/footer')
-<script src="{{ asset('js/sweetAlert.js') }}"></script>
+
 <script src="{{asset('assets/js/vendor.js')}}"></script>
 <script src="{{asset('assets/js/app.js')}}"></script>
 <script src="{{asset('assets/js/function.min.js')}}"></script>

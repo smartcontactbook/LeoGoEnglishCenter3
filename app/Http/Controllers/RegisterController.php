@@ -45,8 +45,7 @@ class RegisterController extends Controller
         $register = new register;
         $register->Test_Schedule = $request->dt_Schedule;
         // dd($register->Test_Schedule);
-        $register->First_Name = $request->txt_FirstName;
-        $register->Last_Name = $request->txt_LastName;
+        $register->Full_Name = $request->txt_FirstName;
         $register->Parent_Name = $request->txt_ParentName;
         $register->Birth_Day = $request->txt_date;
         $register->Email = $request->txt_email;

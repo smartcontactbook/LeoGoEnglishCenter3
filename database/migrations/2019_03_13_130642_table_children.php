@@ -17,8 +17,7 @@ class TableChildren extends Migration
             $table->increments('id');
             $table->integer('Score');
             $table->string('Description');
-            $table->string('First_Name');
-            $table->string('Last_Name');
+            $table->string('Full_Name');
             $table->string('email');
             $table->string('Birth_Day');
             $table->string('Parent_Name');

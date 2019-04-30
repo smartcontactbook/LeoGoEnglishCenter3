@@ -32,12 +32,12 @@ class leogo_class extends Model
 
     public function lecturer()
     {
-    	return $this->belongsTo('app\lecturer');
+    	return $this->belongsTo('app\staff');
     }
 
     public function tutor()
     {
-    	return $this->belongsTo('app\tutor');
+    	return $this->belongsTo('app\staff');
     }
 
     public function level()

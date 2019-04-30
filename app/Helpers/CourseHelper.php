@@ -15,11 +15,16 @@ class CourseHelper
         return $getCourses;
     }
 
-    public static function getLevelOfCourse(){
-        $parent=level::select('id','Level_Name')->get()->toArray();
+    public static function getLevelOfCourse($idCourse){
+        $getLevelOfCourse = DB::table('level')
+            ->join('course', 'level.Course_ID', '=', 'course.id')
+            ->select('level.id as id_level', 'level.*','course.*')
+            ->where('level.Course_ID', '=', $idCourse)
+            ->get();    
 
-        return $parent;
+        return $getLevelOfCourse;
     }
+    
 
     public static function getDetail($id){
         $getDetail = course::findOrFail($id);

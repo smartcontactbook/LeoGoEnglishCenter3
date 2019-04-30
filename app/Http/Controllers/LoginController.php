@@ -43,8 +43,16 @@ class LoginController extends Controller
                     if(Auth::guard('staff')->user()->Role_ID == 1)
                 	   return redirect()->route('lecturer.index');
                     else
-                        if(Auth::guard('staff')->user()->Role_ID == 4)
-                            return redirect()->route('tutor.index');
+                        if(Auth::guard('staff')->user()->Role_ID == 2)
+                            return redirect()->route('lecturer.index');
+                        else
+                            if(Auth::guard('staff')->user()->Role_ID == 3)
+                                return redirect()->route('lecturer.index');
+                            else
+                                if(Auth::guard('staff')->user()->Role_ID == 4)
+                                    return redirect()->route('lecturer.index');
+                                else
+                                    return redirect()->route('lecturer.index');
             }
             else{
                     // dd("false");

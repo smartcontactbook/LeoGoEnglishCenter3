@@ -23,7 +23,7 @@
 							<div class="col-sm-4">
 								<div class="box-body">
 									<div class="form-group">
-										<label>First Name</label>
+										<label>Full Name</label>
 										<input
 										id="txt_FirstName"
 										name="txt_FirstName"
@@ -31,7 +31,6 @@
 										type="text"
 										class="form-control"
 										placeholder="Enter first name"
-										required pattern="^[a-zA-Z]*$" title="First name invalid"
 										/>
 									</div>
 									<div class="form-group">
@@ -69,18 +68,6 @@
 							</div>
 							<div class="col-sm-4">
 								<div class="box-body">
-									<div class="form-group">
-										<label>Last Name</label>
-										<input
-										id="txt_LastName"
-										name="txt_LastName"
-										value="{!! old('txt_LastName') !!}"
-										type="text"
-										class="form-control"
-										placeholder="Enter Last Name"
-										required pattern="^[a-zA-Z]*$" title="Last name invalid"
-										/>
-									</div>
 									<div class="form-group">
 										<label>Email</label>
 										<input type="text" id="txt_email" class="form-control" placeholder="Emaill" required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" title="Email Format Invalid" name="txt_email" value="{!! old('txt_email') !!}">

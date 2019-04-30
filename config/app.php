@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        // RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -231,7 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        // 'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
 

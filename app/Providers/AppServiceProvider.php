@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\course;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer(['clients/layout/header/header', 'clients/layout/regiter/regiter', 'clientss/regiterOnline/regiterOnline'], function($view){
+            $course = course::all();
+            $view->with('course', $course);
+        });
     }
 }

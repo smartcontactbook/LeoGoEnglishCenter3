@@ -3,7 +3,7 @@
     <div class="footer__wrapper">
       <div class="footer__detail clearfix">
         <div class="footer__logo">
-          <a href="index.html"><img src="{{ asset('image/avatar/14650073_1801439030141895_7113357192994533868_n.png')}}" style="width: 189; height: 93"></a>
+          <a href="index.html"><img src="{{ asset('image/avatar/logo2.png')}}" style="width: 189; height: 93"></a>
         </div>
         <div style="display:none">
           <ul>

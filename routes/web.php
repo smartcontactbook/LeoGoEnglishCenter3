@@ -102,7 +102,17 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 
 	Route::post('profile',['as'=>'postProfile','uses'=>'LoginController@postProfile']);
 	Route::post('changePassword',['as'=>'postChangePasswork','uses'=>'LoginController@postChangePasswork']);
+
+	Route::get('event', ['as' => 'getEvents', 'uses' => 'EventsController@getEvents']);
+	Route::get('addEvent', ['as' => 'getAddEvent', 'uses' => 'EventsController@getAddEvent']);
+	// getAddEvent
+	Route::post('upload', ['as' => 'postImages', 'uses' => 'EventsController@postImages']);
 });
 
 Route::get('home', ['as' => 'getHome', 'uses' => 'ClientController@getHome']);
 Route::post('registerOnline', ['as' => 'postRegisterOnline', 'uses' => 'ClientController@postRegisterOnline']);
+
+Route::get('detail/{id}', ['as' => 'getDetail', 'uses' => 'ClientController@getDetail']);
+Route::get('quatily', ['as' => 'getQuatily', 'uses' => 'ClientController@getQuatily']);
+Route::get('teacher', ['as' => 'getTeacher', 'uses' => 'ClientController@getTeacher']);
+

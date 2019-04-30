@@ -47,7 +47,7 @@
   </noscript>
   <section class="wrapper">
   <div class="row">
-  
+
 
   </div>
     @include('clients/layout/header/header')
@@ -56,6 +56,7 @@
       @yield('main-content-client')
     </div>
     <!-- end main -->
+    @include('clients/layout/map/map')
     @include('clients/layout/register/register')
     @include('clients/registerOnline/registerOnline')
     @include('clients/layout/footer/footer')
@@ -66,6 +67,7 @@
 <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
 <!-- <script>var dataLayer = [{'trackingId': 'UA-32781948-1', 'hostName': 'https://crm.vus.edu.vn'}];</script> -->
 <script src="{{asset('js/tgtm.js')}}"></script>
+
 <!-- <script>
   function send_ga_hit(page_url, page_title) {
     ga('send', {'hitType': 'pageview', 'page': page_url, 'title': page_title});

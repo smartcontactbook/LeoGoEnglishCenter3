@@ -32,6 +32,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Course Name</th>
+                  <th>Image</th>
                   <th>Description</th>
                   <th>Term</th>
                   <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
@@ -44,6 +45,7 @@
                 <tr>
                   <td>{{ $stt }}</td>
                   <td>{{ $getCourse->Course_Name }}</td>
+                  <td class="text-center"><img src="{{asset('image/')}}/course/{{ $getCourse->image }}" style='max-width:80px;max-height:200px' class='img img-thumbnail' /></td>
                   <td>{{ $getCourse->Description }}</td>
                   <td>{{ $getCourse->Term }}</td>
                   <th>
@@ -59,6 +61,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Course Name</th>
+                  <th>Image</th>
                   <th>Description</th>
                   <th>Term</th>
                   <th>Action</th>
@@ -72,9 +75,12 @@
 
     
     {{-- modal add --}}
-    <div class="modal fade" id="modal-default"  role="dialog">
+  <div class="modal fade bd-example-modal-lg" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+    <!-- <div class="modal fade" id="modal-default"  role="dialog">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content"> -->
           <div class="modal-header Editheader">
             <button
             type="button"
@@ -86,21 +92,21 @@
           </button>
           <h4 class="modal-title">ADD COURSE</h4>
         </div>
-        <form role="form" method="POST" action="{!! route('course.store') !!}">
+        <form role="form" method="POST" action="{!! route('course.store') !!}" enctype="multipart/form-data">
           {!! csrf_field() !!}>
           <div class="modal-body">
             <div class="box-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Course name</label>
-                <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required pattern="^[a-zA-Z]*$" title="Course name invalid">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Description</label>
-                <textarea class="form-control" id="txt_description" name="txt_description" rows="2" placeholder="Enter description" value="{!! old('txt_description') !!}" required></textarea>
-              </div>
-              <div class="form-group">
                 <div class="row">
                   <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Course name</label>
+                      <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required pattern="^[a-zA-Z]*$" title="Course name invalid">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Description</label>
+                      <textarea class="form-control" id="txt_description" name="txt_description" rows="4" placeholder="Enter description" value="{!! old('txt_description') !!}" required></textarea>
+                    </div>
                     <div class="form-group">
                       <label>Term</label>
                       <select id="cmb_term" name="cmb_term" class="form-control" value="{!! old('cmb_term') !!}">
@@ -110,8 +116,22 @@
                       </select>
                     </div>
                   </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label>Choose image</label>
+                      <input name="image" type='file' class="custom-file-input"/>
+                      <img id="myImg" name="image" src="{{ asset('image/avatar/logo2.png')}}" alt="your image" style="margin-top: 10px; width: 200px; " />
+                    </div>
+                  </div>
                 </div>
-              </div>
+
+                <div class="row">
+                  <div class="form-group">
+                    <label >Content</label>
+                    <textarea name="txt_content" id="txt_content"></textarea>
+                </div>
+                </div>
+              </div> 
             </div>
           </div>
           <div class="modal-footer">
@@ -329,4 +349,20 @@
 
     </script>
   </section>
+
+  <script type="text/javascript">
+    $(function () {
+    $(":file").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+});
+
+function imageIsLoaded(e) {
+    $('#myImg').attr('src', e.target.result);
+};
+  </script>
 @endsection

@@ -234,3 +234,34 @@
   margin-right: 5px;
 
 }
+
+.style-left{
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background-color: #bb141a;
+    border: 1px solid #bb141a;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    top: -18%;
+    z-index: 3;
+}
+
+.style-right{
+  
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background-color: #bb141a;
+    border: 1px solid #bb141a;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    top: -18%;
+    z-index: 3;
+}

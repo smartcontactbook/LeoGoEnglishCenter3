@@ -2,12 +2,12 @@
     <div class="header__social-bar clearfix hidden-xs">
         <div class="social-language">
             <div class="language">
-                <div style="display:inline-block">
+                <div style="display:inline-block; padding-top: 10px">
 
 <!--                     <a target="_blank" href="" title="Super Summer 2019">
                         <img src="{{asset('assets/images/Supper_Summer_Logo.svg')}}" style="width:150px;margin:0" alt="Super Summer 2019" border="0">
                     </a> -->
-                    <a href="" class="btn-regular">
+                    <a href="" class="btn-regular" >
               Tiếng Anh Giao Tiếp iTALK</a>
                     <a href="" class="btn-regular">
               Teaching at LeoGo</a>
@@ -37,19 +37,19 @@
                     <div class="sub-menu">
                         <ul>
                             <li class="">
-                                <a href="about-us/index.html">
+                                <a href="{{ route('getHome') }}">
                                     <div>Giới Thiệu LeoGo</div>
                                 </a>
 
                             </li>
                             <li class="">
-                                <a href="about-us/chat-luong-giang-day.html">
+                                <a href="{{ route('getQuatily') }}">
                                     <div>Chuẩn đ&#224;o tạo quốc tế</div>
                                 </a>
 
                             </li>
                             <li class="">
-                                <a href="teachers/teachers-hall-of-frame/index.html">
+                                <a href="{{ route('getTeacher') }}">
                                     <div>Đội Ngũ Giảng Dạy</div>
                                 </a>
 
@@ -61,7 +61,7 @@
                     <a class="text_menu" href="programs/index.html"><span>C&#225;c kh&#243;a học</span></a>
                     <div class="sub-menu">
                         <ul>
-                          @foreach($getCourses as $value)
+                          @foreach($course as $value)
                             <li class="">
                                 <a href="">
                                     <div>{{ $value->Course_Name }}</div>

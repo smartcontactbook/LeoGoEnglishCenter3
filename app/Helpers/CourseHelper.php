@@ -26,6 +26,12 @@ class CourseHelper
     }
     
 
+    public static function getDetail($id){
+        $getDetail = course::findOrFail($id);
+
+        return $getDetail;
+    }
+
     // public static function postStoreCoure($name, $description, $term, $level){
     //     $course = new course();
     //     $course->Course_Name = $name;

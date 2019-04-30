@@ -171,7 +171,7 @@
             //   gender = FeMale;
             code +=`<tr>
             <td>${i+1}</td>
-            <td>${item.First_Name} ${item.Last_Name}</td>
+            <td>${item.Full_Name}</td>
             <td>${item.Birth_Day}</td>
             <td>${item.Gender}</td>
             <td>${item.email}</td>

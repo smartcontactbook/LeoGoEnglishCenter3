@@ -237,6 +237,7 @@
    $('#listChildren').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) 
     var id = button.data('id')
+    console.log(id);
     var modal = $(this)
     modal.find('.modal-body #txt_id').val(id);
     var code = ''
@@ -246,6 +247,7 @@
         url : 'http://127.0.0.1:8000/StudentOfClass/'+id,
 
         success: function(response){
+          console.log(response);
           for(var i = 0; i < response.data.length; i++)
           {
             var item = response.data[i];
@@ -256,7 +258,7 @@
             //   gender = FeMale;
             code +=`<tr>
             <td>${i+1}</td>
-            <td>${item.First_Name} ${item.Last_Name}</td>
+            <td>${item.Full_Name} ${item.Last_Name}</td>
             <td>${item.Birth_Day}</td>
             <td>${item.Gender}</td>
             <td>${item.email}</td>
@@ -298,7 +300,7 @@
             //   gender = FeMale;
             code +=`<tr>
            
-            <td contenteditable class="column_name" data-column_name="First_Name" data-id="${item.id_history_user}">${item.First_Name} ${item.Last_Name} </td>
+            <td contenteditable class="column_name" data-column_name="First_Name" data-id="${item.id_history_user}">${item.Full_Name} </td>
             <td contenteditable class="column_name" data-column_name="Class_Name" data-id="${item.id_history_user}">${item.Class_Name} </td>
             <td contenteditable class="column_name" data-column_name="Score_Midtem" data-id="${item.id_history_user}">${item.Score_Midtem} </td>
             <td contenteditable class="column_name" data-column_name="Score_Final" data-id="${item.id_history_user}">${item.Score_Final} </td>

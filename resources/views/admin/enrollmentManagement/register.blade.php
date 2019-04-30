@@ -30,7 +30,7 @@
 										type="text"
 										class="form-control"
 										placeholder="Enter first name"
-										required pattern="^[a-zA-Z]*$" title="First name invalid"
+										required  title="First name invalid"
 										/>
 									</div>
 								<div class="form-group">
@@ -127,7 +127,7 @@
 											id="dt_Schedule"
 											name="dt_Schedule" 
 											class="form-control" 
-											type="datetime-local"v
+											type="datetime-local"
 											value="{!! old('dt_Schedule') !!}">
 									</div>
 								</div>

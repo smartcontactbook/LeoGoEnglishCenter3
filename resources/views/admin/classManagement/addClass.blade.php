@@ -62,7 +62,7 @@
                         <label>Lecturer</label>
                         <select id="cmb_lecturer"  name="cmb_lecturer" class="form-control select2"  value="{!! old('cmb_lecturer') !!}">
                           @foreach($getLecturers as $item)
-                          <option value="{{ $item["id"] }}" id="cmb_lecturer">{{ $item["Last_Name"] }}</option>
+                          <option value="{{ $item["id"] }}" id="cmb_lecturer">{{ $item["Full_Name"] }}</option>
                           @endforeach
                         </select>
                       </div>
@@ -91,7 +91,7 @@
                         <label>Tutor</label>
                         <select id="cmb_tutor"  name="cmb_tutor" class="form-control select2" value="{!! old('cmb_tutor') !!}">
                           @foreach($getTutors as $item)
-                          <option value="{{ $item["id"] }}" id="cmb_tutor">{{ $item["Last_Name"] }}</option>
+                          <option value="{{ $item["id"] }}" id="cmb_tutor">{{ $item["Full_Name"] }}</option>
                           @endforeach
                         </select>
                       </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TemDayTimeStudy extends Migration
+class Events extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class TemDayTimeStudy extends Migration
      */
     public function up()
     {
-        Schema::create('tem_day_time_study', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('events', function (Blueprint $table) {
+            $table->Increments('id');
             $table->string('title');
-            $table->date('dayStartStudy');
-            $table->date('dayEndStudy');
-            $table->time('timeStartStudy');
-            $table->time('timeEndStudy');
+            $table->datetime('create_at');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('staff');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +30,6 @@ class TemDayTimeStudy extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tem_day_time_study');
+        Schema::dropIfExists('events');
     }
 }

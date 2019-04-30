@@ -34,7 +34,7 @@ class LecturersController extends Controller
         $lecturer->Gender = $request->txt_gender;
         $lecturer->Address = $request->txt_address;
         $lecturer->avatar = 'default.png';
-        $tutor->User_Name = $request->txt_email;
+        $lecturer->User_Name = $request->txt_email;
         $lecturer->Password = Hash::make($request->txt_password);
         $lecturer->Role_ID = 3;
         // dd($lecturer->Gender,$lecturer->Address);

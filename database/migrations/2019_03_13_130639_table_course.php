@@ -18,6 +18,8 @@ class TableCourse extends Migration
             $table->string('Course_Name');
             $table->string('Description');
             $table->integer('Term');
+            $table->string('image');
+            $table->text('content');
            //  $table->integer('Level_ID')->unsigned();
            // // $table->primary('id');
            //  $table->foreign('Level_ID')->references('id')->on('level');

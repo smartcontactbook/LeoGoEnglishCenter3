@@ -26,6 +26,7 @@ class ClassController extends Controller
         Session::forget('nameLevel');
         Session::forget('numberStudent');
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
+        dd($getClassOfCourses);
         // dd($getClassOfCourses);
         $getCourses = LeogoClassHelper::getCourses();
         // $getHistoryStudent = LeogoClassHelper::getHistoryStudent(6);
@@ -78,7 +79,7 @@ class ClassController extends Controller
                 $getStudentOfWaitingClass = WaitClassHelper::getStudentOfWaitingClass($idLevel);
                 foreach ($getStudentOfWaitingClass as $key => $value) {
                     $tem_children_class = new tem_children_class;
-                    $tem_children_class->Children_Name = $value->Last_Name;
+                    $tem_children_class->Children_Name = $value->Full_Name;
                     $tem_children_class->Gender = $value->Gender;
                     $tem_children_class->Phone_Number = $value->Phone_Number;
                     $tem_children_class->Birth_Day = $value->Birth_Day;
@@ -88,6 +89,7 @@ class ClassController extends Controller
                     $tem_children_class->Score = $value->Score;
                     $tem_children_class->id_Children = $value->id;
                     $tem_children_class->Status = $value->Status;
+                    $tem_children_class->Level_ID = $idLevel;
                     $tem_children_class->save();
 
                     $tem_class = tem_children::findOrFail($value->id_tem_children);

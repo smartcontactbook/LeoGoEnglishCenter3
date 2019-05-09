@@ -30,7 +30,7 @@
 										type="text"
 										class="form-control"
 										placeholder="Enter first name"
-										required  title="First name invalid"
+										required  pattern="^[a-zA-z ]*$" title="First name invalid"
 										/>
 									</div>
 								<div class="form-group">
@@ -44,6 +44,7 @@
 											class="form-control" 
 											id="txt_date" 
 											name="txt_date" 
+											pattern="\d{1,2}/\d{1,2}/\d{4}"
 											value="{!! old('txt_date') !!}">
 										</div>
 									</div>
@@ -59,6 +60,18 @@
 							</div>
 							<div class="col-sm-4">
 								<div class="box-body">
+									<div class="form-group">
+										<label>Nick Name</label>
+										<input
+										id="txt_NickName"
+										name="txt_NickName"
+										value="{!! old('txt_NickName') !!}"
+										type="text"
+										class="form-control"
+										placeholder="Enter Nick name"
+										required  title="Nick name invalid"
+										/>
+									</div>
 									<div class="form-group">
 										<label>Email</label>
 										<input 
@@ -108,7 +121,7 @@
 											type="text"
 											class="form-control"
 											placeholder="Enter parent name"
-											required pattern="^[a-zA-Z]*$" title="First name invalid"
+											required pattern="^[a-zA-z ]*$" title="First name invalid"
 										/>
 									</div>
 									<div class="form-group">

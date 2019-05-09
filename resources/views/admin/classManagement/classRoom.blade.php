@@ -29,9 +29,6 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               @foreach($getCourses as $count=>$getCourse)
-{{--               @php
-                dd($count);
-              @endphp --}}
                 <li role="presentation" @if($count == 0) class="active" @endif>
                   <a href="#tab-{{ $getCourse->id }}" aria-controls="#tab-{{ $getCourse->id }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}</a>
                 </li>
@@ -94,6 +91,24 @@
                                       <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}</label>
                                     </div>
                                   </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Status</label>
+                                    <div class="pull-right">
+                                        @if($value->Status == 1)
+                                          <a href="{{ route('changeStatus', $value->id_class) }}">
+                                            <button type="button" class="label label-success edit-pull-right">
+                                            <i class="fa fa-check"></i></button>
+                                          </a>
+                                        @else
+                                          <a href="{{ route('changeStatus', $value->id_class) }}">
+                                            <button type="button" class="label label-danger edit-pull-right">
+                                            <i class="fa fa-close"></i></button>
+                                          </a>
+
+                                        @endif
+                                      </label>
+                                    </div>
+                                  </div>
                                 </div>
                               </li>
                               <!-- /.item -->
@@ -104,7 +119,7 @@
                                       type="button" 
                                       class="btn edit-button edit-itemJs" 
                                       data-toggle="modal" 
-                                      data-id="{{$value->id}}" 
+                                      data-id="{{$value->id_class}}" 
                                       data-target="#listChildren">
                                       List
                                   </button>
@@ -113,7 +128,7 @@
                                     type="button" 
                                     class="btn pull-right edit-button edit-itemJs" 
                                     data-toggle="modal" 
-                                    data-id="{{$value->id}}" 
+                                    data-id="{{$value->id_class}}" 
                                     data-target="#inputscore">
                                       Score
                                   </button>
@@ -179,8 +194,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button
+            type="button"
+            class="btn btn-success btn-xs"
+            data-dismiss="modal"
+            aria-label="Close"
+            > Save
+            </button>
           </div>
         </div>
       </div>
@@ -200,7 +220,6 @@
             </button>
             <h4 class="modal-title">List Children Of Class</h4>
           </div>
-          <div class="panel-heading">Sample Data</div>
           <div class="modal-body">
             <div id="message"></div>
             <div class="box-body">
@@ -221,8 +240,12 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-            <button type="submit" id="save" class="saveScore" >Save
+            <button
+            type="button"
+            class="btn btn-success btn-xs"
+            data-dismiss="modal"
+            aria-label="Close"
+            > Save
             </button><!-- 
             <button type="submit" class="btn btn-primary">Save</button> -->
           </div>
@@ -300,8 +323,8 @@
             //   gender = FeMale;
             code +=`<tr>
            
-            <td contenteditable class="column_name" data-column_name="First_Name" data-id="${item.id_history_user}">${item.Full_Name} </td>
-            <td contenteditable class="column_name" data-column_name="Class_Name" data-id="${item.id_history_user}">${item.Class_Name} </td>
+            <td class="column_name" data-column_name="First_Name" data-id="${item.id_history_user}">${item.Full_Name} ${item.id_history_user}</td>
+            <td  class="column_name" data-column_name="Class_Name" data-id="${item.id_history_user}">${item.Class_Name} </td>
             <td contenteditable class="column_name" data-column_name="Score_Midtem" data-id="${item.id_history_user}">${item.Score_Midtem} </td>
             <td contenteditable class="column_name" data-column_name="Score_Final" data-id="${item.id_history_user}">${item.Score_Final} </td>
 

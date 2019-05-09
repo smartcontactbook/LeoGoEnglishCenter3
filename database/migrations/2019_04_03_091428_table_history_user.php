@@ -15,12 +15,10 @@ class TableHistoryUser extends Migration
     {
         Schema::create('history_user', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('Level_ID')->unsigned();
             $table->integer('Class_ID')->unsigned();
             $table->integer('Children_ID')->unsigned();
-            $table->date('Start_Date');
-            $table->date('End_Date');
-            $table->foreign('Level_ID')->references('id')->on('level');
+            $table->float('Score_Midtem');
+            $table->float('Score_Final');
             $table->foreign('Class_ID')->references('id')->on('leogo_class');
             $table->foreign('Children_ID')->references('id')->on('children');
             $table->timestamps();

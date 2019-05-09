@@ -83,9 +83,8 @@ body
                   <td>{{ $getCourse->Term }}</td>
                   <th>
                     <button type="button" class="btn btn-warning editLeftRight" data-toggle="modal" data-target="#edit" data-courseid="{{ $getCourse->id }}" data-name="{{ $getCourse->Course_Name }}" data-description="{{ $getCourse->Description }}" data-term="{{ $getCourse->Term }}" ><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-warning editLeftRight" data-toggle="modal" data-target="#addLevel" data-courseid="{{ $getCourse->id }}" data-name="{{ $getCourse->Course_Name }}" data-description="{{ $getCourse->Description }}" data-term="{{ $getCourse->Term }}" >Add Level</button>  
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    <button type="button" class="btn btn-success editLeftRight" data-toggle="modal" data-target="#addLevel" data-id="{{ $getCourse->id_course }}" data-name="{{ $getCourse->Course_Name }}"
-                     >Add Level</button>
                   </th>
                 </tr>
                 @endforeach
@@ -134,7 +133,7 @@ body
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Course name</label>
-                      <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required pattern="^[a-zA-Z]*$" title="Course name invalid">
+                      <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required pattern="^[a-zA-z ]*$" title="Course name invalid">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Description</label>
@@ -216,7 +215,7 @@ body
                 <input class="form-control" type="hidden" name="idCourse" id="txt_courseid" value="{{ old('txt_courseid') }}">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Course name</label>
-                  <input type="input" class="form-control" id="txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required pattern="^[a-zA-Z]*$" title="Course name invalid">
+                  <input type="input" class="form-control" id="txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required pattern="^[a-zA-z ]*$" title="Course name invalid">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Description</label>
@@ -266,12 +265,14 @@ body
             <div id="message"></div>
             <div class="box-body">
               <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
-              <table id="example2" class="table table-bordered table-striped">
+              <table  class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>Course</th>
                     <th>Level Name</th>
                     <th>Score Min</th>
                     <th>Score Max</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody class="add-level">
@@ -281,8 +282,12 @@ body
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-            <button type="submit" id="save" class="saveScore" >Save
+            <button
+            type="button"
+            class="btn btn-success btn-xs"
+            data-dismiss="modal"
+            aria-label="Close"
+            > Save
             </button><!-- 
             <button type="submit" class="btn btn-primary">Save</button> -->
           </div>
@@ -292,72 +297,122 @@ body
   </div>
 </div>
   <!-- /.modal -->
-    
 
     <script type="text/javascript">
       $(document).ready(function(){
 
-        $('#edit').on('show.bs.modal', function (event) {
+      function loadData($courseid){
         var button = $(event.relatedTarget) 
-        var courseid = button.data('courseid')
-        var name = button.data('name') 
-        var description = button.data('description') 
-        var term = button.data('term') 
+        var courseid = $courseid
         var modal = $(this)
         modal.find('.modal-body #txt_courseid').val(courseid);
-        modal.find('.modal-body #txt_name').val(name);
-        modal.find('.modal-body #txt_description').val(description);
-        modal.find('.modal-body #cmb_term').val(term);
-        }) 
-
-        $('#addLevel').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) 
-        var id = button.data('id')
-        var modal = $(this)
-        modal.find('.modal-body #txt_courseid').val(id);
         var code = ''
         $.ajax({
             type : 'GET',
-            url : 'http://127.0.0.1:8000/LevelOfCourse/'+id,
+            url : 'http://127.0.0.1:8000/LevelOfCourse/'+courseid,
 
             success: function(response){
-              console.log(response);
+              var courseids = button.data('name')
               code = `<tr>
+                <td  id="Course_ID">${courseid}</td>
                 <td contenteditable id="Level_Name"></td>
                 <td contenteditable id="Score_min"></td>
                 <td contenteditable id="Score_max"></td>
-                <td><button type="button" class="btn btn-success btn-xs" id="add">Add</button></td>
+                <td><button type="button" class="btn btn-success btn-xs" id="add" data-courseid="${courseid}">Add</button></td>
                 </tr>`;
               for(var i = 0; i < response.data.length; i++)
               {
-                console.log(data);
                 var item = response.data[i];
                 code +=`
-                <tr>
-                <td contenteditable class="column_name" data-column_name="First_Name" data-id="${item.id_level}">${item.Course_Name} </td>
-                <td contenteditable class="column_name" data-column_name="First_Name" data-id="${item.id_level}">${item.Level_Name} </td>
-                <td contenteditable class="column_name" data-column_name="Class_Name" data-id="${item.id_level}">${item.Score_min} </td>
-                <td contenteditable class="column_name" data-column_name="Score_Midtem" data-id="${item.id_level}">${item.Score_max} </td>
-
+                <tr>      <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
+                <td contenteditable class="column_name" data-column_name="Level_Name" data-id="${item.id_level}">${item.Level_Name} </td>
+                <td contenteditable class="column_name" data-column_name="Score_min" data-id="${item.id_level}">${item.Score_min} </td>
+                <td contenteditable class="column_name" data-column_name="Score_max" data-id="${item.id_level}">${item.Score_max} </td>
+                <td><button type="button" class="btn btn-danger btn-xs delete" id="delete" data-id="${item.id_level}">Delete</button></td>
                 </tr>`;
               }
-             //console.log(code);
             $('.add-level').html(code);
             }
           })
-        }) 
-        //<meta name="csrf-token" content="{{ csrf_token() }}">
-        //
-        var token = $('input[name="_token"]').val();
+      }
+
+      $('#addLevel').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var courseid = button.data('courseid')
+        var modal = $(this)
+        modal.find('.modal-body #txt_courseid').val(courseid);
+        var code = ''
+        $.ajax({
+            type : 'GET',
+            url : 'http://127.0.0.1:8000/LevelOfCourse/'+courseid,
+
+            success: function(response){
+              var courseids = button.data('name')
+              code = `<tr>
+                <td  id="Course_ID">${courseid}</td>
+                <td contenteditable id="Level_Name"></td>
+                <td contenteditable id="Score_min"></td>
+                <td contenteditable id="Score_max"></td>
+                <td><button type="button" class="btn btn-success btn-xs" id="add" data-courseid="${courseid}">Add</button></td>
+                </tr>`;
+              for(var i = 0; i < response.data.length; i++)
+              {
+                var item = response.data[i];
+                code +=`
+                <tr>      <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
+                <td contenteditable class="column_name" data-column_name="Level_Name" data-id="${item.id_level}">${item.Level_Name} </td>
+                <td contenteditable class="column_name" data-column_name="Score_min" data-id="${item.id_level}">${item.Score_min} </td>
+                <td contenteditable class="column_name" data-column_name="Score_max" data-id="${item.id_level}">${item.Score_max} </td>
+                <td><button type="button" class="btn btn-danger btn-xs delete" id="delete" data-id="${item.id_level}">Delete</button></td>
+                </tr>`;
+              }
+            $('.add-level').html(code);
+            }
+          })
+        });
+
+
+      var token = $('input[name="_token"]').val();
         $.ajaxSetup({
           headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+
+      $(document).on('click', '#add', function(){
+          var Level_Name = $('#Level_Name').text();
+          var Score_min = $('#Score_min').text();
+          var Score_max = $('#Score_max').text();
+          var course_id = $('#Course_ID').text();
+          console.log(Level_Name,Score_min,Score_max,course_id)
+          if(Level_Name != '' && Score_min != '' && Score_max != '' && confirm("Are you sure you want to add this records?"))
+          {
+           $.ajax({
+            url:'http://127.0.0.1:8000/LevelOfCourse/add_data',
+            method:"POST",
+            data:{Level_Name:Level_Name, Score_min:Score_min, Course_ID:course_id, Score_max:Score_max, _token:token},
+            success:function(data)
+            {
+             $('.message').html(data);
+             loadData(course_id);
+            }
+           });
           }
-        });
-       $(document).on('blur', '.column_name', function(){
+          else
+          {
+           $('#message').html("<div class='alert alert-danger'>Both Fields are required</div>");
+          }
+         });
+
+
+      $(document).on('blur', '.column_name', function(){
           var coluumn_name = $(this).data("column_name");
           var coluumn_value = $(this).text();
-          var idd = $(this).data("courseid");
+          var idd = $(this).data("id");
+          var course_id = $('#Course_ID').text();
+          
+              console.log(course_id);
           if(coluumn_value != ''  )
           {
             
@@ -373,8 +428,8 @@ body
                   _token:token},
             success:function(data)
             {
-              console.log(data);
              $('.message').html(data);
+             loadData(course_id);
             }
            })
           }
@@ -384,25 +439,61 @@ body
           }
          });
 
-       
-        });
 
-    </script>
-    <script type="text/javascript">
-{{--     function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#profile-img-tag').attr('src', e.target.result);
+      $(document).on('click', '#delete', function(){
+          var idd = $(this).data("id");
+          var course_id = $('#Course_ID').text();
+              console.log(course_id);
+          if(confirm("Are you sure you want to delete this records?"))
+          {
+           $.ajax({
+            url:'http://127.0.0.1:8000/LevelOfCourse/delete_data',
+            method:"POST",
+            data:{id:idd, _token:token},
+            success:function(data)
+            {
+              $('.message').html(data);
+              loadData(course_id);
             }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#profile-img").change(function(){
+           });
+          }
+         });
+
+
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              
+              reader.onload = function (e) {
+                  $('#profile-img-tag').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+
+       $("#profile-img").change(function(){
         readURL(this);
     });
-</script> --}}
+
+        $('#edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var courseid = button.data('courseid')
+        var name = button.data('name') 
+        var description = button.data('description') 
+        var term = button.data('term') 
+        var modal = $(this)
+        modal.find('.modal-body #txt_courseid').val(courseid);
+        modal.find('.modal-body #txt_name').val(name);
+        modal.find('.modal-body #txt_description').val(description);
+        modal.find('.modal-body #cmb_term').val(term);
+        }) 
+
+
+
+});
+</script>
+
+
   </section>
 
 

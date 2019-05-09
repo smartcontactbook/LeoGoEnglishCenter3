@@ -27,6 +27,12 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::resource('course', 'CourseController');
 	Route::get('LevelOfCourse/{id}', ['as' => 'getLevelOfCourse', 'uses' => 'AjaxController@getLevelOfCourse']);
 	Route::post('LevelOfCourse/update_data', ['as' => 'update_data_level', 'uses' => 'AjaxController@update_data_level']);
+	Route::resource('level', 'Level');
+	//Route::post('LevelOfCourse/add_data', 'AjaxController@add_data')->name('AjaxController.add_data');
+
+	Route::post('LevelOfCourse/add_data', ['as' => 'add_data', 'uses' => 'AjaxController@add_data']);
+
+	Route::post('LevelOfCourse/delete_data', ['as' => 'delete_data', 'uses' => 'AjaxController@delete_data']);
 	// END COURSE MANAGEMENT 
 
 	// START CLASS MANAGEMENT
@@ -42,6 +48,7 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 		'uses' => 'HomeController@getClassOfCourses1'
 	]);
 
+	Route::get('changeStatus/{id}', ['as' => 'changeStatus', 'uses' => 'AjaxController@changeStatus']);
 	Route::post('addAll', [
 		'as' => 'postAddAll',
 		'uses' => 'HomeController@postAddAll'

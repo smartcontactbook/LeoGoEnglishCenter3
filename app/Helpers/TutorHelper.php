@@ -15,7 +15,7 @@ class TutorHelper
     }
 
     public static function getIdOfTutor($idTutor){
-        $getId = tutor::findOrFail($idTutor);
+        $getId = staff::findOrFail($idTutor);
 
         return $getId;
     }

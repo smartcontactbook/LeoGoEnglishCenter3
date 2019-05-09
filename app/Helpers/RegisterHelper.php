@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 use App\register;
 use App\course;
 use App\level;
@@ -11,8 +13,10 @@ class RegisterHelper
 {
     public static function getRegister()
     {
-       $getRegister = register::join('course', 'register.Course_ID', '=', 'course.id')->get();
-
+        $getRegister = DB::table('register')
+        ->join('course', 'register.Course_ID', '=', 'course.id')
+        ->select('course.id as id_course','course.*', 'register.*')
+        ->get();
         return $getRegister;
     }
 

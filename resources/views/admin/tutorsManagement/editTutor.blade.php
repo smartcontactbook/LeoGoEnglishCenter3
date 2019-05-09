@@ -26,13 +26,14 @@
 								<div class="box-body">
 									<input type="hidden" name="id_tutor" value="{{$getTutor->id}}">
 									<div class="form-group">
-										<label>First Name</label>
+										<label>Full Name</label>
 										<input
 										id="txt_FirstName"
 										name="txt_FirstName"
 										value="{!! old('txt_FirstName', $getTutor->Full_Name) !!}"
 										type="text"
 										class="form-control"
+										pattern="^[a-zA-z ]*$"
 										placeholder="Enter first name"
 										/>
 									</div>

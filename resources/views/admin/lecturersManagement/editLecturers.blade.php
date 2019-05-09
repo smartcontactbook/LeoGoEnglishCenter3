@@ -32,6 +32,7 @@
 										value="{!! old('txt_FirstName', $getLecturer->Full_Name) !!}"
 										type="text"
 										class="form-control"
+										pattern="^[a-zA-z ]*$"
 										placeholder="Enter first name"
 										/>
 									</div>

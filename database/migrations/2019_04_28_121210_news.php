@@ -20,6 +20,10 @@ class News extends Migration
             $table->string('description');
             $table->text('content');
             $table->date('create_at');
+            $table->integer('type');
+            $table->integer('status');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('staff');
             $table->timestamps();
         });
     }

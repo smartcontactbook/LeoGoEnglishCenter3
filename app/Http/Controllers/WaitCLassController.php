@@ -17,7 +17,7 @@ class WaitCLassController extends Controller
         $getCourses = WaitClassHelper::getCourses();
         $getLevelOfCourses = WaitClassHelper::getLevelOfCourses();
         $getStudentOfWaitingClass = WaitClassHelper::getStudentOfWaitingClass(2);
-        // dd($getStudentOfWaitingClass);
+        // dd($getStudentOfWaitingClass, $getLevelOfCourses);
         return view('admin.enrollmentManagement.waitClass', compact('getCourses', 'getLevelOfCourses'));
     }
 

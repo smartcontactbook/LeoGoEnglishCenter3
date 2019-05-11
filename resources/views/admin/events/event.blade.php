@@ -32,6 +32,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Title</th>
+								<th>Image</th>
 								<th>Author</th>
 								<th>Create at</th>
 								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
@@ -44,7 +45,8 @@
 								<tr>
 									<td>{!! $stt !!}</td>
 									<td>{{$value->title}}</td>
-									<td>{{$value->Last_Name}}</td>
+									<td class="text-center"><img src="{{asset('image/')}}/events/{{ $value->image }}" style='max-width:80px;max-height:80px' class='img img-thumbnail' /></td>
+									<td>{{$value->Full_Name}}</td>
 									<td>{{$value->create_at}}</td>
 									<th>
 										<a href="{{ route('staff.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
@@ -57,6 +59,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Title</th>
+								<th>Image</th>
 								<th>Author</th>
 								<th>Create at</th>
 								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>

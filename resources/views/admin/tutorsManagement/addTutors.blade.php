@@ -99,13 +99,14 @@
 	                                </div>
 								</div>
 							</div>
-						</div>
-						<div align="center">
+							<div align="center">
 							<p class="box-title">
 								<a href="{{ route('tutor.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
 								<button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
 							</p>
                         </div>
+						</div>
+						
 					</form>
 				</div>
 			</div>

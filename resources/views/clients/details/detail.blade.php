@@ -6,9 +6,7 @@
                 <div class="banner__img hidden-xs">
                     <img src="{{asset('image/')}}/course/{{ $getDetail->image }}" alt="" style="height: 290px">
                 </div>
-                <div class="banner__img visible-xs">
-                    <img src="/media/24905/spk-banner1526025992.jpg" alt="">
-                </div>
+                
                 <div class="banner__detail">                    
                 </div>
             </div>
@@ -25,7 +23,8 @@
 
     <div class="section_block">
 	    <div class="container">
-			{{ $getDetail->content }}
+            
+			{!! $getDetail->content !!}
 	    </div>
 	</div>
 

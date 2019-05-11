@@ -1,5 +1,28 @@
 @extends('admin.layout.master.master')
 @section('main-content')
+<script type='text/javascript'>
+	function preview_image(event) 
+	{
+	 var reader = new FileReader();
+	 reader.onload = function()
+	 {
+		var output = document.getElementById('output_image');
+		output.src = reader.result;
+	 }
+	 reader.readAsDataURL(event.target.files[0]);
+	}
+	</script>
+	<style>
+	#wrapper
+	{
+	 margin:0 auto;
+	 padding:0px;
+	}
+	#output_image
+	{
+	 max-width:250px;
+	}
+	</style>
 	<section class="content-header">
 		<h1><b>Add Event</b>
 		</h1>
@@ -22,10 +45,21 @@
 			            <div class="box-body">
 			              <div class="form-group">
 			                <div class="row">
+												<div class="col-md-6">
 			                    <div class="form-group">
 			                      <label for="exampleInputEmail1">Title</label>
-			                      <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required pattern="^[a-zA-Z]*$" title="Course name invalid">
-			                    </div>
+			                      <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required  title="Course name invalid">
+													</div>
+												</div>
+												<div class="cold-md-6">
+													<div class="form-group" id="wrapper">
+														<label>Choose image</label>
+															<input name="image" type="file" accept="image/*" onchange="preview_image(event)">
+															<img name="image" id="output_image"/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
 			                    <div class="col-md-12">
 			                    	<div class="form-group">
 			                    		<label for="exampleInputEmail1">Chosse images</label>

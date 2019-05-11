@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\register;
 use App\course;
 use App\level;
+use Illuminate\Support\Facades\DB;
 
 class RegisterHelper
 {
     public static function getRegister()
     {
-       $getRegister = register::join('course', 'register.Course_ID', '=', 'course.id')->get();
-
+       $getRegister = DB::table('register')
+        ->join('course', 'register.Course_ID', '=', 'course.id')
+        ->select('course.id as id_course','course.*', 'register.*')
+        ->get();
         return $getRegister;
     }
 

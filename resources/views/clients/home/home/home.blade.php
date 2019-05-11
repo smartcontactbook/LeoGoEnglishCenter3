@@ -4,13 +4,13 @@
   @include('clients/layout/banner/banner')
 
   <div class="clear"></div>
-@if (session('status'))
+{{-- @if (session('status'))
     <script>
         $( document ).ready(
             swal("{{ session('status') }}")
         });
     </script>
-@endif
+@endif --}}
   @include('clients/home/schoolOverview/schoolOverview')
 
   <section class="list-course clearfix" style="background: url('{{ asset('image/avatar/bg_khoahoc.jpg') }}') center center no-repeat; background-size: cover;">
@@ -31,7 +31,7 @@
             <div class="list-course__item__content">
                 <div class="thumbnail_img">
                   <a href="" title="">
-                    <img src="{{asset('image/')}}/avatar/{{ $getCourse->image }}" alt="">
+                    <img src="{{asset('image/')}}/course/{{ $getCourse->image }}" alt="">
                   </a>
                 </div>
                 <div class="list-course__item__detail">
@@ -56,7 +56,8 @@
                     </div>
                   </div>
                   <div class="btn-block">
-                    <a href="{{ route('getDetail', $getCourse->id) }}" title="Anh Ngữ Mẫu Gi&#225;o SMARTKIDS" class="viewmore">
+                    {{-- <a href="{{route('public.detail.detail_truck', ['slug'=> $slug, 'id'=>$truck_id])}} --}}
+                    <a href="{{ route('getDetail', ['slug'=> str_slug($getCourse->Course_Name), 'id'=>$getCourse->id] ) }}" title="Anh Ngữ Mẫu Gi&#225;o SMARTKIDS" class="viewmore">
                       <span>&gt;&gt;&gt;&nbsp;Xem chi tiết</span>
                     </a>
                   </div>

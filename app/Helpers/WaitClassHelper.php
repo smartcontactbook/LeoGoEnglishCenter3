@@ -33,7 +33,7 @@ class WaitClassHelper
             ->join('tem_children', 'level.id', '=', 'tem_children.Level_ID')
             ->join('course', 'level.Course_ID', '=', 'course.id')
             ->select('tem_children.Level_ID as idLevel', 'level.Course_ID as idCourse', 'level.*', 'tem_children.*', 'course.*', DB::raw('count(tem_children.Level_ID) as user_count'))
-            ->groupBy('idLevel')
+            ->groupBy('tem_children.Level_ID')
             ->get();
 
         // $getLevelOfCoursed = [];

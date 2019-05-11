@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'tducnguyen1997@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'LeoGo English Center'),
     ],
 
     /*
@@ -107,7 +107,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | If you are using Markdown based email rendering, you may configure your
-    | theme and component paths here, allowing you to customize the design
+    | theme and component paths here,    allowing you to customize the design
     | of the emails. Or, you may simply stick with the Laravel defaults!
     |
     */

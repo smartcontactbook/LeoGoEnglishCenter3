@@ -15,7 +15,7 @@ class LecturerHelper
     }
 
     public static function getIdOfLecturer($idLecturer){
-        $getId = lecturer::findOrFail($idLecturer);
+        $getId = staff::findOrFail($idLecturer);
 
         return $getId;
     }

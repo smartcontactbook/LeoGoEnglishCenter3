@@ -80,6 +80,7 @@ class HomeController extends Controller
             $children = new children;
             $register = register::findOrFail($request->txt_testId);
             $children->Full_Name = $request->txt_firstname;
+            $register->Nick_Name = $request->txt_NickName;
             $children->Parent_Name = $request->txt_parent;
             $children->Birth_Day = $request->txt_birthday;
             $children->Email = $request->txt_email;
@@ -160,6 +161,7 @@ class HomeController extends Controller
             $children = new children;
             $register = register::findOrFail($request->txt_idAddChildren);
             $children->Full_Name = $register->First_Name;
+            $register->Nick_Name = $request->txt_NickName;
             $children->Parent_Name = $register->Parent_Name;
             $children->Birth_Day = $register->Birth_Day;
             $children->Email = $register->Email;
@@ -250,7 +252,7 @@ class HomeController extends Controller
         // return $getInforChildrens;
         // dd($getInforChildrens);
         $tem_children_class = new tem_children_class;
-        $tem_children_class->Children_Name = $getInforChildrens->Last_Name;
+        $tem_children_class->Children_Name = $getInforChildrens->Full_Name;
         $tem_children_class->Gender = $getInforChildrens->Gender;
         $tem_children_class->Phone_Number = $getInforChildrens->Phone_Number;
         $tem_children_class->Birth_Day = $getInforChildrens->Birth_Day;
@@ -288,7 +290,6 @@ class HomeController extends Controller
         $getChildrenToTems = DB::table('tem_children_class')->get();
         foreach ($getChildrenToTems as $key => $value) {
             $getNewChildrenClass = new history_user;
-            $getNewChildrenClass->Level_ID = Session::get('idLevel');
             $getNewChildrenClass->Class_ID = Session::get('id_LeogoClass');
             $getNewChildrenClass->Children_ID = $value->id_Children;
             $getNewChildrenClass->save();

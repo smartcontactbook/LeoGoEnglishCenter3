@@ -82,6 +82,54 @@ class AjaxController extends Controller
         }
     }
 
+    public function add_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $data = array(
+                'Level_Name'    =>  $request->Level_Name,
+                'Score_min'     =>  $request->Score_min,
+                'Score_max'     =>  $request->Score_max,
+                'Course_ID'     =>  $request->Course_ID
+            );
+            $id = DB::table('level')->insert($data);
+            if($id > 0)
+            {
+                echo '<div class="alert alert-success">Data Inserted $id</div>';
+            }
+        }
+    }
+
+    public function delete_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            DB::table('level')
+                ->where('id', $request->id)
+                ->delete();
+            echo '<div class="alert alert-success">Data Deleted</div>';
+        }
+    }
+
+     public function changeStatus($id)
+     {
+        $leogo_class = leogo_class::findOrFail($id);
+           //dd($leogo_class);
+            if($leogo_class->Status  == 0){
+                $leogo_class->Status =1;
+                $leogo_class->save();
+                $a =$leogo_class->Status;
+            }
+
+            else{
+                $leogo_class->Status=0;
+                $leogo_class->save();
+                $a =$leogo_class->Status;
+            }
+        // dd($a);
+        return redirect()->route('classRoom.index');
+     }
+
     public function fetchNewClass($id){
        $data = LeogoClassHelper::getInforNewClass($id);
        $output = '
@@ -145,4 +193,5 @@ class AjaxController extends Controller
        // dd($reuslt);
         return view('admin.brands.ajaxToggoActiveStatus',compact('status','order_id'));
     }
+
 }

@@ -47,6 +47,7 @@ class RegisterController extends Controller
         $register->Test_Schedule = $request->dt_Schedule;
         // dd($register->Test_Schedule);
         $register->Full_Name = $request->txt_FirstName;
+        $register->Nick_Name = $request->txt_NickName;
         $register->Parent_Name = $request->txt_ParentName;
         $register->Birth_Day = $request->txt_date;
         $register->Email = $request->txt_email;
@@ -96,9 +97,10 @@ class RegisterController extends Controller
      */
     public function update(Request $request)
     {
+
         try {       
             $register = register::findOrFail($request->txt_testId);
-            dd($register);
+           // dd($register);
             $register->Test_Schedule = $request->txt_testSchedule;
             $result = $register->save();
             if($result) {

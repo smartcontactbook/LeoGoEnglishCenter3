@@ -18,6 +18,7 @@ class TableRegister extends Migration
             $table->integer('Score')->nullable();
             $table->string('Description')->nullable();
             $table->string('Full_Name');
+            $table->string('Nick_Name');
             $table->string('Email');
             $table->string('Birth_Day');
             $table->string('Parent_Name');

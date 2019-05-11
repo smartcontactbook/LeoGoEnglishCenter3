@@ -22,6 +22,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/test.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.2/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+
     <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js')}}"></script>
     
     <style type="text/css">
@@ -91,7 +92,7 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.2/themes/explorer/theme.js">
     </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  {{--   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <script src="{{ asset('js/bower_components/bootstrap/dist/js/bootstrap.min.js') }}">
     </script>
     <script src="{{ asset('js/bower_components/raphael/raphael.min.js') }}">

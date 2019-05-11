@@ -17,6 +17,7 @@ class EventDetail extends Migration
             $table->Increments('id');
             $table->string('name');
             $table->integer('id_event')->unsigned();
+            $table->foreign('id_event')->references('id')->on('events');
             $table->timestamps();
         });
     }

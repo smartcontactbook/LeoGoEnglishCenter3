@@ -20,6 +20,7 @@ class CalenderController extends Controller
     {
 
         $user = Auth::guard('staff')->user()->id;
+        //$test = CalendarHelper::getCalendarOfLecturer($user);
         // $test = CalendarHelper::getCalendarOfUsers($user);
         // dd($test);
 

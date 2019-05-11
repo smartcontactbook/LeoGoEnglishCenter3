@@ -56,6 +56,21 @@
             <div class="alert alert-{!! Session::get('flash_level') !!}">
               {!! Session::get('flash_message') !!}
             </div>
+            
+          @endif
+        </div>
+        <div class="box-header">
+          <p class="pull-right box-title">
+            <button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button>
+            <a href="{{ route('classRoom.create') }}"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Add</button></a>
+          </p>
+        </div>
+        <div class="box-body">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              @foreach($getCourses as $count=>$getCourse)
+
+{{--
             @endif
           </div>
           <div class="box-header">
@@ -75,7 +90,8 @@
           <div class="box-body">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
-                @foreach($getCourses as $count=>$getCourse)
+                @foreach($getCourses as $count=>$getCourse) 
+      --}}
                 <li role="presentation" @if($count == 0) class="active" @endif>
                   <a href="#tab-{{ $getCourse->id }}" aria-controls="#tab-{{ $getCourse->id }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}
                   </a>
@@ -153,6 +169,24 @@
                                     <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}
                                     </label>
                                   </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Status</label>
+                                    <div class="pull-right">
+                                        @if($value->Status == 1)
+                                          <a href="{{ route('changeStatus', $value->id_class) }}">
+                                            <button type="button" class="label label-success edit-pull-right">
+                                            <i class="fa fa-check"></i></button>
+                                          </a>
+                                        @else
+                                          <a href="{{ route('changeStatus', $value->id_class) }}">
+                                            <button type="button" class="label label-danger edit-pull-right">
+                                            <i class="fa fa-close"></i></button>
+                                          </a>
+
+                                        @endif
+                                      </label>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </li>
@@ -170,6 +204,30 @@
                                 </button>
                                 <a href="{{ route('register.create') }}">
                                   <button 
+
+                                      type="button" 
+                                      class="btn edit-button edit-itemJs" 
+                                      data-toggle="modal" 
+                                      data-id="{{$value->id_leogo}}" 
+                                      data-target="#listChildren">
+                                      List
+                                  </button>
+                                  <a href="{{ route('register.create') }}">
+                                  <button 
+                                    type="button" 
+                                    class="btn pull-right edit-button edit-itemJs" 
+                                    data-toggle="modal" 
+                                    data-id="{{$value->id_leogo}}" 
+                                    data-target="#inputscore">
+                                      Score
+                                  </button>
+                                  </a>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+{{--                           <!-- /.box-body -->
+=======
                                           type="button" 
                                           class="btn pull-right edit-button edit-itemJs" 
                                           data-toggle="modal" 
@@ -181,7 +239,9 @@
                               </div>
                             </li>
                           </ul>
-                        </div>
+
+                        </div> 
+                        --}}
                         <!-- /.box-body -->
                       </div>
                       @endif
@@ -299,8 +359,18 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="inputscore">
+{{-- <<<<<<< Level_migration
+          <div class="modal-footer">
+            <button
+            type="button"
+            class="btn btn-success btn-xs"
+            data-dismiss="modal"
+            aria-label="Close"
+            > Save
+            </button>
+=======
+        </div> --}}
+        {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="inputscore">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header Editheader">
@@ -350,10 +420,61 @@
 <button type="submit" class="btn btn-primary">Save</button> -->
               </div>
             </div>
-          </div>
-        </div>
+{{-- >>>>>>> master --}}
+          {{-- </div>
+        </div> --}} 
       </div>
     </div>
+
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="inputscore">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header Editheader">
+            <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            >
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title">List Children Of Class</h4>
+        </div>
+        <div class="modal-body">
+          <div id="message"></div>
+          <div class="box-body">
+            <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
+            <table id="example2" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Class Name</th>
+                  <th>Score Midtem</th>
+                  <th>Score Final</th>
+                </tr>
+              </thead>
+              <tbody class="input-score">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+          type="button"
+          class="btn btn-success btn-xs"
+          data-dismiss="modal"
+          aria-label="Close"
+          > Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+          <!-- 
+            <button type="submit" class="btn btn-primary">Save</button> -->
+
     <div class="main-content">
       <div class="container-modal">
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="listTest">
@@ -560,8 +681,6 @@
             $.ajax({
 
             })
-
-
           })
           // var id_class = 0;
           $('#listTest').on('show.bs.modal', function (event) {
@@ -628,8 +747,6 @@
             })
           });
 
-
-          
 
           $('#listChildren').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) 

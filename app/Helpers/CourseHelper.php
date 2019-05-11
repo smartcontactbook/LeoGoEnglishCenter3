@@ -4,6 +4,8 @@ namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use App\course;
+
+use Illuminate\Support\Facades\DB;
 use App\level;
 
 class CourseHelper
@@ -16,11 +18,13 @@ class CourseHelper
     }
 
     public static function getLevelOfCourse($idCourse){
+
         $getLevelOfCourse = DB::table('level')
             ->join('course', 'level.Course_ID', '=', 'course.id')
             ->select('level.id as id_level', 'level.*','course.*')
             ->where('level.Course_ID', '=', $idCourse)
             ->get();    
+
 
         return $getLevelOfCourse;
     }

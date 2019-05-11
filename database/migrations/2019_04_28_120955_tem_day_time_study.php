@@ -13,8 +13,13 @@ class TemDayTimeStudy extends Migration
      */
     public function up()
     {
-        Schema::create('tem_day_time_stu', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('tem_day_time_study', function (Blueprint $table) {
+            $table->Increments('id');
+            $table->text('title');
+            $table->date('dayStartStudy');
+            $table->date('dayEndStudy');
+            $table->time('timeStartStudy');
+            $table->time('timeEndStudy');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class TemDayTimeStudy extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tem_day_time_stu');
+        Schema::dropIfExists('tem_day_time_study');
     }
 }

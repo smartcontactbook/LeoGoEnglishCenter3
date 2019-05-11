@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 use App\register;
 use App\course;
 use App\level;

@@ -30,6 +30,7 @@
 										name="txt_FirstName"
 										value="{!! old('txt_FirstName') !!}"
 										type="text"
+										pattern="^[a-zA-z ]*$"
 										class="form-control"
 										placeholder="Enter first name"
 										/>

@@ -173,12 +173,12 @@
                                     <label class="control-label edit-row">Status</label>
                                     <div class="pull-right">
                                         @if($value->Status == 1)
-                                          <a href="{{ route('changeStatus', $value->id_class) }}">
+                                          <a href="{{ route('changeStatus', $value->id_leogo) }}">
                                             <button type="button" class="label label-success edit-pull-right">
                                             <i class="fa fa-check"></i></button>
                                           </a>
                                         @else
-                                          <a href="{{ route('changeStatus', $value->id_class) }}">
+                                          <a href="{{ route('changeStatus', $value->id_leogo) }}">
                                             <button type="button" class="label label-danger edit-pull-right">
                                             <i class="fa fa-close"></i></button>
                                           </a>
@@ -202,16 +202,6 @@
                                         data-target="#listChildren">
                                   List
                                 </button>
-                                <a href="{{ route('register.create') }}">
-                                  <button 
-
-                                      type="button" 
-                                      class="btn edit-button edit-itemJs" 
-                                      data-toggle="modal" 
-                                      data-id="{{$value->id_leogo}}" 
-                                      data-target="#listChildren">
-                                      List
-                                  </button>
                                   <a href="{{ route('register.create') }}">
                                   <button 
                                     type="button" 
@@ -323,7 +313,7 @@
               <div class="modal-body">
                 <div class="box-body">
                   <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
-                  <table id="example2" class="table table-bordered table-striped">
+                  <table id="example2" class="table table-bordered table-striped" style="font-size: 12px;">
                     <thead>
                       <tr>
                         <th>ID
@@ -671,7 +661,11 @@
         })
       }
       $(document).ready(function(){
-
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
           $('#editClass').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) 
             var id_leogo_class = button.data('idleogoclass')

@@ -33,7 +33,7 @@
                     required  pattern="^[a-zA-z ]*$" title="First name invalid"
                     />
                   </div>
-                <div class="form-group">
+                  <div class="form-group">
                     <label>Date:</label>
                     <div class="input-group date" data-provide="datepicker">
                       <div class="input-group-addon">
@@ -49,8 +49,6 @@
 
                     </div>
                   </div>
-                </div>
-                <!-- <div class=" -->
                   <div class="form-group">
                     <label>Gender</label>
                     <select id="txt_gender"  name="txt_gender" class="form-control select2">
@@ -59,7 +57,10 @@
                     </select>
                   </div>
                 </div>
-              </div>
+                <!-- <div class=" -->
+                  
+                </div>
+              
               <div class="col-sm-4">
                 <div class="box-body">
                   <div class="form-group">

@@ -44,6 +44,7 @@ class AjaxController extends Controller
 
     public function getStudentOfClass($id){
         $getStudentOfClass = LeogoClassHelper::getStudentOfClass($id);
+        
         return ['data' => $getStudentOfClass];
     }
 
@@ -92,6 +93,7 @@ class AjaxController extends Controller
                 'Score_max'     =>  $request->Score_max,
                 'Course_ID'     =>  $request->Course_ID
             );
+            echo '@php $data; @endphp';
             $id = DB::table('level')->insert($data);
             if($id > 0)
             {

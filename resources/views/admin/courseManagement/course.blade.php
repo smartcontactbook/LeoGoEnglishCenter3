@@ -96,48 +96,54 @@
   </div>
 
   {{-- modal add level --}}
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="addLevel">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header Editheader">
-          <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          >
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title">List Level Of Course</h4>
-      </div>
-      <div class="modal-body">
-        <div id="message"></div>
-        <div class="box-body">
-          <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
-          <table id="example2" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Level Name</th>
-                <th>Score Min</th>
-                <th>Score Max</th>
-              </tr>
-            </thead>
-            <tbody class="add-level">
 
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-        <button type="submit" id="save" class="saveScore" >Save
-              </button><!-- 
-              <button type="submit" class="btn btn-primary">Save</button> -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="addLevel">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header Editheader">
+              <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              >
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">List Level Of Course</h4>
+          </div>
+          <div class="modal-body">
+            <div id="message"></div>
+            <div class="box-body">
+              <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
+              <table  class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Course</th>
+                    <th>Level Name</th>
+                    <th>Score Min</th>
+                    <th>Score Max</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody class="add-level">
+
+                </tbody>
+              </table>
             </div>
-
+          </div>
+          <div class="modal-footer">
+            <button
+            type="button"
+            class="btn btn-success btn-xs"
+            data-dismiss="modal"
+            aria-label="Close"
+            > Save
+            </button><!-- 
+            <button type="submit" class="btn btn-primary">Save</button> -->
           </div>
         </div>
       </div>
+    </div>
 
       <!-- /.modal -->
 
@@ -146,17 +152,17 @@
       // CKEDITOR.replace('editor1');
 
       // CKEDITOR.replace('txt_contentTest');
-      $.fn.modal.Constructor.prototype.enforceFocus = function() {
-        var $modalElement = this.$element;
-        $(document).on('focusin.modal',function(e) {
-          var $parent = $(e.target.parentNode);
-          if ($modalElement[0] !== e.target
-            && !$modalElement.has(e.target).length
-            && $(e.target).parentsUntil('*[role="dialog"]').length === 0) {
-            $modalElement.focus();
-        }
-      });
-      };
+      // $.fn.modal.Constructor.prototype.enforceFocus = function() {
+      //   var $modalElement = this.$element;
+      //   $(document).on('focusin.modal',function(e) {
+      //     var $parent = $(e.target.parentNode);
+      //     if ($modalElement[0] !== e.target
+      //       && !$modalElement.has(e.target).length
+      //       && $(e.target).parentsUntil('*[role="dialog"]').length === 0) {
+      //       $modalElement.focus();
+      //   }
+      // });
+      // };
       $(document).ready(function(){
 
         function loadData($courseid){
@@ -233,9 +239,10 @@
           }
         })
       });
-
+});
 
       var token = $('input[name="_token"]').val();
+
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -257,6 +264,7 @@
           data:{Level_Name:Level_Name, Score_min:Score_min, Course_ID:course_id, Score_max:Score_max, _token:token},
           success:function(data)
           {
+            console.log(data);
            $('.message').html(data);
            loadData(course_id);
          }
@@ -323,34 +331,18 @@
        }
      });
 
-      function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-            $('#profile-img-tag').attr('src', e.target.result);
-
-          }
-        });
-}
-
-      // function readURL(input) {
-      //     if (input.files && input.files[0]) {
-      //         var reader = new FileReader();
-      
-      //         reader.onload = function (e) {
-      //             $('#profile-img-tag').attr('src', e.target.result);
-      //         }
-      //         reader.readAsDataURL(input.files[0]);
-      //     }
-      // }
-
-      $("#profile-img").change(function(){
-        readURL(this);
-      });
-
-
-    });
+  //     function readURL(input) {
+  //       if (input.files && input.files[0]) {
+  //         var reader = new FileReader();
+  //         reader.onload = function (e) {
+  //           $('#profile-img-tag').attr('src', e.target.result);
+  //         }
+  //       });
+  // }
+  //     $("#profile-img").change(function(){
+  //       readURL(this);
+  //     });
+  //   });
   </script>
 
 

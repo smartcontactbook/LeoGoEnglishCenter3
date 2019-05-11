@@ -78,7 +78,7 @@
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<textarea id="txt_description" value="{!!old('txt_description',$getLecturer->Description) !!}" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+										<textarea id="txt_description" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required> {!!old('txt_description',$getLecturer->Description) !!} </textarea>
 									</div>
 
 								</div>
@@ -99,14 +99,16 @@
 	                                    </div>
 	                                </div>
 								</div>
-							</div>
-						</div>
-						<div align="center">
+								<div align="center">
 							<p class="box-title">
 								<a href="{{ route('lecturer.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
 								<button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
 							</p>
                         </div>
+							</div>
+							
+
+						</div>
 					</form>
 				</div>
 			</div>

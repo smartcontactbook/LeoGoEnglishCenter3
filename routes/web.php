@@ -90,7 +90,7 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::post('updateSchedule',['as'=>'updateSchedule','uses'=>'HomeController@updateSchedule']);
 
 	Route::get('StudentOfClass/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
-	Route::get('ScoreOfStudent/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
+	// Route::get('ScoreOfStudent/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
 	Route::post('StudentOfClass/update_data', ['as' => 'update_data', 'uses' => 'AjaxController@update_data']);
 	// END CLASS MANAGEMENT
 	 

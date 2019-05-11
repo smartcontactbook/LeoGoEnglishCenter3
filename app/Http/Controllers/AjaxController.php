@@ -16,9 +16,11 @@ use App\tem_children_class;
 use App\tem_schedule;
 use App\children_class;
 use Session;
+use App\history_user;
 use App\Helpers\LeogoClassHelper;
 use App\Helpers\WaitClassHelper;
 use App\Helpers\CourseHelper;
+use App\news;
 
 class AjaxController extends Controller
 {
@@ -78,5 +80,69 @@ class AjaxController extends Controller
                 ->update($data);
             echo "$request->id $request->column_value";
         }
+    }
+
+    public function fetchNewClass($id){
+       $data = LeogoClassHelper::getInforNewClass($id);
+       $output = '
+       <tr>
+       <td>Class Name</td>
+       <td><input type="lable" name="txt_classname" id="txt_classname" value="'.$data->Class_Name.'" disabled ></td>
+       </tr>
+       <tr>
+       <td>Level</td>
+       <td><input type="lable" name="txt_levelname" id="txt_levelname" value="'.$data->Level_Name.'" disabled ></td>
+       </tr>
+       <tr>
+       <td>Course</td>
+       <td><input type="lable" name="txt_coursename" id="txt_coursename" value="'.$data->Course_Name.'" disabled ></td>
+       </tr>
+       <tr>
+       <td>Learned</td>
+       <td><input type="lable" name="txt_qtysession" id="txt_qtysession" value="'.$data->QuantitySession.'" disabled ></td>
+       </tr>';
+
+       echo $output;
+    }
+
+
+    public function moveClass(Request $request, $id){
+        $children = history_user::where('Children_ID', $id)->update(array('active' => 0));
+        if($request->txt_qtystu == 0){
+            $changeClassOld = leogo_class::where('id', $request->txt_id_old_class)->update(array('QuantityStudent' => 0));
+        } else{
+            $changeClassOld = leogo_class::where('id', $request->txt_id_old_class)->decrement('QuantityStudent', 1);
+        }
+        
+        $changeClass = leogo_class::where('id', $request->txt_id_class)->increment('QuantityStudent', 1);
+        
+        $newchildren = new history_user;
+        $newchildren->Class_ID = $request->txt_id_class;
+        $newchildren->Level_ID = $request->txt_id_level;
+        $newchildren->Children_ID = $id;
+        $newchildren->active = 1;
+        $result = $newchildren->save();
+
+        return ['data' => $result, 'children' => $children, 'changeClass' => $changeClass, 'changeClassOld' => $changeClassOld];
+    }
+
+      public function postCheckOrder(Request $req){
+        $checkOrder=news::findOrFail($req->id);
+        $status = $req->status;
+        $order_id=$req->id;
+
+        if($checkOrder->status==0)
+        {
+            $checkOrder->status =1;
+            // $checkOrder->active=1;
+        }
+        else
+        {
+            $checkOrder->status =0;
+            // $checkOrder->active=0;
+        }
+        $reuslt = $checkOrder->save();
+       // dd($reuslt);
+        return view('admin.brands.ajaxToggoActiveStatus',compact('status','order_id'));
     }
 }

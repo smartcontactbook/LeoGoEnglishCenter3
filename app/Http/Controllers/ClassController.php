@@ -26,16 +26,19 @@ class ClassController extends Controller
         Session::forget('nameLevel');
         Session::forget('numberStudent');
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
-        dd($getClassOfCourses);
+        // dd($getClassOfCourses);
         // dd($getClassOfCourses);
         $getCourses = LeogoClassHelper::getCourses();
         // $getHistoryStudent = LeogoClassHelper::getHistoryStudent(6);
         // dd($getHistoryStudent);
 
         $getStudentClass = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
+        // dd($);
+        $getNewClass =LeogoClassHelper::getNewClass();
+        // $data = LeogoClassHelper::getInforNewClass(5);
+        // dd($data);
 
-
-        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass', 'getStudentClass'));
+        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass', 'getStudentClass', 'getNewClass'));
     }
 
     public function create(Request $request)
@@ -120,7 +123,9 @@ class ClassController extends Controller
 
     public function edit($id)
     {
-        //
+        $editClass = leogo_class::findOrFail($id);
+
+        return view('admin.classManagement.editClass', compact('editClass'));
     }
 
     public function update(Request $request, $id)

@@ -20,7 +20,7 @@ class CalenderController extends Controller
     {
 
         $user = Auth::guard('staff')->user()->id;
-        $test = CalendarHelper::getCalendarOfLecturer($user);
+        // $test = CalendarHelper::getCalendarOfUsers($user);
         // dd($test);
 
         $events = [];
@@ -56,8 +56,12 @@ class CalenderController extends Controller
         //         }
         //     }
         // }
-
-        $getTemDayTimeStudys = CalendarHelper::getTemDayTimeStudys();
+        if($user == 1 or $user ==2){
+            $getTemDayTimeStudys = CalendarHelper::getTemDayTimeStudys();
+        } else{
+            $getTemDayTimeStudys = CalendarHelper::getCalendarOfUsers($user);
+        }
+        
         if($getTemDayTimeStudys->count()) {
             foreach ($getTemDayTimeStudys as $key => $value) {
                 $events[] = Calendar::event(

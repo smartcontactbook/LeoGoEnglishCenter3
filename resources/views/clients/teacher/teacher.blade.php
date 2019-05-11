@@ -39,7 +39,7 @@
       @foreach($getLectures as $getLecture)
         <div class="infrastructure__block" style="position: relative; width: 1158px; height: 476px;">
           <div style="height: 220px; position: absolute; left: 0px; top: 0px;" class="infrastructure__item infrastructure__grid--medium" data-index="0" data-img="/media/24640/ai-nhi.jpg">
-          <img src="{{asset('image/')}}/avatar/{{ $getLecture->image }}?anchor=center&amp;mode=crop&amp;width=600&amp;height=420&amp;rnd=131699201480000000&amp;upscale=true&amp;bgcolor=fff" class="op0" alt="Ai Nhi">
+          <img src="{{asset('image/')}}/avatar/{{ $getLecture->avatar }}" class="op0" >
         </div>
       @endforeach
     </div>

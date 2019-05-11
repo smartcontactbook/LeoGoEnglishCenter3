@@ -25,9 +25,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['clients/layout/header/header', 'clients/layout/regiter/regiter', 'clientss/regiterOnline/regiterOnline'], function($view){
+        view()->composer('clients/layout/header/header', function($view){
             $course = course::all();
             $view->with('course', $course);
+        });
+
+        view()->composer('clients/layout/register/register', function($view){
+            $getCourse = course::all();
+            $view->with('getCourse', $getCourse);
         });
     }
 }

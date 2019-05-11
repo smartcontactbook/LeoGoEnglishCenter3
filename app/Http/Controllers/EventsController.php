@@ -26,11 +26,13 @@ class EventsController extends Controller
 
     public function postImages(Request $request)
     {
-
+        $file_image=$request->file('image')->getClientOriginalName();
     	$events = new events;
         $events->title = $request->txt_name;
         $events->create_at =Carbon::now();
-        $events->id_user = $user = Auth::guard('staff')->user()->id;
+        $events->id_user = $user = Auth::guard('staff')->user()->id;        
+        $events->image = $file_image;
+        $request->file('image')->move('image/events/',$file_image);
         $result = $events->save();
 
         if($result){
@@ -40,7 +42,8 @@ class EventsController extends Controller
 	        			'id_event' => $events->id,
 	        			'name' => $filename
 	        		]);
-        	}
+            }
+            
             return redirect()->route('getEvents')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add lecturer']);
         } else{
 

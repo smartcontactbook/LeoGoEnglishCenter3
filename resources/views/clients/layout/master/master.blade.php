@@ -17,8 +17,11 @@
     <meta name="format-detection" content="telephone=yes">
     <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
     <meta name="twitter:url" content="index.html"/>
-
-    <!-- No Google Translate toolbar -->
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
+    <script src="{{ asset('js/sweetalert.js') }}"></script>
+   {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+ --}}    <!-- No Google Translate toolbar -->
     <meta name="google" content="notranslate">
 
     <link rel="manifest" href="{{ asset('assets/images/favicons/manifest.json')}}">
@@ -50,6 +53,23 @@
 
 
   </div>
+    {{-- @include('sweet::alert') --}}
+    @if (Session::has('sweet_alert.alert'))
+      <script>
+        Swal.fire({
+          title: 'Bạn đã đăng kí khóa học thành công',
+          width: 600,
+          padding: '3em',
+          background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+          backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://sweetalert2.github.io/images/nyan-cat.gif")
+          center left
+          no-repeat
+          `
+        })
+      </script>
+    @endif
     @include('clients/layout/header/header')
     <!-- main -->
      <div class="content-wrapper">

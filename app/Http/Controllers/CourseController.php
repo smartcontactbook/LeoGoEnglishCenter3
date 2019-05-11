@@ -12,15 +12,14 @@ class CourseController extends Controller
     public function index()
     {
         $getCourses = CourseHelper::getCourse();
-        // dd($getCourses);
-        //$getLevels = CourseHelper::getLevelOfCourse();
+
         return view('admin.courseManagement.course', compact('getCourses'));
     }
 
     public function create()
     {
         
-
+        return view('admin.courseManagement.addCourse');       
     }
 
     public function store(Request $request)
@@ -34,10 +33,7 @@ class CourseController extends Controller
         $course->image = $file_image;
         $request->file('image')->move('image/course/',$file_image);
         $course->content = $request->txt_content;
-        // dd($course->content);
-        //$course->Level_ID = $request->cmb_level;
         $result = $course->save();
-        // dd($result);
         if($result){
 
             return redirect()->route('course.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add couser']);
@@ -54,30 +50,39 @@ class CourseController extends Controller
 
     public function edit($id)
     {
-        
+        $getCourseEdit = course::findOrFail($id);
+
+        return view('admin.courseManagement.editCourse', compact('getCourseEdit'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        // dd($request->txt_courseID);
         try {
-            $course = course::findOrFail($request->idCourse);
-            $course->Course_Name = $request->txt_name;
+            $course = course::findOrFail($id);
+            $course->Course_Name = $request->txt_name2;
             $course->Description = $request->txt_description;
             $course->Term = $request->cmb_term;
-           // $course->Level_ID = $request->cmb_level;
-            $result = $course->save();
-        // dd($result);
+            $course->content = $request->txt_contentTest;
+            $image = $request->image;
+            if($image == null){
+                $result = $course->save();
+            } else{
+                $file_image=$request->file('image')->getClientOriginalName();
+                $course->image = $file_image;
+                $request->file('image')->move('image/course/',$file_image);
+                $result = $course->save();
+            }
+            
             if($result){
-                $request->session()->flash('messageUpadte', 'Upadte success');
+
+                return redirect()->route('course.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete update couser']);
             } else {
-                $request->session()->flash('errorLists', 'There was an error');
+
+                return redirect()->back()->with('errorLists', trans('Faill !!! '));
             }
         } catch (Exception $e) {
             $request->session()->flash('errorLists', $e->getMessage());
         }
-
-        return redirect()->back();
 
         // $course = new course();
         // $course->Course_Name = $request->txt_name;

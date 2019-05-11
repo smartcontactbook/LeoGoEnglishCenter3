@@ -16,6 +16,7 @@ class RegisterController extends Controller
     public function index()
     {
         $getRegister = RegisterHelper::getRegister();
+        // dd($getRegister);
         $getLevels = RegisterHelper::getLevelOfCourse();
 // dd($getRegister);
         // $getCourse = RegisterHelper::getCourse();
@@ -93,7 +94,7 @@ class RegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {       
             $register = register::findOrFail($request->txt_testId);

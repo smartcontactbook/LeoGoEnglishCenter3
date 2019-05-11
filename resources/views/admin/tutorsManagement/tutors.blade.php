@@ -27,7 +27,7 @@
 				</div>
 
 				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
+					<table id="example1" class="table table-bordered table-striped" style="font-size: 12px; text-align: center;">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -37,7 +37,7 @@
 								<th>Phone Number</th>
 								<th>Gender</th>
 								<th>Address</th>
-								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
+								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled" >Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -54,13 +54,13 @@
 										@if($value->Gender == 1)
 											<span>Female</span>
 										@else
-											<span>Male</span>
+											<span>Male</span>	
 										@endif
 									</td>
 									<td>{{$value->Address}}</td>
 									<th>
 										<a href="{{ route('tutor.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
-										<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+										<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
 									</th>
 								</tr>
 							@endforeach

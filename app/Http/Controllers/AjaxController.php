@@ -44,6 +44,7 @@ class AjaxController extends Controller
 
     public function getStudentOfClass($id){
         $getStudentOfClass = LeogoClassHelper::getStudentOfClass($id);
+        
         return ['data' => $getStudentOfClass];
     }
 
@@ -92,6 +93,7 @@ class AjaxController extends Controller
                 'Score_max'     =>  $request->Score_max,
                 'Course_ID'     =>  $request->Course_ID
             );
+            echo '@php $data; @endphp';
             $id = DB::table('level')->insert($data);
             if($id > 0)
             {
@@ -175,9 +177,9 @@ class AjaxController extends Controller
     }
 
       public function postCheckOrder(Request $req){
-        $checkOrder=news::findOrFail($req->id);
+        $checkOrder = news::findOrFail($req->id);
         $status = $req->status;
-        $order_id=$req->id;
+        $order_id = $req->id;
 
         if($checkOrder->status==0)
         {
@@ -191,7 +193,23 @@ class AjaxController extends Controller
         }
         $reuslt = $checkOrder->save();
        // dd($reuslt);
-        return view('admin.brands.ajaxToggoActiveStatus',compact('status','order_id'));
+        return view('admin.brands.ajaxToggoActiveStatus', compact('status', 'order_id'));
+    }
+
+    public function postCheckStatus(Request $req){
+        $checkOrder = leogo_class::findOrFail($req->id);
+        $status = $req->status;
+        $order_id = $req->id;
+
+        if($checkOrder->status == 0){
+            $checkOrder->status = 1;
+        } else{
+            $checkOrder->status = 0;
+        }
+
+        $reuslt = $checkOrder->save();
+
+        return view('admin.classManagement.ajaxToggoActiveStatusClass', compact('status', 'order_id'));
     }
 
 }

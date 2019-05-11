@@ -32,8 +32,9 @@
 										name="txt_FirstName"
 										value="{!! old('txt_FirstName', $getStaff->Full_Name) !!}"
 										type="text"
-										class="form-control"
-										pattern="^[a-zA-z ]*$"
+										class="form-control" pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" required
 										placeholder="Enter first name"
 										/>
 									</div>
@@ -43,7 +44,7 @@
 											<div class="input-group-addon">
 												<span class="glyphicon glyphicon-th"></span>
 											</div>
-											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date', $getStaff->Birth_Day) !!}">
+											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date', $getStaff->Birth_Day) !!}" pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))">
 										</div>
 									</div>
 									<div class="form-group">

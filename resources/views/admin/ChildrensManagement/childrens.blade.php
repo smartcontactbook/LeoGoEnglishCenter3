@@ -27,7 +27,7 @@
 				</div>
 
 				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
+					<table id="example1" class="table table-bordered table-striped"  style="font-size: 12px; text-align: center;">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -39,7 +39,7 @@
 								<th>Phone Number</th>
 								<th>Gender</th>
 								<th>Address</th>
-								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
+								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled" style="width: 90px">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -65,9 +65,9 @@
 									<th>
 										{{-- <a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight" data-toggle="modal" data-target="#modal-default" data-avatar="{{ $value->avatar}}" data-full_name = "{{ $value->Full_Name }}" data-email = "{{ $value->email}}" data-start_date = "{{ $value->Start_Date }}" data-end_date = "{{ $value->End_Date }}" data-score = "{{ $value->Score }}" data-description = "{{ $value->Description}}" data-parent_name = "{{ $value->Parent_Name }}" data-phone_number = "{{ $value->Phone_Number }}" data-gender = "{{ $value->Gender }}" data-address = "{{ $value->Address}}" data-class_name = "{{ $value->Class_Name}}"><i class="far fa-eye"></i></button></a> --}}
 
-										<a href="{{ route('children.show', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
+										<a href="{{ route('children.show', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight"><i class="far fa-eye"></i> </button></a>
 										<a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
-										<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+										<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
 									</th>
 
 									

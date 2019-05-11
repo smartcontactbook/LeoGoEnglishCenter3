@@ -30,7 +30,9 @@
 										name="txt_FirstName"
 										value="{!! old('txt_FirstName') !!}"
 										type="text"
-										pattern="^[a-zA-z ]*$"
+										pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" required
 										class="form-control"
 										placeholder="Enter first name"
 										/>
@@ -41,7 +43,7 @@
 											<div class="input-group-addon">
 												<span class="glyphicon glyphicon-th"></span>
 											</div>
-											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date') !!}">
+											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date') !!}" pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))" required>
 										</div>
 									</div>
 									<div class="form-group">
@@ -52,6 +54,8 @@
 										class="form-control"
 										id="exampleInputPassword1"
 										placeholder="Password"
+										pattern = "(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+										required
 										/>
 									</div>
 									<div class="form-group">
@@ -83,7 +87,7 @@
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<textarea id="txt_description" value="{!!old('txt_description') !!}" rows="5" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+										<textarea id="txt_description" value="{!!old('txt_description') !!}" rows="5" class="form-control" name="txt_description" placeholder="Enter Description"></textarea>
 									</div>
 
 								</div>

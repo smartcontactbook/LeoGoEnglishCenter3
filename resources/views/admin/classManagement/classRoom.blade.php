@@ -104,7 +104,10 @@
                     <!-- Post -->
                     <div class="row">
                       @foreach($getClassOfCourses as $value)
-                      @if($getCourse->id == $value->id_course)
+                      @if($getCourse->id == $value->id_course);
+                      @php
+                        $status = $value->status;
+                      @endphp
                       <input type="hidden" name="txt_idClass">
                       <div class="col-sm-3">
                         <div class="box-body">
@@ -169,23 +172,19 @@
                                     <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}
                                     </label>
                                   </div>
-                                  <div class="row">
-                                    <label class="control-label edit-row">Status</label>
-                                    <div class="pull-right">
-                                        @if($value->Status == 1)
-                                          <a href="{{ route('changeStatus', $value->id_class) }}">
-                                            <button type="button" class="label label-success edit-pull-right">
-                                            <i class="fa fa-check"></i></button>
-                                          </a>
+                                </div>
+                                <div class="row">
+                                  <label class="control-label edit-row">Status</label>
+                                  <div class="pull-right">
+                                    <a id="containnerTest">
+                                      <div class="active{{$value->id}}">
+                                        @if($value->status == 0)
+                                        <img src="{{asset('image/')}}/leogo/cancel.png" onclick="ajaxToggoActiveStatus({{$value->id}}, 0)">
                                         @else
-                                          <a href="{{ route('changeStatus', $value->id_class) }}">
-                                            <button type="button" class="label label-danger edit-pull-right">
-                                            <i class="fa fa-close"></i></button>
-                                          </a>
-
+                                        <img src="{{asset('image/')}}/leogo/checked.png" onclick="ajaxToggoActiveStatus({{$value->id}}, 1)">
                                         @endif
-                                      </label>
-                                    </div>
+                                      </div>
+                                    </a>
                                   </div>
                                 </div>
                               </div>
@@ -202,16 +201,6 @@
                                         data-target="#listChildren">
                                   List
                                 </button>
-                                <a href="{{ route('register.create') }}">
-                                  <button 
-
-                                      type="button" 
-                                      class="btn edit-button edit-itemJs" 
-                                      data-toggle="modal" 
-                                      data-id="{{$value->id_leogo}}" 
-                                      data-target="#listChildren">
-                                      List
-                                  </button>
                                   <a href="{{ route('register.create') }}">
                                   <button 
                                     type="button" 
@@ -323,7 +312,7 @@
               <div class="modal-body">
                 <div class="box-body">
                   <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
-                  <table id="example2" class="table table-bordered table-striped">
+                  <table id="example2" class="table table-bordered table-striped" style="font-size: 12px;"  >
                     <thead>
                       <tr>
                         <th>ID
@@ -332,8 +321,6 @@
                         </th>
                         <th>Birth day
                         </th>
-                        <th>Gender
-                        </th>
                         <th>Email
                         </th>
                         <th>Phone
@@ -341,6 +328,8 @@
                         <th>Score
                         </th>
                         <th>Address
+                        </th>
+                        <th>Detail
                         </th>
                         <th>Move
                         </th>
@@ -659,6 +648,31 @@
           loading.hide();
         });
       });
+
+      function ajaxToggoActiveStatus(id_user, presentStatus){
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax({
+          url: "{{ route('postCheckStatus') }}",  
+          type: 'POST',
+          cache: false,
+          data: {
+            id:id_user, status:presentStatus}
+            ,
+            success: function(data){
+              $('.active'+id_user).html(data);
+            }
+            ,
+            error: function (){
+              alert('Lỗi đã xảy ra');
+            }
+          });
+        return false;
+      }
+
       function fetchdata(){
         $.ajax({
           type : 'GET',
@@ -671,7 +685,11 @@
         })
       }
       $(document).ready(function(){
-
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
           $('#editClass').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) 
             var id_leogo_class = button.data('idleogoclass')
@@ -764,14 +782,13 @@
                 for(var i = 0; i < response.data.length; i++)
                 {
                   var item = response.data[i];
+                  // var id_class_tem = item.id_children_new;
                   code +=`<tr>
                   <td>${i+1}
                   </td>
                   <td>${item.Full_Name}
                   </td>
                   <td>${item.Birth_Day}
-                  </td>
-                  <td>${item.Gender}
                   </td>
                   <td>${item.email}
                   </td>
@@ -780,6 +797,8 @@
                   <td>${item.Score}
                   </td>
                   <td>${item.Address}
+                  </td>
+                  <td><a href="http://127.0.0.1:8000/children/${item.id_children_new}"><button type="button" class="btn btn-info btn-sm editLeftRight"><i class="far fa-eye"></i> </button></a>
                   </td>
                   <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#listTest" data-idnew="${item.id_children_new}
                   " data-fullname="${item.Full_Name}
@@ -807,7 +826,7 @@
               // data : b,
               url : 'http://127.0.0.1:8000/ScoreOfStudent/'+id,
               success: function(response){
-                //console.log(response);
+                console.log(response);
                 for(var i = 0; i < response.data.length; i++)
                 {
                   var item = response.data[i];

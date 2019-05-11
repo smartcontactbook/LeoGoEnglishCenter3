@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
+					<table id="example1" class="table table-bordered table-striped" style="font-size: 12px; text-align: center;">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -45,7 +45,7 @@
 								<th>Test Schedule</th>
 								<th>Course</th>
 								<th>Appointment</th>
-								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
+								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled" style="width: 85px">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -65,15 +65,13 @@
 									</td>
 									<td>
 										@if($value->Test_Schedule != null)
-											<button type="button" class=" btn btn-success btn-sm">
-												<i class="fa fa-check"></i></button>
+												<i class="fas fa-user-check" style="height: 20px"></i>
 										@else
-											<button type="button" class=" btn btn-success btn-sm">
-												<i class="fa fa-close"></i></button>
+												<i class="fas fa-user-times" style="height: 20px"></i>
 										@endif
 									</td>
-									<th>
-											<button 
+									<td>
+										<button 
 											type="button" 
 											class=" btn btn-info btn-sm" 
 											data-toggle="modal" 
@@ -86,36 +84,32 @@
 												<i class="fa fa-calendar-o"></i>
 										</button>
 										@if($value->Test_Schedule != null)
-										<button 
-										type="button" 
-										class="btn btn-warning btn-sm"
-										data-toggle="modal" 
-										data-target="#score"
-										data-id="{{$value->id}}" 
-										data-firstname="{{$value->Full_Name}}"
-										data-nickname="{{$value->Nick_Name}}"
-										data-parent="{{$value->Parent_Name}}" 
-										data-email="{{$value->Email}}"
-										data-phone="{{$value->Phone_Number}}" 
-										data-score="{{$value->Score}}" 
-										data-date="{{$value->Birth_Day}}"
-										data-course="{{$value->Course_ID}}"
-										data-nameCourse = "{{ $value->Course_Name }}"
-										data-score="{{$value->Score}}">
-											<i class="	fa fa-plus-square"></i>
-										</button>
-										@else
-										@endif
-										
-
-										<form action="{{ route('postDelRegister') }}" method="POST">
-											{{csrf_field()}}
-											<input type="hidden" name="txt_idDelChildren" value="{{ $value->id }}">	
-											<button type="submit" class="btn btn-danger btn-sm">
-												<i class="fa fa-trash-o"></i>
+											<button 
+											type="button" 
+											class="btn btn-warning btn-sm"
+											data-toggle="modal" 
+											data-target="#score"
+											data-id="{{$value->id}}" 
+											data-firstname="{{$value->Full_Name}}"
+											data-nickname="{{$value->Nick_Name}}"
+											data-parent="{{$value->Parent_Name}}" 
+											data-email="{{$value->Email}}"
+											data-phone="{{$value->Phone_Number}}" 
+											data-score="{{$value->Score}}" 
+											data-date="{{$value->Birth_Day}}"
+											data-course="{{$value->Course_ID}}"
+											data-nameCourse = "{{ $value->Course_Name }}"
+											data-score="{{$value->Score}}">
+												<i class="	fa fa-plus-square"></i>
 											</button>
-										</form>
-									</th>
+										@endif
+									
+											<a href="{{ route('postDelRegister', $value->id) }}">
+											<button type="submit" class="btn btn-danger btn-sm">
+												<i class="fas fa-trash-alt"></i>
+											</button>
+											</a>
+									</td>
 								</tr>
 							@endforeach
 						</tbody>
@@ -434,12 +428,13 @@
 					                  <div class="col-lg-6">
 					                    <div class="form-group">
 					                      <label>Test schedule</label>
-						                      	<input  
-						                      	  type ="datetime-local"
-							                      id="txt_testSchedule" 
-							                      class="form-control" 
-							                      value="{!! old('txt_testSchedule') !!}" 
-							                      name="txt_testSchedule">
+					                      <input  
+					                      type ="datetime-local"
+					                      id="txt_testSchedule" 
+					                      class="form-control" 
+					                      pattern="/([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))/"
+					                      value="{!! old('txt_testSchedule') !!}" 
+					                      name="txt_testSchedule">
 					                    </div>
 					                  </div>
 					                </div>
@@ -503,12 +498,12 @@
 	               		id="txt_firstname" 
 	               		name="txt_firstname" 
 	               		pattern="^[a-zA-z ]*$"
-	               		value="{!! old('txt_firstname') !!}" >
+	               		value="{!! old('txt_firstname') !!}" disabled >
 	               	  </label>
 	              	</div>	
 	              	<div class="form-group">
 	               	  <label for="exampleInputEmail1">Nick Name</label>
-	               		<input 
+	               		<input  disabled
 	               		type="input"  
 	               		class="form-control " 
 	               		id="txt_nickname" 
@@ -519,7 +514,7 @@
 	              	</div>	
 	             	<div class="form-group">
 	               	  <label for="exampleInputPassword1">Parent Name</label>
-	                	<input 
+	                	<input disabled
 	                	type="input"  
 	               		class="form-control " 
 	               		id="txt_parent" 
@@ -533,7 +528,7 @@
 	                  <div class="col-lg-6">
 	                    <div class="form-group">
 	                      <label>Phone number</label>
-		                      <input 
+		                      <input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -544,7 +539,7 @@
 		                      name="txt_phone">
 		                  </label>
 	                      <label>Email</label>
-		                      <input 
+		                      <input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -555,7 +550,7 @@
 		                      name="txt_email">
 		                  </label>
 		                  <label>Course</label>
-							<input 
+							<input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -564,10 +559,6 @@
 		                      class="form-txt_course" 
 		                      value="{!! old('txt_course') !!}" 
 		                      name="txt_course">
-
-		             
-				                
-				                
 				            {{-- </label> --}}
 	                      </fieldset>
 	                    </div>
@@ -575,7 +566,7 @@
 	                  <div class="col-lg-6">
 	                    <div class="form-group">
 	                      <label>Birth Day</label>
-		                      <input 
+		                      <input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -589,7 +580,7 @@
 		                      <input 
 		                      id="txt_score" 
 		                      class="form-control" 
-		                      type="text" 
+		                      type="number" min="0" max="1000"
 		                      value="{!! old('txt_score') !!}" 
 		                      name="txt_score"></label>
 		                  <label>Level</label>

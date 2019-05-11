@@ -51,6 +51,7 @@
 						<tbody>
 							<?php $stt=0 ?>
 							@foreach($getRegister as $value)
+							{{-- dd(); --}}
 							<?php $stt=$stt+1 ?>
 								<tr>
 									<td>{!! $stt !!}</td>
@@ -397,7 +398,10 @@
 				          	</button>
 				          	<h4 class="modal-title">TEST SCHEDULE</h4>
 				        </div>
+
 				        <form method="POST" action="{{ route('register.update','test') }}">
+
+
 					          {{method_field('patch')}}
 					          {{csrf_field()}}
 					          <div class="modal-body">
@@ -453,6 +457,7 @@
 
 	     <script type="text/javascript">
 	       $('#schedule').on('show.bs.modal', function (event) {
+
 	        var button = $(event.relatedTarget) 
 	        var id = button.data('id')
 	        console.log(id);
@@ -461,6 +466,8 @@
 	        var name = button.data('name')
 	        var schedule = button.data('schedule')
 	        var modal = $(this)
+	        // $("#re-id").val('id');
+	        $("#re-id").val($(event.relatedTarget).data('id'));
 	        modal.find('.modal-body #txt_testId').val(id);
 	        modal.find('.modal-body #txt_name').val(name);
 	        modal.find('.modal-body #txt_date').val(date);

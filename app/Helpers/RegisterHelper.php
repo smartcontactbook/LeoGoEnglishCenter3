@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\DB;
 use App\register;
 use App\course;
 use App\level;
+use Illuminate\Support\Facades\DB;
 
 class RegisterHelper
 {
     public static function getRegister()
     {
-        $getRegister = DB::table('register')
+       $getRegister = DB::table('register')
         ->join('course', 'register.Course_ID', '=', 'course.id')
         ->select('course.id as id_course','course.*', 'register.*')
         ->get();

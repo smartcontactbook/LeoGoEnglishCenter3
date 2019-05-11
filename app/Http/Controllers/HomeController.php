@@ -223,25 +223,25 @@ class HomeController extends Controller
         $result = 0;
         $getSchedules = LeogoClassHelper:: getSchedules();
         foreach ($getSchedules as $value){
-                    if($value->id_class_room == $req->cbm_classRoom and $value->id_weekday == $req->cbm_weekday and $value->id_time_study == $req->cbm_timeStudy){
-                        echo"<script type='text/javascript'>
-                                alert('Sorry ! You need change information or click button Cancel');
-                                window.location='";
-                                echo route('getSetSchudule');
-                        echo"'</script>";
-                        $result =1;
-                        break;
-                    }
+            if($value->id_class_room == $req->cbm_classRoom and $value->id_weekday == $req->cbm_weekday and $value->id_time_study == $req->cbm_timeStudy){
+                echo"<script type='text/javascript'>
+                alert('Sorry ! You need change information or click button Cancel');
+                window.location='";
+                echo route('getSetSchudule');
+                echo"'</script>";
+                $result =1;
+                break;
+            }
         }
         if($result == 0 ){
-        $tem_schedule = new tem_schedule;
-                        $tem_schedule->Classroom_ID = $req->cbm_classRoom;
-                        $tem_schedule->Weekday_ID = $req->cbm_weekday;
-                        $tem_schedule->Time_Study_ID = $req->cbm_timeStudy;
+            $tem_schedule = new tem_schedule;
+            $tem_schedule->Classroom_ID = $req->cbm_classRoom;
+            $tem_schedule->Weekday_ID = $req->cbm_weekday;
+            $tem_schedule->Time_Study_ID = $req->cbm_timeStudy;
                         // dd($req->cbm_classRoom, $req->cbm_weekday, $req->cbm_timeStudy);
-                        $tem_schedule->save();
+            $tem_schedule->save();
 
-                        return response()->json($tem_schedule);
+            return response()->json($tem_schedule);
         }
     }
 
@@ -296,7 +296,7 @@ class HomeController extends Controller
             // $delete_tem_children_class = tem_children_class::find($value->ID);
         }
 
-        DB::table('tem_day_time_study')->truncate();
+        // DB::table('tem_day_time_study')->truncate();
         $data = CalendarHelper::getCalendarOfClass();
         $getWeekDays = CalendarHelper::getWeekDays();
         foreach ($data as $key => $value) {
@@ -312,15 +312,17 @@ class HomeController extends Controller
                     $tem_day_time_study->dayEndStudy = $getDateStart;
                     $tem_day_time_study->timeStartStudy = $value->Time_Start;
                     $tem_day_time_study->timeEndStudy = $value->Time_End;
+                    $tem_day_time_study->id_class = Session::get('id_LeogoClass');
                     $tem_day_time_study->save();
                 }
                 else {
                     if($value->Weekday_ID == $dateEndTime and $value->Start_Date == $value->End_Date) {
                        $tem_day_time_study = new tem_day_time_study;
-                       $tem_day_time_study->title = $value->fullNameClassRoom;nd_Date;
+                       $tem_day_time_study->title = $value->fullNameClassRoom;
                        $tem_day_time_study->dayEndStudy = $value->End_Date;
                        $tem_day_time_study->timeStartStudy = $value->Time_Start;
                        $tem_day_time_study->timeEndStudy = $value->Time_End;
+                       $tem_day_time_study->id_class = Session::get('id_LeogoClass');
                        $tem_day_time_study->save();
                  }
                  else{

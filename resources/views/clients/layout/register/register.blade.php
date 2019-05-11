@@ -19,7 +19,7 @@
             <span class="text">
               Tòa nhà VNPT cầu Sông Hàn, 47 Trần Phú, Thành Phố Đà Nẵng
             </span>
-            <a href="tel:091 145 77 99" class="detail ico ico-phone-blue">
+            <a href="tel:091 145 77 99" class="detail ico ">
               091 145 77 99
             </a>
           </div><div class="clear-20 hide-640"></div>
@@ -47,20 +47,21 @@
               <input type="text" class="half-w left txtEmail o2o-email" name="txt_email" data-text-required="Bạn chưa nhập email" data-text-invalid="Địa chỉ email kh&#244;ng hợp lệ" placeholder="Email*">
               <input type="text" class="half-w right txtPhone o2o-phone" name="txt_phone" data-text-required="Bạn chưa nhập số điện thoại" data-text-invalid="Kh&#244;ng đ&#250;ng định dạng số điện thoại" placeholder="Số điện thoại*">
             </div>
-{{--             <div class="input-block clearfix">
+            <div class="input-block clearfix">
               <select name="cmb_course" class="input-block nhucauhoc" style="background-color:#fff">
                 <option value="">Khóa học quan tâm</option>
-                  @foreach($getCourses as $value)
-                    <option value="{{ $value->id }}">{{ $value->Course_Name }}</option>
+                  @foreach($getCourse as $value)
+                  
+                    <option value="{{ $value['id'] }}">{{ $value['Course_Name'] }}</option>
                   @endforeach
               </select>
-            </div> --}}
+            </div>
             <div class="input-block clearfix">
               <textarea class="block-textarea txtNote o2o-notes" name="txt_discription" data-text-required="Bạn chưa nhập th&#244;ng điệp" placeholder="Th&#244;ng tin th&#234;m về nhu cầu học"></textarea>
             </div>
             <div class="btn-submit s_center">
               <!-- <i class="icofont-send-mail"></i> -->
-              <button type="submit" id="submitRegister" class=" btn-text-w-ico btn-regular btn-regular--lr40 submitRegister" data-title="Gửi th&#244;ng tin">
+              <button type="submit" id="submitRegister" class=" btn-regular btn-regular--lr40 submitRegister" data-title="Gửi th&#244;ng tin">
                 
                 <span class="text">Gửi th&#244;ng tin</span>
               </button>

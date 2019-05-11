@@ -10,8 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::pattern('id', '([0-9]*)');
+Route::pattern('slug', '(.*)');
 Auth::routes();
-
+// Route::get('/panel-admin/user/cargo-owner/history/{slug}-{id}.html',[
+//            'uses' =>  'ControllerUser@getCargoOwnerHistory',
+//             'as' => 'admin.user.cargo.history'
+//         ]);
 Route::get('/', ['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
 Route::post('/', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
 Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout']);
@@ -48,7 +53,19 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 		'uses' => 'HomeController@getClassOfCourses1'
 	]);
 
+
 	Route::get('changeStatus/{id}', ['as' => 'changeStatus', 'uses' => 'AjaxController@changeStatus']);
+
+	Route::get('fetchNew/{id}', [
+		'as' => 'fetchNewClass',
+		'uses' => 'AjaxController@fetchNewClass'
+	]);
+
+	Route::post('moveClass/{id}', [
+		'as' => 'moveClass',
+		'uses' => 'AjaxController@moveClass'
+	]);
+
 	Route::post('addAll', [
 		'as' => 'postAddAll',
 		'uses' => 'HomeController@postAddAll'
@@ -94,6 +111,10 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// START STAFF MANAGEMENT
 	Route::resource('staff', 'StaffController');
 	// END STAFF MANAGEMENT
+	
+	// START CHILDREN MANAGEMENT
+	Route::resource('children', 'ChildrenControll');
+	// END CHILDREN MANAGEMENT
 
 	// Wait Class MANAGEMENT
 	Route::resource('wait', 'WaitClassController');
@@ -114,12 +135,23 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::get('addEvent', ['as' => 'getAddEvent', 'uses' => 'EventsController@getAddEvent']);
 	// getAddEvent
 	Route::post('upload', ['as' => 'postImages', 'uses' => 'EventsController@postImages']);
-});
+
+	// NEWS 
+	Route::resource('news', 'NewsController');
+	Route::resource('brand', 'BrandController');
+	Route::post('checkOrder',[
+		'as'=>'postCheckOrder',
+		'uses'=>'AjaxController@postCheckOrder'
+	]);
+});	
 
 Route::get('home', ['as' => 'getHome', 'uses' => 'ClientController@getHome']);
 Route::post('registerOnline', ['as' => 'postRegisterOnline', 'uses' => 'ClientController@postRegisterOnline']);
 
-Route::get('detail/{id}', ['as' => 'getDetail', 'uses' => 'ClientController@getDetail']);
+Route::get('detail/{slug}-{id}.html', ['as' => 'getDetail', 'uses' => 'ClientController@getDetail']);
 Route::get('quatily', ['as' => 'getQuatily', 'uses' => 'ClientController@getQuatily']);
 Route::get('teacher', ['as' => 'getTeacher', 'uses' => 'ClientController@getTeacher']);
-
+Route::get('new', ['as' => 'getNews', 'uses' => 'ClientController@getNews']);
+Route::get('newDetail/{slug}-{id}.html', ['as' => 'getNewsDetail', 'uses' => 'ClientController@getNewsDetail']);
+Route::get('events', ['as' => 'getEventClient', 'uses' => 'ClientController@getEventClient']);
+Route::get('eventDetail/{slug}-{id}.html', ['as' => 'getEventDetail', 'uses' => 'ClientController@getEventDetail']);

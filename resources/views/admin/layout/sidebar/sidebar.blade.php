@@ -143,13 +143,13 @@
                   </li>
                 </ul>
               </li>
-              <li class="treeview">
-                <a href="#">
-                  <i class="fa fa-child"></i>
-                  <span>Childrens Management
-                  </span>
+              <li class="active">
+                <a href="{{ route('children.index') }}">
+                  <i class="fa fa-child"></i> <span>Childrens Management</span>
+                 
                 </a>
               </li>
+            
               <li class="treeview">
                 <a href="#">
                   <i class="fa fa-drivers-license"></i>
@@ -162,18 +162,25 @@
                 </a>
                 <ul class="treeview-menu">
                   <li>
-                    <a href="{{ route('register.create') }}">
+                    <a href="{{ route('news.index') }}">
                       <i class="fa fa-circle-o">
                       </i> News
                     </a>
                   </li>
                   <li>
-                    <a href="{{ route('register.index') }}">
+                    <a href="{{ route('getEvents') }}">
                       <i class="fa fa-circle-o"> 
                       </i> Events 
                     </a>
                   </li>
                 </ul>
+              </li>
+
+              <li class="active">
+                <a href="{{ route('children.index') }}">
+                  <i class="fas fa-university"></i> <span>Brands</span>
+                 
+                </a>
               </li>
               
             </ul>

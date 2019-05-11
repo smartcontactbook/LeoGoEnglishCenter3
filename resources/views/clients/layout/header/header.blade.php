@@ -3,14 +3,8 @@
         <div class="social-language">
             <div class="language">
                 <div style="display:inline-block; padding-top: 10px">
-
-<!--                     <a target="_blank" href="" title="Super Summer 2019">
-                        <img src="{{asset('assets/images/Supper_Summer_Logo.svg')}}" style="width:150px;margin:0" alt="Super Summer 2019" border="0">
-                    </a> -->
-                    <a href="" class="btn-regular" >
-              Tiếng Anh Giao Tiếp iTALK</a>
-                    <a href="" class="btn-regular">
-              Teaching at LeoGo</a>
+                    <a href="" class="btn-regular" >Tiếng Anh Giao Tiếp iTALK</a>
+                    <a href="" class="btn-regular">Teaching at LeoGo</a>
                 </div>
             </div>
             <div class="social">
@@ -29,45 +23,41 @@
                 <img id="logo-sticky" src="{{ asset('image/avatar/logo.png')}}" style="width: 100px; height: 60px">
             </a>
         </div>
-
         <div class="header__wrap-nav">
             <ul>
                 <li class="">
-                    <a class="text_menu" href="about-us/index.html"><span>Giới thiệu về LeoGo</span></a>
+                    <a class="text_menu" href="{{ route('getHome') }}"><span>Giới thiệu về LeoGo</span></a>
                     <div class="sub-menu">
                         <ul>
                             <li class="">
                                 <a href="{{ route('getHome') }}">
                                     <div>Giới Thiệu LeoGo</div>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="{{ route('getQuatily') }}">
                                     <div>Chuẩn đ&#224;o tạo quốc tế</div>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="{{ route('getTeacher') }}">
                                     <div>Đội Ngũ Giảng Dạy</div>
                                 </a>
-
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="">
-                    <a class="text_menu" href="programs/index.html"><span>C&#225;c kh&#243;a học</span></a>
+                    <a class="text_menu" href="#"><span>C&#225;c kh&#243;a học</span></a>
                     <div class="sub-menu">
                         <ul>
-                          @foreach($course as $value)
-                            <li class="">
-                                <a href="">
-                                    <div>{{ $value->Course_Name }}</div>
-                                </a>
-                            </li>
-                          @endforeach
+                            @foreach($course as $value)
+                                <li class="">
+                                    <a href="{{ route('getDetail', ['slug'=> str_slug($value->Course_Name), 'id'=>$value->id] ) }}">
+                                        <div>{{ $value->Course_Name }}</div>
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </li>
@@ -79,19 +69,16 @@
                                 <a href="">
                                     <div>Học vi&#234;n ti&#234;u biểu</div>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="">
                                     <div>G&#243;c vinh danh học vi&#234;n</div>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="">
                                     <div>Road to IELTS</div>
                                 </a>
-
                             </li>
                         </ul>
                     </div>
@@ -101,16 +88,14 @@
                     <div class="sub-menu">
                         <ul>
                             <li class="">
-                                <a href="">
+                                <a href="{{ route('getNews') }}">
                                     <div>Tin tức sự kiện</div>
                                 </a>
-
                             </li>
                             <li class="">
-                                <a href="gallery/photo/index.html">
+                                <a href="{{ route('getEventClient') }}">
                                     <div>Thư viện h&#236;nh ảnh</div>
                                 </a>
-
                             </li>
                         </ul>
                     </div>
@@ -123,13 +108,11 @@
                                 <a href="">
                                     <div>Tuyển dụng nh&#226;n vi&#234;n</div>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="">
                                     <div>TEACHING AT VUS</div>
                                 </a>
-
                             </li>
                         </ul>
                     </div>
@@ -141,13 +124,9 @@
             <div class="header__find__input">
                 <input type="text" class="global__search__input" placeholder="T&#236;m kiếm...">
             </div>
-
             <a href="#" class="header__sign btn-regular" style="padding-left:35px;padding-right:10px" onclick="VusFunc.setBlock('Main menu - Popup contact'); myApp.openPopup('.popup__signup')">
                 <i class="icofont-location-arrow" style="margin-left: -20px"></i>
-                <!-- <img src="{{ asset('image/avatar/navigation.png')}}" style="margin-left:-30px; margin-right: 5px; padding-top:px" > -->
-                <span style="white-space:nowrap">
-      Li&#234;n hệ ngay
-    </span>
+                <span style="white-space:nowrap">Li&#234;n hệ ngay</span>
             </a>
         </div>
     </div>
@@ -162,28 +141,24 @@
         </div>
         <div class="header__resp__list-menu">
             <ul>
-
                 <li class="">
-                    <div class="text_menu"><span>Giới thiệu về VUS</span><i class="fa fa-angle-right"></i></div>
+                    <div class="text_menu"><span>Giới thiệu về LeoGO</span><i class="fa fa-angle-right"></i></div>
                     <div class="sub-menu">
                         <ul>
                             <li class="">
                                 <a href="about-us/index.html">
-                                    <div><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Giới Thiệu VUS</div>
+                                    <div><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Giới Thiệu LeoGo</div>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="about-us/chat-luong-giang-day.html">
                                     <div><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Chuẩn đ&#224;o tạo quốc tế</div>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="teachers/teachers-hall-of-frame/index.html">
                                     <div><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Đội Ngũ Giảng Dạy</div>
                                 </a>
-
                             </li>
                         </ul>
                     </div>
@@ -216,6 +191,8 @@
                             </div>
                         </div>
                     </div>
+                </li>
+            </ul>
         </div>
-
+    </div>
 </header>

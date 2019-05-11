@@ -265,3 +265,135 @@
     top: -18%;
     z-index: 3;
 }
+
+element.style {
+  border-top: 1px solid #23292F;
+  border-left: 1px solid #23292F;
+  border-right: 1px solid #23292F;
+  border-bottom: 1px solid #23292F;
+  font-family: 'OpenSans Regular';
+    -webkit-font-smoothing: antialiased;
+}
+
+.box {
+  position: relative;
+  background: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  width: 100%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+element.style {
+  background-color: #FFFFFF;
+}
+
+.box .box-header {
+  position: relative;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: 0px solid #f4f4f4;
+  color: #444;
+}
+
+element.style {
+  color: #23292F;
+}
+
+.box .box-header .box-title {
+  display: inline-block;
+  padding: 15px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  float: left;
+  cursor: default;
+  font-family: "OpenSans Regular";
+}
+
+h3 {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+element.style {
+  border-top: 1px solid #23292F;
+}
+
+.box .box-body {
+  padding: 15px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+element.style {
+  max-height: none;
+}
+
+.mCustomScrollBox {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  max-width: 100%;
+  outline: none;
+  direction: ltr;
+}
+
+.mCSB_horizontal.mCSB_inside > .mCSB_container {
+  margin-right: 0;
+}
+
+.mCSB_container {
+  overflow: hidden;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+table {
+  display: table;
+}
+
+.mCustomScrollBox {
+  direction: ltr;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}

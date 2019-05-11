@@ -16,8 +16,8 @@ class EventDetail extends Migration
         Schema::create('event_detail', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name');
-            $table->integer('id_events')->unsigned();
-            $table->foreign('id_events')->references('id')->on('events');
+            $table->integer('id_event')->unsigned();
+            $table->foreign('id_event')->references('id')->on('events');
             $table->timestamps();
         });
     }

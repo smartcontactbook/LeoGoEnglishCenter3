@@ -71,6 +71,7 @@ class HomeController extends Controller
         $getTemChildrenClass2 = LeogoClassHelper::getTemChildrenClass2();
         $CountSetSChedule = LeogoClassHelper::CountSetSChedule();
 
+       // dd(Session::get('id_LeogoClass'));
         return view('admin.classManagement.setSchedule', compact('getSchedules', 'getWeekdays', 'getClassRooms', 'getTimeStudys', 'getChildrenNotActives', 'getTemChildrenClass', 'getTemChildrenClass2', 'CountSetSChedule'));
     }
   
@@ -149,7 +150,7 @@ class HomeController extends Controller
         return redirect()->route('getSetSchudule');
     }
 
-    public function postDelRegister(Request $request){ 
+    public function postDelRegister($id){ 
         $register = register::findOrFail($request->txt_idDelChildren);
         $register->delete();
         return redirect()->route('register.index');
@@ -219,7 +220,6 @@ class HomeController extends Controller
     }
 
     public function postAddSchedule(Request $req){
-       // dd('ssf');
         $result = 0;
         $getSchedules = LeogoClassHelper:: getSchedules();
         foreach ($getSchedules as $value){

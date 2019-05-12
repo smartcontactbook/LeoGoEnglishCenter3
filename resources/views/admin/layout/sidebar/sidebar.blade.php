@@ -7,7 +7,7 @@
               <img src="{{ asset('image/avatar').'/'.Auth::guard('staff')->user()->avatar }}">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce
+              <p>{{ Auth::guard('staff')->user()->User_Name }}
               </p>
               <a href="#">
                 <i class="fa fa-circle text-success">
@@ -36,10 +36,9 @@
               <li class="header">MAIN NAVIGATION
               </li>
               <li class="active treeview">
-                <a href="#">
-                  <i class="fa fa-dashboard">
-                  </i> 
-                  <span>Dashboard
+                <a href="">
+                  <i class="fas fa-tachometer-alt"></i>
+                  <span> Dashboard
                   </span>
                 </a>
               </li>
@@ -173,11 +172,11 @@
                       </i> Events 
                     </a>
                   </li>
-                </ul>
+                </ul> 
               </li>
 
               <li class="active">
-                <a href="{{ route('children.index') }}">
+                <a href="{{ route('brand.index') }}">
                   <i class="fas fa-university"></i> <span>Brands</span>
                  
                 </a>

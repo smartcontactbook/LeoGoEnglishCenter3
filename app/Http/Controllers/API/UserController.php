@@ -14,27 +14,28 @@ use Illuminate\Support\Str;
 use App\Notifications\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
 use Hash;
+use Session;
 use App\PasswordReset;
 class UserController extends Controller
 {
     public $successStatus = 200;
 
     public function login(){
-    	if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-            $user = Auth::user(); 
-            if($user->role == 2){
+    	if(Auth::guard('staff')->attempt(['email' => request('email'), 'password' => request('password')])){
+            $user = Auth::guard('staff')->user();
+            if($user->Role_ID == 1){
             	// $success['token'] =  $user->createToken('MyApp')->accessToken; 
-				$user = $user->id;
+				$user = Auth::guard('staff')->user()->id;
 				// $test = CalendarHelper::getCalendarOfLecturer($user);
-				$success['token'] =  CalendarHelper::getCalendarOfLecturer($user);
+				$success['token'] =  CalendarHelper::getTemDayTimeStudys();
             	return response()->json(['Staff' => $success], $this->successStatus); 
             } else{
-            	if($user->role == 3){
+            	if($user->Role_ID == 3){
             		$success['token'] =  $user->createToken('MyApp')->accessToken; 
 
             		return response()->json(['Lecturer' => $success], $this->successStatus); 
             	} else{
-            		if($user->role == 4){
+            		if($user->Role_ID == 4){
 						$success['token'] =  $user->createToken('MyApp')->accessToken; 
 
 	            		return response()->json(['Tutor' => $success], $this->successStatus); 

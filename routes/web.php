@@ -22,6 +22,9 @@ Route::post('/', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
 Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout']);
 
 Route::group(['middleware' => 'checkAdminLogin'], function (){
+	// START DASBORAD
+	Route::get('dasboard', ['as '=> 'getDasboard', 'uses' => 'DasboardController@getDasboard']);
+	// END DASBOARD
 	Route::get('index', ['as '=> 'getIndex', 'uses' => 'HomeController@getIndex']);
 	// START LECTURER MANAGEMENT
 	Route::resource('lecturer', 'LecturersController');
@@ -48,24 +51,10 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::get('historyStudent/{id}', ['as' => 'getHistoryStudent', 'uses' => 'HomeController@getHistoryStudent']);
 	Route::post('addSchedule', ['as' => 'postAddSchedule', 'uses' => 'HomeController@postAddSchedule']);
 	Route::post('addTemChildrenClass', ['as' => 'postTemChildrenClass', 'uses' => 'HomeController@postTemChildrenClass']);
-	Route::post('ClassOfCourses1', [
-		'as' => 'getClassOfCourses1',
-		'uses' => 'HomeController@getClassOfCourses1'
-	]);
-
-
+	Route::post('ClassOfCourses1', ['as' => 'getClassOfCourses1', 'uses' => 'HomeController@getClassOfCourses1']);
 	Route::get('changeStatus/{id}', ['as' => 'changeStatus', 'uses' => 'AjaxController@changeStatus']);
-
-	Route::get('fetchNew/{id}', [
-		'as' => 'fetchNewClass',
-		'uses' => 'AjaxController@fetchNewClass'
-	]);
-
-	Route::post('moveClass/{id}', [
-		'as' => 'moveClass',
-		'uses' => 'AjaxController@moveClass'
-	]);
-
+	Route::get('fetchNew/{id}', ['as' => 'fetchNewClass', 'uses' => 'AjaxController@fetchNewClass']);
+	Route::post('moveClass/{id}', ['as' => 'moveClass', 'uses' => 'AjaxController@moveClass']);
 	Route::post('addAll', [
 		'as' => 'postAddAll',
 		'uses' => 'HomeController@postAddAll'
@@ -73,24 +62,19 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::get('childrenOfClass/{id}', [
 		'as' => 'getChildrenClass',
 		'uses' => 'HomeController@getChildrenClass'
-	]);
+	]); 
 
-	Route::get('ChildrenClass', [
-		'as' => 'getChildrenClass',
-		'uses' => 'HomeController@getChildrenClass'
-	]);
+	Route::get('ChildrenClass', ['as' => 'getChildrenClass', 'uses' => 'HomeController@getChildrenClass']);
 
-	Route::get('DelTemSchedule/{id}',['as'=>'postDelTemSchedule','uses'=>'HomeController@postDelTemSchedule']);
-	Route::post('DelTemChildren',['as'=>'postDelTemChildren','uses'=>'HomeController@postDelTemChildren']);
+	Route::get('DelTemSchedule/{id}', ['as' => 'postDelTemSchedule', 'uses' => 'HomeController@postDelTemSchedule']);
+	Route::post('DelTemChildren', ['as'=>'postDelTemChildren','uses'=>'HomeController@postDelTemChildren']);
 
-	Route::post('/ajax/Schedule', array(
-	  'uses'  =>  'AjaxController@loadTemSchedule'
-	));
+	Route::post('/ajax/Schedule', array('uses' => 'AjaxController@loadTemSchedule'));
 
-	Route::post('updateSchedule',['as'=>'updateSchedule','uses'=>'HomeController@updateSchedule']);
+	Route::post('updateSchedule', ['as'=>'updateSchedule','uses'=>'HomeController@updateSchedule']);
 
 	Route::get('StudentOfClass/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
-	Route::get('ScoreOfStudent/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
+	// Route::get('ScoreOfStudent/{id}', ['as' => 'getStudentOfClass', 'uses' => 'AjaxController@getStudentOfClass']);
 	Route::post('StudentOfClass/update_data', ['as' => 'update_data', 'uses' => 'AjaxController@update_data']);
 	// END CLASS MANAGEMENT
 	 
@@ -98,7 +82,7 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::resource('register', 'RegisterController');
 	Route::post('updateRegister',['as'=>'postUpdateRegister','uses'=>'HomeController@postUpdateRegister']);
 	Route::post('addChildren',['as'=>'postAddChildren','uses'=>'HomeController@postAddChildren']);
-	Route::post('delChildren',['as'=>'postDelRegister','uses'=>'HomeController@postDelRegister']);
+	Route::post('delChildren/{id}',['as'=>'postDelRegister','uses'=>'HomeController@postDelRegister']);
 	//
 
 	// START TUTOR MANAGEMENT
@@ -139,10 +123,8 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// NEWS 
 	Route::resource('news', 'NewsController');
 	Route::resource('brand', 'BrandController');
-	Route::post('checkOrder',[
-		'as'=>'postCheckOrder',
-		'uses'=>'AjaxController@postCheckOrder'
-	]);
+	Route::post('checkOrder', ['as'=>'postCheckOrder', 'uses' => 'AjaxController@postCheckOrder']);
+	Route::post('checkStatus', ['as'=>'postCheckStatus', 'uses' => 'AjaxController@postCheckStatus']);
 });	
 
 Route::get('home', ['as' => 'getHome', 'uses' => 'ClientController@getHome']);

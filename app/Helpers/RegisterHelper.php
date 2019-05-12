@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\DB;
 use App\register;
 use App\course;
 use App\level;
-use Illuminate\Support\Facades\DB;
-
 class RegisterHelper
 {
     public static function getRegister()

@@ -80,7 +80,11 @@
                 </div>
                 <div class="form-group">
                   <label>Description</label>
+<<<<<<< HEAD
                   <textarea id="txt_description"  rows="3" class="form-control" name="txt_description" placeholder="Enter Description" > {!!old('txt_description',$getTutor->Description) !!}</textarea>
+=======
+                  <textarea id="txt_description"  rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required> {!!old('txt_description',$getTutor->Description) !!}</textarea>
+>>>>>>> bbc1f4bcdaf0245e32a6520c15a2bf4a4bb9d6b4
                 </div>
 
               </div>

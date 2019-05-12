@@ -54,7 +54,7 @@
 										class="form-control"
 										id="exampleInputPassword1"
 										placeholder="Password"
-										pattern = "(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+										pattern ="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
 										required
 										/>
 									</div>

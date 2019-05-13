@@ -23,8 +23,13 @@ Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout'
 
 Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// START DASBORAD
-	Route::get('dasboard', ['as '=> 'getDasboard', 'uses' => 'DasboardController@getDasboard']);
+	Route::resource('dasboard', 'DasboarController');
+	Route::resource('chart', 'ChartController');
+	Route::resource('ChartChildren', 'ChartChildrenController');
+	// Route::get('chart', ['as '=> 'getChartA', 'uses' => 'AjaxController@getChart']);
 	// END DASBOARD
+	Route::get('getChartOfStudent', ['as '=> 'getChartOfStudent', 'uses' => 'HomeController@getChartOfStudent']);
+	
 	Route::get('index', ['as '=> 'getIndex', 'uses' => 'HomeController@getIndex']);
 	// START LECTURER MANAGEMENT
 	Route::resource('lecturer', 'LecturersController');

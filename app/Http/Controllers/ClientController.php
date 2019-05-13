@@ -13,6 +13,8 @@ use Alert;
 use Hash;
 use App\staff;
 use App\events;
+use GuzzleHttp\Client;
+// use App\Http\Controllers\BaoKimAPI;
 // use Mail;
 // use App\Helpers\CourseHelper;
 
@@ -48,7 +50,31 @@ class ClientController extends Controller
                 $msg->from('tducnguyen1997@gmail.com','LeoGo English Center');
                 $msg->to($this->email)->subject('Xác nhận đăng kí học');
             });
-            // Alert::success('Success Message', 'Optional Title')->persistent('Close');
+//             $client = new Client(['timeout' => 20.0]);
+// $options['query']['jwt'] = BaoKimAPI::getToken();
+
+// $payload['mrc_order_id'] = "LZaBekUIdWzQ92PG";
+// $payload['total_amount'] = "13";
+// $payload['description'] = "uFjnVCgoSrI1ojFQ";
+// $payload['url_success'] = "0DEYqmLgzsWviZiD";
+// $payload['url_detail'] = "http://127.0.0.1:8000/home";
+// $payload['lang'] = "SMHRHfGwwknks6ve";
+// $payload['items'] = "3fTvjvszMa6ws9TR";
+// $payload['bpm_id'] = "13";
+// $payload['accept_bank'] = "9";
+// $payload['accept_cc'] = "9";
+// $payload['accept_qrpay'] = $getNameCourse->Tuition;
+// $payload['webhooks'] = "N5nzVz4J3BW4wB41";
+// $payload['customer_email'] = $this->email;
+// $payload['customer_phone'] = $request->txt_phone;
+// $payload['customer_name'] = $request->txt_name;
+// $payload['customer_address'] = $request->txt_address;
+// $options['form_params'] = $payload;
+
+// $response = $client->request("POST", "https://api.baokim.vn/payment/api/v4/order/send", $options);
+// echo "Response status code: " . $response->getStatusCode();
+// echo "Response data: ". $response->getBody()->getContent();
+            Alert::success('Success Message', 'Optional Title')->persistent('Close');
             Alert::success('Good job!');
             return redirect()->route('getHome');
         } else{

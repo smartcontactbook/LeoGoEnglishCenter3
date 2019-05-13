@@ -362,4 +362,3 @@ class HomeController extends Controller
         return redirect()->route('register.index');
     }
 }
-

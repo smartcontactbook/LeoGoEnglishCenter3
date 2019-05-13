@@ -35,8 +35,8 @@
             <ul class="sidebar-menu" data-widget="tree">
               <li class="header">MAIN NAVIGATION
               </li>
-              <li class="active treeview">
-                <a href="">
+              <li class="active">
+              <a href="{{ route('dasboard.index') }}">
                   <i class="fas fa-tachometer-alt"></i>
                   <span> Dashboard
                   </span>

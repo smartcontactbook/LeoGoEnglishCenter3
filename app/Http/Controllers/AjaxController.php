@@ -213,6 +213,69 @@ class AjaxController extends Controller
         return view('admin.classManagement.ajaxToggoActiveStatusClass', compact('status', 'order_id'));
     }
 
+    public function delete_lecturer($id){
+        $countLecturer = leogo_class::where('Lecturer_ID', '=', $id)->count();
 
+        if($countLecturer != 0){
+            echo "<script>
+                    alert('Sory!!! You can not delete this lecturer because this lecturer in class.');
+                    window.location.href='{{ route('lecturer.index')}}';
+                </script>";
+            
+        } else{
+            $result = DB::table("staff")->delete($id);
+            if($result){
+                echo "<script>
+                    alert('Delete sucess');
+                    window.location.href='{{ route('lecturer.index')}}';
+                </script>";
+            } else{
+                echo "<script>
+                    alert('Some problem');
+                    window.location.href='{{ route('lecturer.index')}}';
+                </script>";
+            }
+        }
+    }
+
+    public function delete_staff($id){
+        $result = DB::table("staff")->delete($id);
+        if($result){
+            echo "<script>
+                alert('Delete sucess');
+                window.location.href='{{ route('staff.index')}}';
+            </script>";
+        } else{
+            echo "<script>
+                alert('Some problem');
+                window.location.href='{{ route('staff.index')}}';
+            </script>";
+        }
+    }
+
+    public function delete_tutor($id){
+        $countLecturer = leogo_class::where('Tutor_ID', '=', $id)->count();
+
+        if($countLecturer != 0){
+            echo "<script>
+                    alert('Sory!!! You can not delete this lecturer because this lecturer in class.');
+                    window.location.href='{{ route('tutor.index')}}';
+                </script>";
+            
+        } else{
+            $result = DB::table("staff")->delete($id);
+            if($result){
+                echo "<script>
+                    alert('Delete sucess');
+                    window.location.href='{{ route('tutor.index')}}';
+                </script>";
+            } else{
+                echo "<script>
+                    alert('Some problem');
+                    window.location.href='{{ route('tutor.index')}}';
+                </script>";
+            }
+        }
+    }
 
 }

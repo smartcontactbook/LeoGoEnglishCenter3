@@ -39,7 +39,7 @@
 										/>
 									</div>
 									<div class="form-group">
-										<label>Date:</label>
+										<label>Date</label>
 										<div class="input-group date" data-provide="datepicker">
 											<div class="input-group-addon">
 												<span class="glyphicon glyphicon-th"></span>
@@ -51,16 +51,17 @@
 										<label>Gender</label>
 										<select id="txt_gender"  name="txt_gender" class="form-control select2">
 											@if($getLecturer->Gender == 1)
-												<option value="{!!old('txt_gender', 'Male')!!}" disabled=""></option>
+												<option value="{!!old('txt_gender', $getLecturer->Gender)!!}" id="txt_gender" disabled>FeMale</option>
+												
 											@else
-												<option value="{!!old('txt_gender', 'Female')!!}" disabled=""></option>
+												<option value="{!!old('txt_gender', $getLecturer->Gender)!!}" id="txt_gender" disabled>Male</option>
 											@endif
 											<option value="1" id="txt_gender">Male</option>
 											<option value="0" id="txt_gender">Female</option>
 										</select>
 									</div>
 									<div class="form-group">
-										<label>Adress</label>
+										<label>Address</label>
 										<input type="text" id="txt_address" class="form-control" required placeholder="Address"
 										name="txt_address" value="{!! old('txt_address', $getLecturer->Address) !!}">
 									</div>

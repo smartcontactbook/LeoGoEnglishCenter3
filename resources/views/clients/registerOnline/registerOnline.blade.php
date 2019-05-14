@@ -19,7 +19,9 @@
           </div>
         </div>
         <div class="signup-detail">
-          <form action="#" id="form__consult__register__popup" class="VUS">
+          <form action="{{ route('postRegisterOnline') }}"  method="POST" id="form__consult__register__popup" class="VUS">
+              <!-- <form id="addRegisterOnline"> -->
+              {!! csrf_field() !!}
             <input type="hidden" name="source_block" value="Popup contact" />
             <input type="hidden" name="courseType" class="courseType o2o-courseType" value="" />
             <div class="contact-signup-content">
@@ -28,28 +30,40 @@
                 <input type="text" class="half-w right txtDateofBirth o2o-birthday" data-text-required="Bạn chưa nhập ng&#224;y sinh " placeholder="Ngày tháng năm sinh(dd/mm/yyyy)*">
               </div>
               <div class="input-block clearfix">
-                <input type="text" class="half-w left txtContactName o2o-contactname" placeholder="T&#234;n phụ huynh">
-                <input type="text" class="half-w right txtPhone o2o-phone" placeholder="Địa chỉ">
+                <input type="text" class="half-w left txtContactName o2o-contactname" data-text-required="Bạn chưa nhập tên phụ huynh " placeholder="T&#234;n phụ huynh">
+                <input type="text" class="half-w right txtPhone o2o-phone" data-text-required="Bạn chưa nhập địa chỉ " placeholder="Địa chỉ">
               </div>
               <div class="input-block clearfix">
                 <input type="text" class="half-w left txtEmail o2o-email" data-text-required="Bạn chưa nhập email" data-text-invalid="Địa chỉ email kh&#244;ng hợp lệ" placeholder="Email*">
                 <input type="text" class="half-w right txtPhone o2o-phone" data-text-required="Bạn chưa nhập số điện thoại" data-text-invalid="Kh&#244;ng đ&#250;ng định dạng số điện thoại" placeholder="Số điện thoại*">
               </div>
-{{--               <div class="input-block clearfix">
+              <div class="input-block clearfix">
                 <select name="nhucauhoc" class="input-block nhucauhoc" style="background-color:#fff">
                   <option value="">Khóa học quan tâm</option>
                   @foreach($getCourses as $value)
                     <option value="{{ $value->id }}">{{ $value->Course_Name }}</option>
                   @endforeach
                 </select>
-              </div> --}}
+              </div>
+              <div class="input-block clearfix">
+                  <select name="nhucauhoc" class="input-block nhucauhoc" style="background-color:#fff">
+                    <option value="">Hình thức thanh toán</option>
+                    <option value="0">Thanh toán sau khi nhập học</option>
+                    <option value="1">Thanh toán ngay</option>
+                  </select>
+                </div>
               <div class="input-block clearfix">
                 <textarea class="block-textarea txtNote o2o-notes" data-text-required="Bạn chưa nhập th&#244;ng điệp" placeholder="Th&#244;ng tin th&#234;m về nhu cầu học"></textarea>
               </div>
+              
               <div class="btn-submit">
                 <button type="submit" class=" btn-text-w-ico btn-regular btn-regular--lr40" data-title="Gửi th&#244;ng tin">
                   <i class="icofont-send-mail"></i>
                   <span class="text">Gửi th&#244;ng tin</span>
+                </button>
+                <button type="submit" class=" btn-text-w-ico btn-regular btn-regular--lr40" data-title="Gửi th&#244;ng tin" style="margin-left: 50px">
+                  <i class="icofont-send-mail"></i>
+                  <span class="text">Thanh Toán Ngay</span>
                 </button>
               </div>
             </div>
@@ -60,7 +74,7 @@
                 <span class="text">   
                   Tòa nhà VNPT cầu Sông Hàn, 47 Trần Phú 
                 </span>
-                <a href="tel:091 145 77 99" class="detail ico ico-phone-blue">
+                <a href="tel:091 145 77 99" " >
                   091 145 77 99
                 </a>
               </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\LecturerHelper;
+use App\Requests\StaffRequest;
 use App\staff;
 use Session;
 use Hash;
@@ -23,8 +24,9 @@ class LecturersController extends Controller
         return view('admin.lecturersManagement.addLecturers');
     }
 
-    public function store(Request $request)
+    public function store(StaffRequest $request)
     {
+
         $lecturer = new staff;
         $lecturer->Description = $request->txt_description;
         $lecturer->Full_Name = $request->txt_FirstName;

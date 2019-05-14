@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\DasboardHelper;
 use App\course;
 use App\leogo_class;
 use App\time_study;
@@ -211,5 +212,7 @@ class AjaxController extends Controller
 
         return view('admin.classManagement.ajaxToggoActiveStatusClass', compact('status', 'order_id'));
     }
+
+
 
 }

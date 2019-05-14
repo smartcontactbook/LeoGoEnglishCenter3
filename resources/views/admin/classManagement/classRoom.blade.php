@@ -1,5 +1,4 @@
 
-<div id="div1">
   @extends('admin.layout.master.master')
   @section('main-content')
   <style>
@@ -172,7 +171,6 @@
                                     <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}
                                     </label>
                                   </div>
-<<<<<<< HEAD
                                 </div>
                                 <div class="row">
                                   <label class="control-label edit-row">Status</label>
@@ -183,22 +181,6 @@
                                         <img src="{{asset('image/')}}/leogo/cancel.png" onclick="ajaxToggoActiveStatus({{$value->id}}, 0)">
                                         @else
                                         <img src="{{asset('image/')}}/leogo/checked.png" onclick="ajaxToggoActiveStatus({{$value->id}}, 1)">
-=======
-                                  <div class="row">
-                                    <label class="control-label edit-row">Status</label>
-                                    <div class="pull-right">
-                                        @if($value->Status == 1)
-                                          <a href="{{ route('changeStatus', $value->id_leogo) }}">
-                                            <button type="button" class="label label-success edit-pull-right">
-                                            <i class="fa fa-check"></i></button>
-                                          </a>
-                                        @else
-                                          <a href="{{ route('changeStatus', $value->id_leogo) }}">
-                                            <button type="button" class="label label-danger edit-pull-right">
-                                            <i class="fa fa-close"></i></button>
-                                          </a>
-
->>>>>>> bbc1f4bcdaf0245e32a6520c15a2bf4a4bb9d6b4
                                         @endif
                                       </div>
                                     </a>
@@ -329,11 +311,7 @@
               <div class="modal-body">
                 <div class="box-body">
                   <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
-<<<<<<< HEAD
                   <table id="example2" class="table table-bordered table-striped" style="font-size: 12px;"  >
-=======
-                  <table id="example2" class="table table-bordered table-striped" style="font-size: 12px;">
->>>>>>> bbc1f4bcdaf0245e32a6520c15a2bf4a4bb9d6b4
                     <thead>
                       <tr>
                         <th>ID
@@ -465,7 +443,6 @@
                 </tr>
               </thead>
               <tbody class="input-score">
-
               </tbody>
             </table>
           </div>
@@ -916,5 +893,3 @@
     </script>
 </section>
 @endsection
-    
-    </div>

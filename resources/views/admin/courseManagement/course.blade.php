@@ -58,7 +58,7 @@
                 <th>Image</th>
                 <th>Description</th>
                 <th>Term</th>
-                <th style="width: 128px" class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
+                <th style="width: 150px" class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -72,7 +72,9 @@
                 <td>{{ $getCourse->Description }}</td>
                 <td>{{ $getCourse->Term }}</td>
                 <th>
-                  <a href="{{ route('course.edit', $getCourse->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="fa fa-edit"></i></button></a>
+                  <a href="{{ route('course.edit', $getCourse->id) }}">
+                    <button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="fa fa-edit"></i></button>
+                  </a>
                   <button type="button" class="btn btn-warning editLeftRight" data-toggle="modal" data-target="#addLevel" data-courseid="{{ $getCourse->id }}" data-name="{{ $getCourse->Course_Name }}" data-description="{{ $getCourse->Description }}" data-term="{{ $getCourse->Term }}" >Add Level</button> 
                   <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
                 </th>
@@ -117,9 +119,11 @@
           <table id="example2" class="table table-bordered table-striped">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Level Name</th>
                 <th>Score Min</th>
                 <th>Score Max</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody class="add-level">
@@ -129,8 +133,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-        <button type="submit" id="save" class="saveScore" >Save
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        
               </button><!-- 
               <button type="submit" class="btn btn-primary">Save</button> -->
             </div>
@@ -141,22 +145,23 @@
 
       <!-- /.modal -->
 
-      <script type="text/javascript">
+      
 
       // CKEDITOR.replace('editor1');
 
       // CKEDITOR.replace('txt_contentTest');
-      $.fn.modal.Constructor.prototype.enforceFocus = function() {
-        var $modalElement = this.$element;
-        $(document).on('focusin.modal',function(e) {
-          var $parent = $(e.target.parentNode);
-          if ($modalElement[0] !== e.target
-            && !$modalElement.has(e.target).length
-            && $(e.target).parentsUntil('*[role="dialog"]').length === 0) {
-            $modalElement.focus();
-        }
-      });
-      };
+      // $.fn.modal.Constructor.prototype.enforceFocus = function() {
+      //   var $modalElement = this.$element;
+      //   $(document).on('focusin.modal',function(e) {
+      //     var $parent = $(e.target.parentNode);
+      //     if ($modalElement[0] !== e.target
+      //       && !$modalElement.has(e.target).length
+      //       && $(e.target).parentsUntil('*[role="dialog"]').length === 0) {
+      //       $modalElement.focus();
+      //   }
+      // });
+      // };
+      <script type="text/javascript">
       $(document).ready(function(){
 
         function loadData($courseid){
@@ -213,7 +218,7 @@
             var courseids = button.data('name')
             code = `<tr>
             <td  id="Course_ID">${courseid}</td>
-            <td contenteditable id="Level_Name"></td>
+            <td contenteditable id="Level_Name" pattern="^[a-zA-z]*$"></td>
             <td contenteditable id="Score_min"></td>
             <td contenteditable id="Score_max"></td>
             <td><button type="button" class="btn btn-success btn-xs" id="add" data-courseid="${courseid}">Add</button></td>
@@ -222,7 +227,8 @@
             {
               var item = response.data[i];
               code +=`
-              <tr>      <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
+              <tr>      
+              <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
               <td contenteditable class="column_name" data-column_name="Level_Name" data-id="${item.id_level}">${item.Level_Name} </td>
               <td contenteditable class="column_name" data-column_name="Score_min" data-id="${item.id_level}">${item.Score_min} </td>
               <td contenteditable class="column_name" data-column_name="Score_max" data-id="${item.id_level}">${item.Score_max} </td>
@@ -309,45 +315,44 @@
         console.log(course_id);
         if(confirm("Are you sure you want to delete this records?"))
         {
-         $.ajax({
-          url:'http://127.0.0.1:8000/LevelOfCourse/delete_data',
-          method:"POST",
-          data:{id:idd, _token:token},
-          success:function(data)
-          {
-            $('.message').html(data);
-            loadData(course_id);
-
-          }
-        });
-       }
+          $.ajax({
+            url:'http://127.0.0.1:8000/LevelOfCourse/delete_data',
+            method:"POST",
+            data:{id:idd, _token:token},
+            success:function(data)
+            {
+              $('.message').html(data);
+              loadData(course_id);
+            }
+          });
+        }
      });
 
-      function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
+//       function readURL(input) {
+//         if (input.files && input.files[0]) {
+//           var reader = new FileReader();
 
-          reader.onload = function (e) {
-            $('#profile-img-tag').attr('src', e.target.result);
+//           reader.onload = function (e) {
+//             $('#profile-img-tag').attr('src', e.target.result);
 
-          }
-        });
-}
+//           }
+//         });
+// }
 
-      // function readURL(input) {
-      //     if (input.files && input.files[0]) {
-      //         var reader = new FileReader();
+//       // function readURL(input) {
+//       //     if (input.files && input.files[0]) {
+//       //         var reader = new FileReader();
       
-      //         reader.onload = function (e) {
-      //             $('#profile-img-tag').attr('src', e.target.result);
-      //         }
-      //         reader.readAsDataURL(input.files[0]);
-      //     }
-      // }
+//       //         reader.onload = function (e) {
+//       //             $('#profile-img-tag').attr('src', e.target.result);
+//       //         }
+//       //         reader.readAsDataURL(input.files[0]);
+//       //     }
+//       // }
 
-      $("#profile-img").change(function(){
-        readURL(this);
-      });
+//       $("#profile-img").change(function(){
+//         readURL(this);
+//       });
 
 
     });

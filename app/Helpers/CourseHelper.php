@@ -13,7 +13,6 @@ class CourseHelper
     public static function getCourse()
     {
         $getCourses = course::all();
-
         return $getCourses;
     }
 

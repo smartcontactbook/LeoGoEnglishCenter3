@@ -1,28 +1,6 @@
 @extends('admin.layout.master.master')
 @section('main-content')
-<script type='text/javascript'>
-function preview_image(event) 
-{
- var reader = new FileReader();
- reader.onload = function()
- {
-  var output = document.getElementById('output_image');
-  output.src = reader.result;
- }
- reader.readAsDataURL(event.target.files[0]);
-}
-</script>
-<style>
-#wrapper
-{
- margin:0 auto;
- padding:0px;
-}
-#output_image
-{
- max-width:300px;
-}
-</style>
+
   <section class="content-header">
     <h1><b>ADD COURSE</b>
     </h1>

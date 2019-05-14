@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\LecturerHelper;
 use App\Requests\StaffRequest;
+use Illuminate\Support\Facades\DB;
 use App\staff;
 use Session;
 use Hash;
+use App\leogo_class;
 
 class LecturersController extends Controller
 {
@@ -15,7 +17,6 @@ class LecturersController extends Controller
     public function index()
     {
         $getLecturers = LecturerHelper::getLecturers();
-
         return view('admin.lecturersManagement.lecturers', compact('getLecturers'));
     }
 
@@ -97,6 +98,31 @@ class LecturersController extends Controller
 
     public function destroy($id)
     {
-        //
+        $countLecturer = leogo_class::where('Lecturer_ID', '=', $id)->count();
+        
+        echo "<script>
+            alert('Sory!!! You can not delete this lecturer because this lecturer in class.');
+            window.location.href='{{ route('lecturer.index')}}';
+        </script>";
+        // if($countLecturer != 0){
+        //     echo "<script>
+        //             alert('Sory!!! You can not delete this lecturer because this lecturer in class.');
+        //             window.location.href='{{ route('lecturer.index')}}';
+        //         </script>";
+            
+        // } else{
+        //     $result = DB::table("staff")->delete($id);
+        //     if($result){
+        //         echo "<script>
+        //             alert('Delete sucess');
+        //             window.location.href='{{ route('lecturer.index')}}';
+        //         </script>";
+        //     } else{
+        //         echo "<script>
+        //             alert('Some problem');
+        //             window.location.href='{{ route('lecturer.index')}}';
+        //         </script>";
+        //     }
+        // }
     }
 }

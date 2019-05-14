@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\news;
 use Carbon\Carbon;
+use Auth;
 
 class NewsController extends Controller
 {
@@ -47,7 +49,8 @@ class NewsController extends Controller
             $news->image = $file_image;
             $request->file('image')->move('image/news/',$file_image);
             $news->content = $request->txt_content;
-            $news->create_at = Carbon::now()->toDateString();
+            $news->create_at = Carbon::now()->toDateString(); 
+            $news->id_user = Auth::guard('staff')->user()->id;
             // dd( $request->cmb_type);
             $news->type = $request->cmb_type;
             if($request->cmb_type = 1){
@@ -142,6 +145,18 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = DB::table("news")->delete($id);
+
+        if($result){
+            echo "<script>
+                alert('Delete sucess');
+                window.location.href='{{ route('news.index')}}';
+            </script>";
+        } else{
+            echo "<script>
+                alert('Some problem');
+                window.location.href='{{ route('news.index')}}';
+            </script>";
+        }
     }
 }

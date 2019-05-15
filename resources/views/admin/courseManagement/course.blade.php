@@ -65,7 +65,7 @@
               <?php $stt=0 ?>
               @foreach($getCourses as $getCourse)
               <?php $stt=$stt+1 ?>
-              <tr>
+              <tr id="{{$getCourse->id}}">
                 <td>{{ $stt }}</td>
                 <td>{{ $getCourse->Course_Name  }}</td>
                 <td class="text-center"><img src="{{asset('image/')}}/course/{{ $getCourse->image }}" style='max-width:80px;max-height:80px' class='img img-thumbnail' /></td>
@@ -74,7 +74,7 @@
                 <th>
                   <a href="{{ route('course.edit', $getCourse->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="fa fa-edit"></i></button></a>
                   <button type="button" class="btn btn-warning btn-sm editLeftRight" data-toggle="modal" data-target="#addLevel" data-courseid="{{ $getCourse->id }}" data-name="{{ $getCourse->Course_Name }}" data-description="{{ $getCourse->Description }}" data-term="{{ $getCourse->Term }}" >Add Level</button> 
-                  <button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-danger btn-sm remove"><i class="far fa-trash-alt"></i></button>
                 </th>
               </tr>
               @endforeach
@@ -148,21 +148,32 @@
       <!-- /.modal -->
 
       <script type="text/javascript">
+      $(".remove").click(function(){
+        var id = $(this).parents("tr").attr("id");
+        $.ajaxSetup({
+          headers: {
+            'csrftoken' : '{{ csrf_token() }}' }
+        });
 
-      // CKEDITOR.replace('editor1');
-
-      // CKEDITOR.replace('txt_contentTest');
-      // $.fn.modal.Constructor.prototype.enforceFocus = function() {
-      //   var $modalElement = this.$element;
-      //   $(document).on('focusin.modal',function(e) {
-      //     var $parent = $(e.target.parentNode);
-      //     if ($modalElement[0] !== e.target
-      //       && !$modalElement.has(e.target).length
-      //       && $(e.target).parentsUntil('*[role="dialog"]').length === 0) {
-      //       $modalElement.focus();
-      //   }
-      // });
-      // };
+        if(confirm('Are you sure to remove this record ?'))
+        {
+          $.ajax({
+            url: 'http://127.0.0.1:8000/course/'+id,
+            type: 'DELETE',
+            data: {
+              "id": id, "_token": "{{ csrf_token() }}",}
+            ,
+            error: function() {
+              alert('Something is wrong');
+            }
+            ,
+            success: function(data) {
+              $("#"+id).remove();
+              alert("Record removed successfully");
+            }
+          });
+        }
+      });
       $(document).ready(function(){
 
         function loadData($courseid){
@@ -205,41 +216,41 @@
         })
       }
 
-      $('#addLevel').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) 
-        var courseid = button.data('courseid')
-        var modal = $(this)
-        modal.find('.modal-body #txt_courseid').val(courseid);
-        var code = ''
-        $.ajax({
-          type : 'GET',
-          url : 'http://127.0.0.1:8000/LevelOfCourse/'+courseid,
+        $('#addLevel').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) 
+          var courseid = button.data('courseid')
+          var modal = $(this)
+          modal.find('.modal-body #txt_courseid').val(courseid);
+          var code = ''
+          $.ajax({
+            type : 'GET',
+            url : 'http://127.0.0.1:8000/LevelOfCourse/'+courseid,
 
-          success: function(response){
-            var courseids = button.data('name')
-            code = `<tr>
-            <td  id="Course_ID">${courseid}</td>
-            <td contenteditable id="Level_Name"></td>
-            <td contenteditable id="Score_min"></td>
-            <td contenteditable id="Score_max"></td>
-            <td><button type="button" class="btn btn-success btn-xs" id="add" data-courseid="${courseid}">Add</button></td>
-            </tr>`;
-            for(var i = 0; i < response.data.length; i++)
-            {
-              var item = response.data[i];
-              code +=`
-              <tr>      <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
-              <td contenteditable class="column_name" data-column_name="Level_Name" data-id="${item.id_level}">${item.Level_Name} </td>
-              <td contenteditable class="column_name" data-column_name="Score_min" data-id="${item.id_level}">${item.Score_min} </td>
-              <td contenteditable class="column_name" data-column_name="Score_max" data-id="${item.id_level}">${item.Score_max} </td>
-              <td><button type="button" class="btn btn-danger btn-xs delete" id="delete" data-id="${item.id_level}">Delete</button></td>
+            success: function(response){
+              var courseids = button.data('name')
+              code = `<tr>
+              <td  id="Course_ID">${courseid}</td>
+              <td contenteditable id="Level_Name"></td>
+              <td contenteditable id="Score_min"></td>
+              <td contenteditable id="Score_max"></td>
+              <td><button type="button" class="btn btn-success btn-xs" id="add" data-courseid="${courseid}">Add</button></td>
               </tr>`;
+              for(var i = 0; i < response.data.length; i++)
+              {
+                var item = response.data[i];
+                code +=`
+                <tr>      <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
+                <td contenteditable class="column_name" data-column_name="Level_Name" data-id="${item.id_level}">${item.Level_Name} </td>
+                <td contenteditable class="column_name" data-column_name="Score_min" data-id="${item.id_level}">${item.Score_min} </td>
+                <td contenteditable class="column_name" data-column_name="Score_max" data-id="${item.id_level}">${item.Score_max} </td>
+                <td><button type="button" class="btn btn-danger btn-xs delete" id="delete" data-id="${item.id_level}">Delete</button></td>
+                </tr>`;
+              }
+              $('.add-level').html(code);
             }
-            $('.add-level').html(code);
-          }
-        })
+          })
+        });
       });
-});
 
       var token = $('input[name="_token"]').val();
 

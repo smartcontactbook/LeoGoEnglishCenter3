@@ -12,6 +12,6 @@ class event_detail extends Model
 
     public function events()
     {
-    	return $this->belongsTo('app\events');
+    	return $this->belongsTo('app\events')->withTrashed();
     }
 }

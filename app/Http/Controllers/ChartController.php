@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Helpers\DasboardHelper;
+use App\events;
+use App\event_detail;
 
 class ChartController extends Controller
 {
@@ -82,6 +85,19 @@ class ChartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $result1 = DB::table('event_detail')->where('event_detail.id_event', '=', $id)->delete();
+        $result2=  DB::table('events')->delete($id);
+        if($result1 && $result2){
+            echo "<script>
+                alert('Delete sucess');
+                window.location.href='{{ route('getEvents')}}';
+            </script>";
+        } else{
+            echo "<script>
+                alert('Some problem');
+                window.location.href='{{ route('getEvents')}}';
+            </script>";
+        }
     }
 }

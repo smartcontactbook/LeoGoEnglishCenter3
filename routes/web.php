@@ -35,7 +35,8 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::resource('lecturer', 'LecturersController');
 	Route::post('updateLecturer/{id}', ['as' => 'postUpdateLecturer', 'uses' => 'HomeController@postUpdateLecturer']);
 	// END LECTURER MANAGEMENT
-
+	
+	Route::get('test', ['as '=> 'test', 'uses' => 'HomeController@test']);
 	// START COURSE MANAGEMENT
 	Route::resource('course', 'CourseController');
 	Route::get('LevelOfCourse/{id}', ['as' => 'getLevelOfCourse', 'uses' => 'AjaxController@getLevelOfCourse']);
@@ -87,7 +88,7 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	Route::resource('register', 'RegisterController');
 	Route::post('updateRegister',['as'=>'postUpdateRegister','uses'=>'HomeController@postUpdateRegister']);
 	Route::post('addChildren',['as'=>'postAddChildren','uses'=>'HomeController@postAddChildren']);
-	Route::post('delChildren/{id}',['as'=>'postDelRegister','uses'=>'HomeController@postDelRegister']);
+	Route::delete('delChildren/{id}',['as'=>'postDelRegister','uses'=>'HomeController@postDelRegister']);
 	//
 
 	// START TUTOR MANAGEMENT

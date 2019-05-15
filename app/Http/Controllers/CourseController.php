@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Helpers\CourseHelper;
 use App\course;
-
+use App\level;
 class CourseController extends Controller
 {
 
@@ -102,6 +103,26 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
-        //
+        $countLevel =level::where('Course_ID', $id)->count(); 
+        if($countLevel == 0){
+            $result = DB::table("cuorse")->delete($id);
+            if($result){
+                echo "<script>
+                    alert('Delete sucess');
+                    window.location.href='{{ route('course.index')}}';
+                </script>";
+            } else{
+                echo "<script>
+                    alert('Some problem');
+                    window.location.href='{{ route('course.index')}}';
+                </script>";
+            }
+        } else{
+            echo "<script>
+                    alert('Sory!!! You can not delete this course because this course have must level. You need delete level.');
+                    window.location.href='{{ route('course.index')}}';
+                </script>";
+        }
+        
     }
 }

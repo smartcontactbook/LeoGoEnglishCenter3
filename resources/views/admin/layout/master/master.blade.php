@@ -8,8 +8,6 @@
     <title>LeoGo | Dashboard
     </title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styleEdit.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bower_components/font-awesome/css/font-awesome.min.css') }}">
@@ -26,6 +24,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.2/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js')}}"></script>
+
     
     <style type="text/css">
       .main-section{
@@ -62,6 +61,7 @@
         background: transparent !important;
       }
     </style>
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini" id="testLoad">
     <div class="wrapper">   
@@ -79,11 +79,11 @@
     </script>
     <script src="{{ asset('js/bower_components/jquery-ui/jquery-ui.min.js') }}">
     </script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-
-    <script>
-      $.widget.bridge('uibutton', $.ui.button);
-    </script>
+    
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>       
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js">

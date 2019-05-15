@@ -125,6 +125,10 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// getAddEvent
 	Route::post('upload', ['as' => 'postImages', 'uses' => 'EventsController@postImages']);
 
+
+	Route::resource('chartTest', 'ChartTestController');
+
+
 	// NEWS 
 	Route::resource('news', 'NewsController');
 	Route::resource('brand', 'BrandController');

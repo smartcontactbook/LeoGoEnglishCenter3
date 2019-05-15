@@ -229,6 +229,7 @@
                       </i> Register List  
                     </a>
                   </li>
+                  
                 </ul>
               </li>
               <li class="treeview">
@@ -238,6 +239,7 @@
                   </span>
                 </a>
               </li>
+              
             </ul>
             @endif
           @endif

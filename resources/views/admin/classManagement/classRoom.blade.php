@@ -214,23 +214,6 @@
                               </li>
                             </ul>
                           </div>
-{{--                           <!-- /.box-body -->
-=======
-                                          type="button" 
-                                          class="btn pull-right edit-button edit-itemJs" 
-                                          data-toggle="modal" 
-                                          data-id="{{$value->id_leogo}}" 
-                                          data-target="#inputscore">
-                                    Score
-                                  </button>
-                                </a>
-                              </div>
-                            </li>
-                          </ul>
-
-                        </div> 
-                        --}}
-                        <!-- /.box-body -->
                       </div>
                       @endif
                       @endforeach
@@ -347,18 +330,8 @@
               </div>
             </div>
           </div>
-{{-- <<<<<<< Level_migration
-          <div class="modal-footer">
-            <button
-            type="button"
-            class="btn btn-success btn-xs"
-            data-dismiss="modal"
-            aria-label="Close"
-            > Save
-            </button>
-=======
-        </div> --}}
-        {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="inputscore">
+        </div>
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="inputscore">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header Editheader">
@@ -374,8 +347,6 @@
                 <h4 class="modal-title">List Children Of Class
                 </h4>
               </div>
-              <div class="panel-heading">Sample Data
-              </div>
               <div class="modal-body">
                 <div id="message">
                 </div>
@@ -388,6 +359,9 @@
                         </th>
                         <th>Class Name
                         </th>
+                        <th>Score Test 1</th>
+                        <th>Score Test 2</th>
+                        <th>Score Test 3</th>
                         <th>Score Midtem
                         </th>
                         <th>Score Final
@@ -402,63 +376,15 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close
                 </button>
-                <button type="submit" id="save" class="saveScore" >Save
+                <button type="button" class="btn btn-success btn-sm" data-dismiss="modal" aria-label="Close">Save
                 </button>
-                <!-- 
-<button type="submit" class="btn btn-primary">Save</button> -->
               </div>
             </div>
-{{-- >>>>>>> master --}}
-          {{-- </div>
-        </div> --}} 
-      </div>
-    </div>
-
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="inputscore">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header Editheader">
-            <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            >
-            <span aria-hidden="true">×</span>
-          </button>
-          <h4 class="modal-title">List Children Of Class</h4>
-        </div>
-        <div class="modal-body">
-          <div id="message"></div>
-          <div class="box-body">
-            <!--   <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value=""> -->
-            <table id="example2" class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Class Name</th>
-                  <th>Score Midtem</th>
-                  <th>Score Final</th>
-                </tr>
-              </thead>
-              <tbody class="input-score">
-              </tbody>
-            </table>
           </div>
         </div>
-        <div class="modal-footer">
-          <button
-          type="button"
-          class="btn btn-success btn-xs"
-          data-dismiss="modal"
-          aria-label="Close"
-          > Save
-        </button>
       </div>
     </div>
-  </div>
-</div>
+
           <!-- 
             <button type="submit" class="btn btn-primary">Save</button> -->
 
@@ -612,6 +538,7 @@
                           </th>
                           <th>Class Name
                           </th>
+                          
                           <th>Score Midtem
                           </th>
                           <th>Score Final
@@ -637,6 +564,8 @@
     </div>
 
     <script type="text/javascript">
+
+
       $(function(){
         var loading = $('#loadbar').hide();
         $(document)
@@ -647,82 +576,80 @@
         });
       });
 
-      function ajaxToggoActiveStatus(id_user, presentStatus){
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-        $.ajax({
-          url: "{{ route('postCheckStatus') }}",  
-          type: 'POST',
-          cache: false,
-          data: {
-            id:id_user, status:presentStatus}
-            ,
-            success: function(data){
-              $('.active'+id_user).html(data);
-            }
-            ,
-            error: function (){
-              alert('Lỗi đã xảy ra');
-            }
-          });
-        return false;
-      }
-
-      function fetchdata(){
-        $.ajax({
-          type : 'GET',
-          url : 'http://127.0.0.1:8000/classRoom',
-          success: function(response){
-            $data = $(response);
-            $('#div1').fadeOut().html($data).fadeIn();  
-            // $('#div1').load(response);
-          }
-        })
-      }
       $(document).ready(function(){
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-          $('#editClass').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) 
-            var id_leogo_class = button.data('idleogoclass')
-            console.log(id_leogo_class)
-            var modal = $(this)
-            modal.find('.modal-body #txt_id_leogo_class').val(id_leogo_class);
-            $.ajax({
 
-            })
+
+      
+
+        function ajaxToggoActiveStatus(id_user, presentStatus){
+
+          $.ajax({
+            url: "{{ route('postCheckStatus') }}",  
+            type: 'POST',
+            cache: false,
+            data: {
+              id:id_user, status:presentStatus}
+              ,
+              success: function(data){
+                $('.active'+id_user).html(data);
+              }
+              ,
+              error: function (){
+                alert('Lỗi đã xảy ra');
+              }
+            });
+          return false;
+        }
+
+        function fetchdata(){
+          $.ajax({
+            type : 'GET',
+            url : 'http://127.0.0.1:8000/classRoom',
+            success: function(response){
+              $data = $(response);
+              $('#div1').fadeOut().html($data).fadeIn();  
+              // $('#div1').load(response);
+            }
           })
-          // var id_class = 0;
-          $('#listTest').on('show.bs.modal', function (event) {
-            $('#listChildren').modal('hide');
-            var button = $(event.relatedTarget) 
-            var idchildrennew = button.data('idnew')
-            console.log(idchildrennew)
-            var id_old_class = button.data('oldclass')
-            var full_name = button.data('fullname')
-            var classname = button.data('classname')
-            var coursename = button.data('coursename')
-            var qtysession = button.data('qtysession')
-            var levelname = button.data('levelname')
-            var qtystu = button.data('qtystu')
-            var modal = $(this)
-            modal.find('.modal-body #txt_qtystu').val(qtystu);
-            modal.find('.modal-body #txt_id_old_class').val(id_old_class);
-            modal.find('.modal-body #txt_id_new').val(idchildrennew);
-            modal.find('.modal-body #txt_name').val(full_name);
-            modal.find('.modal-body #txt_classname').val(classname);
-            modal.find('.modal-body #txt_coursename').val(coursename);
-            modal.find('.modal-body #txt_qtysession').val(qtysession);
-            modal.find('.modal-body #txt_levelname').val(levelname);
-          });
-          $('.move').click(function (){
-            var data = $('#move-class').serialize();
+        }
+
+        $('#editClass').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) 
+          var id_leogo_class = button.data('idleogoclass')
+          console.log(id_leogo_class)
+          var modal = $(this)
+          modal.find('.modal-body #txt_id_leogo_class').val(id_leogo_class);
+          $.ajax({
+
+          })
+        })
+
+        $('#listTest').on('show.bs.modal', function (event) {
+          $('#listChildren').modal('hide');
+          var button = $(event.relatedTarget) 
+          var idchildrennew = button.data('idnew')
+          console.log(idchildrennew)
+          var id_old_class = button.data('oldclass')
+          var full_name = button.data('fullname')
+          var classname = button.data('classname')
+          var coursename = button.data('coursename')
+          var qtysession = button.data('qtysession')
+          var levelname = button.data('levelname')
+          var qtystu = button.data('qtystu')
+          var modal = $(this)
+          modal.find('.modal-body #txt_qtystu').val(qtystu);
+          modal.find('.modal-body #txt_id_old_class').val(id_old_class);
+          modal.find('.modal-body #txt_id_new').val(idchildrennew);
+          modal.find('.modal-body #txt_name').val(full_name);
+          modal.find('.modal-body #txt_classname').val(classname);
+          modal.find('.modal-body #txt_coursename').val(coursename);
+          modal.find('.modal-body #txt_qtysession').val(qtysession);
+          modal.find('.modal-body #txt_levelname').val(levelname);
+        })
+
+
+        $('.move').click(function (){
+          var data = $('#move-class').serialize();
             // console.log('123');
             var bla = $('#txt_id_new').val();
             //         var level = $(this).find(':selected').data('idlevel');
@@ -735,44 +662,39 @@
                 $('#listTest').modal('hide');
                 // fetchdata();
               }
-              ,
-            })
-          });
-          // $( "#code" ).on('show', function(){
-          //     // alert("Show!");
-          // });
-          $( "#listChildren" ).on('shown', function(){
-            // alert("Shown!");
-          });
-          $('.dynamic').change(function(){
-            var capacityValue = $('select.dynamic').find(':selected').data('idlevel');
-            var qtySudentValue = $('select.dynamic').find(':selected').data('qtystudent');
-            $('.operations-supplierCapacity').val(capacityValue);
-            $('.operations-qtystudent').val(qtySudentValue);
-            console.log(qtySudentValue);
-            var select = $(this).children("option:selected").val();
-            var value = $(this).val();
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-              type: 'GET',
-              url: 'http://127.0.0.1:8000/fetchNew/'+select,
-              success:function(data)
-              {
-                $('.show-test').html(data);
-              }
-            })
-          });
+          })
+        })
 
 
-          $('#listChildren').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) 
-            var id = button.data('id')
-            console.log(id);
-            var modal = $(this)
-            modal.find('.modal-body #txt_id').val(id);
-            var code = ''
-            $.ajax({
-              type : 'GET',
+        $('.dynamic').change(function(){
+          var capacityValue = $('select.dynamic').find(':selected').data('idlevel');
+          var qtySudentValue = $('select.dynamic').find(':selected').data('qtystudent');
+          $('.operations-supplierCapacity').val(capacityValue);
+          $('.operations-qtystudent').val(qtySudentValue);
+          console.log(qtySudentValue);
+          var select = $(this).children("option:selected").val();
+          var value = $(this).val();
+          var _token = $('input[name="_token"]').val();
+          $.ajax({
+            type: 'GET',
+            url: 'http://127.0.0.1:8000/fetchNew/'+select,
+            success:function(data)
+            {
+              $('.show-test').html(data);
+            }
+          })
+        })
+
+
+        $('#listChildren').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) 
+          var id = button.data('id')
+          console.log(id);
+          var modal = $(this)
+          modal.find('.modal-body #txt_id').val(id);
+          var code = ''
+          $.ajax({
+            type : 'GET',
               // data : b,
               url : 'http://127.0.0.1:8000/StudentOfClass/'+id,
               success: function(response){
@@ -812,17 +734,19 @@
                 $('.list-student').html(code);
               }
             })
-          }) 
-          $('#inputscore').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) 
-            var id = button.data('id')
-            var modal = $(this)
-            modal.find('.modal-body #txt_id').val(id);
-            var code = ''
-            $.ajax({
-              type : 'GET',
+        }) 
+
+
+        $('#inputscore').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) 
+          var id = button.data('id')
+          var modal = $(this)
+          modal.find('.modal-body #txt_id').val(id);
+          var code = ''
+          $.ajax({
+            type : 'GET',
               // data : b,
-              url : 'http://127.0.0.1:8000/ScoreOfStudent/'+id,
+              url : 'http://127.0.0.1:8000/StudentOfClass/'+id,
               success: function(response){
                 console.log(response);
                 for(var i = 0; i < response.data.length; i++)
@@ -840,6 +764,15 @@
                   <td contenteditable class="column_name" data-column_name="Class_Name" data-id="${item.id_history_user}
                   ">${item.Class_Name}
                   </td>
+                  <td contenteditable class="column_name" data-column_name="Score_Test1" data-id="${item.id_history_user}
+                  ">${item.Score_Test1}
+                  </td>
+                  <td contenteditable class="column_name" data-column_name="Score_Test2" data-id="${item.id_history_user}
+                  ">${item.Score_Test2}
+                  </td>
+                  <td contenteditable class="column_name" data-column_name="Score_Test3" data-id="${item.id_history_user}
+                  ">${item.Score_Test3}
+                  </td>
                   <td contenteditable class="column_name" data-column_name="Score_Midtem" data-id="${item.id_history_user}
                   ">${item.Score_Midtem}
                   </td>
@@ -852,44 +785,44 @@
                 $('.input-score').html(code);
               }
             })
-          }) 
-          //<meta name="csrf-token" content="{{ csrf_token() }}">
-          //
-          var token = $('input[name="_token"]').val();
-          $.ajaxSetup({
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-          });
-          $(document).on('blur', '.column_name', function(){
-            var coluumn_name = $(this).data("column_name");
-            var coluumn_value = $(this).text();
-            var idd = $(this).data("id");
+        })
+      });
+       
+        var token = $('input[name="_token"]').val();
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+
+        $(document).on('blur', '.column_name', function(){
+          var coluumn_name = $(this).data("column_name");
+          var coluumn_value = $(this).text();
+          var idd = $(this).data("id");
             if(coluumn_value != ''  )
-            {
-              //confirm("Are you sure you want "+coluumn_value)
-              $.ajax({
-                url:'http://127.0.0.1:8000/StudentOfClass/update_data',
-                method:"POST",
-                data:{
-                  column_name:coluumn_name, 
-                  column_value:coluumn_value, 
-                  id:idd, 
-                  _token:token}
-                  ,
-                  success:function(data)
-                  {
-                    console.log(data);
-                    $('.message').html(data);
-                  }
-                })
-            }
+          {
+            //confirm("Are you sure you want "+coluumn_value)
+            $.ajax({
+              url:'http://127.0.0.1:8000/StudentOfClass/update_data',
+              method:"POST",
+              data:{
+                column_name:coluumn_name, 
+                column_value:coluumn_value, 
+                id:idd, 
+                _token:token},
+                success:function(data)
+                {
+                  console.log(data);
+                  $('.message').html(data);
+                }
+            })
+          }
             else
             {
               $('.message').html("<div class='alert alert-danger'>Enter some value</div>");
             }
-          });
-        });
+          })
+
     </script>
 </section>
 @endsection

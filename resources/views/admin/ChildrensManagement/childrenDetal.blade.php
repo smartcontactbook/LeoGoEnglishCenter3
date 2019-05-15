@@ -152,6 +152,7 @@
             </div>
             <div class="box-header">
               <div id="chartContainer" style="height: 430px; width: 100%;"></div>
+
             </div>
             <div class="box-body mark-bodyID mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="border-top:1px solid #23292F;">
               <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_horizontal mCSB_inside" style="max-height: none;" tabindex="0">

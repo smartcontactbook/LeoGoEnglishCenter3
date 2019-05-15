@@ -80,25 +80,25 @@ class HomeController extends Controller
         try {       
             $children = new children;
             $register = register::findOrFail($request->txt_testId);
-            $children->Full_Name = $request->txt_firstname;
-            $register->Nick_Name = $request->txt_NickName;
-            $children->Parent_Name = $request->txt_parent;
-            $children->Birth_Day = $request->txt_birthday;
-            $children->Email = $request->txt_email;
+            $children->Full_Name = $register->Full_Name;
+            $register->Nick_Name = $register->Nick_Name;
+            $children->Parent_Name = $register->Parent_Name;
+            $children->Birth_Day = $register->Birth_Day;
+            $children->Email = $register->Email;
             $children->Address = $register->Address;
             $children->Gender = $register->Gender;
-            $children->Phone_Number = $request->txt_phone;
+            $children->Phone_Number = $register->Phone_Number;
             $children->Score = $request->txt_score;
             $children->Description = 'Description';
             $children->avatar = 'default.png';
             $children->Status = 0 ;
             $children->Role_ID = 5 ;
-            $children->User_Name = $request->txt_email;
-            $children->Password = $request->txt_phone;
+            $children->User_Name = $register->Email;
+            $children->Password = $register->Phone_Number;
             $result = $children->save();
             $tem_children = new tem_children;
             $tem_children->Children_ID = $children->id;
-            $tem_children->Course_ID =  $request->txt_course;
+            $tem_children->Course_ID =  $register->Course_ID;
             $tem_children->Level_ID =  $request->cbm_Level;
             $result = $tem_children->save();
             $result = $register->delete();
@@ -151,9 +151,24 @@ class HomeController extends Controller
     }
 
     public function postDelRegister($id){ 
-        $register = register::findOrFail($request->txt_idDelChildren);
-        $register->delete();
-        return redirect()->route('register.index');
+        $result = DB::table("register")->delete($id);
+
+        if($result){
+            echo "<script>
+                alert('Delete sucess');
+                window.location.href='{{ route('register.index')}}';
+            </script>";
+        } else{
+            echo "<script>
+                alert('Some problem');
+                window.location.href='{{ route('register.index')}}';
+            </script>";
+        }
+
+    	// return response()->json(['success'=>"Register Deleted successfully.", 'tr'=>'tr_'.$id]);
+        // $register = register::findOrFail($request->txt_idDelChildren);
+        // $register->delete();
+        // return redirect()->route('register.index');
     }
 
     public function postAddChildren(Request $request){
@@ -360,5 +375,9 @@ class HomeController extends Controller
         }
 
         return redirect()->route('register.index');
+    }
+
+    public function test(){
+        
     }
 }

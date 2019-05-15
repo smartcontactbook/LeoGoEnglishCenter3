@@ -25,7 +25,7 @@ class LecturersController extends Controller
         return view('admin.lecturersManagement.addLecturers');
     }
 
-    public function store(StaffRequest $request)
+    public function store(Request $request)
     {
 
         $lecturer = new staff;

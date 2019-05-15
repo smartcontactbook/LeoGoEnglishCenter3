@@ -37,6 +37,10 @@ Route::group(['middleware' => 'checkAdminLogin'], function (){
 	// END LECTURER MANAGEMENT
 	
 	Route::get('test', ['as '=> 'test', 'uses' => 'HomeController@test']);
+	Route::delete('del_lecturer/{id}', ['as' => 'delete_lecturer', 'uses' => 'AjaxController@delete_lecturer']);
+	Route::delete('del_staff/{id}', ['as' => 'delete_staff', 'uses' => 'AjaxController@delete_staff']);
+	Route::delete('del_tutor/{id}', ['as' => 'delete_tutor', 'uses' => 'AjaxController@delete_tutor']);
+	
 	// START COURSE MANAGEMENT
 	Route::resource('course', 'CourseController');
 	Route::get('LevelOfCourse/{id}', ['as' => 'getLevelOfCourse', 'uses' => 'AjaxController@getLevelOfCourse']);

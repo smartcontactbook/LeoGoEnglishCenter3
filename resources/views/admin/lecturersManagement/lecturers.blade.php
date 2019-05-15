@@ -96,7 +96,7 @@
 		if(confirm('Are you sure to remove this record ?'))
 		{
 		$.ajax({
-			url: 'http://127.0.0.1:8000/lecturer/'+id+'/destroy',
+			url: 'http://127.0.0.1:8000/del_lecturer/'+id,
 			type: 'DELETE',
 			data: {
 			"id": id, "_token": "{{ csrf_token() }}",}

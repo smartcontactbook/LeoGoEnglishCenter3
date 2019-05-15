@@ -46,7 +46,9 @@
                         type="text"
                         class="form-control"
                         placeholder="Enter class name"
-                        required pattern="^[a-zA-Z]*$" title="First class name invalid"
+                        pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,100}+$" required title="First class name invalid"
                         />
                       </div>
                       <div class="form-group">
@@ -105,7 +107,7 @@
                           <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                           </div>
-                          <input type="text" class="form-control" id="txt_dateStart" name="txt_dateStart" value="{!! old('txt_dateStart') !!}">
+                          <input type="text" class="form-control" id="txt_dateStart" name="txt_dateStart" value="{!! old('txt_dateStart') !!}" pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))" required>
                         </div>
                       </div>
                       <div class="form-group">
@@ -124,12 +126,12 @@
                           <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                           </div>
-                          <input type="text" class="form-control" id="txt_dateEnd" name="txt_dateEnd" value="{!! old('txt_dateEnd') !!}">
+                          <input type="text" class="form-control" id="txt_dateEnd" name="txt_dateEnd" value="{!! old('txt_dateEnd') !!}" pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))" required>
                         </div>
                       </div>
                       <div class="form-group">
                         <label>Description</label>
-                        <textarea id="txt_description" value="{!!old('txt_description') !!}" rows="5" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+                        <textarea id="txt_description" value="{!!old('txt_description') !!}" rows="5" class="form-control" name="txt_description" placeholder="Enter Description"></textarea>
                       </div>
                       <!-- /.description-block -->
                     </div>

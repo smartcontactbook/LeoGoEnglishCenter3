@@ -24,6 +24,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.2/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js')}}"></script>
+
     
     <script type='text/javascript'>
       function preview_image(event) 
@@ -85,6 +86,7 @@
         background: transparent !important;
       }
     </style>
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini" id="testLoad">
     <div class="wrapper">   
@@ -102,11 +104,11 @@
     </script>
     <script src="{{ asset('js/bower_components/jquery-ui/jquery-ui.min.js') }}">
     </script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-
-    <script>
-      $.widget.bridge('uibutton', $.ui.button);
-    </script>
+    
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>       
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js">
@@ -117,6 +119,9 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.2/themes/explorer/theme.js">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/js/bootstrap-select.min.js" charset="utf-8"></script>
   {{--   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <script src="{{ asset('js/bower_components/bootstrap/dist/js/bootstrap.min.js') }}">
     </script>

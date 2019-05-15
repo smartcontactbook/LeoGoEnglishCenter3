@@ -32,33 +32,36 @@
 										value="{!! old('txt_FirstName', $getLecturer->Full_Name) !!}"
 										type="text"
 										class="form-control"
-										pattern="^[a-zA-z ]*$"
+										pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" required
 										placeholder="Enter first name"
 										/>
 									</div>
 									<div class="form-group">
-										<label>Date:</label>
+										<label>Date</label>
 										<div class="input-group date" data-provide="datepicker">
 											<div class="input-group-addon">
 												<span class="glyphicon glyphicon-th"></span>
 											</div>
-											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date', $getLecturer->Birth_Day) !!}">
+											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date', $getLecturer->Birth_Day) !!}" pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<label>Gender</label>
 										<select id="txt_gender"  name="txt_gender" class="form-control select2">
 											@if($getLecturer->Gender == 1)
-												<option value="{!!old('txt_gender', 'Male')!!}" disabled=""></option>
+												<option value="{!!old('txt_gender', $getLecturer->Gender)!!}" id="txt_gender" disabled>FeMale</option>
+												
 											@else
-												<option value="{!!old('txt_gender', 'Female')!!}" disabled=""></option>
+												<option value="{!!old('txt_gender', $getLecturer->Gender)!!}" id="txt_gender" disabled>Male</option>
 											@endif
 											<option value="1" id="txt_gender">Male</option>
 											<option value="0" id="txt_gender">Female</option>
 										</select>
 									</div>
 									<div class="form-group">
-										<label>Adress</label>
+										<label>Address</label>
 										<input type="text" id="txt_address" class="form-control" required placeholder="Address"
 										name="txt_address" value="{!! old('txt_address', $getLecturer->Address) !!}">
 									</div>
@@ -78,7 +81,7 @@
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<textarea id="txt_description" value="{!!old('txt_description',$getLecturer->Description) !!}" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+										<textarea id="txt_description" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required> {!!old('txt_description',$getLecturer->Description) !!} </textarea>
 									</div>
 
 								</div>
@@ -99,14 +102,16 @@
 	                                    </div>
 	                                </div>
 								</div>
-							</div>
-						</div>
-						<div align="center">
+								<div align="center">
 							<p class="box-title">
 								<a href="{{ route('lecturer.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
 								<button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
 							</p>
                         </div>
+							</div>
+							
+
+						</div>
 					</form>
 				</div>
 			</div>

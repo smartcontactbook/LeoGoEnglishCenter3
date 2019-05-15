@@ -30,10 +30,12 @@
                     type="text"
                     class="form-control"
                     placeholder="Enter first name"
-                    required  pattern="^[a-zA-z ]*$" title="First name invalid"
+                    required  pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$" minlength="5" maxlength="30" title="First name invalid"
                     />
                   </div>
-                <div class="form-group">
+                  <div class="form-group">
                     <label>Date:</label>
                     <div class="input-group date" data-provide="datepicker">
                       <div class="input-group-addon">
@@ -44,13 +46,11 @@
                       class="form-control" 
                       id="txt_date" 
                       name="txt_date" 
-                      pattern="\d{1,2}/\d{1,2}/\d{4}"
+                      pattern="(?:(?:0[1-9]|1[0-2])[\/\\-. ]?(?:0[1-9]|[12][0-9])|(?:(?:0[13-9]|1[0-2])[\/\\-. ]?30)|(?:(?:0[13578]|1[02])[\/\\-. ]?31))[\/\\-. ]?(?:19|20)[0-9]{2}" required
                       value="{!! old('txt_date') !!}">
 
                     </div>
                   </div>
-                </div>
-                <!-- <div class=" -->
                   <div class="form-group">
                     <label>Gender</label>
                     <select id="txt_gender"  name="txt_gender" class="form-control select2">
@@ -59,7 +59,10 @@
                     </select>
                   </div>
                 </div>
-              </div>
+                <!-- <div class=" -->
+                  
+                </div>
+              
               <div class="col-sm-4">
                 <div class="box-body">
                   <div class="form-group">
@@ -71,6 +74,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Enter Nick name"
+                    pattern="^[a-zA-z ]*$" minlength="2" maxlength="10"
                     required  title="Nick name invalid"
                     />
                   </div>
@@ -123,7 +127,9 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter parent name"
-                      required pattern="^[a-zA-z ]*$" title="First name invalid"
+                      required  pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$" minlength="5" max="30" title="First name invalid"
                     />
                   </div>
                   <div class="form-group">
@@ -143,6 +149,8 @@
                     name="dt_Schedule" 
                     class="form-control" 
                     type="datetime-local"
+                    pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))"
+                    required 
                     value="{!! old('dt_Schedule') !!}">
                   </div>
                 </div>

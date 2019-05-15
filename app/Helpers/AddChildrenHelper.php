@@ -44,7 +44,7 @@ class AddchildrenHelper
     }
 
     public static function getDetailChildrens2($id){
-    	 $getDetailChildrens2 = DB::table('history_user')
+    	$getDetailChildrens2 = DB::table('history_user')
             ->join('children', 'history_user.Children_ID', '=', 'children.id')
             ->join('leogo_class', 'history_user.Class_ID', '=', 'leogo_class.id')
             ->join('level', 'leogo_class.Level_ID', '=', 'level.id')
@@ -55,4 +55,5 @@ class AddchildrenHelper
 
         return $getDetailChildrens2;
     }
+
 }

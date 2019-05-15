@@ -37,7 +37,9 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Title</label>
-											<input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name', $detail->title) !!}" required title="Course name invalid">
+											<input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name', $detail->title) !!}" class="form-control" pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" required title="Title invalid">
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">Description</label>

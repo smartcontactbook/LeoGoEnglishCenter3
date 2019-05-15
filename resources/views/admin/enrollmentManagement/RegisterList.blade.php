@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
+					<table id="example1" class="table table-bordered table-striped" style="font-size: 12px; text-align: center;">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -45,7 +45,7 @@
 								<th>Test Schedule</th>
 								<th>Course</th>
 								<th>Appointment</th>
-								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
+								<th class="sorting_desc_disabled sorting_asc_disabled sorting disabled" style="width: 85px">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,7 +53,7 @@
 							@foreach($getRegister as $value)
 							{{-- dd(); --}}
 							<?php $stt=$stt+1 ?>
-								<tr>
+								<tr id="{{$value->id}}">
 									<td>{!! $stt !!}</td>
 									<td>{{$value->Full_Name}}</td>
 									<td>{{$value->Email}}</td>
@@ -65,15 +65,13 @@
 									</td>
 									<td>
 										@if($value->Test_Schedule != null)
-											<button type="button" class=" btn btn-success btn-sm">
-												<i class="fa fa-check"></i></button>
+												<i class="fas fa-user-check" style="height: 20px"></i>
 										@else
-											<button type="button" class=" btn btn-success btn-sm">
-												<i class="fa fa-close"></i></button>
+												<i class="fas fa-user-times" style="height: 20px"></i>
 										@endif
 									</td>
-									<th>
-											<button 
+									<td>
+										<button 
 											type="button" 
 											class=" btn btn-info btn-sm" 
 											data-toggle="modal" 
@@ -86,36 +84,30 @@
 												<i class="fa fa-calendar-o"></i>
 										</button>
 										@if($value->Test_Schedule != null)
-										<button 
-										type="button" 
-										class="btn btn-warning btn-sm"
-										data-toggle="modal" 
-										data-target="#score"
-										data-id="{{$value->id}}" 
-										data-firstname="{{$value->Full_Name}}"
-										data-nickname="{{$value->Nick_Name}}"
-										data-parent="{{$value->Parent_Name}}" 
-										data-email="{{$value->Email}}"
-										data-phone="{{$value->Phone_Number}}" 
-										data-score="{{$value->Score}}" 
-										data-date="{{$value->Birth_Day}}"
-										data-course="{{$value->Course_ID}}"
-										data-nameCourse = "{{ $value->Course_Name }}"
-										data-score="{{$value->Score}}">
-											<i class="	fa fa-plus-square"></i>
-										</button>
-										@else
-										@endif
-										
-
-										<form action="{{ route('postDelRegister') }}" method="POST">
-											{{csrf_field()}}
-											<input type="hidden" name="txt_idDelChildren" value="{{ $value->id }}">	
-											<button type="submit" class="btn btn-danger btn-sm">
-												<i class="fa fa-trash-o"></i>
+											<button 
+											type="button" 
+											class="btn btn-warning btn-sm"
+											data-toggle="modal" 
+											data-target="#score"
+											data-id="{{$value->id}}" 
+											data-firstname="{{$value->Full_Name}}"
+											data-nickname="{{$value->Nick_Name}}"
+											data-parent="{{$value->Parent_Name}}" 
+											data-email="{{$value->Email}}"
+											data-phone="{{$value->Phone_Number}}" 
+											data-score="{{$value->Score}}" 
+											data-date="{{$value->Birth_Day}}"
+											data-course="{{$value->Course_ID}}"
+											data-nameCourse = "{{ $value->Course_Name }}"
+											data-score="{{$value->Score}}">
+												<i class="	fa fa-plus-square"></i>
 											</button>
-										</form>
-									</th>
+										@endif
+										<button type="button" class="btn btn-outline-danger btn-sm remove"><i class="fas fa-trash-alt"></i></button>
+
+										{{-- {!! Form::open(['method' => 'DELETE', 'route' => ['postDelRegister', $value->id], 'onsubmit' => 'return confirmDelete()']) !!} --}}
+										
+									</td>
 								</tr>
 							@endforeach
 						</tbody>
@@ -137,258 +129,8 @@
 			</div>
 		</div>
 	</div>
-<!-- {{-- START MODAL SCHEDULE --}}
-	    <div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="aria-labelledby">
-     		<div class="modal-dialog">
-		     	<div class="modal-content">
-		        	<div class="modal-header Editheader">
-			            <button type="button"class="close"data-dismiss="modal"aria-label="Close">
-			            	<span aria-hidden="true">×</span>
-			          	</button>
-			          	<h4 class="modal-title">TEST SCHEDULE</h4>
-			        </div>
-			        <form method="POST" action="{{ route('register.update','test') }}">
-				          {{method_field('patch')}}
-				          {{csrf_field()}}
-				          <div class="modal-body">
-				            <div class="box-body">
-				              <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value="">
-				             	<div class="form-group">
-				               	  <label for="exampleInputEmail1">Full name</label>
-				               		<input type="input"  class="form-control " disabled id="txt_name" name="txt_name" value="{!! old('txt_name') !!}" ></label>
-				              	</div>	
-				             	<div class="form-group">
-				               		<label for="exampleInputPassword1">Date</label>
-				                	<input type="input" class="form-control" disabled id="txt_date" name="txt_date" value="{!! old('txt_date') !!}"></label>
-				              	</div>
-				              <div class="form-group">
-				                <div class="row">
-				                  <div class="col-lg-6">
-				                    <div class="form-group">
-				                      <label>Phone number</label>
-				                      <input 
-				                      type="input" 
-				                      class="form-control" disabled
-				                      <label 
-				                      type="text" 
-				                      id="txt_phone" 
-				                      class="form-control" 
-				                      value="{!! old('txt_phone') !!}" 
-				                      name="txt_phone"></label>
-				                      </fieldset>
-				                    </div>
-				                  </div>
-				                  <div class="col-lg-6">
-				                    <div class="form-group">
-				                      <label>Test schedule</label>
-					                      <input 
-					                      id="txt_testSchedule" 
-					                      class="form-control" 
-					                      type="datetime-local" 
-					                      value="{!! old('txt_testSchedule') !!}" 
-					                      name="txt_testSchedule">
-				                    </div>
-				                  </div>
-				                </div>
-				              </div>
-				            </div>
-				          </div>
-				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-				          <button type="submit" class="btn btn-primary">Save</button>
-				        </div>
-			        </form>
-      </div>
-    </div>
-    <
-
-     <script type="text/javascript">
-       $('#schedule').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) 
-        var id = button.data('id')
-        var date = button.data('date') 
-        var phone = button.data('phone') 
-        var name = button.data('name')
-        var schedule = button.data('schedule')
-        var modal = $(this)
-        modal.find('.modal-body #txt_testId').val(id);
-        modal.find('.modal-body #txt_name').val(name);
-        modal.find('.modal-body #txt_date').val(date);
-        modal.find('.modal-body #txt_phone').val(phone);
-        modal.find('.modal-body #txt_testSchedule').val(schedule);
-      }) 
-    </script>
-{{-- END MODAL SCHEDULE --}}
-
-{{-- START MODAL SCORE --}}
-
-	    <div class="modal fade" id="score" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-     	<div class="modal-dialog">
-     	<div class="modal-content">
-        <div class="modal-header Editheader">
-            <button type="button"class="close"data-dismiss="modal"aria-label="Close">
-            	<span aria-hidden="true">×</span>
-          	</button>
-          	<h4 class="modal-title">ENTER SCORE</h4>
-        </div>
-        <form method="POST">
-          {{method_field('patch')}}
-          {{csrf_field()}}
-          <div class="modal-body">
-            <div class="box-body">
-              <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value="">
-             	<div class="form-group">
-               	  <label for="exampleInputEmail1">First Name</label>
-               		<input 
-               		type="input"  
-               		class="form-control " 
-               		id="txt_firstname" 
-               		name="txt_firstname" 
-               		value="{!! old('txt_firstname') !!}" >
-               	  </label>
-               	  <label for="exampleInputEmail1">Last Name</label>
-               		<input 
-               		type="input"  
-               		class="form-control " 
-               		id="txt_lastname" 
-               		name="txt_lastname" 
-               		value="{!! old('txt_lastname') !!}" >
-               	  </label>
-              	</div>	
-             	<div class="form-group">
-               	  <label for="exampleInputPassword1">Parent Name</label>
-                	<input 
-                	type="input"  
-               		class="form-control " 
-               		id="txt_parent" 
-               		name="txt_parent" 
-               		value="{!! old('txt_parent') !!}" >
-               	  </label>
-              	</div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Phone number</label>
-	                      <input 
-	                      type="input" 
-	                      class="form-control" 
-	                      <label 
-	                      type="text" 
-	                      id="txt_phone" 
-	                      class="form-control" 
-	                      value="{!! old('txt_phone') !!}" 
-	                      name="txt_phone">
-	                  </label>
-                      <label>Email</label>
-	                      <input 
-	                      type="input" 
-	                      class="form-control" 
-	                      <label 
-	                      type="text" 
-	                      id="txt_email" 
-	                      class="form-control" 
-	                      value="{!! old('txt_email') !!}" 
-	                      name="txt_email">
-	                  </label>
-                      </fieldset>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Birth Day</label>
-	                      <input 
-	                      type="input" 
-	                      class="form-control" 
-	                      <label 
-	                      type="text" 
-	                      id="txt_birthday" 
-	                      class="form-control" 
-	                      value="{!! old('txt_birthday') !!}" 
-	                      name="txt_birthday">
-	                  </label>
-                      <label>Score</label>
-	                      <input 
-	                      id="txt_score" 
-	                      class="form-control" 
-	                      type="text" 
-	                      value="{!! old('txt_score') !!}" 
-	                      name="txt_score"></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-        </form>
-      </div>
-    </div>
-     <script type="text/javascript">
-       $('#score').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) 
-        var id = button.data('id')
-        var date = button.data('date') 
-        var phone = button.data('phone') 
-        var firstname = button.data('firstname')
-        var lastname = button.data('lastname')
-        var score = button.data('score')
-        var email = button.data('email')
-        var parent = button.data('parent')
-        var modal = $(this)
-        modal.find('.modal-body #txt_testId').val(id);
-        modal.find('.modal-body #txt_firstname').val(firstname);
-        modal.find('.modal-body #txt_lastname').val(lastname);
-        modal.find('.modal-body #txt_birthday').val(date);
-        modal.find('.modal-body #txt_phone').val(phone);
-        modal.find('.modal-body #txt_score').val(score);
-        modal.find('.modal-body #txt_email').val(email);
-        modal.find('.modal-body #txt_parent').val(parent);
-
-      }) 
-    </script>
-    {{-- END MODAL SCORE --}}
-
-    {{-- START MODAL SCHEDULE --}}
-
-	    <div class="modal fade" id="test" role="dialog">
-     	<div class="modal-dialog" role="document">
-     	<div class="modal-content">
-        <div class="modal-header Editheader">
-            <button type="button"class="close"data-dismiss="modal"aria-label="Close">
-            	<span aria-hidden="true">×</span>
-          	</button>
-          	<h4 class="modal-title">TEST SCHEDULE</h4>
-        </div>
-        <form method="POST" action="{{ route('register.update','test') }}">
-          {{method_field('patch')}}
-          {{csrf_field()}}
-          <div class="modal-body">
-            <div class="box-body">
-              <input class="form-control" type="hidden" name="txt_testId" id="txt_testId"value="">
-            </div>
-          </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default pull-left"data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-        </form>
-      </div>
-    </div>
-     <script type="text/javascript">
-       $('#score').on('show.bs.modal', function (event) {
-      }) 
-    </script>
-{{-- END MODAL SCHEDULE --}}
- -->
-{{-- START MODAL --}}
-
 <div class="main-content">
   	<div class="container-modal">
-	{{-- START MODAL SCHEDULE --}}
 		    <div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="aria-labelledby">
 	     		<div class="modal-dialog">
 			     	<div class="modal-content">
@@ -398,10 +140,7 @@
 				          	</button>
 				          	<h4 class="modal-title">TEST SCHEDULE</h4>
 				        </div>
-
 				        <form method="POST" action="{{ route('register.update','test') }}">
-
-
 					          {{method_field('patch')}}
 					          {{csrf_field()}}
 					          <div class="modal-body">
@@ -434,12 +173,13 @@
 					                  <div class="col-lg-6">
 					                    <div class="form-group">
 					                      <label>Test schedule</label>
-						                      	<input  
-						                      	  type ="datetime-local"
-							                      id="txt_testSchedule" 
-							                      class="form-control" 
-							                      value="{!! old('txt_testSchedule') !!}" 
-							                      name="txt_testSchedule">
+					                      <input  
+					                      type ="datetime-local"
+					                      id="txt_testSchedule" 
+					                      class="form-control" 
+					                      pattern="/([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))/"
+					                      value="{!! old('txt_testSchedule') !!}" 
+					                      name="txt_testSchedule">
 					                    </div>
 					                  </div>
 					                </div>
@@ -503,12 +243,12 @@
 	               		id="txt_firstname" 
 	               		name="txt_firstname" 
 	               		pattern="^[a-zA-z ]*$"
-	               		value="{!! old('txt_firstname') !!}" >
+	               		value="{!! old('txt_firstname') !!}" disabled >
 	               	  </label>
 	              	</div>	
 	              	<div class="form-group">
 	               	  <label for="exampleInputEmail1">Nick Name</label>
-	               		<input 
+	               		<input  disabled
 	               		type="input"  
 	               		class="form-control " 
 	               		id="txt_nickname" 
@@ -519,7 +259,7 @@
 	              	</div>	
 	             	<div class="form-group">
 	               	  <label for="exampleInputPassword1">Parent Name</label>
-	                	<input 
+	                	<input disabled
 	                	type="input"  
 	               		class="form-control " 
 	               		id="txt_parent" 
@@ -533,7 +273,7 @@
 	                  <div class="col-lg-6">
 	                    <div class="form-group">
 	                      <label>Phone number</label>
-		                      <input 
+		                      <input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -544,7 +284,7 @@
 		                      name="txt_phone">
 		                  </label>
 	                      <label>Email</label>
-		                      <input 
+		                      <input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -555,7 +295,7 @@
 		                      name="txt_email">
 		                  </label>
 		                  <label>Course</label>
-							<input 
+							<input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -564,10 +304,6 @@
 		                      class="form-txt_course" 
 		                      value="{!! old('txt_course') !!}" 
 		                      name="txt_course">
-
-		             
-				                
-				                
 				            {{-- </label> --}}
 	                      </fieldset>
 	                    </div>
@@ -575,7 +311,7 @@
 	                  <div class="col-lg-6">
 	                    <div class="form-group">
 	                      <label>Birth Day</label>
-		                      <input 
+		                      <input disabled
 		                      type="input" 
 		                      class="form-control" 
 		                      <label 
@@ -589,7 +325,7 @@
 		                      <input 
 		                      id="txt_score" 
 		                      class="form-control" 
-		                      type="text" 
+		                      type="number" min="0" max="1000"
 		                      value="{!! old('txt_score') !!}" 
 		                      name="txt_score"></label>
 		                  <label>Level</label>
@@ -614,42 +350,63 @@
 	        </form>
 	      </div>
 	    </div>
-	     <script type="text/javascript">
-	       $('#score').on('show.bs.modal', function (event) {
-	        var button = $(event.relatedTarget) 
-	        var id = button.data('id')
-	        var date = button.data('date') 
-	        var phone = button.data('phone') 
-	        var firstname = button.data('firstname')
-	        var nickname = button.data('nickname')
-	        var score = button.data('score')
-	        var email = button.data('email')
-	        var parent = button.data('parent')
-	        var score = button.data('score')
-	        var course = button.data('course')
-	        var nameCourse = button.data('nameCourse')
-	        var modal = $(this)
-	        modal.find('.modal-body #txt_testId').val(id);
-	        modal.find('.modal-body #txt_firstname').val(firstname);
-	        modal.find('.modal-body #txt_nickname').val(nickname);
-	        modal.find('.modal-body #txt_birthday').val(date);
-	        modal.find('.modal-body #txt_phone').val(phone);
-	        modal.find('.modal-body #txt_score').val(score);
-	        modal.find('.modal-body #txt_email').val(email);
-	        modal.find('.modal-body #txt_parent').val(parent);
-	        modal.find('.modal-body #txt_score').val(score);
-	        modal.find('.modal-body #txt_course').val(course);
-	        modal.find('.modal-body #txt_nameCourse').val(nameCourse);
 
-	      }) 
-	    </script>
-	    {{-- END MODAL SCORE --}}
 	 	</div>
 </div>
-{{-- END MODAL--}}
+<script type="text/javascript">
+  $('#score').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var id = button.data('id')
+    var date = button.data('date') 
+    var phone = button.data('phone') 
+    var firstname = button.data('firstname')
+    var nickname = button.data('nickname')
+    var score = button.data('score')
+    var email = button.data('email')
+    var parent = button.data('parent')
+    var score = button.data('score')
+    var course = button.data('course')
+    var nameCourse = button.data('nameCourse')
+    var modal = $(this)
+    modal.find('.modal-body #txt_testId').val(id);
+    modal.find('.modal-body #txt_firstname').val(firstname);
+    modal.find('.modal-body #txt_nickname').val(nickname);
+    modal.find('.modal-body #txt_birthday').val(date);
+    modal.find('.modal-body #txt_phone').val(phone);
+    modal.find('.modal-body #txt_score').val(score);
+    modal.find('.modal-body #txt_email').val(email);
+    modal.find('.modal-body #txt_parent').val(parent);
+    modal.find('.modal-body #txt_score').val(score);
+    modal.find('.modal-body #txt_course').val(course);
+    modal.find('.modal-body #txt_nameCourse').val(nameCourse);
+  })
 
+  $(".remove").click(function(){
+    var id = $(this).parents("tr").attr("id");
+    $.ajaxSetup({
+      headers: {
+        'csrftoken' : '{{ csrf_token() }}' }
+    });
 
-
-
+    if(confirm('Are you sure to remove this record ?'))
+    {
+      $.ajax({
+        url: 'http://127.0.0.1:8000/delChildren/'+id,
+        type: 'DELETE',
+        data: {
+          "id": id, "_token": "{{ csrf_token() }}",}
+        ,
+        error: function() {
+          alert('Something is wrong');
+        }
+        ,
+        success: function(data) {
+          $("#"+id).remove();
+          alert("Record removed successfully");
+        }
+      });
+    }
+  });
+</script>
 
 @endsection

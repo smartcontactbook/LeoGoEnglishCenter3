@@ -30,7 +30,9 @@
 										name="txt_FirstName"
 										value="{!! old('txt_FirstName') !!}"
 										type="text"
-										pattern="^[a-zA-z ]*$"
+										pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" required
 										class="form-control"
 										placeholder="Enter first name"
 										/>
@@ -41,7 +43,7 @@
 											<div class="input-group-addon">
 												<span class="glyphicon glyphicon-th"></span>
 											</div>
-											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date') !!}">
+											<input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date') !!}" pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))" required>
 										</div>
 									</div>
 									<div class="form-group">
@@ -51,7 +53,10 @@
 										type="password"
 										class="form-control"
 										id="exampleInputPassword1"
-										placeholder="Password"
+										placeholder="Password" maxlength="20"
+										title="Password must have 6 characters or more"
+										minlength="6" maxlength="30"
+										required
 										/>
 									</div>
 									<div class="form-group">
@@ -63,7 +68,9 @@
 									</div>
 									<div class="form-group">
 										<label>Adress</label>
-										<input type="text" id="txt_address" class="form-control" required placeholder="Address"
+										<input type="text" id="txt_address" class="form-control" pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+										ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+										ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,100}+$" required placeholder="Address"
 										name="txt_address" value="{!! old('txt_address') !!}">
 									</div>
 								</div>
@@ -73,7 +80,7 @@
 								
 									<div class="form-group">
 										<label>Email</label>
-										<input type="text" id="txt_email" class="form-control" placeholder="Emaill" required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" title="Email Format Invalid" name="txt_email" value="{!! old('txt_email') !!}">
+										<input type="text" id="txt_email" class="form-control" placeholder="Emaill" required pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$" minlength="11" maxlength="50" title="Email Format Invalid" name="txt_email" value="{!! old('txt_email') !!}">
 									</div>
 
 									<div class="form-group">
@@ -83,7 +90,7 @@
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<textarea id="txt_description" value="{!!old('txt_description') !!}" rows="5" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+										<textarea id="txt_description" value="{!!old('txt_description') !!}" rows="5" class="form-control" name="txt_description" placeholder="Enter Description" maxlength="500"></textarea>
 									</div>
 
 								</div>

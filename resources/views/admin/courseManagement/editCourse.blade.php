@@ -46,15 +46,19 @@ function preview_image(event)
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Course name</label>
-                      <input type="input" class="form-control" id="txt_name2" name="txt_name2" placeholder="Enter course name" value="{!! old('txt_name2', $getCourseEdit->Course_Name) !!}" required  title="Course name invalid">
+                      <input type="input" class="form-control" id="txt_name2" name="txt_name2" placeholder="Enter course name" value="{!! old('txt_name2', $getCourseEdit->Course_Name) !!}" pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,100}+$" required  title="Course name invalid">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Description</label>
-                      <textarea class="form-control" id="txt_description" name="txt_description" rows="4" placeholder="Enter description" required>{!! old('txt_description', $getCourseEdit->Description) !!}</textarea>
+                      <textarea class="form-control" id="txt_description" name="txt_description" rows="4" placeholder="Enter description" pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,255}+$" required>{!! old('txt_description', $getCourseEdit->Description) !!}</textarea>
                     </div>
                     <div class="form-group">
                       <label>Term</label>
-                      <select id="cmb_term" name="cmb_term" class="form-control" value="{!! old('cmb_term', $getCourseEdit->Term) !!}">
+                      <select id="cmb_term" name="cmb_term" class="form-control" required value="{!! old('cmb_term', $getCourseEdit->Term) !!}">
                         <option value="1" id="cmb_term">1 month</option>
                         <option value="2" id="cmb_term">2 month</option>
                         <option value="3" id="cmb_term">3 month</option>
@@ -73,7 +77,7 @@ function preview_image(event)
                 <div class="row">
                   <div class="form-group">
                     <label >Content</label>
-                    <textarea  name="txt_contentTest" id="txt_contentTest" >{!! old('txt_contentTest', $getCourseEdit->content ) !!}</textarea>
+                    <textarea  name="txt_contentTest" id="txt_contentTest" required>{!! old('txt_contentTest', $getCourseEdit->content ) !!}</textarea>
                     <script> CKEDITOR.replace( 'txt_contentTest', {
                       filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
                       filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',

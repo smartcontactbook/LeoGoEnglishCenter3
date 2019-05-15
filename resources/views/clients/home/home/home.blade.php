@@ -4,13 +4,6 @@
   @include('clients/layout/banner/banner')
 
   <div class="clear"></div>
-{{-- @if (session('status'))
-    <script>
-        $( document ).ready(
-            swal("{{ session('status') }}")
-        });
-    </script>
-@endif --}}
   @include('clients/home/schoolOverview/schoolOverview')
 
   <section class="list-course clearfix" style="background: url('{{ asset('image/avatar/bg_khoahoc.jpg') }}') center center no-repeat; background-size: cover;">

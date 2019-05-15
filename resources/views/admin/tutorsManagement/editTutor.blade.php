@@ -32,8 +32,9 @@
                     name="txt_FirstName"
                     value="{!! old('txt_FirstName', $getTutor->Full_Name) !!}"
                     type="text"
-                    class="form-control"
-                    pattern="^[a-zA-z ]*$"
+                    class="form-control" pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" required
                     placeholder="Enter first name"
                     />
                   </div>
@@ -43,7 +44,7 @@
                       <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                       </div>
-                      <input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date', $getTutor->Birth_Day) !!}">
+                      <input type="text" class="form-control" id="txt_date" name="txt_date" value="{!! old('txt_date', $getTutor->Birth_Day) !!}" pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))" required>
                     </div>
                   </div>
                 </div>
@@ -65,7 +66,7 @@
                   name="txt_address" value="{!! old('txt_address', $getTutor->Address) !!}">
                 </div>
               </div>
-            </div>
+            
             <div class="col-sm-4">
               <div class="box-body">
                 <div class="form-group">
@@ -79,7 +80,11 @@
                 </div>
                 <div class="form-group">
                   <label>Description</label>
-                  <textarea id="txt_description" value="{!!old('txt_description',$getTutor->Description) !!}" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+<<<<<<< HEAD
+                  <textarea id="txt_description"  rows="3" class="form-control" name="txt_description" placeholder="Enter Description" > {!!old('txt_description',$getTutor->Description) !!}</textarea>
+=======
+                  <textarea id="txt_description"  rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required> {!!old('txt_description',$getTutor->Description) !!}</textarea>
+>>>>>>> bbc1f4bcdaf0245e32a6520c15a2bf4a4bb9d6b4
                 </div>
 
               </div>
@@ -106,6 +111,7 @@
                 <a href="{{ route('lecturer.index') }}"><button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button></a>
                 <button type="submit" class="btn btn-success"><i class="fa fa-save">Save</i></button>
               </p>
+            </div>
             </div>
           </div>
           

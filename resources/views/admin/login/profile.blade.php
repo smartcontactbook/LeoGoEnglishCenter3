@@ -96,13 +96,12 @@
             				<div class="col-sm-8">
             					<div class="box-body">
             						<div class="form-group">
-            							<label for="inputName" class="col-sm-2 control-label">First Name</label>
-
+            							<label for="inputName" class="col-sm-2 control-label">Full Name</label>
             							<div class="col-sm-10">
             								<input
             								id="txt_FirstName"
             								name="txt_FirstName"
-            								value="{!! old('txt_FirstName', Auth::guard('staff')->user()->First_Name) !!}"
+            								value="{!! old('txt_FirstName', Auth::guard('staff')->user()->Full_Name) !!}"
             								type="text"
             								class="form-control"
             								placeholder="Enter first name"
@@ -111,13 +110,12 @@
             							</div>
             						</div>
             						<div class="form-group">
-            							<label for="inputName" class="col-sm-2 control-label">Last Name</label>
-
+            							<label for="inputName" class="col-sm-2 control-label">Nick Name</label>
             							<div class="col-sm-10">
             								<input
             								id="txt_LastName"
             								name="txt_LastName"
-            								value="{!! old('txt_LastName', Auth::guard('staff')->user()->Last_Name) !!}"
+            								value="{!! old('txt_LastName', Auth::guard('staff')->user()->Nick_Name) !!}"
             								type="text"
             								class="form-control"
             								placeholder="Enter Last Name"
@@ -179,7 +177,7 @@
             							<label for="inputSkills" class="col-sm-2 control-label">Description</label>
 
             							<div class="col-sm-10">
-            								<textarea id="txt_description" value="{!!old('txt_description',Auth::guard('staff')->user()->Description) !!}" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required></textarea>
+            								<textarea id="txt_description" rows="3" class="form-control" name="txt_description" placeholder="Enter Description" required>{!!old('txt_description',Auth::guard('staff')->user()->Description) !!}</textarea>
             							</div>
             						</div>
             					</div>
@@ -218,7 +216,6 @@
               		@include('errors.errors')
               		<div class="form-group">
               			<label for="inputName" class="col-sm-2 control-label">Old password</label>
-
               			<div class="col-sm-10">
               				<input
               				required name="txt_OldPassword"
@@ -243,7 +240,6 @@
               		</div>
               		<div class="form-group">
               			<label for="inputName" class="col-sm-2 control-label">Rep Password</label>
-
               			<div class="col-sm-10">
               				<input
               				required name="txt_RepPassword"

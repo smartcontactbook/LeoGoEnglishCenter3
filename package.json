@@ -23,5 +23,7 @@
         "sweetalert": "^2.0.8",
         "vue": "^2.5.17"
     },
-    "dependencies": {}
+    "dependencies": {
+        "canvasjs": "^1.8.1"
+    }
 }

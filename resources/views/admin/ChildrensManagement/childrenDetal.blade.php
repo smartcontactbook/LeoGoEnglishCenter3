@@ -150,8 +150,9 @@
               <h3 class="box-title" style="color:#23292F;">{{ $value->Class_Name }}
               </h3>
             </div>
-            <div class="panel-body">
-              <canvas id="canvas" height="240" width="600"></canvas>
+            <div class="box-header">
+              <div id="chartContainer" style="height: 430px; width: 100%;"></div>
+
             </div>
             <div class="box-body mark-bodyID mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="border-top:1px solid #23292F;">
               <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_horizontal mCSB_inside" style="max-height: none;" tabindex="0">
@@ -258,39 +259,38 @@
 </div>
 </div>
 </section>
+
+<?php
+foreach($getDetailChildrens2 as $value) 
+$dataPoints = array(
+  array("y" => $value->Score_Test1, "label" => "Test1"),
+  array("y" => $value->Score_Test2, "label" => "Test2"),
+  array("y" => $value->Score_Test3, "label" => "Test3"),
+  array("y" => $value->Score_Midtem, "label" => "MidTem"),
+  array("y" => $value->Score_Final, "label" => "Final")
+);
+
+?>
+
 <script>
-  var url = "{{ route('chart.index') }}";
-  alert(url);
-  var Years = new Array();
-  var Labels = new Array();
-  var Prices = new Array();
-  $(document).ready(function(){
-    $.get(url, function(response){
-      response.forEach(function(data){
-          Years.push(data.Score_Final);
-          // Labels.push(data.Full_Name);
-          Prices.push(data.total);
-      });
-      var ctx = document.getElementById("canvas").getContext('2d');
-          var myChart = new Chart (ctx, {
-            type: 'line',
-            data: {
-                labels:Years,
-                datasets: [{
-                    label: 'Number register',
-                    data: ['Fa'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-              scales: {
-              yAxes: [{
-                  stacked: true
-              }]
-            }
-          }
-        });
-    });
-  });
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+  title: {
+    text: "Score chart of Student"
+  },
+  axisY: {
+    title: "Number of Scores"
+  },
+  data: [{
+    type: "line",
+    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+  }]
+});
+chart.render();
+ 
+}
 </script>
+
 @endsection
+

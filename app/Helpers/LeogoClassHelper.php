@@ -125,26 +125,6 @@ class LeogoClassHelper
         return $getClassOfCourses;
     }
 
-    // public static function getStudentOfClass($idClass){
-    //     $getStudentOfClass = DB::table('children_class')
-    //         ->join('leogo_class', 'children_class.Class_ID', '=', 'leogo_class.id')
-    //         ->join('children', 'children_class.Children_ID', '=', 'children.id')
-    //         ->where('children_class.Class_ID', '=', $idClass)
-    //         ->get();
-
-    //     return $getStudentOfClass;
-    // }
-
-    // public static function getHistoryStudent($idClass){
-    //     $getHistoryStudent = DB::table('history_user')
-    //     ->join('leogo_class', 'history_user.Class_ID', '=', 'leogo_class.id')
-    //     ->join('children', 'history_user.Children_ID', '=', 'children.id')
-    //     ->where('history_user.Class_ID', '=', $idClass)
-    //     ->get();
-
-    //     return $getHistoryStudent;
-    // }
-
     public static function getStudentOfClass($idClass){
         $getStudentOfClass = DB::table('history_user')
         ->join('children', 'history_user.Children_ID', '=', 'children.id')
@@ -152,8 +132,7 @@ class LeogoClassHelper
         ->join('level', 'leogo_class.Level_ID', '=', 'level.id')
         ->join('course', 'level.Course_ID', '=', 'course.id')
         ->select('history_user.id as id_history_user', 'level.id as id_level', 'course.id as id_course', 'children.id as id_children_new', 'leogo_class.id as id_leogo_class','course.*', 'level.*','history_user.*','children.*','leogo_class.*')
-        ->where([
-            ['history_user.Class_ID', '=', $idClass ], 
+        ->where([ 
             ['history_user.active', '=', 1 ]
         ])
         ->get();    

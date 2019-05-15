@@ -63,6 +63,13 @@
 									<th>
 										<a href="{{ route('staff.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
 										<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                  
+										<!-- 	<a href="{{ route('chartTest.index') }}">
+												<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-circle-o"></i>
+												Test Chart</button>
+											</a> -->
+	
+
 									</th>
 								</tr>
 							@endforeach

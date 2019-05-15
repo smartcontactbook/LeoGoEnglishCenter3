@@ -178,43 +178,37 @@
 
         function loadData($courseid){
           var button = $(event.relatedTarget) 
-
           var courseid = $courseid
-
           var modal = $(this)
-        // console.log(txt_contentTest);
-        // CKEDITOR.replace('txt_contentTest');
-        modal.find('.modal-body #txt_courseid').val(courseid);
-        var code = ''
-        $.ajax({
-          type : 'GET',
-          url : 'http://127.0.0.1:8000/LevelOfCourse/'+courseid,
-
-
-          success: function(response){
-            var courseids = button.data('name')
-            code = `<tr>
-            <td  id="Course_ID">${courseid}</td>
-            <td contenteditable id="Level_Name"></td>
-            <td contenteditable id="Score_min"></td>
-            <td contenteditable id="Score_max"></td>
-            <td><button type="button" class="btn btn-success btn-xs" id="add" data-courseid="${courseid}">Add</button></td>
-            </tr>`;
-            for(var i = 0; i < response.data.length; i++)
-            {
-              var item = response.data[i];
-              code +=`
-              <tr>      <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
-              <td contenteditable class="column_name" data-column_name="Level_Name" data-id="${item.id_level}">${item.Level_Name} </td>
-              <td contenteditable class="column_name" data-column_name="Score_min" data-id="${item.id_level}">${item.Score_min} </td>
-              <td contenteditable class="column_name" data-column_name="Score_max" data-id="${item.id_level}">${item.Score_max} </td>
-              <td><button type="button" class="btn btn-danger btn-xs delete" id="delete" data-id="${item.id_level}">Delete</button></td>
+          modal.find('.modal-body #txt_courseid').val(courseid);
+          var code = ''
+          $.ajax({
+            type : 'GET',
+            url : 'http://127.0.0.1:8000/LevelOfCourse/'+courseid,
+            success: function(response){
+              var courseids = button.data('name')
+              code = `<tr>
+              <td  id="Course_ID">${courseid}</td>
+              <td contenteditable id="Level_Name"></td>
+              <td contenteditable id="Score_min"></td>
+              <td contenteditable id="Score_max"></td>
+              <td><button type="button" class="btn btn-success btn-xs" id="add" data-courseid="${courseid}">Add</button></td>
               </tr>`;
+              for(var i = 0; i < response.data.length; i++)
+              {
+                var item = response.data[i];
+                code +=`
+                <tr>      <td  class="column_name" data-column_name="Course_Name" data-id="${item.id_level}">${item.Course_ID} </td>
+                <td contenteditable class="column_name" data-column_name="Level_Name" data-id="${item.id_level}">${item.Level_Name} </td>
+                <td contenteditable class="column_name" data-column_name="Score_min" data-id="${item.id_level}">${item.Score_min} </td>
+                <td contenteditable class="column_name" data-column_name="Score_max" data-id="${item.id_level}">${item.Score_max} </td>
+                <td><button type="button" class="btn btn-danger btn-xs delete" id="delete" data-id="${item.id_level}">Delete</button></td>
+                </tr>`;
+              }
+              $('.add-level').html(code);
             }
-            $('.add-level').html(code);
-          }
-        })
-      }
+          })
+        }
 
         $('#addLevel').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) 

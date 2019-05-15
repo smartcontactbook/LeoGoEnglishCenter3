@@ -181,6 +181,12 @@
                  
                 </a>
               </li>
+
+              <li class="active">
+                <a href="{{ route('e-book.index') }}">
+                  <i class="fas fa-book"></i> <span>E-Book</span>
+                </a>
+              </li>
               
             </ul>
             @else

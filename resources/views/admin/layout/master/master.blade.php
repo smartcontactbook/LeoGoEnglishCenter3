@@ -26,6 +26,30 @@
     <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js')}}"></script>
 
     
+    <script type='text/javascript'>
+      function preview_image(event) 
+      {
+       var reader = new FileReader();
+       reader.onload = function()
+       {
+        var output = document.getElementById('output_image');
+        output.src = reader.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    </script>
+    <style>
+    #wrapper
+    {
+     margin:0 auto;
+     padding:0px;
+   }
+   #output_image
+   {
+     max-width:300px;
+   }
+ </style>
+
     <style type="text/css">
       .main-section{
         margin:0 auto;
@@ -47,6 +71,7 @@
     <link rel="stylesheet" href="{{ asset('ckeditor/ckeditor.js') }}"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link id="headInilabsCSSLink" href="https://demo.inilabs.net/school/v4.2/assets/inilabs/themes/default/inilabs.css" rel="stylesheet">
     <style>
       .example-modal .modal {
         position: relative;

@@ -14,7 +14,7 @@ class TemDayTimeStudy extends Migration
     public function up()
     {
         Schema::create('tem_day_time_study', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->increments('id');
             $table->text('title');
             $table->date('dayStartStudy');
             $table->date('dayEndStudy');

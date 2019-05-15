@@ -68,29 +68,6 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               @foreach($getCourses as $count=>$getCourse)
-
-{{--
-            @endif
-          </div>
-          <div class="box-header">
-            <p class="pull-right box-title">
-              <button type="button" class="btn btn-primary editLeftRight">
-                <i class="fa fa-reply-all">Back
-                </i>
-              </button>
-              <a href="{{ route('classRoom.create') }}">
-                <button type="button" class="btn btn-success">
-                  <i class="fa fa-plus">
-                  </i>Add
-                </button>
-              </a>
-            </p>
-          </div>
-          <div class="box-body">
-            <div class="nav-tabs-custom">
-              <ul class="nav nav-tabs">
-                @foreach($getCourses as $count=>$getCourse) 
-      --}}
                 <li role="presentation" @if($count == 0) class="active" @endif>
                   <a href="#tab-{{ $getCourse->id }}" aria-controls="#tab-{{ $getCourse->id }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}
                   </a>

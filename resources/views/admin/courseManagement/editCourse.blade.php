@@ -68,7 +68,7 @@ function preview_image(event)
                   <div class="col-lg-6">
                     <div class="form-group" id="wrapper">
                       <label>Choose image</label>
-                      <input name="image" id="image" type="file" required accept="image/*" onchange="preview_image(event)" value="{{ $getCourseEdit->image}}">
+                      <input name="image" id="image" type="file" accept="image/*" onchange="preview_image(event)">
                       <img name="image" id="output_image" src="{{asset('image/')}}/course/{{ $getCourseEdit->image}}" />
                     </div>
                   </div>

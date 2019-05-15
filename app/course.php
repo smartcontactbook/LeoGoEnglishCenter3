@@ -21,6 +21,11 @@ class course extends Model
     	return $this->hasMany('app\leogo_class');
     }
 
+    public function e_book()
+    {
+        return $this->hasMany('app\eBook');
+    }
+
     public function level()
     {
     	return $this->belongsTo('app\level');

@@ -85,7 +85,6 @@ class ChartController extends Controller
      */
     public function destroy($id)
     {
-        
         $result1 = DB::table('event_detail')->where('event_detail.id_event', '=', $id)->delete();
         $result2=  DB::table('events')->delete($id);
         if($result1 && $result2){

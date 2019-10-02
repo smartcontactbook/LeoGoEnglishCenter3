@@ -22,6 +22,7 @@ use App\Helpers\LeogoClassHelper;
 use App\Helpers\WaitClassHelper;
 use App\Helpers\CourseHelper;
 use App\news;
+use Carbon\Carbon;
 
 class AjaxController extends Controller
 {
@@ -159,19 +160,23 @@ class AjaxController extends Controller
 
     public function moveClass(Request $request, $id){
         $children = history_user::where('Children_ID', $id)->update(array('active' => 0));
+        $countChildren = history_user::where('Class_ID', $request->txt_id_class)->count();
+        
         if($request->txt_qtystu == 0){
             $changeClassOld = leogo_class::where('id', $request->txt_id_old_class)->update(array('QuantityStudent' => 0));
         } else{
             $changeClassOld = leogo_class::where('id', $request->txt_id_old_class)->decrement('QuantityStudent', 1);
         }
-        
-        $changeClass = leogo_class::where('id', $request->txt_id_class)->increment('QuantityStudent', 1);
-        
+        if($countChildren > 0)
+            $changeClass = leogo_class::where('id', $request->txt_id_class)->increment('QuantityStudent', 1);
+        else
+            $changeClass = leogo_class::where('id', $request->txt_id_class)->update(array('QuantityStudent'=> 1));
+
         $newchildren = new history_user;
         $newchildren->Class_ID = $request->txt_id_class;
-        $newchildren->Level_ID = $request->txt_id_level;
         $newchildren->Children_ID = $id;
         $newchildren->active = 1;
+        // $getNewChildrenClass->date_change = Carbon::now();
         $result = $newchildren->save();
 
         return ['data' => $result, 'children' => $children, 'changeClass' => $changeClass, 'changeClassOld' => $changeClassOld];

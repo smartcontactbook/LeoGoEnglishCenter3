@@ -164,12 +164,30 @@
                         </th>
                         <th colspan="2" class=" text-center" style="background-color:#395C7F;color:#fff;">Begin
                         </th>
+                        <th colspan="2" class=" text-center" style="background-color:#395C7F;color:#fff;">Test 1
+                        </th>
+                        <th colspan="2" class=" text-center" style="background-color:#395C7F;color:#fff;">Test 2
+                        </th>
                         <th colspan="2" class=" text-center" style="background-color:#395C7F;color:#fff;">Exam mid
+                        </th>
+                        <th colspan="2" class=" text-center" style="background-color:#395C7F;color:#fff;">Test 3
                         </th>
                         <th colspan="2" class=" text-center" style="background-color:#395C7F;color:#fff;">Exam final
                         </th>
                       </tr>
                       <tr>
+                        <th class="bg-sky text-center ">Mark
+                        </th>
+                        <th class="bg-sky-light text-center" data-title="Highest Mark">Highest Mark
+                        </th>
+                        <th class="bg-sky text-center ">Mark
+                        </th>
+                        <th class="bg-sky-light text-center" data-title="Highest Mark">Highest Mark
+                        </th>
+                        <th class="bg-sky text-center ">Mark
+                        </th>
+                        <th class="bg-sky-light text-center" data-title="Highest Mark">Highest Mark
+                        </th>
                         <th class="bg-sky text-center ">Mark
                         </th>
                         <th class="bg-sky-light text-center" data-title="Highest Mark">Highest Mark
@@ -193,13 +211,40 @@
                         <td class="text-black" data-title="Highest Mark">{{ $value->Score_max }}
                         </td>
                         <td class="text-black" data-title="Mark">
+                          @if($value->Score_Test1 == null)
+                            0
+                          @else
+                            {{ $value->Score_Test1 }}
+                          @endif
+                        </td>
+                        <td class="text-black" data-title="Highest Mark">{{ $value->Score_max}}
+                        </td>
+                        <td class="text-black" data-title="Mark">
+                          @if($value->Score_Test2 == null)
+                            0
+                          @else
+                            {{ $value->Score_Test2 }}
+                          @endif
+                        </td>
+                        <td class="text-black" data-title="Highest Mark">{{ $value->Score_max}}
+                        </td>
+                        <td class="text-black" data-title="Mark">
                           @if($value->Score_Midtem == null)
                             0
                           @else
                             {{ $value->Score_Midtem }}
                           @endif
                         </td>
-                        <td class="text-black" data-title="Highest Mark">10
+                        <td class="text-black" data-title="Highest Mark">{{ $value->Score_max}}
+                        </td>
+                        <td class="text-black" data-title="Mark">
+                          @if($value->Score_Test3 == null)
+                            0
+                          @else
+                            {{ $value->Score_Test3 }}
+                          @endif
+                        </td>
+                        <td class="text-black" data-title="Highest Mark">{{ $value->Score_max}}
                         </td>
                         <td class="text-black" data-title="Mark">
                           @if($value->Score_Final == null)
@@ -208,15 +253,15 @@
                             {{ $value->Score_Final }}
                           @endif
                         </td>
-                        <td class="text-black" data-title="Highest Mark">10
+                        <td class="text-black" data-title="Highest Mark">{{ $value->Score_max}}
                         </td>
                       </tr>
                     </tbody>
                   </table>
                   <div class="box-footer" style="padding-left:0px;">
                     @php
-                      $total = $value->Score_Final + $value->Score_Midtem;
-                      $average = ( $value->Score_Final + $value->Score_Midtem ) / 2;
+                      $total = $value->Score_Final + $value->Score_Midtem + $value->Score_Test1 + $value->Score_Test2 + $value->Score_Test3;
+                      $average = ( $total ) / 5;
                       if ($average >= 8.5) {
                         $grate = "Loại A";
                       } else if (($average >= 7) && ($average < 8.5)) {
@@ -265,8 +310,8 @@ foreach($getDetailChildrens2 as $value)
 $dataPoints = array(
   array("y" => $value->Score_Test1, "label" => "Test1"),
   array("y" => $value->Score_Test2, "label" => "Test2"),
-  array("y" => $value->Score_Test3, "label" => "Test3"),
   array("y" => $value->Score_Midtem, "label" => "MidTem"),
+  array("y" => $value->Score_Test3, "label" => "Test3"),
   array("y" => $value->Score_Final, "label" => "Final")
 );
 

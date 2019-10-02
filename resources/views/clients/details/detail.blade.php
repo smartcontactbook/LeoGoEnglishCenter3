@@ -4,7 +4,7 @@
         <div class="banner-block" data-module="top-banner">
             <div class="banner__wrapper">
                 <div class="banner__img hidden-xs">
-                    <img src="{{asset('image/')}}/course/{{ $getDetail->image }}" alt="" style="height: 290px">
+                    <img src="{{asset('image/')}}/course/{{ $getDetail->image }}" alt="" style="height: 400px">
                 </div>
                 
                 <div class="banner__detail">                    

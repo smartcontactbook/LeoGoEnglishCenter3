@@ -34,5 +34,10 @@ class AppServiceProvider extends ServiceProvider
             $getCourse = course::all();
             $view->with('getCourse', $getCourse);
         });
+
+        view()->composer('clients/registerOnline/registerOnline', function($view){
+            $getCourse = course::all();
+            $view->with('getCourse', $getCourse);
+        });
     }
 }

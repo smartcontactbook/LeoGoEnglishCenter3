@@ -18,13 +18,28 @@ class CalenderController extends Controller
      */
     public function index()
     {
+        $events = [];
+        if(Auth::guard('children')->check()){
+            $role_children = Auth::guard('children')->user()->Role_ID;
+            $children = Auth::guard('children')->user()->id;
 
-        $user = Auth::guard('staff')->user()->id;
+            $getTemDayTimeStudys = CalendarHelper::getCalendarOfChildren($children);
+        } else{
+            $role = Auth::guard('staff')->user()->Role_ID;
+            $user = Auth::guard('staff')->user()->id;
+            if($role == 1 or $role ==2){
+                $getTemDayTimeStudys = CalendarHelper::getTemDayTimeStudys();
+            } else {
+                $getTemDayTimeStudys = CalendarHelper::getCalendarOfUsers($user);
+            }
+        }
+        
+        
         //$test = CalendarHelper::getCalendarOfLecturer($user);
         // $test = CalendarHelper::getCalendarOfUsers($user);
         // dd($test);
 
-        $events = [];
+        
         // $data = CalendarHelper::getCalendarOfClass();
         // $getWeekDays = CalendarHelper::getWeekDays();
         // foreach ($data as $key => $value) {
@@ -57,11 +72,14 @@ class CalenderController extends Controller
         //         }
         //     }
         // }
-        if($user == 1 or $user ==2){
-            $getTemDayTimeStudys = CalendarHelper::getTemDayTimeStudys();
-        } else{
-            $getTemDayTimeStudys = CalendarHelper::getCalendarOfUsers($user);
-        }
+        // if($role == 1 or $role ==2){
+        //     $getTemDayTimeStudys = CalendarHelper::getTemDayTimeStudys();
+        // } else{
+        //     if($role == 3 or $role == 4)
+        //         $getTemDayTimeStudys = CalendarHelper::getCalendarOfUsers($user);
+        //     else
+        //         $getTemDayTimeStudys = CalendarHelper::getCalendarOfUsers($children);
+        // }
         
         if($getTemDayTimeStudys->count()) {
             foreach ($getTemDayTimeStudys as $key => $value) {

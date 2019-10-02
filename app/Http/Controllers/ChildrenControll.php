@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\AddchildrenHelper;
 use App\Helpers\TutorHelper;
 use App\children;
+use Auth;
 
 class ChildrenControll extends Controller
 {
@@ -16,10 +17,18 @@ class ChildrenControll extends Controller
      */
     public function index()
     {
-        
-        $getChildrens = AddchildrenHelper::getChildrens();
-        // dd($getChildrens);
-        return view('admin.ChildrensManagement.childrens', compact('getChildrens'));
+        if(Auth::guard('staff')->check()){
+            $userId = Auth::guard('staff')->user()->id;
+       
+
+            $getChildrens = AddchildrenHelper::getChildrens();
+            
+            $getChildrenOfLecturer = AddchildrenHelper::getChildrenOfLecturer($userId);
+            $getChildrenOfTutor = AddchildrenHelper::getChildrenOfTutor($userId);
+        }
+            
+        // dd($getChildrenOfLecturer);
+        return view('admin.ChildrensManagement.childrens', compact('getChildrens', 'getChildrenOfLecturer', 'getChildrenOfTutor'));
     }
 
     /**
@@ -51,6 +60,7 @@ class ChildrenControll extends Controller
      */
     public function show($id)
     {
+
         $getDetailChildrens = AddchildrenHelper::getDetailChildrens($id);
         $getDetailChildrens2 = AddchildrenHelper::getDetailChildrens2($id);
 // dd($getDetailChildrens2);

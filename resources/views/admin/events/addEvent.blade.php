@@ -48,15 +48,13 @@
 												<div class="col-md-6">
 			                    <div class="form-group">
 			                      <label for="exampleInputEmail1">Title</label>
-			                      <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
-                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
-                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" required  title="Title invalid">
+			                      <input type="input" class="form-control" id="exampleInputEmail1 txt_name" name="txt_name" placeholder="Enter course name" value="{!! old('txt_name') !!}" required  title="Course name invalid">
 													</div>
 												</div>
 												<div class="cold-md-6">
 													<div class="form-group" id="wrapper">
 														<label>Choose image</label>
-															<input name="image" type="file" accept="image/*" onchange="preview_image(event)">
+															<input name="image" id="image" type="file" accept="image/*" onchange="preview_image(event)">
 															<img name="image" id="output_image"/>
 													</div>
 												</div>

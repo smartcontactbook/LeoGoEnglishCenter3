@@ -19,12 +19,6 @@
 						</div>
 					@endif
 				</div>
-				<div class="box-header">
-					<p class="pull-right box-title">
-						<button type="button" class="btn btn-primary btn-sm editLeftRight"><i class="fa fa-reply-all">Back</i></button>
-						<a href=""><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>Add</button></a>
-					</p>
-				</div>
 
 				<div class="box-body">
 					<table id="example1" class="table table-bordered table-striped"  style="font-size: 12px; text-align: center;">
@@ -44,35 +38,86 @@
 						</thead>
 						<tbody>
 							<?php $stt=0 ?>
-							@foreach($getChildrens as $value)
-							<?php $stt=$stt+1 ?>
-								<tr>
-									<td>{!! $stt !!}</td>
-									 <td class="text-center"><img src="{{asset('image/')}}/avatar/{{ $value->avatar }}" style='max-width:50px;max-height:50px' class='img img-thumbnail' /></td>
-									<td>{{$value->Full_Name}}</td>
-									<td>{{$value->Parent_Name}}</td>
-									<td>{{$value->email}}</td>
-									<td>{{$value->Birth_Day}}</td>
-									<td>{{$value->Phone_Number}}</td>
-									<td>
-										@if($value->Gender == 1)
-											<span>Female</span>
-										@else
-											<span>Male</span>
-										@endif
-									</td>
-									<td>{{$value->Address}}</td>
-									<th>
-										{{-- <a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight" data-toggle="modal" data-target="#modal-default" data-avatar="{{ $value->avatar}}" data-full_name = "{{ $value->Full_Name }}" data-email = "{{ $value->email}}" data-start_date = "{{ $value->Start_Date }}" data-end_date = "{{ $value->End_Date }}" data-score = "{{ $value->Score }}" data-description = "{{ $value->Description}}" data-parent_name = "{{ $value->Parent_Name }}" data-phone_number = "{{ $value->Phone_Number }}" data-gender = "{{ $value->Gender }}" data-address = "{{ $value->Address}}" data-class_name = "{{ $value->Class_Name}}"><i class="far fa-eye"></i></button></a> --}}
-
-										<a href="{{ route('children.show', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight"><i class="far fa-eye"></i> </button></a>
-										<a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
-										<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
-									</th>
-
-									
-								</tr>
-							@endforeach
+							@if(Auth::guard('staff')->user()->Role_ID == 3)
+								@foreach($getChildrenOfLecturer as $value)
+									<?php $stt=$stt+1; ?>
+									<tr>
+										<td>{!! $stt !!}</td>
+										<td class="text-center"><img src="{{asset('image/')}}/avatar/{{ $value->avatar }}" style='max-width:50px;max-height:50px' class='img img-thumbnail' /></td>
+										<td>{!!$value->Full_Name!!}</td>
+										<td>{{$value->Parent_Name}}</td>
+										<td>{{$value->email}}</td>
+										<td>{{$value->Birth_Day}}</td>
+										<td>{{$value->Phone_Number}}</td>
+										<td>
+											@if($value->Gender == 1)
+												<span>Female</span>
+											@else
+												<span>Male</span>
+											@endif
+										</td>
+										<td>{{$value->Address}}</td>
+										<th>
+											{{-- <a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight" data-toggle="modal" data-target="#modal-default" data-avatar="{{ $value->avatar}}" data-full_name = "{{ $value->Full_Name }}" data-email = "{{ $value->email}}" data-start_date = "{{ $value->Start_Date }}" data-end_date = "{{ $value->End_Date }}" data-score = "{{ $value->Score }}" data-description = "{{ $value->Description}}" data-parent_name = "{{ $value->Parent_Name }}" data-phone_number = "{{ $value->Phone_Number }}" data-gender = "{{ $value->Gender }}" data-address = "{{ $value->Address}}" data-class_name = "{{ $value->Class_Name}}"><i class="far fa-eye"></i></button></a> --}}
+											<a href="{{ route('children.show', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight"><i class="far fa-eye"></i> </button></a>
+											
+										</th>
+									</tr>
+								@endforeach
+							@elseif(Auth::guard('staff')->user()->Role_ID == 4)
+									@foreach($getChildrenOfTutor as $value)
+										<?php $stt=$stt+1 ?>
+										<tr>
+											<td>{!! $stt !!}</td>
+											<td class="text-center"><img src="{{asset('image/')}}/avatar/{{ $value->avatar }}" style='max-width:50px;max-height:50px' class='img img-thumbnail' /></td>
+											<td>{{$value->Full_Name}}</td>
+											<td>{{$value->Parent_Name}}</td>
+											<td>{{$value->email}}</td>
+											<td>{{$value->Birth_Day}}</td>
+											<td>{{$value->Phone_Number}}</td>
+											<td>
+												@if($value->Gender == 1)
+													<span>Female</span>
+												@else
+													<span>Male</span>
+												@endif
+											</td>
+											<td>{{$value->Address}}</td>
+											<th>
+												{{-- <a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight" data-toggle="modal" data-target="#modal-default" data-avatar="{{ $value->avatar}}" data-full_name = "{{ $value->Full_Name }}" data-email = "{{ $value->email}}" data-start_date = "{{ $value->Start_Date }}" data-end_date = "{{ $value->End_Date }}" data-score = "{{ $value->Score }}" data-description = "{{ $value->Description}}" data-parent_name = "{{ $value->Parent_Name }}" data-phone_number = "{{ $value->Phone_Number }}" data-gender = "{{ $value->Gender }}" data-address = "{{ $value->Address}}" data-class_name = "{{ $value->Class_Name}}"><i class="far fa-eye"></i></button></a> --}}
+												<a href="{{ route('children.show', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight"><i class="far fa-eye"></i> </button></a>
+												
+											</th>
+										</tr>
+									@endforeach
+							@elseif(Auth::guard('staff')->user()->Role_ID == 2 || Auth::guard('staff')->user()->Role_ID == 1)
+										@foreach($getChildrens as $value)
+											<?php $stt=$stt+1 ?>
+											<tr>
+												<td>{!! $stt !!}</td>
+												<td class="text-center"><img src="{{asset('image/')}}/avatar/{{ $value->avatar }}" style='max-width:50px;max-height:50px' class='img img-thumbnail' /></td>
+												<td>{{$value->Full_Name}}</td>
+												<td>{{$value->Parent_Name}}</td>
+												<td>{{$value->email}}</td>
+												<td>{{$value->Birth_Day}}</td>
+												<td>{{$value->Phone_Number}}</td>
+												<td>
+													@if($value->Gender == 1)
+														<span>Female</span>
+													@else
+														<span>Male</span>
+													@endif
+												</td>
+												<td>{{$value->Address}}</td>
+												<th>
+													{{-- <a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight" data-toggle="modal" data-target="#modal-default" data-avatar="{{ $value->avatar}}" data-full_name = "{{ $value->Full_Name }}" data-email = "{{ $value->email}}" data-start_date = "{{ $value->Start_Date }}" data-end_date = "{{ $value->End_Date }}" data-score = "{{ $value->Score }}" data-description = "{{ $value->Description}}" data-parent_name = "{{ $value->Parent_Name }}" data-phone_number = "{{ $value->Phone_Number }}" data-gender = "{{ $value->Gender }}" data-address = "{{ $value->Address}}" data-class_name = "{{ $value->Class_Name}}"><i class="far fa-eye"></i></button></a> --}}
+													<a href="{{ route('children.show', $value->id) }}"><button type="button" class="btn btn-info btn-sm editLeftRight"><i class="far fa-eye"></i> </button></a>
+													<a href="{{ route('children.edit', $value->id) }}"><button type="button" class="btn btn-warning btn-sm editLeftRight"><i class="	fa fa-edit"></i></button></a>
+													<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+												</th>
+											</tr>
+										@endforeach
+								@endif
 						</tbody>
 						<tfoot>
 							<tr>

@@ -29,7 +29,7 @@ class EventsController extends Controller
         $file_image=$request->file('image')->getClientOriginalName();
     	$events = new events;
         $events->title = $request->txt_name;
-        $events->create_at =Carbon::now();
+        $events->create_at = Carbon::now();
         $events->id_user = $user = Auth::guard('staff')->user()->id;        
         $events->image = $file_image;
         $request->file('image')->move('image/events/',$file_image);

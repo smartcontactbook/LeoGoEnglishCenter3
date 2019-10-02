@@ -76,6 +76,16 @@ return [
             'driver' => 'token',
             'provider' => 'tutor',
         ],
+
+        'children' => [
+            'driver' => 'session',
+            'provider' => 'children',
+        ],
+        
+        'children-api' => [
+            'driver' => 'passport',
+            'provider' => 'children',
+        ],
     ],
 
     /*
@@ -114,6 +124,11 @@ return [
         'tutor' => [
             'driver' => 'eloquent',
             'model' => App\tutor::class,
+        ],
+
+        'children' => [
+            'driver' => 'eloquent',
+            'model' => App\children::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -157,6 +172,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+        'children' => [
+            'provider' => 'children',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ], 
     ],
 
 ];

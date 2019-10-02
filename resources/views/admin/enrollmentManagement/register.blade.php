@@ -32,7 +32,7 @@
                     placeholder="Enter first name"
                     required  pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
                     ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
-                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$" minlength="5" maxlength="30" title="First name invalid"
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" minlength="5" maxlength="30" title="First name invalid"
                     />
                   </div>
                   <div class="form-group">
@@ -74,7 +74,9 @@
                     type="text"
                     class="form-control"
                     placeholder="Enter Nick name"
-                    pattern="^[a-zA-z ]*$" minlength="2" maxlength="10"
+                    pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
+                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" minlength="2" maxlength="10"
                     required  title="Nick name invalid"
                     />
                   </div>
@@ -128,8 +130,8 @@
                       class="form-control"
                       placeholder="Enter parent name"
                       required  pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ
-                    ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
-                    ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$" minlength="5" max="30" title="First name invalid"
+                      ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ
+                      ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]{1,50}+$" minlength="5" max="30" title="First name invalid"
                     />
                   </div>
                   <div class="form-group">
@@ -150,7 +152,7 @@
                     class="form-control" 
                     type="datetime-local"
                     pattern="([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))"
-                    required 
+                     
                     value="{!! old('dt_Schedule') !!}">
                   </div>
                 </div>

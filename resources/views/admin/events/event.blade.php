@@ -79,23 +79,21 @@
 				'csrftoken' : '{{ csrf_token() }}' }
 			});
 		
-			if(confirm('Are you sure to remove this record ?'))
-			{
-			$.ajax({
-				url: 'http://127.0.0.1:8000/chart/'+id,
-				type: 'DELETE',
-				data: {
-				"id": id, "_token": "{{ csrf_token() }}",}
-				,
-				error: function() {
-				alert('Something is wrong');
-				}
-				,
-				success: function(data) {
-				$("#"+id).remove();
-				alert("Record removed successfully");
-				}
-			});
+			if(confirm('Are you sure to remove this record ?')) {
+				$.ajax({
+					url: 'http://127.0.0.1:8000/chart/'+id,
+					type: 'DELETE',
+					data: {
+						"id": id, "_token": "{{ csrf_token() }}",
+					},
+					error: function() {
+						alert('Something is wrong');
+					},
+					success: function(data) {
+						$("#"+id).remove();
+						alert("Record removed successfully");
+					}
+				});
 			}
 		});
     </script>

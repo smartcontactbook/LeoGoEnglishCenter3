@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\RegisterHelper;
 use App\register;
+use Hash;
 
 class RegisterController extends Controller
 {
@@ -55,6 +56,7 @@ class RegisterController extends Controller
         $register->Gender = $request->txt_gender;
         $register->Phone_Number = $request->txt_phone;
         $register->Course_ID = $request->cbm_Course;
+        
         // dd($lecturer->Gender,$lecturer->Address);
         $result = $register->save();
         if($result ){

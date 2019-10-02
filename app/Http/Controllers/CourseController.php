@@ -64,8 +64,8 @@ class CourseController extends Controller
             $course->Description = $request->txt_description;
             $course->Term = $request->cmb_term;
             $course->content = $request->txt_contentTest;
-            $image = $request->image;
-            if($image == null){
+            $image2 = $request->file('image');
+            if($image2 == null){
                 $result = $course->save();
             } else{
                 $file_image=$request->file('image')->getClientOriginalName();

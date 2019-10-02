@@ -25,7 +25,6 @@
 
     <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js')}}"></script>
 
-    
     <script type='text/javascript'>
       function preview_image(event) 
       {
@@ -64,14 +63,12 @@
       }
     </style>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    {{-- 
-    <link rel="stylesheet" href="{{ asset('ckeditor/ckeditor.js') }}"> --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <link id="headInilabsCSSLink" href="https://demo.inilabs.net/school/v4.2/assets/inilabs/themes/default/inilabs.css" rel="stylesheet">
+    
     <style>
       .example-modal .modal {
         position: relative;

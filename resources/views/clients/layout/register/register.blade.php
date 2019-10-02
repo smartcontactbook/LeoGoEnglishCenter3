@@ -70,10 +70,10 @@
                   
                   <span class="text">Gửi th&#244;ng tin</span>
                 </button>
-                <button type="submit" id="submitRegister" class=" btn-regular btn-regular--lr40 submitRegister" data-title="Gửi th&#244;ng tin">
+                {{-- <button type="submit" id="submitRegister" class=" btn-regular btn-regular--lr40 submitRegister" data-title="Gửi th&#244;ng tin">
                   
                     <span class="text">Thanh Toán Ngay</span>
-                  </button>
+                  </button> --}}
               </div>
             </div>
             <div class="clear-20"></div>

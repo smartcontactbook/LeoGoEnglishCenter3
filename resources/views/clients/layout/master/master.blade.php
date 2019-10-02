@@ -19,9 +19,6 @@
     <meta name="twitter:url" content="index.html"/>
     <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
     <script src="{{ asset('js/sweetalert.js') }}"></script>
-   {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
- --}}    <!-- No Google Translate toolbar -->
     <meta name="google" content="notranslate">
 
     <link rel="manifest" href="{{ asset('assets/images/favicons/manifest.json')}}">
@@ -50,8 +47,6 @@
   </noscript>
   <section class="wrapper">
   <div class="row">
-
-
   </div>
     {{-- @include('sweet::alert') --}}
     @if (Session::has('sweet_alert.alert'))
@@ -71,11 +66,10 @@
       </script>
     @endif
     @include('clients/layout/header/header')
-    <!-- main -->
+
      <div class="content-wrapper">
       @yield('main-content-client')
     </div>
-    <!-- end main -->
     @include('clients/layout/map/map')
     @include('clients/layout/register/register')
     @include('clients/registerOnline/registerOnline')
@@ -85,13 +79,20 @@
 <script src="{{asset('assets/js/app.js')}}"></script>
 <script src="{{asset('assets/js/function.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-<!-- <script>var dataLayer = [{'trackingId': 'UA-32781948-1', 'hostName': 'https://crm.vus.edu.vn'}];</script> -->
 <script src="{{asset('js/tgtm.js')}}"></script>
 
-<!-- <script>
-  function send_ga_hit(page_url, page_title) {
-    ga('send', {'hitType': 'pageview', 'page': page_url, 'title': page_title});
-  }
-</script> -->
+  <script>
+    (function(s, u, b, i, z){
+      u[i]=u[i]||function(){
+        u[i].t=+new Date();
+        (u[i].q=u[i].q||[]).push(arguments);
+      };
+      z=s.createElement('script');
+      var zz=s.getElementsByTagName('script')[0];
+      z.async=1; z.src=b; z.id='subiz-script';
+      zz.parentNode.insertBefore(z,zz);
+    })(document, window, 'https://widgetv4.subiz.com/static/js/app.js', 'subiz');
+    subiz('setAccount', 'acqdwlniptpjmrbuhfdd');
+    </script>
 </body>
 </html>

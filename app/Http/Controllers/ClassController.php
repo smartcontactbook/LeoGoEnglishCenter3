@@ -22,15 +22,20 @@ class ClassController extends Controller
 {
     public function index(Request $request)
     {
+        $userId = Auth::guard('staff')->user()->id;  
         Session::forget('idLevel');
         Session::forget('nameLevel');
         Session::forget('numberStudent');
         $getClassOfCourses = LeogoClassHelper::getClassOfCourses();
         $getCourses = LeogoClassHelper::getCourses();
         $getStudentClass = LeogoClassHelper::getStudentOfClass($request->txt_idClass);
-        $getNewClass =LeogoClassHelper::getNewClass();
-
-        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass', 'getStudentClass', 'getNewClass'));
+        $getNewClass =LeogoClassHelper::getNewClass($request->txt_idClass);
+        $getCourseOfLecturer = LeogoClassHelper::getCourseOfLecturer($userId);
+        $getCourseOfTutor = LeogoClassHelper::getCourseOfTutor($userId);
+        $getCourseOfLecturer2 = LeogoClassHelper::getCourseOfLecturer2($userId);
+        $getCourseOfTutor2 = LeogoClassHelper::getCourseOfTutor2($userId);
+        
+        return view('admin.classManagement.classRoom', compact('getClassOfCourses', 'getCourses', 'getStudentClass', 'getStudentClass', 'getNewClass', 'getCourseOfLecturer', 'getCourseOfTutor', 'getCourseOfLecturer2', 'getCourseOfTutor2'));
     }
 
     public function create(Request $request)

@@ -41,7 +41,7 @@ class StaffController extends Controller
 
         if($result){
 
-            return redirect()->route('tutor.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add tutor']);
+            return redirect()->route('staff.index')->with(['flash_level'=>'success','flash_message'=>'Success !! Complete add tutor']);
         } else{
 
             return redirect()->back()->with('errorLists', trans('Faill !!! '));

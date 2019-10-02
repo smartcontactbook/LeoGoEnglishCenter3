@@ -236,7 +236,6 @@
                           <th>Birthday</th>
                           <th>Gender</th>
                           <th>Score</th>
-                          <th class="sorting_desc_disabled sorting_asc_disabled sorting disabled">Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -250,16 +249,7 @@
                           <td>{{ $value->Birth_Day }}</td>
                           <td>{{ $value->Gender }}</td>
                           <td>{{ $value->Score }}</td>
-                          <td> 
-                            <form action="{{ route('postDelTemChildren') }}" method="POST">
-                              {{csrf_field()}}
-                              <input type="hidden" name="txt_idChildren" value="{{ $value->id_Chidren }}"> 
-                              <input type="hidden" name="txt_idChildrenTem" value="{{ $value->id }}"> 
-                              <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-trash-o"></i>
-                              </button>
-                            </form>
-                          </td>
+                          
                         </tr>
                         @endforeach
                       </tbody>

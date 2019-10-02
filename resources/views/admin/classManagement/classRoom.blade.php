@@ -58,153 +58,389 @@
             
           @endif
         </div>
-        <div class="box-header">
-          <p class="pull-right box-title">
-            <button type="button" class="btn btn-primary editLeftRight"><i class="fa fa-reply-all">Back</i></button>
-            <a href="{{ route('classRoom.create') }}"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Add</button></a>
-          </p>
-        </div>
-        <div class="box-body">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              @foreach($getCourses as $count=>$getCourse)
-                <li role="presentation" @if($count == 0) class="active" @endif>
-                  <a href="#tab-{{ $getCourse->id }}" aria-controls="#tab-{{ $getCourse->id }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}
-                  </a>
-                </li>
-                @endforeach
-              </ul>
-              <div class="tab-content">
-                @foreach($getCourses as $count=>$getCourse)
-                  <div role="tabpanel" @if($count == 0) class="tab-pane active" @else class="tab-pane" @endif id="tab-{{ $getCourse->id }}">
-                    <!-- Post -->
-                    <div class="row">
-                      @foreach($getClassOfCourses as $value)
-                      @if($getCourse->id == $value->id_course);
-                      @php
-                        $status = $value->status;
-                      @endphp
-                      <input type="hidden" name="txt_idClass">
-                      <div class="col-sm-3">
-                        <div class="box-body">
-                          <ul class="products-list product-list-in-box">
-                            <li class="edit-item">
-                              <div class="edit-product-info">
-                                <h4 class="edit-p">{{ $value->Class_Name }} 
-                                  <button type="button" 
-                                          class="btn edit-button edit-icon pull-right"
+        @if(Auth::guard('staff')->user()->Role_ID == 3)
+          <div class="box-body">
+            <div class="nav-tabs-custom"> 
+                <ul class="nav nav-tabs">
+                  @foreach($getCourseOfLecturer as $count=>$getCourse)
+                  <li role="presentation" @if($count == 0) class="active" @endif>
+                      <a href="#tab-{{ $getCourse->id_course }}" aria-controls="#tab-{{ $getCourse->id_course }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}
+                      </a>
+                    </li>
+                  @endforeach
+                </ul>
+                <div class="tab-content">
+                  @foreach($getCourseOfLecturer as $count=>$getCourse)
+                    <div role="tabpanel" @if($count == 0) class="tab-pane active" @else class="tab-pane" @endif id="tab-{{ $getCourse->id }}">
+                      <!-- Post -->
+                      <div class="row">
+                        @foreach($getCourseOfLecturer2 as $value)
+                        @if($getCourse->id_course == $value->id_course)
+                        @php
+                          $status = $value->status;
+                        @endphp
+                        <input type="hidden" name="txt_idClass">
+                        <div class="col-sm-3">
+                          <div class="box-body">
+                            <ul class="products-list product-list-in-box">
+                              <li class="edit-item">
+                                <div class="edit-product-info">
+                                  <h4 class="edit-p">{{ $value->Class_Name }} 
+                                    
+                                  </h4>
+                                  <div class="avatar-edit">
+                                    <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image" alt="Avatar">
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- /.item -->
+                              <li class="item">
+                                <div class="box-body">
+                                  <div class="row">
+                                    <label class="control-label edit-row">Course
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->Course_Name }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Start day
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->Start_Date }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">End date
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->End_Date}}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Qty Students
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label label-danger edit-pull-right">{{ $value->QuantityStudent }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Remain classes
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </li>
+                              <!-- /.item -->
+                              <li class="item">
+                                <div class="box-body">
+                                  <input type="hidden" name="txt_idClass" value="{{ $value->id_leogo }}"> 
+                                  <button 
+                                          type="button" 
+                                          class="btn edit-button edit-itemJs" 
                                           data-toggle="modal" 
-                                          data-idleogoclass="{{$value->id_leogo}}" 
-                                          data-target="#editClass"
-                                          > 
-                                    <i class="fa fa-eyedropper" aria-hidden="true">
-                                    </i>
+                                          data-id="{{$value->id_leogo}}" 
+                                          data-target="#listChildren">
+                                    List
                                   </button>
-                                </h4>
-                                <div class="avatar-edit">
-                                  <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image" alt="Avatar">
-                                </div>
-                              </div>
-                            </li>
-                            <!-- /.item -->
-                            <li class="item">
-                              <div class="box-body">
-                                <div class="row">
-                                  <label class="control-label edit-row">Course
-                                  </label>
-                                  <div class="pull-right">
-                                    <label class="label edit-lable edit-pull-right">{{ $value->Course_Name }}
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <label class="control-label edit-row">Start day
-                                  </label>
-                                  <div class="pull-right">
-                                    <label class="label edit-lable edit-pull-right">{{ $value->Start_Date }}
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <label class="control-label edit-row">End date
-                                  </label>
-                                  <div class="pull-right">
-                                    <label class="label edit-lable edit-pull-right">{{ $value->End_Date}}
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <label class="control-label edit-row">Qty Students
-                                  </label>
-                                  <div class="pull-right">
-                                    <label class="label label-danger edit-pull-right">{{ $value->QuantityStudent }}
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <label class="control-label edit-row">Remain classes
-                                  </label>
-                                  <div class="pull-right">
-                                    <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <label class="control-label edit-row">Status</label>
-                                  <div class="pull-right">
-                                    <a id="containnerTest">
-                                      <div class="active{{$value->id}}">
-                                        @if($value->status == 0)
-                                        <img src="{{asset('image/')}}/leogo/cancel.png" onclick="ajaxToggoActiveStatus({{$value->id}}, 0)">
-                                        @else
-                                        <img src="{{asset('image/')}}/leogo/checked.png" onclick="ajaxToggoActiveStatus({{$value->id}}, 1)">
-                                        @endif
-                                      </div>
+                                    <a href="{{ route('register.create') }}">
+                                    <button 
+                                      type="button" 
+                                      class="btn pull-right edit-button edit-itemJs" 
+                                      data-toggle="modal" 
+                                      data-id="{{$value->id_leogo}}" 
+                                      data-target="#inputscore">
+                                        Score
+                                    </button>
                                     </a>
                                   </div>
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                      </div>
+                      <!-- /.post -->
+                    </div>
+                  @endforeach
+            </div>
+          </div>
+        @elseif(Auth::guard('staff')->user()->Role_ID == 4)
+          <div class="box-body">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                @foreach($getCourseOfTutor as $count=>$getCourse)
+                <li role="presentation" @if($count == 0) class="active" @endif>
+                    <a href="#tab-{{ $getCourse->id_course }}" aria-controls="#tab-{{ $getCourse->id_course }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+            <div class="tab-content">
+              @foreach($getCourseOfTutor as $count=>$getCourse)
+                <div role="tabpanel" @if($count == 0) class="tab-pane active" @else class="tab-pane" @endif id="tab-{{ $getCourse->id }}">
+                  <!-- Post -->
+                  <div class="row">
+                    @foreach($getCourseOfTutor2 as $value)
+                    @if($getCourse->id_course == $value->id_course)
+                    @php
+                      $status = $value->status;
+                    @endphp
+                    <input type="hidden" name="txt_idClass">
+                    <div class="col-sm-3">
+                      <div class="box-body">
+                        <ul class="products-list product-list-in-box">
+                          <li class="edit-item">
+                            <div class="edit-product-info">
+                              <h4 class="edit-p">{{ $value->Class_Name }} 
+                                <button type="button" 
+                                        class="btn edit-button edit-icon pull-right"
+                                        data-toggle="modal" 
+                                        data-idleogoclass="{{$value->id_leogo}}" 
+                                        data-target="#editClass"
+                                        > 
+                                  <i class="fa fa-eyedropper" aria-hidden="true">
+                                  </i>
+                                </button>
+                              </h4>
+                              <div class="avatar-edit">
+                                <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image" alt="Avatar">
+                              </div>
+                            </div>
+                          </li>
+                          <!-- /.item -->
+                          <li class="item">
+                            <div class="box-body">
+                              <div class="row">
+                                <label class="control-label edit-row">Course
+                                </label>
+                                <div class="pull-right">
+                                  <label class="label edit-lable edit-pull-right">{{ $value->Course_Name }}
+                                  </label>
                                 </div>
                               </div>
-                            </li>
-                            <!-- /.item -->
-                            <li class="item">
-                              <div class="box-body">
-                                <input type="hidden" name="txt_idClass" value="{{ $value->id_leogo }}"> 
+                              <div class="row">
+                                <label class="control-label edit-row">Start day
+                                </label>
+                                <div class="pull-right">
+                                  <label class="label edit-lable edit-pull-right">{{ $value->Start_Date }}
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <label class="control-label edit-row">End date
+                                </label>
+                                <div class="pull-right">
+                                  <label class="label edit-lable edit-pull-right">{{ $value->End_Date}}
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <label class="control-label edit-row">Qty Students
+                                </label>
+                                <div class="pull-right">
+                                  <label class="label label-danger edit-pull-right">{{ $value->QuantityStudent }}
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <label class="control-label edit-row">Remain classes
+                                </label>
+                                <div class="pull-right">
+                                  <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}
+                                  </label>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          </li>
+                          <!-- /.item -->
+                          <li class="item">
+                            <div class="box-body">
+                              <input type="hidden" name="txt_idClass" value="{{ $value->id_leogo }}"> 
+                              <button 
+                                      type="button" 
+                                      class="btn edit-button edit-itemJs" 
+                                      data-toggle="modal" 
+                                      data-id="{{$value->id_leogo}}" 
+                                      data-target="#listChildren">
+                                List
+                              </button>
+                                <a href="{{ route('register.create') }}">
                                 <button 
-                                        type="button" 
-                                        class="btn edit-button edit-itemJs" 
-                                        data-toggle="modal" 
-                                        data-id="{{$value->id_leogo}}" 
-                                        data-target="#listChildren">
-                                  List
+                                  type="button" 
+                                  class="btn pull-right edit-button edit-itemJs" 
+                                  data-toggle="modal" 
+                                  data-id="{{$value->id_leogo}}" 
+                                  data-target="#inputscore">
+                                    Score
                                 </button>
-                                  <a href="{{ route('register.create') }}">
+                                </a>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                  </div>
+                  <!-- /.post -->
+                </div>
+              @endforeach
+            </div>
+          </div>
+          @else
+          <div class="box-header">
+            <p class="pull-right box-title">
+              <button type="button" class="btn btn-primary editLeftRight">
+                <i class="fa fa-reply-all">Back
+                </i>
+              </button>
+              <a href="{{ route('classRoom.create') }}">
+                <button type="button" class="btn btn-success">
+                  <i class="fa fa-plus">
+                  </i>Add
+                </button>
+              </a>
+            </p>
+          </div>
+          <div class="box-body">
+              <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                  @foreach($getCourses as $count=>$getCourse)
+                  <li role="presentation" @if($count == 0) class="active" @endif>
+                    <a href="#tab-{{ $getCourse->id }}" aria-controls="#tab-{{ $getCourse->id }}" role="tab" data-toggle="tab">{{ $getCourse->Course_Name }}
+                    </a>
+                  </li>
+                  @endforeach
+                </ul>
+                <div class="tab-content">
+                  @foreach($getCourses as $count=>$getCourse)
+                    <div role="tabpanel" @if($count == 0) class="tab-pane active" @else class="tab-pane" @endif id="tab-{{ $getCourse->id }}">
+                      <!-- Post -->
+                      <div class="row">
+                        @foreach($getClassOfCourses as $value)
+                        @if($getCourse->id == $value->id_course)
+                        <input type="hidden" name="txt_idClass">
+                        <div class="col-sm-3">
+                          <div class="box-body">
+                            <ul class="products-list product-list-in-box">
+                              <li class="edit-item">
+                                <div class="edit-product-info">
+                                  <h4 class="edit-p">{{ $value->Class_Name }} 
+                                    <button type="button" 
+                                            class="btn edit-button edit-icon pull-right"
+                                            data-toggle="modal" 
+                                            data-idleogoclass="{{$value->id_leogo}}" 
+                                            data-target="#editClass"
+                                            > 
+                                      <i class="fa fa-eyedropper" aria-hidden="true">
+                                      </i>
+                                    </button>
+                                  </h4>
+                                  <div class="avatar-edit">
+                                    <img src="{{ asset('image/avatar').'/logo.png' }}" class="img-circle edit-image" alt="Avatar">
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- /.item -->
+                              <li class="item">
+                                <div class="box-body">
+                                  <div class="row">
+                                    <label class="control-label edit-row">Course
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->Course_Name }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Start day
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->Start_Date }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">End date
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label edit-lable edit-pull-right">{{ $value->End_Date}}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Qty Students
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label label-danger edit-pull-right">{{ $value->QuantityStudent }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <label class="control-label edit-row">Remain classes
+                                    </label>
+                                    <div class="pull-right">
+                                      <label class="label label-success edit-pull-right">{{ $value->QuantitySession }}
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- /.item -->
+                              <li class="item">
+                                <div class="box-body">
+                                  <input type="hidden" name="txt_idClass" value="{{ $value->id_leogo }}"> 
                                   <button 
-                                    type="button" 
-                                    class="btn pull-right edit-button edit-itemJs" 
-                                    data-toggle="modal" 
-                                    data-id="{{$value->id_leogo}}" 
-                                    data-target="#inputscore">
-                                      Score
+                                          type="button" 
+                                          class="btn edit-button edit-itemJs" 
+                                          data-toggle="modal" 
+                                          data-id="{{$value->id_leogo}}" 
+                                          data-target="#listChildren">
+                                    List
                                   </button>
+                                  <a href="{{ route('register.create') }}">
+                                    <button 
+                                            type="button" 
+                                            class="btn pull-right edit-button edit-itemJs" 
+                                            data-toggle="modal" 
+                                            data-id="{{$value->id_leogo}}" 
+                                            data-target="#inputscore">
+                                      Score
+                                    </button>
                                   </a>
                                 </div>
                               </li>
                             </ul>
                           </div>
+                          <!-- /.box-body -->
+                        </div>
+                        @endif
+                        @endforeach
                       </div>
-                      @endif
-                      @endforeach
+                      <!-- /.post -->
                     </div>
-                    <!-- /.post -->
-                  </div>
-                @endforeach
+                  @endforeach
+                </div>
+                <!-- /.tab-content -->
               </div>
-              <!-- /.tab-content -->
             </div>
+          @endif
+              <!-- /.tab-content -->
           </div>
-        </div>
       </div>
     </div>
+  </div>
     {{-- START MODAL SCHEDULE --}}
     <div class="main-content">
       <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="editClass">
@@ -572,7 +808,7 @@
               }
               ,
               error: function (){
-                alert('Lỗi đã xảy ra');
+                alert('L?i dã x?y ra');
               }
             });
           return false;

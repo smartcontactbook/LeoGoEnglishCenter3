@@ -6,7 +6,7 @@
 			<small></small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="#"><i class="fas fa-house-damage"></i> Home</a></li>
 			<li class="active">Dashboard</li>
 		</ol>
 	</section>
@@ -335,7 +335,7 @@
 </section>
 <script>
         var url = "{{ route('chart.index') }}";
-        alert(url);
+        // alert(url);
         var Years = new Array();
         var Labels = new Array();
         var Prices = new Array();

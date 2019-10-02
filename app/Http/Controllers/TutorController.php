@@ -72,8 +72,7 @@ class TutorController extends Controller
             $new_avatar = TutorHelper::updateAvatar($request);
             $tutor = staff::findOrFail($request->id_tutor);
             $tutor->Description = $request->txt_description;
-            $tutor->First_Name = $request->txt_FirstName;
-            $tutor->Last_Name = $request->txt_LastName;
+            $tutor->Full_Name = $request->txt_FirstName;
             $tutor->Email = $request->txt_email;
             $tutor->Birth_Day = $request->txt_date;
             $tutor->Phone_Number = $request->txt_phone;

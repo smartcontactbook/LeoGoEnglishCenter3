@@ -23,6 +23,7 @@ use App\Helpers\LeogoClassHelper;
 use Illuminate\Support\Facades\DB;
 use App\children_account;
 use App\Helpers\RegisterHelper;
+use Auth;
 
 class AddChildrenController extends Controller
 {
@@ -33,7 +34,9 @@ class AddChildrenController extends Controller
      */
     public function index()
     {
+        
         $getLevelOfCourse = AddchildrenHelper::getLevelOfCourse();
+// dd($getChildrenOfLecturer);
         return view('admin.enrollmentManagement.RegisterList',compact('getLevelOfCourse'));
     }
 

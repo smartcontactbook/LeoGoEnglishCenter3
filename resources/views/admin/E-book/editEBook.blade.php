@@ -45,32 +45,25 @@
                     <img name="image" id="output_image"/> -->
                     <input name="image" type="file" accept="image/*" onchange="preview_image(event)"value="{{ $getEbookOfCourses->image }}">
                     <img name="image" style="width: 200px; height: 150px;" id="output_image" src="{{asset('image/')}}/ebook/{{ $getEbookOfCourses->image }}"/>
-
-
                   </div>
                 </div>
-
-
               <div class="form-group">                        
                 <label for="file" class="col-sm-2 control-label">File <span class="text-red">*</span></label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" id="txt_file" name="txt_file" value="{{$getEbookOfCourses->file}}">
                 </div>
               </div>
-
               <div class="form-group">
                 <label for="file" class="col-sm-2 control-label">Description <span class="text-red">*</span></label>
                 <div class="col-sm-6">
                   <textarea class="form-control" id="txt_description" name="txt_description" rows="4" placeholder="Enter description"  required>{!! $getEbookOfCourses->description !!}</textarea>
                 </div>
               </div>
-
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                     <input type="submit" class="btn btn-success" value="Update E-book">
                 </div>
                 </div>
-
             </form>
           </div>
         </div>

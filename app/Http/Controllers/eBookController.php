@@ -106,14 +106,22 @@ class eBookController extends Controller
 
          try {
             $e_book = e_book::findOrFail($id);
-            $file_image=$request->file('image')->getClientOriginalName();
+           
             $e_book->eBook_Name = $request->txt_eBook_Name;
             $e_book->Author = $request->txt_Author;
             $e_book->description = $request->txt_description;
-            $e_book->image = $file_image;
-            $request->file('image')->move('image/ebook/',$file_image);
             $e_book->file = $request->txt_file;
-        $result = $e_book->save();
+            $image2 = $request->file('image');
+            if($image2 == null)
+                $result = $e_book->save();
+            else{
+                $file_image=$request->file('image')->getClientOriginalName();
+                $e_book->image = $file_image;
+                $request->file('image')->move('image/ebook/',$file_image);
+                $result = $e_book->save();
+            }
+            
+            
             if($result) {
                 $request->session()->flash('messageUpadte', 'Upadte success');
             } else {

@@ -68,6 +68,18 @@ class CalendarHelper
         return $getCalendarOfUsers;
     }
 
+    public static function getCalendarOfChildren($idUser){
+        $getCalendarOfUsers = DB::table('tem_day_time_study')
+                            ->join('leogo_class', 'tem_day_time_study.id_class', '=', 'leogo_class.id')
+                            ->join('history_user', 'leogo_class.id', '=', 'history_user.Class_ID') 
+                            ->select(   DB::raw("CONCAT(dayStartStudy, ' ',timeStartStudy) as fullNameTimeStart"),
+                                DB::raw("CONCAT(dayEndStudy, ' ',timeEndStudy) as fullNameTimeEnd"),
+                                'title')
+                            ->where('history_user.Children_ID', '=', $idUser)
+                            ->get();
+        return $getCalendarOfUsers;
+    }
+
     // public static function getCalendarOfLecturer($idUser){
     //     $getCalendarOfLecturer = DB::table('tem_day_time_study')
     //     ->select(   DB::raw("CONCAT(dayStartStudy, ' ',timeStartStudy) as fullNameTimeStart"),

@@ -40,18 +40,18 @@
               <div class="input-block clearfix">
                 <select name="nhucauhoc" class="input-block nhucauhoc" style="background-color:#fff">
                   <option value="">Khóa học quan tâm</option>
-                  @foreach($getCourses as $value)
+                  @foreach($getCourse as $value)
                     <option value="{{ $value->id }}">{{ $value->Course_Name }}</option>
                   @endforeach
                 </select>
               </div>
-              <div class="input-block clearfix">
-                  <select name="nhucauhoc" class="input-block nhucauhoc" style="background-color:#fff">
-                    <option value="">Hình thức thanh toán</option>
-                    <option value="0">Thanh toán sau khi nhập học</option>
-                    <option value="1">Thanh toán ngay</option>
-                  </select>
-                </div>
+              {{-- <div class="input-block clearfix">
+                <select name="nhucauhoc" class="input-block nhucauhoc" style="background-color:#fff">
+                  <option value="">Hình thức thanh toán</option>
+                  <option value="0">Thanh toán sau khi nhập học</option>
+                  <option value="1">Thanh toán ngay</option>
+                </select>
+              </div> --}}
               <div class="input-block clearfix">
                 <textarea class="block-textarea txtNote o2o-notes" data-text-required="Bạn chưa nhập th&#244;ng điệp" placeholder="Th&#244;ng tin th&#234;m về nhu cầu học"></textarea>
               </div>
@@ -61,10 +61,10 @@
                   <i class="icofont-send-mail"></i>
                   <span class="text">Gửi th&#244;ng tin</span>
                 </button>
-                <button type="submit" class=" btn-text-w-ico btn-regular btn-regular--lr40" data-title="Gửi th&#244;ng tin" style="margin-left: 50px">
+                {{-- <button type="submit" class=" btn-text-w-ico btn-regular btn-regular--lr40" data-title="Gửi th&#244;ng tin" style="margin-left: 50px">
                   <i class="icofont-send-mail"></i>
                   <span class="text">Thanh Toán Ngay</span>
-                </button>
+                </button> --}}
               </div>
             </div>
           </form>

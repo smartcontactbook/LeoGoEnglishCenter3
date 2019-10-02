@@ -190,7 +190,8 @@ class HomeController extends Controller
             $children->Status = 0 ;
             $children->Role_ID = 5 ;
             $children->User_Name = $register->Email;
-            $children->Password = $register->Phone_Number;
+            $children->Password = Hash::make($register->Phone_Number); 
+            $children->create_at = Carbon::now();
             $result = $children->save();
             $tem_children_class = new tem_children_class;
             $tem_children_class->id_Chidren = $children->id;
@@ -307,6 +308,8 @@ class HomeController extends Controller
             $getNewChildrenClass = new history_user;
             $getNewChildrenClass->Class_ID = Session::get('id_LeogoClass');
             $getNewChildrenClass->Children_ID = $value->id_Children;
+            $getNewChildrenClass->active = 1;
+            $getNewChildrenClass->date_change = Carbon::now();
             $getNewChildrenClass->save();
             // $delete_tem_children_class = tem_children_class::find($value->ID);
         }

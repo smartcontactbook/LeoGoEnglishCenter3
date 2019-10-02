@@ -2,10 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
-class children extends Model
+class children extends Authenticatable
 {
+    // use EntrustUserTrait;
+    use Notifiable, HasApiTokens;
     protected $table='children';
     protected $guarded= [];
     public $timestamps = false;

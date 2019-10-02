@@ -322,7 +322,7 @@
 		                      name="txt_birthday">
 		                  </label>
 	                      <label>Score</label>
-		                      <input 
+		                      <input required
 		                      id="txt_score" 
 		                      class="form-control" 
 		                      type="number" min="0" max="1000"

@@ -36,9 +36,9 @@ function preview_image(event)
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
-             <form action="{{route('course.update', $getCourseEdit->id)}}" method="post">
+            <form action="{{route('course.update', $getCourseEdit->id)}}" method="post" enctype="multipart/form-data">
               {{method_field('patch')}}
-              {{csrf_field()}}
+              {{csrf_field()}} 
               <div class="modal-body">
             <div class="box-body">
               <div class="form-group">
@@ -68,7 +68,7 @@ function preview_image(event)
                   <div class="col-lg-6">
                     <div class="form-group" id="wrapper">
                       <label>Choose image</label>
-                      <input name="image" id="image" type="file" accept="image/*" onchange="preview_image(event)">
+                      <input name="image" id="image" type="file" accept="image/*" onchange="preview_image(event)" value="{{ $getCourseEdit->image}}">
                       <img name="image" id="output_image" src="{{asset('image/')}}/course/{{ $getCourseEdit->image}}" />
                     </div>
                   </div>

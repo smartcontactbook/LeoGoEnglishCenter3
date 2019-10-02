@@ -97,7 +97,7 @@
 					url: "{{ route('postCheckOrder') }}",
 					type: 'POST',
 					cache: false,
-					data: {
+					data: {	
 						id:id_user, status:presentStatus}
 					,
 					success: function(data){

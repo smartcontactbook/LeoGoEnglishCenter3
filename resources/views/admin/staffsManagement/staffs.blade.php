@@ -45,7 +45,7 @@
 							<?php $stt=0 ?>
 							@foreach($getStaff as $value)
 							<?php $stt=$stt+1 ?>
-						<tr id = "{{ $value->id }}">
+							<tr id = "{{ $value->id }}">
 									<td>{!! $stt !!}</td>
 									<td>{{$value->Full_Name}}</td>
 									<td>{{$value->User_Name}}</td>
@@ -103,9 +103,9 @@
 	{
 	$.ajax({
 		url: 'http://127.0.0.1:8000/del_staff/'+id,
-		type: 'DELETE',
+		type: 'POST',
 		data: {
-			"id": id, "_token": "{{ csrf_token() }}",}
+			"id": id, "_token": "{{ csrf_token() }}",  _method: 'delete'}
 		,
 		error: function() {
 		alert('Something is wrong');
